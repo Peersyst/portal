@@ -1,13 +1,14 @@
-import { translate } from "locale";
 import BasePage from "module/common/component/layout/BasePage/BasePage";
 import { Animated, Typography } from "@peersyst/react-components";
 import { ArrowIcon } from "icons";
 import { useLogin } from "module/auth/query/useLogin";
 import Button from "module/common/component/input/Button/Button";
 import { useAuth } from "module/auth/hook/useAuth";
+import useTranslate from "module/common/hook/useTranslate";
 
 export default function DashboardPage(): JSX.Element {
     const login = useLogin();
+    const translate = useTranslate();
     const {
         state: { token, isLogged },
         logout,
@@ -38,7 +39,7 @@ export default function DashboardPage(): JSX.Element {
             >
                 {!isLogged ? (login.isLoading ? "Loading..." : "Log in") : "Log out"}
             </Button>
-            {login.error && (
+            {login.isError && (
                 <Typography
                     variant="body1"
                     css={`
