@@ -24,13 +24,13 @@ export class User implements AuthUserI {
 
     @CreateDateColumn({
         name: "created_at",
-        type: "datetime",
+        type: "timestamp",
     })
     createdAt!: Date;
 
     @UpdateDateColumn({
         name: "updated_at",
-        type: "datetime",
+        type: "timestamp",
     })
     updatedAt!: Date;
 }
