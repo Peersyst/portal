@@ -11,4 +11,6 @@ coverage
 logs
 */**/logs
 
+tsconfig.json
+
 */**/openapi-spec.json
