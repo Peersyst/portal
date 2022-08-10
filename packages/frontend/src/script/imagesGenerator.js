@@ -13,7 +13,12 @@ const imgRequires = [];
  */
 function generateName(filename) {
     const paths = filename.split("/");
-    return paths[paths.length - 1].split(".")[0].toLowerCase().replace(/ |-/g, "_");
+    return paths[paths.length - 1]
+        .split(".")[0]
+        .replace(/^./, (x) => x.toLowerCase())
+        .replace(/[A-Z]/g, (x) => "_" + x)
+        .toLowerCase()
+        .replace(/ |-/g, "_");
 }
 
 /**
