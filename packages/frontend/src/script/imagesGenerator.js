@@ -16,9 +16,9 @@ function generateName(filename) {
     return paths[paths.length - 1]
         .split(".")[0]
         .replace(/^./, (x) => x.toLowerCase())
-        .replace(/[A-Z]/g, (x) => "_" + x)
-        .toLowerCase()
-        .replace(/ |-/g, "_");
+        .replace(/ |-/g, "_")
+        .replace(/[^_][A-Z]/g, ([a, b]) => a + "_" + b)
+        .toLowerCase();
 }
 
 /**
