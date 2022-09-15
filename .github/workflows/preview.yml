@@ -27,6 +27,7 @@ jobs:
               id: init-terraform
               run: |
                 curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":{"attributes":{"name":"${{ github.event.repository.name }}_${{ github.event.pull_request.number }}"}}}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces"
+                curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":[{"type":"tags","attributes":{"name":"staging"}}]}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${TF_WORKSPACE}/relationships/tags"
                 terraform init
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
