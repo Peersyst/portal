@@ -28,7 +28,7 @@ jobs:
             - name: Add tags to workspace
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
               run: |
-                curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":[{"type":"tags","attributes":{"name":"staging"}}]}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${TF_WORKSPACE}/relationships/tags"
+                curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":[{"type":"tags","attributes":{"name":"staging"}}]}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${{ github.event.repository.name }}_${{ github.event.pull_request.number }}/relationships/tags"
             # Initialize terraform
             - name: Initialize terraform
               if: github.event_name == 'pull_request'
