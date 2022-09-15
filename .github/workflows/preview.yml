@@ -2,14 +2,14 @@ name: "Build and Deploy Preview Environment"
 
 on:
     pull_request:
-        types: [opened, closed]
+        types: [opened, edited, closed]
 
 jobs:
     preview-environment:
         name: "Build and Deploy Preview Environment"
         runs-on: ubuntu-latest
         env:
-            TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.head_ref }}
+            TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
         defaults:
             run:
                 working-directory: .terraform/staging
