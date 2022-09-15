@@ -21,6 +21,11 @@ jobs:
               uses: hashicorp/setup-terraform@v1
               with:
                   cli_config_credentials_token: ${{ secrets.TFC_API_TOKEN }}
+            # Create terraform workspace
+            - name: Create terraform workspace
+              if: github.event_name == 'pull_request' && github.event.action != 'closed'
+              id: terraform-workspace-create
+              run: terraform workspace create ${TF_WORKSPACE} || echo "Workspace ${TF_WORKSPACE} already exists or cannot be created"
             # Initialize terraform
             - name: Initialize terraform
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
@@ -31,7 +36,7 @@ jobs:
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
               id: build-deploy-preview-environment
               run: |
-                  terraform apply --auto-approve -var="branch=${{ github.head_ref }}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}" -var="docker-token=${{ secrets.DOCKER_READONLY_TOKEN }}" -var="cloudflare-token=${{ secrets.CLOUDFLARE_PEERSYST_TECH_TOKEN }}"
+                  terraform apply --auto-approve -var="branch=${{ github.event.pull_request.number }}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}" -var="docker-token=${{ secrets.DOCKER_READONLY_TOKEN }}" -var="cloudflare-token=${{ secrets.CLOUDFLARE_PEERSYST_TECH_TOKEN }}"
             # Runs Terraform output to display the backend URL and Vercel preview URL
             - name: Terraform Output
               id: output
