@@ -2,7 +2,7 @@ name: "Build and Deploy Preview Environment"
 
 on:
     pull_request:
-        types: [opened, edited, closed]
+        types: [opened, synchronize, closed]
 
 jobs:
     preview-environment:
