@@ -30,5 +30,5 @@ provider "cloudflare" {
 }
 
 output "url" {
-    value = cloudflare_record.www.hostname
+    value = "https://${cloudflare_record.www.hostname}"
 }
