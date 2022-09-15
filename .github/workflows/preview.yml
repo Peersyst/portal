@@ -64,5 +64,5 @@ jobs:
               if: github.event.action == 'closed'
               id: destroy-preview-environment
               run: |
-                  terraform destroy --auto-approve
+                  terraform destroy --auto-approve -var="branch=${{ github.event.pull_request.number }}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}" -var="docker-token=${{ secrets.DOCKER_READONLY_TOKEN }}" -var="cloudflare-token=${{ secrets.CLOUDFLARE_PEERSYST_TECH_TOKEN }}"
                   curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request DELETE "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${TF_WORKSPACE}"
