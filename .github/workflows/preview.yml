@@ -21,6 +21,11 @@ jobs:
               uses: hashicorp/setup-terraform@v1
               with:
                   cli_config_credentials_token: ${{ secrets.TFC_API_TOKEN }}
+            # Initialize terraform
+            - name: Initialize terraform
+              if: github.event_name == 'pull_request' && github.event.action != 'closed'
+              id: init-terraform
+              run: export TF_WORKSPACE=ci && terraform init
             # Create terraform workspace
             - name: Create terraform workspace
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
@@ -28,11 +33,6 @@ jobs:
               run: terraform workspace new ${WORKSPACE} || echo "Workspace ${WORKSPACE} already exists or cannot be created"
             - name: Set workspace env
               run: echo "TF_WORKSPACE=$(echo $WORKSPACE)" >> $GITHUB_ENV
-            # Initialize terraform
-            - name: Initialize terraform
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
-              id: init-terraform
-              run: terraform init
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
