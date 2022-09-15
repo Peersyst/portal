@@ -21,6 +21,11 @@ jobs:
               uses: hashicorp/setup-terraform@v1
               with:
                   cli_config_credentials_token: ${{ secrets.TFC_API_TOKEN }}
+            # Initialize terraform
+            - name: Initialize terraform
+              if: github.event_name == 'pull_request' && github.event.action != 'closed'
+              id: init-terraform
+              run: terraform init
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
