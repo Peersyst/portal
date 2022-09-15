@@ -1,24 +1,23 @@
-FROM node:16.13.0 as build
-
-ARG NODE_ENV=production
-ENV NODE_ENV ${NODE_ENV}
-
+FROM node:16.13.0 as base
 WORKDIR /app
-
-RUN rm -rf *
-
 COPY ["package.json", "yarn.lock", ".npmrc", "./"]
 
-RUN yarn
-
+FROM base as test
+RUN yarn install
 COPY . .
+RUN yarn lint
+RUN yarn test
 
+FROM base as build
+ARG NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
+COPY --from=test /app/package.json /app/package.json
+RUN yarn
+COPY . .
 RUN DISABLE_ESLINT_PLUGIN=true yarn build
 
 FROM nginx:latest
-
 RUN mkdir /etc/nginx/templates
-
 RUN echo " \
     upstream backend { \
       \${BACKEND_UPSTREAM}\
@@ -35,5 +34,4 @@ RUN echo " \
             proxy_pass http://backend; \
         } \
     }" > /etc/nginx/templates/default.conf.template
-
 COPY --from=build /app/build /var/www

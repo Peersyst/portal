@@ -1,7 +1,7 @@
 import { Logger } from "@nestjs/common";
 import { createConnection, Connection, EntityTarget } from "typeorm";
 import { TypeORMSeederAdapter } from "./adapter";
-import { getTypeORMConfig } from "../../config/typeormConfig";
+import { getTypeORMConfig } from "../../config/typeorm.config";
 import { User } from "../entities/User";
 
 import { users } from "./seeders-data";
