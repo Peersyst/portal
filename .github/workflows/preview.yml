@@ -9,7 +9,7 @@ jobs:
         name: "Build and Deploy Preview Environment"
         runs-on: ubuntu-latest
         env:
-            WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
+            TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
         defaults:
             run:
                 working-directory: .terraform/staging
@@ -25,14 +25,7 @@ jobs:
             - name: Initialize terraform
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
               id: init-terraform
-              run: export TF_WORKSPACE=ci && terraform init
-            # Create terraform workspace
-            - name: Create terraform workspace
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
-              id: terraform-workspace-create
-              run: terraform workspace new ${WORKSPACE} || echo "Workspace ${WORKSPACE} already exists or cannot be created"
-            - name: Set workspace env
-              run: echo "TF_WORKSPACE=$(echo $WORKSPACE)" >> $GITHUB_ENV
+              run: echo "yes" | terraform init
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
