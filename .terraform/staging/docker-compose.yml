@@ -11,11 +11,11 @@ services:
         image: peersyst/global:${projectName}-${branch}-backend
         restart: always
         environment:
-            NODE_ENV=staging
-            AWS_REGION=eu-west-1
-            AWS_SECRET_ID=staging/${projectName}
-            AWS_ACCESS_KEY_ID=${awsAccessKeyId}
-            AWS_SECRET_ACCESS_KEY=${awsSecretAccessKey}
+            NODE_ENV: staging
+            AWS_REGION: eu-west-1
+            AWS_SECRET_ID: staging/${projectName}
+            AWS_ACCESS_KEY_ID: ${awsAccessKeyId}
+            AWS_SECRET_ACCESS_KEY: ${awsSecretAccessKey}
     http:
         image: peersyst/global:${projectName}-${branch}-http
         restart: always
