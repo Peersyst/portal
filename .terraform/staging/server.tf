@@ -17,7 +17,7 @@ data "aws_ami" "ubuntu" {
 data "template_file" "user_data" {
     template = file("${path.module}/setup-server.yaml")
     vars = {
-        dockerComposeContent: base64encode(templatefile("${path.module}/docker-compose.yml", {
+        dockerComposeFile: base64encode(templatefile("${path.module}/docker-compose.yml", {
             projectName: var.project-name
             branch: var.branch
             awsAccessKeyId: var.aws-access-key-id
