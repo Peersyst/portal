@@ -25,10 +25,10 @@ runcmd:
     - cd /home/tf
     - sudo apt-get update
     - sudo apt-get -y -qq install docker.io docker-compose git
-    - sudo docker login -u peersyst -p ${dockerReadToken}
+    - sudo docker login -u peersyst -p 123456
     - sudo docker-compose up -d
 
 write_files:
     - encoding: b64
-    content: ${dockerComposeFile}
-    path: /home/tf/docker-compose.yml
+      content: ${dockerComposeFile}
+      path: /home/tf/docker-compose.yml
