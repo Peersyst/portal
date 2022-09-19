@@ -3,7 +3,7 @@ terraform {
         hostname     = "app.terraform.io"
         organization = "Peersyst"
         workspaces {
-            tags = ["staging"]
+            name = "__WORKSPACE__"
         }
     }
 

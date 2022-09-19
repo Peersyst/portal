@@ -21,20 +21,13 @@ jobs:
               uses: hashicorp/setup-terraform@v2
               with:
                   cli_config_credentials_token: ${{ secrets.TFC_API_TOKEN }}
-            - name: Initialize workspace
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
-              run: |
-                curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":{"attributes":{"name":"${{ github.event.repository.name }}_${{ github.event.pull_request.number }}"}}}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces"
-            - name: Add tags to workspace
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
-              run: |
-                curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":[{"type":"tags","attributes":{"name":"staging"}}]}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${{ github.event.repository.name }}_${{ github.event.pull_request.number }}/relationships/tags"
             # Initialize terraform
             - name: Initialize terraform
               if: github.event_name == 'pull_request'
               id: init-terraform
               run: |
-                terraform init
+                  sed -i 's/__WORKSPACE__/${{ github.event.repository.name }}_${{ github.event.pull_request.number }}/g' main.tf
+                  terraform init -input=false
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
               if: github.event_name == 'pull_request' && github.event.action != 'closed'
