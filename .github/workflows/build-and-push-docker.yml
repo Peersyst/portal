@@ -38,7 +38,7 @@ jobs:
                 uses: docker/build-push-action@v3
                 with:
                     push: true
-                    context: packages/backend
+                    context: ./packages/backend
                     tags: ${{ env.DOCKER_IMAGE_NAME }}
     http:
         name: "Build and Push http docker image"
@@ -59,15 +59,15 @@ jobs:
             -   name: Sets env vars for pull request
                 if: github.event_name == 'pull_request'
                 run: |
-                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
             -   name: Sets env vars for push event
                 if: github.event_name != 'pull_request'
                 run: |
-                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
             # Push image
             -   name: Build and push
                 uses: docker/build-push-action@v3
                 with:
                     push: true
-                    context: packages/backend
+                    context: ./packages/frontend
                     tags: ${{ env.DOCKER_IMAGE_NAME }}
