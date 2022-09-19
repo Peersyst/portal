@@ -8,7 +8,7 @@ services:
             POSTGRES_USER: db_user
             POSTGRES_PASSWORD: db_password
     backend:
-        image: peersyst/global:${projectName}-${branch}-backend
+        image: peersyst/${projectName}-backend:${branch}
         restart: always
         environment:
             NODE_ENV: staging
@@ -17,7 +17,7 @@ services:
             AWS_ACCESS_KEY_ID: ${awsAccessKeyId}
             AWS_SECRET_ACCESS_KEY: ${awsSecretAccessKey}
     http:
-        image: peersyst/global:${projectName}-${branch}-http
+        image: peersyst/${projectName}-http:${branch}
         restart: always
         ports:
             - '80:80'
