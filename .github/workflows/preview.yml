@@ -26,6 +26,7 @@ jobs:
               if: github.event_name == 'pull_request'
               id: init-terraform
               run: |
+                  terraform workspace new ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
                   sed -i 's/__WORKSPACE__/${{ github.event.repository.name }}_${{ github.event.pull_request.number }}/g' main.tf
                   terraform init -input=false
             # Builds and deploys backend + Vercel preview environments
