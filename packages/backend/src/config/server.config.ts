@@ -18,9 +18,8 @@ export default (secrets: Record<any, any>): ServerConfig => {
                 parseFn: parseInt,
             },
             defaultValue: {
-                all: 3001,
-                staging: 3000,
-                production: 3000,
+                all: 3000,
+                development: 3001,
             },
             validateFn: validPort,
         }),
