@@ -5,6 +5,7 @@ import { getTypeORMConfig } from "../../config/typeorm.config";
 import { User } from "../entities/User";
 
 import { users } from "./seeders-data";
+import { Env } from "../../config/util/config.utils";
 
 export interface SeederAdapterI {
     insert<T>(entityTarget: EntityTarget<T>, data: T[]): Promise<void>;
@@ -13,13 +14,13 @@ export interface SeederAdapterI {
 
 export class Seeder {
     private logger: Logger;
-    private environment: string;
+    private environment: Env;
     private adapter: SeederAdapterI;
     private connection: Connection;
 
     constructor() {
         this.logger = new Logger(Seeder.name);
-        this.environment = process.env.NODE_ENV || "development";
+        this.environment = (process.env.CONFIG_ENV || process.env.NODE_ENV || "development") as Env;
     }
 
     logError(error: Error): void {

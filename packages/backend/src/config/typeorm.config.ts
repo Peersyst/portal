@@ -16,8 +16,8 @@ export function getTypeORMConfig(secrets: Record<string, string> = {}): Connecti
                 key: "DB_HOST",
             },
             defaultValue: {
-                production: secrets.DB_HOST || "db",
-                all: "localhost",
+                all: secrets.DB_HOST || "db",
+                development: "localhost",
             },
         }),
         port: config({

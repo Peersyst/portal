@@ -1,12 +1,88 @@
-name: "Build and Deploy Preview Environment"
+name: "CI/CD"
 
 on:
     pull_request:
-        types: [opened, closed]
+        types: [opened, synchronize, closed]
+    push:
+        branches:
+            - 'main'
+            - 'dev'
 
 jobs:
+    backend:
+        name: "Build and push Backend docker"
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+            -   name: Set up QEMU
+                uses: docker/setup-qemu-action@v2
+
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v2
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@v2
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PUSH_TOKEN }}
+            # Configure tag name
+            -   name: Sets env vars for pull request
+                if: github.event_name == 'pull_request'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            -   name: Sets env vars for push event
+                if: github.event_name != 'pull_request'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            # Build and push image
+            -   name: Build backend image
+                working-directory: packages/backend
+                run: |
+                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} .
+            -   name: Push backend image
+                run: |
+                    docker push ${{ env.DOCKER_IMAGE_NAME }}
+    http:
+        name: "Build and push Frontend docker"
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Set up QEMU
+                uses: docker/setup-qemu-action@v2
+
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@v2
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@v2
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PUSH_TOKEN }}
+            # Configure tag name
+            -   name: Sets env vars for pull request
+                if: github.event_name == 'pull_request'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            -   name: Sets env vars for push event
+                if: github.event_name != 'pull_request'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            # Build and push image
+            -   name: Build http image
+                working-directory: packages/frontend
+                run: |
+                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} .
+            -   name: Push http image
+                run: |
+                    docker push ${{ env.DOCKER_IMAGE_NAME }}
+
     preview-environment:
-        name: "Build and Deploy Preview Environment"
+        name: "Deploy Preview environment"
+        needs: [backend, http]
+        if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
         env:
             TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
@@ -23,29 +99,27 @@ jobs:
                   cli_config_credentials_token: ${{ secrets.TFC_API_TOKEN }}
             # Initialize terraform
             - name: Initialize terraform
-              if: github.event_name == 'pull_request'
-              id: init-terraform
+              if: github.event.action == 'opened'
               run: |
                   curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":{"attributes":{"name":"${{ github.event.repository.name }}_${{ github.event.pull_request.number }}"}}}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces"
                   sed -i 's/__WORKSPACE__/${{ github.event.repository.name }}_${{ github.event.pull_request.number }}/g' main.tf
                   terraform init -input=false
             # Builds and deploys backend + Vercel preview environments
             - name: Build and deploy preview environment
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
-              id: build-deploy-preview-environment
+              if: github.event.action == 'opened'
               run: |
                   terraform apply --auto-approve -var="branch=${{ github.event.pull_request.number }}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}" -var="docker-token=${{ secrets.DOCKER_READONLY_TOKEN }}" -var="cloudflare-token=${{ secrets.CLOUDFLARE_PEERSYST_TECH_TOKEN }}"
             # Runs Terraform output to display the backend URL and Vercel preview URL
             - name: Terraform Output
               id: output
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
+              if: github.event.action == 'opened'
               run: |
                   terraform output -no-color
               continue-on-error: true
             # Creates comments on pull request with Terraform output
             - name: Create comment with Terraform output
               uses: actions/github-script@0.9.0
-              if: github.event_name == 'pull_request' && github.event.action != 'closed'
+              if: github.event.action == 'opened'
               env:
                   OUTPUT: "${{ steps.output.outputs.stdout }}"
               with:
@@ -63,7 +137,6 @@ jobs:
             # When user closes or merges pull request, this will destroy the resources then delete the TFC workspace
             - name: Destroy preview environment
               if: github.event.action == 'closed'
-              id: destroy-preview-environment
               run: |
                   terraform destroy --auto-approve -var="branch=${{ github.event.pull_request.number }}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}" -var="docker-token=${{ secrets.DOCKER_READONLY_TOKEN }}" -var="cloudflare-token=${{ secrets.CLOUDFLARE_PEERSYST_TECH_TOKEN }}"
                   curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request DELETE "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces/${TF_WORKSPACE}"

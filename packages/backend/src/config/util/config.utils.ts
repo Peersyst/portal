@@ -1,4 +1,4 @@
-type envKey = "production" | "staging" | "development" | "test";
+export type Env = "production" | "staging" | "preview" | "development" | "test";
 
 interface EnvConfig<T> {
     key: string;
@@ -16,7 +16,7 @@ export function config<T extends string | number | boolean>({
 }: {
     env?: EnvConfig<T>;
     validateFn?: (t: any) => boolean;
-    defaultValue?: T | PartialRecord<envKey | "all", T>;
+    defaultValue?: T | PartialRecord<Env | "all", T>;
 }): T {
     let result: T;
     if (env && process.env[env.key]) result = env.parseFn ? env.parseFn(process.env[env.key]) : (process.env[env.key] as T);
@@ -25,6 +25,7 @@ export function config<T extends string | number | boolean>({
         (!defaultValue["all"] &&
             !defaultValue["production"] &&
             !defaultValue["staging"] &&
+            !defaultValue["preview"] &&
             !defaultValue["development"] &&
             !defaultValue["test"])
     )
