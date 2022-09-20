@@ -33,13 +33,14 @@ jobs:
                 if: github.event_name != 'pull_request'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-            # Push image
-            -   name: Build and push
-                uses: docker/build-push-action@v3
-                with:
-                    push: true
-                    context: ./packages/backend
-                    tags: ${{ env.DOCKER_IMAGE_NAME }}
+            # Build and push image
+            -   name: Build backend image
+                working-directory: packages/backend
+                run: |
+                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} .
+            -   name: Push backend image
+                run: |
+                    docker push ${{ env.DOCKER_IMAGE_NAME }}
     http:
         name: "Build and Push http docker image"
         runs-on: ubuntu-latest
@@ -64,10 +65,11 @@ jobs:
                 if: github.event_name != 'pull_request'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-            # Push image
-            -   name: Build and push
-                uses: docker/build-push-action@v3
-                with:
-                    push: true
-                    context: ./packages/frontend
-                    tags: ${{ env.DOCKER_IMAGE_NAME }}
+            # Build and push image
+            -   name: Build http image
+                working-directory: packages/frontend
+                run: |
+                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} .
+            -   name: Push http image
+                run: |
+                    docker push ${{ env.DOCKER_IMAGE_NAME }}
