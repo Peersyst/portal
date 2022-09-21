@@ -83,7 +83,7 @@ jobs:
     preview-environment:
         name: "Deploy Preview environment"
         needs: [backend, http]
-        if: ${{ always() }} && github.event_name == 'pull_request'
+        if: ${{ always() && github.event_name == 'pull_request' }}
         runs-on: ubuntu-latest
         env:
             TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
@@ -162,6 +162,7 @@ jobs:
             # Initialize terraform
             - name: Initialize terraform
               run: |
+                  curl --header "Authorization: Bearer ${{ secrets.TFC_API_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data '{"data":{"attributes":{"name":"${{ env.TF_WORKSPACE }}"}}}' "https://app.terraform.io/api/v2/organizations/Peersyst/workspaces"
                   sed -i 's/__WORKSPACE__/${{ env.TF_WORKSPACE }}/g' main.tf
                   terraform init -input=false
             # Builds and deploys environment
