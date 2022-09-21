@@ -10,4 +10,4 @@ services:
             POSTGRES_USER: db_user
             POSTGRES_PASSWORD: db_password
         volumes:
-            - ./docker/data/dev/postgres:/var/lib/postgresql/data
+            - ./docker/db:/var/lib/postgresql/data

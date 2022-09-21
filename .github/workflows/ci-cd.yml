@@ -1,4 +1,4 @@
-name: "CI/CD"
+name: "Continuous integration"
 
 on:
     pull_request:
@@ -89,7 +89,7 @@ jobs:
             TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
         defaults:
             run:
-                working-directory: .terraform/preview
+                working-directory: infra/preview
         steps:
             - name: Checkout
               uses: actions/checkout@v2
@@ -150,7 +150,7 @@ jobs:
             TF_WORKSPACE: ${{ github.event.repository.name }}_staging
         defaults:
             run:
-                working-directory: .terraform/staging
+                working-directory: infra/staging
         steps:
             - name: Checkout
               uses: actions/checkout@v2
