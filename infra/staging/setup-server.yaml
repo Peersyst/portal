@@ -28,7 +28,7 @@ runcmd:
     - sudo docker login -u peersyst -p ${dockerReadToken}
     - sudo docker-compose up -d
     - sleep 30
-    - sudo docker-compose exec backend node ./dist/src/database/seeders/index.js
+    - sudo docker-compose exec -T backend node ./dist/src/database/seeders/index.js
 
 write_files:
     - encoding: b64
