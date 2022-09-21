@@ -25,5 +25,9 @@ variable "aws-secret-access-key" {
 variable "project-name" {
     type = string
     default = ""
-    sensitive = true
+}
+
+variable "branch" {
+    type = string
+    default = ""
 }

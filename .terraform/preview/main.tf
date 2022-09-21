@@ -32,3 +32,7 @@ provider "cloudflare" {
 output "url" {
     value = "https://${cloudflare_record.www.hostname}"
 }
+
+output "server_ip" {
+    value = aws_instance.server.public_ip
+}

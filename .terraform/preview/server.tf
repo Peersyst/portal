@@ -19,6 +19,7 @@ data "template_file" "user_data" {
     vars = {
         dockerComposeFile: base64encode(templatefile("${path.module}/docker-compose.yml", {
             projectName: var.project-name
+            branch: var.branch
             awsAccessKeyId: var.aws-access-key-id
             awsSecretAccessKey: var.aws-secret-access-key
         }))
