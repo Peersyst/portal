@@ -4,7 +4,7 @@ data "cloudflare_zone" "peersyst-tech" {
 
 resource "cloudflare_record" "www" {
     zone_id = data.cloudflare_zone.peersyst-tech.id
-    name    = "staging.${var.project-name}"
+    name    = var.project-name
     value   = aws_instance.server.public_ip
     type    = "A"
     proxied = true
