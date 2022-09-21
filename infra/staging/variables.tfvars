@@ -1,0 +1,6 @@
+cloudflare-token="PSpY1x-lwI-XZ2U_mtXP6MlivdMYNrfCn_etN9Ll"
+docker-token="dckr_pat_kfipvdBgO2GFPLHjnt0ZuedWKJU"
+aws-access-key-id="AKIAUH43WJUPKT3J2S7T"
+aws-secret-access-key="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"
+project-name="base-project"
+branch="ci-refactor"
