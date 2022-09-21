@@ -27,8 +27,6 @@ runcmd:
     - sudo apt-get -y -qq install docker.io docker-compose git
     - sudo docker login -u peersyst -p ${dockerReadToken}
     - sudo docker-compose up -d
-    - sleep 30
-    - docker compose exec backend npm run db:seed
 
 write_files:
     - encoding: b64

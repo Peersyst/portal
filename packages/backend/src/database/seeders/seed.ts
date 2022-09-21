@@ -39,6 +39,11 @@ export class Seeder {
         this.adapter = null;
     }
 
+    async reset(): Promise<void> {
+        await this.connection.dropDatabase();
+        await this.connection.runMigrations();
+    }
+
     async seed(): Promise<void> {
         if (!this.connection || !this.adapter) {
             this.logger.error("Connection not acquired");
@@ -61,11 +66,12 @@ export class Seeder {
     }
 }
 
-export async function runSeeders(): Promise<void> {
+export async function runSeeders(pack = false): Promise<void> {
     const seeder = new Seeder();
 
     try {
         await seeder.connect();
+        if (pack) await seeder.reset();
         await seeder.seed();
     } catch (error) {
         seeder.logError(error);
