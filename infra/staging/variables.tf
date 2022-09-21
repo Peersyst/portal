@@ -27,3 +27,8 @@ variable "project-name" {
     default = ""
     sensitive = true
 }
+
+variable "branch" {
+    type = string
+    default = ""
+}

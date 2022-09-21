@@ -168,4 +168,4 @@ jobs:
             # Builds and deploys environment
             - name: Build and deploy preview environment
               run: |
-                  terraform apply --auto-approve -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}"
+                  terraform apply --auto-approve -var="branch=${GITHUB_REF#refs/heads/}" -var="project-name=${{ github.event.repository.name }}" -var="aws-secret-access-key=${{ secrets.AWS_SECRET_MANAGER_KEY }}" -var="aws-access-key-id=${{ secrets.AWS_SECRET_MANAGER_KEY_ID }}"
