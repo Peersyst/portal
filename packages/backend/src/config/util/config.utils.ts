@@ -11,7 +11,8 @@ type PartialRecord<K extends keyof any, T> = {
 
 export function getConfigEnv(): Env {
     const env = process.env.CONFIG_ENV || process.env.NODE_ENV;
-    if (env !== "production" && env !== "staging" && env !== "preview" && env !== "development" && env !== "test") throw new Error("Invalid env value " + env);
+    if (env !== "production" && env !== "staging" && env !== "preview" && env !== "development" && env !== "test")
+        throw new Error("Invalid env value " + env);
     return env;
 }
 
@@ -36,8 +37,7 @@ export function config<T extends string | number | boolean>({
             !defaultValue["test"])
     )
         result = defaultValue as T;
-    else if (defaultValue?.[getConfigEnv()])
-        result = defaultValue[getConfigEnv()];
+    else if (defaultValue?.[getConfigEnv()]) result = defaultValue[getConfigEnv()];
     else if (defaultValue?.all) {
         result = defaultValue.all;
     }
