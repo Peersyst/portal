@@ -83,7 +83,7 @@ jobs:
     preview-environment:
         name: "Deploy Preview environment"
         needs: [backend, http]
-        if: github.event_name == 'pull_request'
+        if: ${{ always() }} && github.event_name == 'pull_request'
         runs-on: ubuntu-latest
         env:
             TF_WORKSPACE: ${{ github.event.repository.name }}_${{ github.event.pull_request.number }}
