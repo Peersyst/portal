@@ -1,14 +1,25 @@
-FROM node:16.13.0
-# ENV NODE_ENV=production
-
+FROM node:16.13.0 as base
 WORKDIR /app
+COPY ["package.json", "yarn.lock", ".npmrc", "./"]
 
-COPY ["package.json", "package-lock.json*", ".npmrc", "./"]
-
-RUN yarn
-
+FROM base as test
+RUN yarn install
 COPY . .
+RUN yarn lint
+RUN yarn test
 
+FROM base as build
+ARG NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
+COPY --from=test /app/package.json /app/package.json
+RUN yarn
+COPY . .
 RUN yarn build
+
+FROM node:16-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/node_modules /app/node_modules
 
 CMD [ "./dist/src/main" ]

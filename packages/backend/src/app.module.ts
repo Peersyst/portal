@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./modules/user/user.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import configuration from "./config/configuration";
+import configuration from "./config";
 import { join } from "path";
 import * as OpenApiValidator from "express-openapi-validator";
 import { APP_FILTER } from "@nestjs/core";
@@ -13,15 +13,16 @@ import { ErrorFilter } from "./modules/common/exception/error.filter";
 @Module({
     imports: [
         ConfigModule.forRoot({
-            load: [configuration],
+            load: [async () => configuration()],
             expandVariables: true,
             isGlobal: true,
         }),
         TypeOrmModule.forRootAsync({
             inject: [ConfigService],
             imports: [ConfigModule],
-            useFactory: (config: ConfigService) =>
-                ({
+            useFactory: async (config: ConfigService) => {
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+                return {
                     type: config.get("database.type"),
                     host: config.get("database.host"),
                     port: config.get("database.port"),
@@ -34,7 +35,8 @@ import { ErrorFilter } from "./modules/common/exception/error.filter";
                     migrations: config.get("database.migrations"),
                     cli: config.get("database.cli"),
                     migrationsRun: config.get("database.migrationsRun"),
-                } as any),
+                } as any;
+            },
         }),
         CommandModule,
         UserModule,

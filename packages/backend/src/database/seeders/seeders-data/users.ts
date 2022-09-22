@@ -1,6 +1,6 @@
 import { hashSync } from "bcrypt";
-
 import { User, UserType } from "../../entities/User";
+import { Env } from "../../../config/util/config.utils";
 
 const devUsers = [
     {
@@ -29,6 +29,17 @@ const devUsers = [
     },
 ];
 
+const previewUsers = [
+    {
+        id: 1,
+        email: "acarrera@peersyst.com",
+        type: UserType.ADMIN,
+        password: hashSync("123qweQWE!", 10),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    },
+];
+
 const prodUsers = [
     {
         id: 1,
@@ -48,12 +59,15 @@ const prodUsers = [
     },
 ];
 
-export default function getByEnv(env: string): User[] {
+export default function getByEnv(env: Env): User[] {
     if (env === "production") {
         return prodUsers;
     }
-    if (env === "development") {
+    if (env === "development" || env === "staging" || env === "test") {
         return devUsers;
+    }
+    if (env === "preview") {
+        return previewUsers;
     }
     if (env === "test") {
         return devUsers;
