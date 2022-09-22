@@ -1,10 +1,11 @@
 import { Logger } from "@nestjs/common";
 import { createConnection, Connection, EntityTarget } from "typeorm";
 import { TypeORMSeederAdapter } from "./adapter";
-import { getTypeORMConfig } from "../../config/typeormConfig";
+import { getTypeORMConfig } from "../../config/typeorm.config";
 import { User } from "../entities/User";
 
 import { users } from "./seeders-data";
+import { Env, getConfigEnv } from "../../config/util/config.utils";
 
 export interface SeederAdapterI {
     insert<T>(entityTarget: EntityTarget<T>, data: T[]): Promise<void>;
@@ -13,13 +14,13 @@ export interface SeederAdapterI {
 
 export class Seeder {
     private logger: Logger;
-    private environment: string;
+    private environment: Env;
     private adapter: SeederAdapterI;
     private connection: Connection;
 
     constructor() {
         this.logger = new Logger(Seeder.name);
-        this.environment = process.env.NODE_ENV || "development";
+        this.environment = getConfigEnv();
     }
 
     logError(error: Error): void {
@@ -36,6 +37,11 @@ export class Seeder {
         await this.connection.close();
         this.connection = null;
         this.adapter = null;
+    }
+
+    async reset(): Promise<void> {
+        await this.connection.dropDatabase();
+        await this.connection.runMigrations();
     }
 
     async seed(): Promise<void> {
@@ -60,11 +66,12 @@ export class Seeder {
     }
 }
 
-export async function runSeeders(): Promise<void> {
+export async function runSeeders(pack = false): Promise<void> {
     const seeder = new Seeder();
 
     try {
         await seeder.connect();
+        if (pack) await seeder.reset();
         await seeder.seed();
     } catch (error) {
         seeder.logError(error);
