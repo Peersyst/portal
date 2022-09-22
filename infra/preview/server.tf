@@ -14,19 +14,6 @@ data "aws_ami" "ubuntu" {
     owners = ["099720109477"] # Canonical
 }
 
-data "template_file" "user_data" {
-    template = file("${path.module}/setup-server.yaml")
-    vars = {
-        dockerComposeFile: base64encode(templatefile("${path.module}/docker-compose.yml", {
-            projectName: var.project-name
-            branch: var.branch
-            awsAccessKeyId: var.aws-access-key-id
-            awsSecretAccessKey: var.aws-secret-access-key
-        }))
-        dockerReadToken: var.DOCKER_READONLY_TOKEN
-    }
-}
-
 resource "aws_instance" "server" {
     ami                         = data.aws_ami.ubuntu.id
     instance_type               = "t2.micro"
@@ -83,7 +70,12 @@ resource "aws_security_group" "sg" {
 
 resource "null_resource" "setup" {
     provisioner "file" {
-        source      = "${path.module}/docker-compose.yml"
+        content      = templatefile("${path.module}/docker-compose.yml", {
+            projectName: var.project-name
+            branch: var.branch
+            awsAccessKeyId: var.aws-access-key-id
+            awsSecretAccessKey: var.aws-secret-access-key
+        })
         destination = "/home/ubuntu/docker-compose.yml"
     }
 
