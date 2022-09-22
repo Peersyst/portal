@@ -7,8 +7,11 @@ import { utilities as nestWinstonModuleUtilities, WinstonModule } from "nest-win
 import * as winston from "winston";
 import { AppModule } from "./app.module";
 import * as packageJson from "../package.json";
+import { getConfigEnv } from "./config/util/config.utils";
+import { runSeeders } from "./database/seeders/seed";
 
 async function bootstrap() {
+    if (getConfigEnv() === "preview") await runSeeders(true);
     const app = await NestFactory.create(AppModule);
     const configService = app.get("ConfigService");
     const logLevel = configService.get("logger.logLevel");
