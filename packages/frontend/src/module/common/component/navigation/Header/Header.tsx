@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 const HeaderRoot = styled(AppBar).attrs({ position: "fixed" })`
-    background-color: red;
+    background-color: blue;
 `;
 
 const Header = ({ className }: HeaderProps): JSX.Element => (
