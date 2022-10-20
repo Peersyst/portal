@@ -6,6 +6,7 @@ on:
     push:
         branches:
             - 'main'
+            - 'prod'
 
 jobs:
     backend:
@@ -31,10 +32,14 @@ jobs:
                 if: github.event_name == 'pull_request'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-            -   name: Sets env vars for push event
-                if: github.event_name != 'pull_request'
+            -   name: Sets env vars for staging
+                if: github.event_name != 'pull_request' && github.ref != 'refs/heads/prod'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            -   name: Sets env vars for production
+                if: github.event_name != 'pull_request' && github.ref == 'refs/heads/prod'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-backend:latest" >> $GITHUB_ENV
             # Build and push image
             -   name: Build backend image
                 working-directory: packages/backend
@@ -67,15 +72,22 @@ jobs:
                 if: github.event_name == 'pull_request'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-            -   name: Sets env vars for push event
-                if: github.event_name != 'pull_request'
+                    echo "CONFIG_ENV=preview" >> $GITHUB_ENV
+            -   name: Sets env vars for staging
+                if: github.event_name != 'pull_request' && github.ref != 'refs/heads/prod'
                 run: |
                     echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+                    echo "CONFIG_ENV=staging" >> $GITHUB_ENV
+            -   name: Sets env vars for production
+                if: github.event_name != 'pull_request' && github.ref == 'refs/heads/prod'
+                run: |
+                    echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-http:latest" >> $GITHUB_ENV
+                    echo "CONFIG_ENV=production" >> $GITHUB_ENV
             # Build and push image
             -   name: Build http image
                 working-directory: packages/frontend
                 run: |
-                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} .
+                    docker build -t ${{ env.DOCKER_IMAGE_NAME }} --build-arg CONFIG_ENV=${{ env.CONFIG_ENV }} .
             -   name: Push http image
                 run: |
                     docker push ${{ env.DOCKER_IMAGE_NAME }}

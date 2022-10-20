@@ -10,6 +10,8 @@ RUN yarn test
 RUN touch test.lock
 
 FROM base as build
+ARG CONFIG_ENV=production
+ENV REACT_APP_CONFIG_ENV ${CONFIG_ENV}
 ARG NODE_ENV=production
 ENV NODE_ENV ${NODE_ENV}
 COPY --from=test /app/test.lock /app/test.lock
