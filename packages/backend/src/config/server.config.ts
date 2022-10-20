@@ -1,6 +1,6 @@
-import { config } from "./util/config.utils";
-import { validB64Key, validPort } from "./util/config.validator";
 import * as crypto from "crypto";
+import { buildConfig } from "./util/config.utils";
+import { validB64Key, validPort } from "./util/config.validator";
 
 interface ServerConfig {
     port: number;
@@ -11,33 +11,35 @@ interface ServerConfig {
 }
 
 export default (secrets: Record<any, any>): ServerConfig => {
-    return {
-        port: config({
-            env: {
-                key: "APP_PORT",
-                parseFn: parseInt,
-            },
-            defaultValue: {
-                all: 3000,
+    return buildConfig<ServerConfig>(
+        {
+            port: parseInt(process.env.APP_PORT) || {
+                default: 3000,
                 development: 3001,
             },
-            validateFn: validPort,
-        }),
-        secretKey: config({
-            env: {
-                key: "APP_JWT_KEY",
+            secretKey: process.env.APP_JWT_KEY || {
+                default: crypto.randomBytes(32).toString("base64"),
+                development: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+                production: secrets.APP_JWT_KEY,
             },
-            defaultValue: secrets.APP_JWT_KEY || crypto.randomBytes(32),
-            validateFn: validB64Key,
-        }),
-        encryptionKey: config({
-            env: {
-                key: "APP_ENCRYPTION_KEY",
+            encryptionKey: process.env.APP_ENCRYPTION_KEY || {
+                default: crypto.randomBytes(32).toString("base64"),
+                development: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+                production: secrets.APP_ENCRYPTION_KEY,
             },
-            defaultValue: secrets.APP_ENCRYPTION_KEY || crypto.randomBytes(32),
-            validateFn: validB64Key,
-        }),
-        enableSwagger: config({ defaultValue: { all: true, production: false } }),
-        enableCors: config({ defaultValue: { all: true, production: false } }),
-    };
+            enableSwagger: {
+                default: true,
+                production: false,
+            },
+            enableCors: {
+                default: true,
+                production: false,
+            },
+        },
+        {
+            port: validPort,
+            secretKey: validB64Key,
+            encryptionKey: validB64Key,
+        },
+    );
 };

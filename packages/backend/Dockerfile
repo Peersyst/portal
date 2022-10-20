@@ -7,11 +7,12 @@ RUN yarn install
 COPY . .
 RUN yarn lint
 RUN yarn test
+RUN touch test.lock
 
 FROM base as build
 ARG NODE_ENV=production
 ENV NODE_ENV ${NODE_ENV}
-COPY --from=test /app/package.json /app/package.json
+COPY --from=test /app/test.lock /app/test.lock
 RUN yarn
 COPY . .
 RUN yarn build

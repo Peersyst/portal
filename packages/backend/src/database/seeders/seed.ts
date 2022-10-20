@@ -3,9 +3,8 @@ import { createConnection, Connection, EntityTarget } from "typeorm";
 import { TypeORMSeederAdapter } from "./adapter";
 import { getTypeORMConfig } from "../../config/typeorm.config";
 import { User } from "../entities/User";
-
 import { users } from "./seeders-data";
-import { Env, getConfigEnv } from "../../config/util/config.utils";
+import { ConfigEnvType, getConfigEnv } from "../../config/util/config.utils";
 
 export interface SeederAdapterI {
     insert<T>(entityTarget: EntityTarget<T>, data: T[]): Promise<void>;
@@ -14,7 +13,7 @@ export interface SeederAdapterI {
 
 export class Seeder {
     private logger: Logger;
-    private environment: Env;
+    private environment: ConfigEnvType;
     private adapter: SeederAdapterI;
     private connection: Connection;
 

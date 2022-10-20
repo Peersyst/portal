@@ -1,5 +1,5 @@
 import { ConnectionOptions } from "typeorm";
-import { config } from "./util/config.utils";
+import { buildConfig, ConfigValidators } from "./util/config.utils";
 import { validPort } from "./util/config.validator";
 
 export type NestConnectionOptions = ConnectionOptions & {
@@ -10,63 +10,37 @@ export type NestConnectionOptions = ConnectionOptions & {
 };
 
 export function getTypeORMConfig(secrets: Record<string, string> = {}): ConnectionOptions {
-    return {
-        host: config({
-            env: {
-                key: "DB_HOST",
-            },
-            defaultValue: {
-                all: secrets.DB_HOST || "db",
+    return buildConfig<ConnectionOptions>(
+        {
+            host: {
+                default: process.env.DB_HOST || secrets.DB_HOST || "db",
                 development: "localhost",
             },
-        }),
-        port: config({
-            env: {
-                key: "DB_PORT",
-                parseFn: parseInt,
+            port: {
+                default: parseInt(process.env.DB_PORT) || parseInt(secrets.DB_PORT) || 5432,
             },
-            defaultValue: {
-                production: Number(secrets.DB_PORT) || 5432,
-                all: 5432,
+            username: {
+                default: process.env.DB_USER || secrets.DB_USER || "db_user",
             },
-            validateFn: validPort,
-        }),
-        username: config({
-            env: {
-                key: "DB_USER",
+            password: {
+                default: process.env.DB_PASSWORD || secrets.DB_PASSWORD || "db_password",
             },
-            defaultValue: {
-                production: secrets.DB_USER,
-                all: "db_user",
+            database: {
+                default: process.env.DB_DATABASE || secrets.DB_DATABASE || "db_database",
             },
-        }),
-        password: config({
-            env: {
-                key: "DB_PASSWORD",
+            type: "postgres",
+            synchronize: false,
+            migrationsRun: true,
+            entities: [__dirname + "/../database/entities/*{.ts,.js}"],
+            migrations: [__dirname + "/../database/migrations/**/*{.ts,.js}"],
+            cli: {
+                migrationsDir: __dirname + "/../database/migrations",
             },
-            defaultValue: {
-                production: secrets.DB_PASSWORD,
-                all: "db_password",
-            },
-        }),
-        database: config({
-            env: {
-                key: "DB_DATABASE",
-            },
-            defaultValue: {
-                production: secrets.DB_DATABASE,
-                all: "db_database",
-            },
-        }),
-        type: "postgres",
-        synchronize: false,
-        migrationsRun: true,
-        entities: [__dirname + "/../database/entities/*{.ts,.js}"],
-        migrations: [__dirname + "/../database/migrations/**/*{.ts,.js}"],
-        cli: {
-            migrationsDir: __dirname + "/../database/migrations",
         },
-    };
+        {
+            port: validPort,
+        } as ConfigValidators<ConnectionOptions>,
+    );
 }
 
 export function getNestTypeORMConfig(secrets?: Record<string, string>): NestConnectionOptions {

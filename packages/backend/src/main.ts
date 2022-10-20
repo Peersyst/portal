@@ -11,11 +11,11 @@ import { getConfigEnv } from "./config/util/config.utils";
 import { runSeeders } from "./database/seeders/seed";
 
 async function bootstrap() {
-    if (getConfigEnv() === "preview") await runSeeders(true);
     const app = await NestFactory.create(AppModule);
+    if (getConfigEnv() === "preview") await runSeeders(true);
     const configService = app.get("ConfigService");
     const logLevel = configService.get("logger.logLevel");
-    const logFileName = configService.get("logger.logFileName");
+    const logFileName = configService.get("logger.logFile");
     const serverPort = configService.get("server.port");
 
     const logger = WinstonModule.createLogger({
