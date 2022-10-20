@@ -11,8 +11,8 @@ import { getConfigEnv } from "./config/util/config.utils";
 import { runSeeders } from "./database/seeders/seed";
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
     if (getConfigEnv() === "preview") await runSeeders(true);
+    const app = await NestFactory.create(AppModule);
     const configService = app.get("ConfigService");
     const logLevel = configService.get("logger.logLevel");
     const logFileName = configService.get("logger.logFile");
