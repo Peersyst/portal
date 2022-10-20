@@ -1,46 +1,53 @@
-export type Env = "production" | "staging" | "preview" | "development" | "test";
+const ConfigEnvs = ["production", "staging", "preview", "development", "test"] as const;
 
-interface EnvConfig<T> {
-    key: string;
-    parseFn?: (key: string) => T;
-}
+type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
-type PartialRecord<K extends keyof any, T> = {
-    [P in K]?: T;
-};
+export type ConfigEnvType = ArrayElement<typeof ConfigEnvs>;
 
-export function getConfigEnv(): Env {
-    const env = process.env.CONFIG_ENV || process.env.NODE_ENV;
-    if (env !== "production" && env !== "staging" && env !== "preview" && env !== "development" && env !== "test")
-        throw new Error("Invalid env value " + env);
+export type ConfigKey<T> = T | Partial<Record<ConfigEnvType | "default", T>>;
+
+export type ConfigKeys<T> = { [P in keyof T]: ConfigKey<T[P]> };
+
+export type ConfigValidators<T> = Partial<Record<keyof T, (value: unknown) => boolean>>;
+
+export function getConfigEnv(): ConfigEnvType {
+    const env: any = process.env.CONFIG_ENV || process.env.NODE_ENV || "development";
+    if (ConfigEnvs.indexOf(env) === -1) throw new Error("Invalid env value " + env);
     return env;
 }
 
-export function config<T extends string | number | boolean>({
-    env,
-    validateFn = () => true,
-    defaultValue,
-}: {
-    env?: EnvConfig<T>;
-    validateFn?: (t: any) => boolean;
-    defaultValue?: T | PartialRecord<Env | "all", T>;
-}): T {
-    let result: T;
-    if (env && process.env[env.key]) result = env.parseFn ? env.parseFn(process.env[env.key]) : (process.env[env.key] as T);
-    else if (
-        typeof defaultValue !== "object" ||
-        (!defaultValue["all"] &&
-            !defaultValue["production"] &&
-            !defaultValue["staging"] &&
-            !defaultValue["preview"] &&
-            !defaultValue["development"] &&
-            !defaultValue["test"])
-    )
-        result = defaultValue as T;
-    else if (defaultValue?.[getConfigEnv()]) result = defaultValue[getConfigEnv()];
-    else if (defaultValue?.all) {
-        result = defaultValue.all;
+export function buildConfig<T>(config: ConfigKeys<T>, validators: ConfigValidators<T> = {}): T {
+    const configEnv = getConfigEnv();
+    const keys = Object.keys(config) as (keyof T)[];
+
+    const result = keys.reduce((acc: Partial<T>, key: keyof T) => {
+        const value = config[key];
+        if (
+            typeof value === "object" &&
+            (value["default"] || value["production"] || value["staging"] || value["preview"] || value["development"] || value["test"])
+        ) {
+            if (value[configEnv])
+                return {
+                    ...acc,
+                    [key]: value[configEnv],
+                };
+            else
+                return {
+                    ...acc,
+                    [key]: value["default"],
+                };
+        } else {
+            return {
+                ...acc,
+                [key]: value,
+            };
+        }
+    }, {}) as T;
+
+    for (const key in result) {
+        if (validators[key] && !validators[key](result[key]))
+            throw new Error(`Error validating config param ${key} with value ${result[key]}`);
     }
-    if (!validateFn(result)) throw new Error(`Error parsing config key ${env.key} = ${result}`);
+
     return result;
 }

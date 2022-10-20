@@ -1,6 +1,6 @@
 import { hashSync } from "bcrypt";
 import { User, UserType } from "../../entities/User";
-import { Env } from "../../../config/util/config.utils";
+import { ConfigEnvType } from "../../../config/util/config.utils";
 
 const devUsers = [
     {
@@ -59,7 +59,7 @@ const prodUsers = [
     },
 ];
 
-export default function getByEnv(env: Env): User[] {
+export default function getByEnv(env: ConfigEnvType): User[] {
     if (env === "production") {
         return prodUsers;
     }

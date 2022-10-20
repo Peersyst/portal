@@ -1,5 +1,5 @@
 {
     "projectName": "base-project",
     "publicUrl": "/",
-    "backendUrl": ""
+    "backendUrl": "http://localhost:3001"
 }

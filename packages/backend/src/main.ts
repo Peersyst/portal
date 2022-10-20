@@ -15,7 +15,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const configService = app.get("ConfigService");
     const logLevel = configService.get("logger.logLevel");
-    const logFileName = configService.get("logger.logFileName");
+    const logFileName = configService.get("logger.logFile");
     const serverPort = configService.get("server.port");
 
     const logger = WinstonModule.createLogger({
