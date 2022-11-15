@@ -8,7 +8,7 @@ import stagingConfig from "./config.staging.json";
 import baseConfig from "./config.base.json";
 
 const envConfigs: Record<string, CreateConfig> = {
-    test: {},
+    test: { ...baseConfig, ...devConfig },
     development: { ...baseConfig, ...devConfig },
     preview: { ...baseConfig, ...previewConfig },
     production: { ...baseConfig, ...prodConfig },
