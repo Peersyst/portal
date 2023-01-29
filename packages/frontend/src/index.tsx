@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import Providers from "./Providers";
-import Router from "./Router";
-import "module/api/OpenApiConfig";
-import "./locale/i18n";
+import Providers from "ui/Providers";
+import Router from "ui/router/Router";
+import "api/OpenApiConfig";
+import "ui/locale/i18n";
 
 ReactDOM.render(
     <StrictMode>

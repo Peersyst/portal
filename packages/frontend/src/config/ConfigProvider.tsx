@@ -1,8 +1,8 @@
 import { ConfigProvider as GenesysConfigProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
+import useTranslate from "ui/locale/hooks/useTranslate";
 import config from "./config";
 import { GlobalStyles } from "./theme/GlobalStyles";
-import useTranslate from "module/common/hook/useTranslate";
 
 export interface ConfigProviderProps {
     children?: ReactNode;

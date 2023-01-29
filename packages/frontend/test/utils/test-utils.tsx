@@ -3,13 +3,12 @@ import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider, QueryClientConfig, QueryCache } from "react-query";
 import { ModalProvider, ToastProvider } from "@peersyst/react-components";
-import { RecoilRoot } from "recoil";
 import { renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react-hooks";
 import { InitialEntry } from "history";
 import { deepmerge } from "@peersyst/react-utils";
 import { I18nextProvider } from "react-i18next";
-import i18n from "../../src/locale/i18n";
-import { ConfigProvider } from "config";
+import i18n from "../../src/ui/locale/i18n";
+import { ConfigProvider } from "../../src/config";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -40,13 +39,11 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
         return (
             <I18nextProvider i18n={i18n}>
                 <ConfigProvider>
-                    <RecoilRoot>
-                        <QueryClientProvider client={queryClient}>
-                            <ToastProvider>
-                                <ModalProvider>{children}</ModalProvider>
-                            </ToastProvider>
-                        </QueryClientProvider>
-                    </RecoilRoot>
+                    <QueryClientProvider client={queryClient}>
+                        <ToastProvider>
+                            <ModalProvider>{children}</ModalProvider>
+                        </ToastProvider>
+                    </QueryClientProvider>
                 </ConfigProvider>
             </I18nextProvider>
         );
@@ -83,7 +80,5 @@ const translate = i18n.t;
 
 export * from "@testing-library/react";
 export { customRender as render };
-export * from "./fail-api-call";
-export * from "./success-api-call";
 export { customRenderHook as renderHook };
 export { translate };
