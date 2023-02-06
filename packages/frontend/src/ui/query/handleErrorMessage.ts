@@ -1,4 +1,4 @@
-import { ApiError } from "api/service";
+import { ApiError } from "data-access/api/service";
 import { ErrorResourceType } from "../locale/i18n.types";
 
 export interface HandleApiErrorMessageResult {

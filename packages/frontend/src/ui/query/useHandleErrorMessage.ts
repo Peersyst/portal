@@ -1,6 +1,6 @@
 import useTranslate from "../locale/hooks/useTranslate";
 import { handleErrorMessage } from "./handleErrorMessage";
-import { ApiError } from "api/service";
+import { ApiError } from "data-access/api/service";
 import { useToast } from "@peersyst/react-components";
 
 export default function (): (error: ApiError | any) => void {

@@ -1,27 +1,32 @@
-import { FC, useRef } from "react";
-import { QueryCache, QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
+import { PropsWithChildren, useEffect } from "react";
+import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
 import useHandleErrorMessage from "./useHandleErrorMessage";
 
-const QueryClientProvider: FC = ({ children }): JSX.Element => {
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+            staleTime: 600000,
+        },
+    },
+});
+
+const QueryClientProvider = ({ children }: PropsWithChildren): JSX.Element => {
     const handleErrorMessage = useHandleErrorMessage();
 
-    const queryClient = useRef(
-        new QueryClient({
-            defaultOptions: {
-                queries: {
-                    retry: false,
-                    refetchOnWindowFocus: false,
-                    staleTime: 600000,
-                },
-                mutations: {
-                    onError: handleErrorMessage,
-                },
+    useEffect(() => {
+        queryClient.setDefaultOptions({
+            queries: {
+                retry: false,
+                refetchOnWindowFocus: false,
+                staleTime: 600000,
             },
-            queryCache: new QueryCache({
+            mutations: {
                 onError: handleErrorMessage,
-            }),
-        }),
-    ).current;
+            },
+        });
+    }, []);
 
     return <BaseQueryClientProvider client={queryClient}>{children}</BaseQueryClientProvider>;
 };

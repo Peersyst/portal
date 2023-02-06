@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactElement } from "react";
+import { JSXElementConstructor, PropsWithChildren, ReactElement } from "react";
 import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider, QueryClientConfig, QueryCache } from "react-query";
@@ -8,7 +8,7 @@ import { InitialEntry } from "history";
 import { deepmerge } from "@peersyst/react-utils";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../src/ui/locale/i18n";
-import { ConfigProvider } from "../../src/config";
+import { ConfigProvider } from "ui/config";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;
@@ -20,7 +20,7 @@ export interface RouterConfig {
     path?: string;
 }
 
-export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): FC => {
+export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): JSXElementConstructor<PropsWithChildren> => {
     const queryClient = new QueryClient(
         deepmerge(
             {
@@ -35,7 +35,7 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
         ),
     );
 
-    return function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
+    return function Wrapper({ children }: PropsWithChildren): JSX.Element {
         return (
             <I18nextProvider i18n={i18n}>
                 <ConfigProvider>
@@ -71,7 +71,7 @@ const customRender = (
     );
 };
 
-const customRenderHook = <TProps, TResult>(
+const customRenderHook = <TProps extends PropsWithChildren, TResult>(
     callback: (props: TProps) => TResult,
     { queryClientConfig, ...rest }: Omit<RenderHookOptions<TProps>, "wrapper"> & CreateWrapperConfig = {},
 ): RenderHookResult<TProps, TResult> => renderHook<TProps, TResult>(callback, { wrapper: createWrapper({ queryClientConfig }), ...rest });

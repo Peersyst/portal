@@ -5,7 +5,7 @@ export enum DashboardRoutes {
     MAIN = "/",
 }
 
-const DashboardPage = lazy(() => import("../page/DashboardPage"));
+const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 
 export const useDashboardRoutes = (): RouteObject[] => {
     return [

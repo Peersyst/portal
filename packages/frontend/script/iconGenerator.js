@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const { execSync } = require("child_process");
 
@@ -67,7 +67,8 @@ function addSvgs(folder, removeFill) {
             svgs.push({
                 filename: toCamelCase(name),
                 // Remove svg tags and maybe fill. Then, replace all kebab-case svg properties for camelCase React properties
-                data: data.replace(replaceRegExp, "")
+                data: data
+                    .replace(replaceRegExp, "")
                     .replace(/-(?=[^"]+=)./g, (x) => x[1].toUpperCase())
                     .replace(
                         /style="[^"]*"/g,

@@ -3,10 +3,10 @@ import { Suspense } from "react";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import { config } from "config";
 import { useDashboardRoutes } from "../dashboard/router/DashboardRouter";
-import ScrollToTop from "../common/component/navigation/ScrollToTop/ScrollToTop";
-import Header from "../common/component/navigation/Header/Header";
-import Footer from "../common/component/navigation/Footer/Footer";
-import { useLoad } from "../common/query/useLoad";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Header from "../common/components/navigation/Header/Header";
+import Footer from "../common/components/navigation/Footer/Footer";
+import { useLoad } from "../common/hooks/useLoad";
 
 const Routes = () => {
     const dashboardRoutes = useDashboardRoutes();
