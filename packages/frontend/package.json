@@ -70,6 +70,7 @@
         "babel-jest": "^29.4.1",
         "customize-cra": "^1.0.0",
         "customize-cra-react-refresh": "^1.1.0",
+        "eslint": "^8.33.0",
         "eslint-config-prettier": "8.6.0",
         "eslint-config-react": "^1.1.7",
         "eslint-plugin-cypress": "^2.12.1",
@@ -82,6 +83,7 @@
         "jest-environment-jsdom": "^29.4.1",
         "openapi-typescript": "^6.1.0",
         "openapi-typescript-codegen": "^0.23.0",
+        "prettier": "^2.8.3",
         "react-error-overlay": "6.0.11",
         "ts-jest": "^29.0.5"
     },

@@ -1,4 +1,5 @@
 import CounterController from "domain/counter/controllers/CounterController";
+import DomainErrorCodes from "domain/error/DomainErrorCodes";
 import CounterStateGlobalMock from "../../__mocks__/counter.state.global.mock";
 import CounterRepositoryMock from "../../__mocks__/CounterRepository.mock";
 
@@ -40,6 +41,12 @@ describe("CounterController", () => {
             await counterController.increment();
 
             expect(counterStateGlobalMock.setState).toHaveBeenCalledWith(1);
+        });
+
+        test("Throws MAX_COUNT_REACHED when count is MAX_SAFE_INTEGER", async () => {
+            counterStateGlobalMock.getState.mockReturnValueOnce(Number.MAX_SAFE_INTEGER);
+
+            await expect(counterController.increment()).rejects.toThrowError(DomainErrorCodes.MAX_COUNT_REACHED);
         });
     });
 });

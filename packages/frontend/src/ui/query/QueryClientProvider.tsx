@@ -1,6 +1,10 @@
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
-import useHandleErrorMessage from "./useHandleErrorMessage";
+import UIErrorEvent from "ui/error/UIErrorEvent";
+
+function handleQueryClientError(error: any): void {
+    UIErrorEvent.dispatch(error.message, error.severity);
+}
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -8,26 +12,15 @@ const queryClient = new QueryClient({
             retry: false,
             refetchOnWindowFocus: false,
             staleTime: 600000,
+            onError: handleQueryClientError,
+        },
+        mutations: {
+            onError: handleQueryClientError,
         },
     },
 });
 
 const QueryClientProvider = ({ children }: PropsWithChildren): JSX.Element => {
-    const handleErrorMessage = useHandleErrorMessage();
-
-    useEffect(() => {
-        queryClient.setDefaultOptions({
-            queries: {
-                retry: false,
-                refetchOnWindowFocus: false,
-                staleTime: 600000,
-            },
-            mutations: {
-                onError: handleErrorMessage,
-            },
-        });
-    }, []);
-
     return <BaseQueryClientProvider client={queryClient}>{children}</BaseQueryClientProvider>;
 };
 
