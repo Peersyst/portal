@@ -1,4 +1,4 @@
-import LocalStorageRepository from "../LocalStorageRepository";
+import LocalStorageRepository from "../common/LocalStorageRepository";
 
 export default class CounterRepository extends LocalStorageRepository<number> {
     constructor() {

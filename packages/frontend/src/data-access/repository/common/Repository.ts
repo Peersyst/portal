@@ -1,5 +1,4 @@
-import { config } from "../../config";
-
+import { config } from "config";
 export default abstract class Repository<T> {
     protected readonly storageKey: string;
 

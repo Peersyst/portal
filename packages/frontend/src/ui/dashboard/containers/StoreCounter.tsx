@@ -1,5 +1,5 @@
 import Counter from "../components/display/Counter";
-import { useCounterState } from "../../../domain/counter/state/counter/counter.state";
+import { useCounterState } from "../../../domain/counter/state/counter.state";
 import ControllerFactory from "../../adapter/ControllerFactory";
 
 export default function StoreCounter(): JSX.Element {

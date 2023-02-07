@@ -5,9 +5,9 @@
 import "@testing-library/jest-dom";
 
 // matchmedia mock
-import { LightMatchMediaMock } from "./__mocks__/ui/MatchMedia.mock";
-import { IntersectionObserverMock } from "./__mocks__/ui/IntersectionObserver.mock";
-import { ResizeObserverMock } from "./__mocks__/ui/ResizeObserver.mock";
+import { LightMatchMediaMock } from "./__mocks__/MatchMedia.mock";
+import { IntersectionObserverMock } from "./__mocks__/IntersectionObserver.mock";
+import { ResizeObserverMock } from "./__mocks__/ResizeObserver.mock";
 
 jest.mock("@peersyst/react-components", () => ({
     __esModule: true,

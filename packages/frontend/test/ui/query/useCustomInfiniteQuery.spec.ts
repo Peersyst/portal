@@ -1,6 +1,6 @@
 import { waitFor } from "@testing-library/dom";
 import { PaginatedData, useInfiniteQuery } from "ui/query/react-query-overrides";
-import { renderHook } from "../../../utils/test-utils";
+import { renderHook } from "../utils/test-utils";
 
 type PaginatedTestItems = PaginatedData<number[]>;
 const getNumbers = ({ pageParam = 0 }): Promise<PaginatedTestItems> =>

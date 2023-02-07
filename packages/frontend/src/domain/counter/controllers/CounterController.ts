@@ -1,5 +1,5 @@
-import Controller from "../../Controller";
-import { counterState } from "../state/counter/counter.state";
+import Controller from "../../common/Controller";
+import { counterState } from "../state/counter.state";
 import { ICounterRepository } from "../../adapter/repositories/CounterRepository.interface";
 
 export default class CounterController extends Controller<number> {
