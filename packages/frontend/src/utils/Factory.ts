@@ -1,5 +1,5 @@
 export default class Factory {
-    protected static resolve<C extends object, T extends { new (...args: any[]): C }>(obj: C | undefined, factory: () => C): C {
+    protected static resolve<C extends object>(obj: C | undefined, factory: () => C): C {
         if (!obj) obj = factory();
         return obj;
     }
