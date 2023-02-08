@@ -1,5 +1,5 @@
 import LocalStorageRepository from "data-access/repository/common/LocalStorageRepository";
-import LocalStorageGlobalMock from "../__mocks__/LocalStorage.global.mock";
+import LocalStorageGlobalMock from "../__mocks__/LocalStorage.globalMock";
 
 // Expose protected methods
 class PublicLocalStorageRepository<T> extends LocalStorageRepository<T> {

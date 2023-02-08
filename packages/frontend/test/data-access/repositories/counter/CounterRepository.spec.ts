@@ -1,5 +1,5 @@
 import CounterRepository from "data-access/repository/counter/CounterRepository";
-import LocalStorageRepositoryGlobalMock from "../../__mocks__/LocalStorageRepository.global.mock";
+import LocalStorageRepositoryGlobalMock from "../../__mocks__/LocalStorageRepository.globalMock";
 
 describe("CounterRepository", () => {
     const localStorageRepositoryGlobalMock = new LocalStorageRepositoryGlobalMock();

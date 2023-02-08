@@ -1,6 +1,6 @@
-import Counter from "../components/display/Counter";
-import { useCounterState } from "../../../domain/counter/state/counter.state";
-import ControllerFactory from "../../adapter/ControllerFactory";
+import ControllerFactory from "ui/adapter/ControllerFactory";
+import useCounterState from "ui/adapter/state/useCounterState";
+import Counter from "ui/dashboard/components/display/Counter";
 
 export default function StoreCounter(): JSX.Element {
     const counter = useCounterState();

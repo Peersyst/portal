@@ -1,18 +1,18 @@
 import CounterController from "domain/counter/controllers/CounterController";
 import DomainErrorCodes from "domain/error/DomainErrorCodes";
-import CounterStateGlobalMock from "../../__mocks__/counter.state.global.mock";
+import CounterStateMock from "../../__mocks__/counterState.mock";
 import CounterRepositoryMock from "../../__mocks__/CounterRepository.mock";
 
 describe("CounterController", () => {
     let counterController: CounterController;
 
-    const counterStateGlobalMock = new CounterStateGlobalMock();
+    const counterStateMock = new CounterStateMock();
     const counterRepositoryMock = new CounterRepositoryMock();
 
     beforeEach(() => {
-        counterController = new CounterController(counterRepositoryMock);
+        counterController = new CounterController(counterStateMock, counterRepositoryMock);
 
-        counterStateGlobalMock.clearMocks();
+        counterStateMock.clearMocks();
         counterRepositoryMock.clearMocks();
     });
 
@@ -22,7 +22,7 @@ describe("CounterController", () => {
 
             await counterController.loadCount();
 
-            expect(counterStateGlobalMock.setState).toHaveBeenCalledWith(1);
+            expect(counterStateMock.setState).toHaveBeenCalledWith(1);
         });
 
         test("Should not load count if not stored", async () => {
@@ -30,21 +30,21 @@ describe("CounterController", () => {
 
             await counterController.loadCount();
 
-            expect(counterStateGlobalMock.setState).not.toHaveBeenCalled();
+            expect(counterStateMock.setState).not.toHaveBeenCalled();
         });
     });
 
     describe("increment", () => {
         test("Should increment state", async () => {
-            counterStateGlobalMock.getState.mockReturnValueOnce(0);
+            counterStateMock.getState.mockReturnValueOnce(0);
 
             await counterController.increment();
 
-            expect(counterStateGlobalMock.setState).toHaveBeenCalledWith(1);
+            expect(counterStateMock.setState).toHaveBeenCalledWith(1);
         });
 
         test("Throws MAX_COUNT_REACHED when count is MAX_SAFE_INTEGER", async () => {
-            counterStateGlobalMock.getState.mockReturnValueOnce(Number.MAX_SAFE_INTEGER);
+            counterStateMock.getState.mockReturnValueOnce(Number.MAX_SAFE_INTEGER);
 
             await expect(counterController.increment()).rejects.toThrowError(DomainErrorCodes.MAX_COUNT_REACHED);
         });
