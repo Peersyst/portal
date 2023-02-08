@@ -23,11 +23,11 @@
         "test:watch:ui": "yarn test:ui --watch",
         "test:watch:domain": "yarn test:domain --watch",
         "test:watch:data-access": "yarn test:data-access --watch",
-        "test:debug": "yarn test --no-cache --runInBand",
-        "test:debug:ui": "yarn test:ui --no-cache --runInBand",
-        "test:debug:domain": "yarn test:domain --no-cache --runInBand",
-        "test:debug:data-access": "yarn test:data-access --no-cache --runInBand",
-        "test:ci": "yarn test --runInBand",
+        "test:debug": "jest --no-cache --runInBand",
+        "test:debug:ui": "jest ./test/ui --no-cache --runInBand",
+        "test:debug:domain": "jest ./test/domain --no-cache --runInBand",
+        "test:debug:data-access": "jest ./test/data-access --no-cache --runInBand",
+        "test:ci": "jest --runInBand",
         "lint": "eslint . --ext .ts,.json --max-warnings=0"
     },
     "dependencies": {
