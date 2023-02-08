@@ -3,10 +3,11 @@ const commonConfig = require("../../jest.config.common.js");
 
 module.exports = {
     ...commonConfig,
-    rootDir: "./",
+    rootDir: "../../",
     displayName: {
         name: "DATA ACCESS",
         color: "magenta",
     },
     testRegex: ".*\\.spec\\.ts$",
+    testPathIgnorePatterns: ["test/ui/", "test/domain/"],
 };
