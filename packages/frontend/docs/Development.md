@@ -223,7 +223,7 @@ export default class CounterController {
 
 ### Development of the API module
 
-The easiest module to develop is de API module, as it is generated automatically from an openapi specification.
+The easiest module to develop is the API module, as it is generated automatically from an openapi specification.
 
 To generate it you can just run `yarn generate:openapi`. This is executed every time the frontend starts and places the files at `data-access/api`.
 
