@@ -1,10 +1,11 @@
 import { ICounterRepository } from "../../adapter/repositories/CounterRepository.interface";
 import DomainError from "../../error/DomainError";
 import CounterErrorCodes from "../CounterErrorCodes";
+import { ICounterState } from "../state/counterState";
 import State from "domain/common/State";
 
 export default class CounterController {
-    constructor(private readonly counterState: State<number>, private readonly counterRepository: ICounterRepository) {}
+    constructor(private readonly counterState: State<ICounterState>, private readonly counterRepository: ICounterRepository) {}
 
     public async loadCount(): Promise<void> {
         const savedCount = await this.counterRepository.getCount();

@@ -12,7 +12,7 @@
         "generate:images": "node script/imagesGenerator.js src/ui/assets/images/",
         "generate:openapi": "openapi -i ../backend/openapi-spec.json -o src/data-access/api/service --exportSchemas=true --useUnionTypes --postfix=Api",
         "test": "jest --maxWorkers=30%",
-        "test:ui": "yarn test:base ./test/ui",
+        "test:ui": "yarn test ./test/ui",
         "test:domain": "yarn test ./test/domain",
         "test:data-access": "yarn test ./test/data-access",
         "test:coverage": "yarn test --coverage",
