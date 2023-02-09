@@ -17,7 +17,7 @@ Components within the layered architecture pattern are organized into horizontal
 * **Data Access or Persistence**: Logic related to the access of data of the application
 * **Data**: Logic related to the storage of the data of the application
 
-<span style="display: block; text-align: center">
+<span style="display: flex; width: 100%; justify-content: center;">
 <img src="./assets/Layers.png" align="center" width="250px"></img>
 </span>
 
