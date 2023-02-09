@@ -1,6 +1,6 @@
 # Development
 
-In this section you'll see some brief introduction to the development of the main different object types.
+In this section you'll see a brief introduction to the development of the main different object types.
 
 * [Development of UI](#development-of-ui)
 * [Development of Domain](#development-of-domain)
