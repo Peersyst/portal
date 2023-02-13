@@ -1,7 +1,7 @@
 import { Logger } from "@nestjs/common";
 import { DataSource, EntityTarget } from "typeorm";
 import { TypeORMSeederAdapter } from "./adapter";
-import { getTypeORMConfig } from "../../config/typeorm.config";
+import { ConnectionSource } from "../../config/typeorm.config";
 import { User } from "../entities/User";
 import { users } from "./seeders-data";
 import { ConfigEnvType, getConfigEnv } from "../../config/util/config.utils";
@@ -28,7 +28,7 @@ export class Seeder {
     }
 
     async connect(): Promise<void> {
-        this.connection = new DataSource(getTypeORMConfig());
+        this.connection = await ConnectionSource.initialize();
         await this.connection.initialize();
         this.adapter = new TypeORMSeederAdapter(this.connection);
         this.logger.log("Connected to database successfully!");

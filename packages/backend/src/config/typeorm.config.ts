@@ -1,4 +1,4 @@
-import { DataSourceOptions } from "typeorm";
+import { DataSourceOptions, DataSource } from "typeorm";
 import { buildConfig, ConfigValidators } from "./util/config.utils";
 import { validPort } from "./util/config.validator";
 
@@ -8,8 +8,7 @@ export type NestConnectionOptions = DataSourceOptions & {
     retryDelay?: number;
     retryAttempts?: number;
 };
-
-export function getTypeORMConfig(secrets: Record<string, string> = {}): DataSourceOptions {
+function getTypeORMConfig(secrets: Record<string, string> = {}): DataSourceOptions {
     return buildConfig<DataSourceOptions>(
         {
             host: {
@@ -47,4 +46,4 @@ export function getNestTypeORMConfig(secrets?: Record<string, string>): NestConn
     };
 }
 
-export default getTypeORMConfig();
+export const ConnectionSource = new DataSource(getTypeORMConfig());
