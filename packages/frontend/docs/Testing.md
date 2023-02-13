@@ -29,7 +29,7 @@ As you can see, there is on folder for each layer in the application. In each la
 
 Mocks are created to simulate other objects and isolate tests.
 
-We use three different types of mocks in our projects:
+We use two types of mocks in our projects:
 
 * [Local mocks](#local-mocks)
 * [Global mocks](#plain-mocks)

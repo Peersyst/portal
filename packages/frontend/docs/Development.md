@@ -1,6 +1,6 @@
 # Development
 
-In this section you'll see some brief introduction to the development of the main different object types.
+In this section you'll see a brief introduction to the development of the main different object types.
 
 * [Development of UI](#development-of-ui)
 * [Development of Domain](#development-of-domain)
@@ -225,7 +225,7 @@ export default class CounterController extends ICounterController {
 
 ### Development of the API module
 
-The easiest module to develop is de API module, as it is generated automatically from an openapi specification.
+The easiest module to develop is the API module, as it is generated automatically from an openapi specification.
 
 To generate it you can just run `yarn generate:openapi`. This is executed every time the frontend starts and places the services at `data-access/api` and models at `common/models/api`.
 
