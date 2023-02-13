@@ -1,5 +1,5 @@
 import { ICounterController } from "ui/adapter/controllers/ICounterController";
-import { ICounterRepository } from "../../adapter/repositories/ICounterRepository";
+import { ICounterRepository } from "../../adapter/repository/ICounterRepository";
 import DomainError from "../../error/DomainError";
 import CounterErrorCodes from "../CounterErrorCodes";
 import { ICounterState } from "../state/counterState";
