@@ -1,10 +1,11 @@
-import { ICounterRepository } from "../../adapter/repositories/CounterRepository.interface";
+import { ICounterController } from "ui/adapter/controllers/ICounterController";
+import { ICounterRepository } from "../../adapter/repositories/ICounterRepository";
 import DomainError from "../../error/DomainError";
 import CounterErrorCodes from "../CounterErrorCodes";
 import { ICounterState } from "../state/counterState";
 import State from "domain/common/State";
 
-export default class CounterController {
+export default class CounterController implements ICounterController {
     constructor(private readonly counterState: State<ICounterState>, private readonly counterRepository: ICounterRepository) {}
 
     public async loadCount(): Promise<void> {

@@ -1,6 +1,7 @@
+import { ICounterRepository } from "domain/adapter/repositories/ICounterRepository";
 import LocalStorageRepository from "../common/LocalStorageRepository";
 
-export default class CounterRepository extends LocalStorageRepository<number> {
+export default class CounterRepository extends LocalStorageRepository<number> implements ICounterRepository {
     constructor() {
         super("counter");
     }

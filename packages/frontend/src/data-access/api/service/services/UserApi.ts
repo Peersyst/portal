@@ -16,7 +16,7 @@ export class UserApi {
      * @returns UserDto
      * @throws ApiError
      */
-    public static userControllerCreate(
+    public static create(
         requestBody: CreateUserRequest,
     ): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
@@ -32,7 +32,7 @@ export class UserApi {
      * @returns UserDto
      * @throws ApiError
      */
-    public static userControllerInfo(): CancelablePromise<UserDto> {
+    public static info(): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/users/info',
@@ -44,7 +44,7 @@ export class UserApi {
      * @returns UserDto
      * @throws ApiError
      */
-    public static userControllerFindAll(): CancelablePromise<Array<UserDto>> {
+    public static findAll(): CancelablePromise<Array<UserDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/users/all',

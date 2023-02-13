@@ -1,4 +1,4 @@
-import { ICounterRepository } from "domain/adapter/repositories/CounterRepository.interface";
+import { ICounterRepository } from "domain/adapter/repositories/ICounterRepository";
 import createMock from "../../utils/createMock";
 import MethodMock from "../../utils/MethodMock";
 

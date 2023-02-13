@@ -1,7 +1,7 @@
 import { createConfig } from "@peersyst/react-components";
 import theme from "./theme/theme";
 import darkTheme from "./theme/darkTheme";
-import { config } from "config";
+import { config } from "common/config";
 
 const uiConfig = createConfig({
     ...config,

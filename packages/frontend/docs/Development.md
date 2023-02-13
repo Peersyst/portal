@@ -17,7 +17,7 @@ For that, we'll use the counter example found in the base project.
 
 ### Development of the UI Adapter
 
-First of all, we have to add the interfaces that the UI will consume. In this case, these interfaces will belong to Domain controllers. Because of that we'll create a file `ui/adapter/controller/CounterController.interface.ts` with an *IControllerInterface*.
+First of all, we have to add the interfaces that the UI will consume. In this case, these interfaces will belong to Domain controllers. Because of that we'll create a file `ui/adapter/controller/ICounterController.ts` with an *IControllerInterface*.
 
 ```ts
 export interface ICounterController {
@@ -27,6 +27,7 @@ export interface ICounterController {
 ```
 
 After that, we can add the controller to the ControllerFactory in order to create it and provide it to the UI. This is done in `ui/adapter/ControllerFactory.ts` following the next steps:
+
 1. Add a private static variable called `_{name}Controller` with the interface created as the type
 2. Add the corresponding getter called `{name}Controller`. For this, you can use the `resolve` method inherited from `Factory`
 3. Add the private `_{name}Controller` variable and its factory (injecting the dependencies) in the `resolve` parameters
@@ -36,7 +37,7 @@ import Factory from "utils/Factory";
 import CounterController from "domain/counter/controllers/CounterController";
 import counterState from "domain/counter/state/counterState";
 import RepositoryFactory from "domain/adapter/RepositoryFactory";
-import { ICounterController } from "./controllers/CounterController.interface";
+import { ICounterController } from "./controllers/ICounterController";
 
 export default class ControllerFactory extends Factory {
     private static _counterController: ICounterController;
@@ -94,7 +95,7 @@ export default function Counter({ value, onIncrement }: CounterProps): JSX.Eleme
 
 Next, for this use case, where we want to get the last counter value stored in the client and update it, we have to create a container that acts as a wrapper for `Counter`.This container will provide the counter value (using the `useCounterState` hook) and trigger the increment method (from the `CounterControlled` accessed through the `ControllerFactory` getter) whenever it changes.
 
-For that, we'll create a `StoreCounter` component under `dui/dashboard/containers/StoreCounter.tsx`.
+For that, we'll create a `StoreCounter` component under `ui/dashboard/containers/StoreCounter.tsx`.
 
 ```tsx
 import ControllerFactory from "ui/adapter/ControllerFactory";
@@ -142,7 +143,7 @@ The development of the Domain adapter is very similar to the UI's one.
 
 We create the interfaces, in this case from the repositories used by the Domain. Those will live in `domain/adapter/repositories`.
 
-Here's an example of the `CounterRepository.interface.ts`.
+Here's an example of the `ICounterRepository.ts`.
 
 ```ts
 export interface ICounterRepository {
@@ -156,7 +157,7 @@ Then, as we did in the UI layer, we add the corresponding repository to the `Rep
 ```ts
 import Factory from "../../utils/Factory";
 import CounterRepository from "../../data-access/repository/counter/CounterRepository";
-import { ICounterRepository } from "./repositories/CounterRepository.interface";
+import { ICounterRepository } from "./repositories/ICounterRepository";
 
 export default class RepositoryFactory extends Factory {
     private static _counterRepository: ICounterRepository;
@@ -189,13 +190,14 @@ Finally the `CounterController`, that will be in charge of all the domain logic 
 As you can see the dependencies are indicated using abstractions of the State and CounterRepository.
 
 ```ts
-import { ICounterRepository } from "../../adapter/repositories/CounterRepository.interface";
+import { ICounterController } from "ui/adapter/controllers/ICounterController";
+import { ICounterRepository } from "../../adapter/repositories/ICounterRepository";
 import DomainError from "../../error/DomainError";
 import CounterErrorCodes from "../CounterErrorCodes";
 import { ICounterState } from "../state/counterState";
 import State from "domain/common/State";
 
-export default class CounterController {
+export default class CounterController extends ICounterController {
     constructor(private readonly counterState: State<ICounterState>, private readonly counterRepository: ICounterRepository) {}
 
     public async loadCount(): Promise<void> {
@@ -225,7 +227,7 @@ export default class CounterController {
 
 The easiest module to develop is de API module, as it is generated automatically from an openapi specification.
 
-To generate it you can just run `yarn generate:openapi`. This is executed every time the frontend starts and places the files at `data-access/api`.
+To generate it you can just run `yarn generate:openapi`. This is executed every time the frontend starts and places the services at `data-access/api` and models at `common/models/api`.
 
 ### Development of a Repository
 
@@ -234,9 +236,10 @@ Finally, repositories provide methods to read and write a data source located in
 Here's the code for the `CounterRepository` class located at `data-access/repository/counter/CounterRepository.ts`.
 
 ```ts
+import { ICounterRepository } from "domain/adapter/repositories/ICounterRepository";
 import LocalStorageRepository from "../common/LocalStorageRepository";
 
-export default class CounterRepository extends LocalStorageRepository<number> {
+export default class CounterRepository extends LocalStorageRepository<number> implements ICounterRepository {
     constructor() {
         super("counter");
     }
@@ -249,5 +252,4 @@ export default class CounterRepository extends LocalStorageRepository<number> {
         return this.set(count);
     }
 }
-
 ```

@@ -1,7 +1,7 @@
 import { ModalProvider } from "@peersyst/react-components";
 import { Suspense } from "react";
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { config } from "config";
+import { config } from "common/config";
 import { useDashboardRoutes } from "../dashboard/router/DashboardRouter";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Header from "../common/components/navigation/Header/Header";
