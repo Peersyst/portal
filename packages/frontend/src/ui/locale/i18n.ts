@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { en } from "./locales/en/en";
 import { es } from "./locales/es/es";
-import { config } from "config";
+import { config } from "common/config";
 
 export const defaultNS = "translation";
 

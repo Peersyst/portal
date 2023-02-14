@@ -1,7 +1,7 @@
-import Factory from "utils/Factory";
+import Factory from "common/utils/Factory";
 import CounterController from "domain/counter/controllers/CounterController";
 import RepositoryFactory from "domain/adapter/RepositoryFactory";
-import { ICounterController } from "./controllers/CounterController.interface";
+import { ICounterController } from "./controllers/ICounterController";
 import counterState from "domain/counter/state/counterState";
 
 export default class ControllerFactory extends Factory {

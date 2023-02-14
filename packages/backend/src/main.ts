@@ -46,7 +46,7 @@ async function bootstrap() {
         .setVersion(packageJson.version)
         .addBearerAuth()
         .build();
-    const document = SwaggerModule.createDocument(app, options);
+    const document = SwaggerModule.createDocument(app, options, { operationIdFactory: (_m, method) => method });
     fs.writeFileSync("./openapi-spec.json", JSON.stringify(document));
 
     if (configService.get("server.enableSwagger")) {

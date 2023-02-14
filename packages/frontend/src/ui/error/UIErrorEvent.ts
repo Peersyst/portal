@@ -1,4 +1,4 @@
-import { config } from "config";
+import { config } from "common/config";
 import UIError, { UIErrorMesage } from "./UIError";
 
 export type UIErrorEventSeverity = "error" | "warning";

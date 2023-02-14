@@ -1,6 +1,6 @@
-import { ICounterRepository } from "domain/adapter/repositories/CounterRepository.interface";
-import createMock from "../../util/createMock";
-import MethodMock from "../../util/MethodMock";
+import { ICounterRepository } from "domain/adapter/repository/ICounterRepository";
+import createMock from "../../utils/createMock";
+import MethodMock from "../../utils/MethodMock";
 
 export default createMock<ICounterRepository>({
     getCount: new MethodMock("mockResolvedValue", 0),
