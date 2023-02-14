@@ -1,16 +1,15 @@
-import { ConnectionOptions } from "typeorm";
+import { DataSourceOptions, DataSource } from "typeorm";
 import { buildConfig, ConfigValidators } from "./util/config.utils";
 import { validPort } from "./util/config.validator";
 
-export type NestConnectionOptions = ConnectionOptions & {
+export type NestConnectionOptions = DataSourceOptions & {
     autoLoadEntities?: boolean;
     keepConnectionAlive?: boolean;
     retryDelay?: number;
     retryAttempts?: number;
 };
-
-export function getTypeORMConfig(secrets: Record<string, string> = {}): ConnectionOptions {
-    return buildConfig<ConnectionOptions>(
+function getTypeORMConfig(secrets: Record<string, string> = {}): DataSourceOptions {
+    return buildConfig<DataSourceOptions>(
         {
             host: {
                 default: process.env.DB_HOST || secrets.DB_HOST || "db",
@@ -33,13 +32,10 @@ export function getTypeORMConfig(secrets: Record<string, string> = {}): Connecti
             migrationsRun: true,
             entities: [__dirname + "/../database/entities/*{.ts,.js}"],
             migrations: [__dirname + "/../database/migrations/**/*{.ts,.js}"],
-            cli: {
-                migrationsDir: __dirname + "/../database/migrations",
-            },
         },
         {
             port: validPort,
-        } as ConfigValidators<ConnectionOptions>,
+        } as ConfigValidators<DataSourceOptions>,
     );
 }
 
@@ -50,4 +46,4 @@ export function getNestTypeORMConfig(secrets?: Record<string, string>): NestConn
     };
 }
 
-export default getTypeORMConfig();
+export const ConnectionSource = new DataSource(getTypeORMConfig());

@@ -3,6 +3,7 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { User, UserType } from "../../../src/database/entities/User";
 import UserEntityMock from "../__mock__/user-entity.mock";
 import { UserService } from "../../../src/modules/user/user.service";
+import { ErrorCode } from "../../../src/modules/common/exception/error-codes";
 
 describe("UserService", () => {
     let userService: UserService;
@@ -29,7 +30,7 @@ describe("UserService", () => {
 
         it("should throw email already taken exception", async () => {
             await expect(userService.createUser({ email: "user@example.com", password: "password" })).rejects.toThrow(
-                "Email already taken",
+                ErrorCode.EMAIL_ALREADY_TAKEN,
             );
         });
     });
@@ -48,7 +49,7 @@ describe("UserService", () => {
         });
 
         it("should not find a user by id", async () => {
-            await expect(userService.findById(2)).rejects.toThrow("User not found");
+            await expect(userService.findById(2)).rejects.toThrow(ErrorCode.USER_NOT_FOUND);
         });
     });
 
@@ -64,7 +65,7 @@ describe("UserService", () => {
         });
 
         it("should throw user not found when matching passwords", async () => {
-            await expect(userService.userEmailPasswordMatch("not@example.com", "")).rejects.toThrow("User not found");
+            await expect(userService.userEmailPasswordMatch("not@example.com", "")).rejects.toThrow(ErrorCode.USER_NOT_FOUND);
         });
     });
 });
