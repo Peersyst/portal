@@ -37,7 +37,7 @@ async function bootstrap() {
     app.use(morgan("tiny"));
     app.setGlobalPrefix("api");
 
-    if (configService.get("server.enableCORS")) {
+    if (configService.get("server.enableCors")) {
         app.enableCors();
     }
     const options = new DocumentBuilder()
