@@ -13,7 +13,7 @@ export default {
     findOne: jest.fn((params) => {
         if (params === 1) {
             return UserMockEntity;
-        } else if (params && params.where && (params.where.userId === 1 || params.where.email === "user@example.com")) {
+        } else if (params && params.where && (params.where.id === 1 || params.where.email === "user@example.com")) {
             return UserMockEntity;
         } else {
             return null;
