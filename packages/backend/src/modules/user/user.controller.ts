@@ -15,7 +15,6 @@ export class UserController {
 
     @Post("create")
     @ApiOperation({ summary: "Create user" })
-    @Authenticated(UserType.ADMIN)
     async create(@Body() createUserRequestDto: CreateUserRequest): Promise<UserDto> {
         return this.userService.createUser(createUserRequestDto);
     }

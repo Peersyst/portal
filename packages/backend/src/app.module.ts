@@ -39,12 +39,20 @@ import { AuthModule } from "@peersyst/auth-module";
             },
         }),
         CommandModule,
-        // TODO: Fix backend shared modules
-        // UserModule,
-        // AuthModule.register(UserModule, ConfigModule, ConfigService, {
-        //     googleAuth: false,
-        //     twitterAuth: false,
-        // }),
+        UserModule,
+        AuthModule.forRootAsync({
+            inject: [ConfigService],
+            imports: [UserModule],
+            googleAuth: false,
+            validateEmail: false,
+            recoverPassword: false,
+            useFactory: async (configService: ConfigService) => {
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+                return {
+                    secret: configService.get<string>("server.secretKey"),
+                };
+            },
+        }),
     ],
     providers: [TypeORMSeederAdapter, { provide: APP_FILTER, useClass: ErrorFilter }],
 })
