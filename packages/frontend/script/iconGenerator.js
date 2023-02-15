@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint no-console: 0 */
 const fs = require("fs");
 const { execSync } = require("child_process");
 
