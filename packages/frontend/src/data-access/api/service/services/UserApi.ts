@@ -1,29 +1,26 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CreateUserRequest } from '../models/CreateUserRequest';
-import type { UserDto } from '../models/UserDto';
+import type { CreateUserRequest } from "common/models";
+import type { UserDto } from "common/models";
 
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { CancelablePromise } from "../core/CancelablePromise";
+import { OpenAPI } from "../core/OpenAPI";
+import { request as __request } from "../core/request";
 
 export class UserApi {
-
     /**
      * Create user
      * @param requestBody
      * @returns UserDto
      * @throws ApiError
      */
-    public static create(
-        requestBody: CreateUserRequest,
-    ): CancelablePromise<UserDto> {
+    public static create(requestBody: CreateUserRequest): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/users/create',
+            method: "POST",
+            url: "/api/users/create",
             body: requestBody,
-            mediaType: 'application/json',
+            mediaType: "application/json",
         });
     }
 
@@ -34,8 +31,8 @@ export class UserApi {
      */
     public static info(): CancelablePromise<UserDto> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/users/info',
+            method: "GET",
+            url: "/api/users/info",
         });
     }
 
@@ -46,9 +43,8 @@ export class UserApi {
      */
     public static findAll(): CancelablePromise<Array<UserDto>> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/users/all',
+            method: "GET",
+            url: "/api/users/all",
         });
     }
-
 }

@@ -12,7 +12,7 @@
         "generate:images": "node script/imagesGenerator.js src/ui/assets/images/",
         "generate:openapi:services": "openapi -i ../backend/openapi-spec.json -o src/data-access/api/service --exportSchemas=true --exportModels=false --useUnionTypes --postfix=Api",
         "generate:openapi:models": "openapi -i ../backend/openapi-spec.json -o src/common/models/api --exportSchemas=false --useUnionTypes  --exportServices=false --exportCore=false",
-        "generate:openapi": "yarn generate:openapi:services && yarn generate:openapi:models",
+        "generate:openapi": "yarn generate:openapi:services && yarn generate:openapi:models && node script/openapiPostScript.js",
         "test": "jest --maxWorkers=30%",
         "test:ui": "yarn test ./test/ui",
         "test:domain": "yarn test ./test/domain",
