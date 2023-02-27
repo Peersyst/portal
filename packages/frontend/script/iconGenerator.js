@@ -29,10 +29,13 @@ const svgs = [];
  */
 function generateComponent(name, data, removeFill) {
     return `import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
-import { cx } from "@peersyst/react-utils";
+import clsx from "clsx";
+
 export default function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "children">): JSX.Element {
     return (
-        <SvgIcon {...rest} data-testid="${name}Icon" className={cx(${removeFill ? undefined : '"Filled"'}, "Icon", className)} fill="none">
+        <SvgIcon {...rest} data-testid="${name}Icon" className={clsx(${
+        removeFill ? undefined : '"Filled"'
+    }, "Icon", className)} fill="none">
             ${data}
         </SvgIcon>
     )
