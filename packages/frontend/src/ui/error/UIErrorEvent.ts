@@ -18,7 +18,7 @@ export default class UIErrorEvent extends Event {
     }
 
     static removeListener(callback: (event: UIErrorEvent) => void): void {
-        window.addEventListener(UIErrorEvent.type, callback as EventListener);
+        window.removeEventListener(UIErrorEvent.type, callback as EventListener);
     }
 
     static dispatch(message: UIErrorMesage, severity: UIErrorEventSeverity = "error"): void {
