@@ -5,4 +5,5 @@ import MethodMock from "../../utils/MethodMock";
 export default createGlobalMock(LocalStorageRepository.prototype, {
     get: new MethodMock("mockResolvedValue", "test"),
     set: new MethodMock("mockResolvedValue"),
+    clear: new MethodMock("mockResolvedValue"),
 });
