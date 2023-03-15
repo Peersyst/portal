@@ -1,7 +1,7 @@
 import CounterController from "domain/counter/controllers/CounterController";
 import DomainErrorCodes from "domain/error/DomainErrorCodes";
-import CounterStateMock from "../../__mocks__/counterState.mock";
-import CounterRepositoryMock from "../../__mocks__/CounterRepository.mock";
+import CounterStateMock from "../../mocks/counterState.mock";
+import CounterRepositoryMock from "../../mocks/CounterRepository.mock";
 
 describe("CounterController", () => {
     let counterController: CounterController;
