@@ -4,6 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
+import "common/utils/Polyfill";
+
 // matchmedia mock
 import { LightMatchMediaMock } from "./mocks/MatchMedia.mock";
 import { IntersectionObserverMock } from "./mocks/IntersectionObserver.mock";

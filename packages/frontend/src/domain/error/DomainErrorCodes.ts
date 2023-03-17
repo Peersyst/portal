@@ -1,6 +1,6 @@
 import CounterErrorCodes from "domain/counter/CounterErrorCodes";
 
-enum GenericErrorCodes {
+export enum GenericErrorCodes {
     UNKNOWN_ERROR = "UNKNOWN_ERROR",
 }
 

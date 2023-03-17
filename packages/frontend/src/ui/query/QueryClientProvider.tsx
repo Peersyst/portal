@@ -4,7 +4,7 @@ import { IDomainError } from "ui/adapter/IDomainError";
 import UIErrorEvent from "ui/error/UIErrorEvent";
 
 function handleQueryClientError(error: IDomainError | any): void {
-    if ("code" in error) UIErrorEvent.dispatch(error.code /* Handle severity by code? */);
+    if ("code" in error) UIErrorEvent.dispatch(error.code, error.severity);
     else UIErrorEvent.dispatch(error.message);
 }
 
