@@ -4,7 +4,7 @@ import Providers from "ui/Providers";
 import Router from "ui/router/Router";
 import "data-access/api/OpenApiConfig";
 import "ui/locale/i18n";
-import "common/utils/String";
+import "common/polyfills";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
