@@ -3,9 +3,9 @@ import CounterRepository from "../../data-access/repository/counter/CounterRepos
 import { ICounterRepository } from "./repository/ICounterRepository";
 
 export default class RepositoryFactory extends Factory {
-    private static _counterRepository: ICounterRepository;
+    static #counterRepository: ICounterRepository;
 
     static get counterRepository(): ICounterRepository {
-        return this.resolve(this._counterRepository, () => new CounterRepository());
+        return this.resolve(this.#counterRepository, () => new CounterRepository());
     }
 }
