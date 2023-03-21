@@ -1,4 +1,4 @@
-import { IApiError } from "../api/IApiError";
+import { IApiError } from "../IApiError";
 
 export default function isApiError(error: any): error is IApiError {
     return (

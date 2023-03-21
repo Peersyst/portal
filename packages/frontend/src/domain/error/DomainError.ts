@@ -1,4 +1,4 @@
-import isApiError from "domain/adapter/utils/isApiError";
+import isApiError from "domain/adapter/api/utils/isApiError";
 import DomainErrorCodes, { DomainErrorCode } from "./DomainErrorCodes";
 
 export type DomainErrorSeverity = "error" | "warning";

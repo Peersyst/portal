@@ -4,6 +4,8 @@ import DomainError from "../../error/DomainError";
 import CounterErrorCodes from "../CounterErrorCodes";
 import { ICounterState } from "../state/counterState";
 import State from "domain/common/State";
+import DefaultError from "domain/error/decorators/DefaultError";
+import DomainErrorCodes from "domain/error/DomainErrorCodes";
 
 export default class CounterController implements ICounterController {
     constructor(private readonly counterState: State<ICounterState>, private readonly counterRepository: ICounterRepository) {}
@@ -13,6 +15,7 @@ export default class CounterController implements ICounterController {
         if (savedCount !== undefined) this.counterState.setState(savedCount);
     }
 
+    @DefaultError(DomainErrorCodes.UNKNOWN_ERROR)
     public async increment(): Promise<void> {
         const count = this.counterState.getState();
 
