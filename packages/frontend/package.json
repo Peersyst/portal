@@ -31,8 +31,8 @@
         "test:debug:data-access": "jest ./test/data-access --no-cache --runInBand",
         "test:ci": "jest --runInBand",
         "lint": "eslint . --ext .ts,.json --max-warnings=0",
-        "storybook": "start-storybook -p 6006 -s public",
-        "build-storybook": "build-storybook -s public"
+        "storybook": "start-storybook -p 6006 -s public -c storybook",
+        "build-storybook": "build-storybook -s public -c storybook"
     },
     "dependencies": {
         "@craco/craco": "^7.0.0",
