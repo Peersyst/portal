@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Counter from "ui/dashboard/components/display/Counter";
+import Counter from "ui/counter/components/display/Counter";
 import { render } from "../../../utils/test-utils";
 
 describe("Counter", () => {
