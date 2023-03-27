@@ -1,5 +1,6 @@
-import { createConfig, lightTheme } from "@peersyst/react-components";
+import { createConfig } from "@peersyst/react-components";
 import darkTheme from "./theme/darkTheme";
+import lightTheme from "./theme/lightTheme";
 import { config } from "common/config";
 
 const uiConfig = createConfig({
