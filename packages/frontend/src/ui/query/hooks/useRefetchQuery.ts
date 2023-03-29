@@ -1,5 +1,4 @@
-import { useQueryClient } from "react-query";
-import { QueryKey, RefetchOptions } from "react-query/types/core/types";
+import { useQueryClient, QueryKey, RefetchOptions } from "@tanstack/react-query";
 
 export const useRefetchQuery = (): ((queryKey: QueryKey, options?: RefetchOptions) => Promise<void>) => {
     const queryClient = useQueryClient();

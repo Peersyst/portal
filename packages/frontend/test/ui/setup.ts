@@ -28,14 +28,3 @@ Object.defineProperty(window, "matchMedia", {
 
 window.IntersectionObserver = jest.fn().mockImplementation(IntersectionObserverMock);
 window.ResizeObserver = jest.fn().mockImplementation(ResizeObserverMock);
-
-// Turn off network queries error logging
-/* eslint-disable no-console  */
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { setLogger } from "react-query";
-
-setLogger({
-    log: console.log,
-    warn: console.warn,
-    error: () => {},
-});

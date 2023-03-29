@@ -6,7 +6,7 @@ import {
     QueryKey,
     UseInfiniteQueryOptions,
     UseInfiniteQueryResult,
-} from "react-query";
+} from "@tanstack/react-query";
 
 export interface PaginatedData<TData extends unknown[] = unknown[]> {
     currentPage: number;
@@ -37,5 +37,5 @@ const useCustomInfiniteQuery: UseCustomInfiniteQuery = (queryKey, queryFn, optio
 export type InfiniteQueryResult<TData = unknown, TError = unknown> = InfiniteQueryObserverResult<TData, TError>;
 export type QueryResult<TData = unknown, TError = unknown> = UseQueryResult<TData, TError>;
 
-export * from "react-query";
+export * from "@tanstack/react-query";
 export { useCustomInfiniteQuery as useInfiniteQuery };
