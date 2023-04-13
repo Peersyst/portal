@@ -21,5 +21,6 @@
     "too_many_chars": "The field must contain less than {{chars}} characters",
     "invalid_start": "The field must start with {{start}}",
     "invalid_end": "The field must end with {{end}}",
-    "invalid_color": "Invalid color"
+    "invalid_color": "Invalid color",
+    "invalid_url": "Invalid URL"
 }
