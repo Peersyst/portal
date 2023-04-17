@@ -1,8 +1,8 @@
 # Name
 
-## Issues
+## Tasks
 
-closes #
+- [TaskName](https://www.notion.so)
 
 ## Dependencies
 
