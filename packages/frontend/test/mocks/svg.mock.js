@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
 
-const SvgMock = forwardRef((props, ref) => <span ref={ref} {...props} />);
+const SvgMock = forwardRef(function SvgMock(props, ref) {
+    return <span ref={ref} {...props} />;
+});
 
 export const ReactComponent = SvgMock;
 export default SvgMock;

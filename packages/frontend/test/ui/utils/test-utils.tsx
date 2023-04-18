@@ -1,7 +1,7 @@
 import { JSXElementConstructor, PropsWithChildren, ReactElement } from "react";
 import { render, RenderOptions, RenderResult, renderHook, RenderHookOptions, RenderHookResult } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider, QueryClientConfig, QueryCache } from "react-query";
+import { QueryClient, QueryClientProvider, QueryClientConfig } from "@tanstack/react-query";
 import { ModalProvider, ToastProvider } from "@peersyst/react-components";
 import { InitialEntry } from "history";
 import { deepmerge } from "@peersyst/react-utils";
@@ -25,10 +25,20 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
             {
                 defaultOptions: {
                     queries: {
+                        networkMode: "offlineFirst",
                         retry: false,
                     },
+                    mutations: {
+                        networkMode: "offlineFirst",
+                    },
                 },
-                queryCache: new QueryCache(),
+                loggger: {
+                    // eslint-disable-next-line no-console
+                    log: console.log,
+                    // eslint-disable-next-line no-console
+                    warn: console.warn,
+                    error: () => undefined,
+                },
             },
             queryClientConfig,
         ),

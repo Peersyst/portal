@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider as BaseQueryClientProvider } from "@tanstack/react-query";
 import { IDomainError } from "ui/adapter/IDomainError";
 import UIErrorEvent from "ui/error/UIErrorEvent";
 
@@ -15,9 +15,11 @@ const queryClient = new QueryClient({
             refetchOnWindowFocus: false,
             staleTime: 600000,
             onError: handleQueryClientError,
+            networkMode: "offlineFirst",
         },
         mutations: {
             onError: handleQueryClientError,
+            networkMode: "offlineFirst",
         },
     },
 });
