@@ -9,14 +9,9 @@ RUN yarn lint
 RUN yarn test:ci
 RUN touch test.lock
 
-FROM base as build
+FROM test as build
 ARG CONFIG_ENV=production
 ENV REACT_APP_CONFIG_ENV ${CONFIG_ENV}
-ARG NODE_ENV=production
-ENV NODE_ENV ${NODE_ENV}
-COPY --from=test /app/test.lock /app/test.lock
-RUN yarn
-COPY . .
 RUN DISABLE_ESLINT_PLUGIN=true yarn build
 
 FROM nginx:latest
@@ -29,6 +24,7 @@ RUN echo " \
         listen       80; \
         listen  [::]:80; \
         server_name  localhost; \
+        client_max_body_size 5M; \
         location / { \
             root   /var/www; \
             try_files \$uri \$uri/ /index.html; \
