@@ -1,6 +1,6 @@
 FROM node:16.13.0 as base
 WORKDIR /app
-COPY ["package.json", "yarn.lock", ".npmrc", "./"]
+COPY ["package.json", "yarn.lock", "./"]
 
 FROM base as test
 RUN yarn install
