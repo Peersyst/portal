@@ -4,7 +4,7 @@ import lightTheme from "./theme/lightTheme";
 import { config } from "common/config";
 
 const uiConfig = createConfig({
-    ...config,
+    projectName: config.projectName,
     themes: {
         default: lightTheme,
         light: lightTheme,
