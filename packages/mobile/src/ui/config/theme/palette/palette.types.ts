@@ -1,4 +1,4 @@
-import { ThemePalette } from "@peersyst/react-components";
+import { ThemePalette } from "@peersyst/react-native-components";
 
 export type BasePalette = Omit<ThemePalette, "mode" | "text" | "backdrop" | "disabled" | "background">;
 
