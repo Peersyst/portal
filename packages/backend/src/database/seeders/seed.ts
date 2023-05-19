@@ -1,13 +1,14 @@
 import { Logger } from "@nestjs/common";
-import { createConnection, Connection, EntityTarget } from "typeorm";
+import { DataSource, EntityTarget } from "typeorm";
 import { TypeORMSeederAdapter } from "./adapter";
-import { getTypeORMConfig } from "../../config/typeorm.config";
+import { ConnectionSource } from "../../config/typeorm.config";
 import { User } from "../entities/User";
 import { users } from "./seeders-data";
 import { ConfigEnvType, getConfigEnv } from "../../config/util/config.utils";
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 
 export interface SeederAdapterI {
-    insert<T>(entityTarget: EntityTarget<T>, data: T[]): Promise<void>;
+    insert<T>(entityTarget: EntityTarget<T>, data: QueryDeepPartialEntity<T>[]): Promise<void>;
     delete<T>(entityTarget: EntityTarget<T>): Promise<void>;
 }
 
@@ -15,7 +16,7 @@ export class Seeder {
     private logger: Logger;
     private environment: ConfigEnvType;
     private adapter: SeederAdapterI;
-    private connection: Connection;
+    private connection: DataSource;
 
     constructor() {
         this.logger = new Logger(Seeder.name);
@@ -27,13 +28,14 @@ export class Seeder {
     }
 
     async connect(): Promise<void> {
-        this.connection = await createConnection(getTypeORMConfig());
+        this.connection = await ConnectionSource.initialize();
+        await this.connection.initialize();
         this.adapter = new TypeORMSeederAdapter(this.connection);
         this.logger.log("Connected to database successfully!");
     }
 
     async disconnect(): Promise<void> {
-        await this.connection.close();
+        await this.connection.destroy();
         this.connection = null;
         this.adapter = null;
     }
