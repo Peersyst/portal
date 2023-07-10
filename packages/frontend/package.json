@@ -30,7 +30,8 @@
         "test:debug:domain": "jest ./test/domain --no-cache --runInBand",
         "test:debug:data-access": "jest ./test/data-access --no-cache --runInBand",
         "test:ci": "jest --runInBand",
-        "lint": "eslint . --ext .ts,.json --max-warnings=0",
+        "check-types": "tsc --noemit",
+        "lint": "eslint . --ext .ts,.json --max-warnings=0 && yarn check-types",
         "storybook": "start-storybook -p 6006 -s public -c storybook",
         "build-storybook": "build-storybook -s public -c storybook"
     },

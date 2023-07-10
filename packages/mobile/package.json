@@ -36,7 +36,8 @@
         "test:debug:domain": "jest ./test/domain --no-cache --runInBand",
         "test:debug:data-access": "jest ./test/data-access --no-cache --runInBand",
         "test:ci": "jest --runInBand",
-        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0",
+        "check-types": "tsc --noemit",
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0 && yarn check-types",
         "playground:start": "yarn generate:icons && yarn --cwd ./playground start",
         "playground:android": "yarn playground:start --android",
         "playground:ios": "yarn playground:start --ios"
