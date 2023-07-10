@@ -6,13 +6,15 @@ const config = getDefaultConfig(__dirname);
 
 // Find the playground and project directories
 const playgroundRoot = __dirname;
-const projectRoot = path.resolve(playgroundRoot, "..");
+const packageRoot = path.resolve(playgroundRoot, "..");
+const projectRoot = path.resolve(playgroundRoot, "../../../");
 
 // 1. Watch all files within the monorepo
-config.watchFolders = [projectRoot];
+config.watchFolders = [packageRoot];
 // 2. Let Metro know where to resolve packages and in what order
 config.resolver.nodeModulesPaths = [
     path.resolve(playgroundRoot, "node_modules"),
+    path.resolve(packageRoot, "node_modules"),
     path.resolve(projectRoot, "node_modules"),
     path.resolve(projectRoot, "src"),
 ];

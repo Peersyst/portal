@@ -1,3 +1,5 @@
+import "common/polyfills";
+import "ui/locale/i18n";
 import { Suspense } from "react";
 import Providers from "ui/Providers";
 import Navigator from "ui/navigator/Navigator";
@@ -5,8 +7,6 @@ import { useLoad } from "ui/common/hooks/useLoad";
 import { Platform, UIManager, LogBox } from "react-native";
 import { StatusBar } from "@peersyst/react-native-components";
 import * as SplashScreen from "expo-splash-screen";
-import "common/polyfills";
-import "ui/locale/i18n";
 
 if (Platform.OS === "android") {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
