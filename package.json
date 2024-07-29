@@ -1,0 +1,40 @@
+{
+    "name": "base-project",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "docker:start:dev": "docker-compose up -d",
+        "docker:build:api": "docker build -f ./apps/api/Dockerfile -t api .",
+        "docker:build:indexer": "docker build -f ./apps/indexer/Dockerfile -t indexer .",
+        "docker:build:app": "docker build -f ./apps/app/Dockerfile -t app .",
+        "bootstrap": "nx run-many --target=bootstrap --projects",
+        "build": "nx run-many --target=build --projects",
+        "build:packages": "nx run-many --target=build --exclude apps/*",
+        "build:packages:ci": "NX_DAEMON=false nx run-many --target=build --exclude apps/* --parallel=false",
+        "clean": "nx run-many --target=clean",
+        "clean:all": "yarn clean && rm -rf .nx/cache && rm -rf node_modules",
+        "test": "nx run-many --target=test --output-style=stream --projects",
+        "lint": "nx run-many --target=lint --projects",
+        "run:project": "node ./scripts/run-project-script.js",
+        "new:package": "node scripts/new-package.js",
+        "db:migration:create": "yarn --cwd ./packages/database db:migration:create",
+        "db:migration:generate": "yarn --cwd ./packages/database db:migration:generate",
+        "db:migration:run": "yarn --cwd ./packages/database db:migration:run",
+        "db:migration:revert": "yarn --cwd ./packages/database db:migration:revert",
+        "db:schema:drop": "yarn --cwd ./packages/database db:schema:drop",
+        "db:entities:generate": "yarn --cwd ./packages/database db:entities:generate",
+        "db:api:pack": "nx run-many --target=db:pack --projects=api"
+    },
+    "devDependencies": {
+        "debounce": "^2.0.0",
+        "eslint": "^8.33.0",
+        "node-watch": "^0.7.4",
+        "nx": "17.2.8",
+        "ora": "^8.0.1",
+        "prettier": "^2.8.3",
+        "rimraf": "^3.0.2"
+    },
+    "workspaces": [
+        "packages/*"
+    ]
+}

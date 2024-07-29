@@ -1,0 +1,17 @@
+node_modules
+*/**/node_modules
+dist
+*/**/dist
+.env
+*/**/.env
+
+docker/*
+.dockerignore
+
+.nx
+
+.github
+.idea
+docker
+infra
+logs
