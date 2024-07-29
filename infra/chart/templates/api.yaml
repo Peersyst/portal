@@ -1,0 +1,100 @@
+{{- if .Values.api.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/port: "8888"
+    prometheus.io/scrape: "true"
+  name: api-{{ .Values.environment }}
+  namespace: {{ .Values.api.service.namespace }}
+spec:
+  ports:
+  - name: api
+    port: {{ .Values.api.service.port }}
+    targetPort: {{ .Values.api.service.targetPort }}
+  selector:
+    app: api-{{ .Values.environment }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-{{ .Values.environment }}
+  namespace: {{ .Values.api.deployment.namespace }}
+  labels:
+    app: api-{{ .Values.environment }}
+spec:
+  replicas: {{ .Values.api.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: api-{{ .Values.environment }}
+  template:
+    metadata:
+      annotations:
+        timestamp: {{ .Values.timestamp }}
+      labels:
+        app: api-{{ .Values.environment }}
+    spec:
+      serviceAccountName: peersyst-secrets-iamserviceaccount
+      volumes:
+      - name: api-secrets
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: api-{{ .Values.environment }}-secrets
+      containers:
+      - name: api
+        image: peersyst/base-project-api:{{ .Values.tagApi }}
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: {{ .Values.api.deployment.memoryRequest }}
+            cpu: {{ .Values.api.deployment.cpuRequest }}
+          limits:
+            memory: {{ .Values.api.deployment.memoryLimit }}
+            cpu: {{ .Values.api.deployment.cpuLimit }}
+        ports:
+        - containerPort: {{ .Values.api.deployment.port }}
+        volumeMounts:
+        - name: api-secrets
+          mountPath: "/mnt/secrets"
+          readOnly: true
+        env:
+        - name: CONFIG_ENV
+          value: {{ .Values.environment }}
+        {{- range $k, $v := .Values.api.secretProviderClass.secrets }}
+        - name: {{ $v }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $.Values.api.secretProviderClass.objectAlias }}
+              key: {{ $v }}
+        {{ end }}
+      imagePullSecrets:
+      - name: regcred
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: api-{{ .Values.environment }}-secrets
+  namespace: {{ $.Values.api.secretProviderClass.namespace }}
+spec:
+  provider: aws
+  parameters:
+    region: us-east-1
+    objects: |
+      - objectName: {{ $.Values.api.secretProviderClass.objectName }}
+        objectType: secretsmanager
+        jmesPath:
+        {{- range $k, $v := .Values.api.secretProviderClass.secrets }}
+          - path: {{ $v }}
+            objectAlias: {{ $k }}
+        {{ end }}
+  secretObjects:
+  - secretName: {{ $.Values.api.secretProviderClass.objectAlias }}
+    type: Opaque
+    data:
+    {{- range $k, $v := .Values.api.secretProviderClass.secrets }}
+    - objectName: {{ $k }}
+      key: {{ $v }}
+    {{ end }}
+{{- end }}

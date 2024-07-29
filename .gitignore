@@ -3,6 +3,7 @@ node_modules/
 .idea/
 .DS_Store
 .vscode
+.expo
 
 dist/
 */**/dist/
@@ -14,8 +15,6 @@ logs/
 */**/logs/
 */**/*.log
 
-docker/
-
 .env*
 */**/.env
 */**/.env*
@@ -26,3 +25,8 @@ yarn-error.log
 
 */**/coverage/
 .nyc_output/
+
+docker-data
+
+.nx/cache
+crunchfish
