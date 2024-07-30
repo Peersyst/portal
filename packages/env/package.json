@@ -1,15 +1,15 @@
 {
-    "name": "@base-project/env",
+    "name": "@peersyst/env",
     "version": "1.0.0",
     "description": "",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
         "clean": "rm -rf dist node_modules",
-        "build": "tsc && rm -rf ./node_modules/@base-project"
+        "build": "tsc && rm -rf ./node_modules/@peersyst"
     },
     "devDependencies": {
-        "@base-project/eslint": "file:../eslint",
+        "@peersyst/eslint": "file:../eslint",
         "eslint": "^8.33.0",
         "typescript": "^5.3.2"
     },

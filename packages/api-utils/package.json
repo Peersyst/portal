@@ -1,5 +1,5 @@
 {
-    "name": "@base-project/api-utils",
+    "name": "@peersyst/api-utils",
     "version": "1.0.0",
     "author": "Peersyst",
     "license": "MIT",
@@ -7,10 +7,10 @@
     "types": "dist/src/index.d.ts",
     "scripts": {
         "clean": "rm -rf dist node_modules",
-        "build": "tsc && rm -rf ./node_modules/@base-project"
+        "build": "tsc && rm -rf ./node_modules/@peersyst"
     },
     "peerDependencies": {
-        "@base-project/common": "*",
+        "@peersyst/common": "*",
         "@nestjs/common": "^10.3.0",
         "@nestjs/typeorm": "^10.0.1",
         "@nestjs/swagger": "^7.1.16",
@@ -18,7 +18,7 @@
         "xrpl": "^2.13.0"
     },
     "devDependencies": {
-        "@base-project/common": "file:../common",
+        "@peersyst/common": "file:../common",
         "@nestjs/common": "^10.3.0",
         "@nestjs/typeorm": "^10.0.1",
         "@nestjs/swagger": "^7.1.16",

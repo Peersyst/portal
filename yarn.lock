@@ -708,21 +708,6 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
-"@base-project/common@file:packages/common":
-  version "1.0.0"
-
-"@base-project/config@file:packages/config":
-  version "1.0.0"
-
-"@base-project/env@file:packages/env":
-  version "1.0.0"
-
-"@base-project/eslint@file:packages/eslint":
-  version "1.0.0"
-
-"@base-project/locale@file:packages/locale":
-  version "1.0.0"
-
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -1145,6 +1130,21 @@
   version "17.2.8"
   resolved "https://registry.yarnpkg.com/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-17.2.8.tgz#8a86ff250021ad47686b58f1840b348a209b1158"
   integrity sha512-HTqDv+JThlLzbcEm/3f+LbS5/wYQWzb5YDXbP1wi7nlCTihNZOLNqGOkEmwlrR5tAdNHPRpHSmkYg4305W0CtA==
+
+"@peersyst/common@file:packages/common":
+  version "1.0.0"
+
+"@peersyst/config@file:packages/config":
+  version "1.0.0"
+
+"@peersyst/env@file:packages/env":
+  version "1.0.0"
+
+"@peersyst/eslint@file:packages/eslint":
+  version "1.0.0"
+
+"@peersyst/locale@file:packages/locale":
+  version "1.0.0"
 
 "@peersyst/react-types@^1.6.2":
   version "1.6.2"

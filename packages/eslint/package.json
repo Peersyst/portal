@@ -1,5 +1,5 @@
 {
-    "name": "@base-project/eslint",
+    "name": "@peersyst/eslint",
     "version": "1.0.0",
     "main": "index.js",
     "author": "Peersyst",

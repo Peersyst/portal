@@ -3,7 +3,7 @@ import { ConfigManagerEventEmitter } from "./events";
 import { IConfigProvider, IConfigStorage } from "./interfaces";
 import { deepmerge, getAttribute } from "@peersyst/react-utils";
 import { BaseConfig } from "./types";
-import { IS_PROD } from "@base-project/env";
+import { IS_PROD } from "@peersyst/env";
 
 export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omit<Config, "version"> = Omit<Config, "version">> {
     private logger = console;

@@ -1,21 +1,21 @@
 {
-    "name": "@base-project/locale",
+    "name": "@peersyst/locale",
     "version": "1.0.0",
     "description": "Contains all locales",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
         "clean": "rm -rf dist node_modules",
-        "build": "tsc && rm -rf ./node_modules/@base-project"
+        "build": "tsc && rm -rf ./node_modules/@peersyst"
     },
     "peerDependencies": {
-        "@base-project/common": "*",
+        "@peersyst/common": "*",
         "i18next": "^23.11.2",
         "react-i18next": "^14.1.1"
     },
     "devDependencies": {
-        "@base-project/common": "file:../common",
-        "@base-project/eslint": "file:../eslint",
+        "@peersyst/common": "file:../common",
+        "@peersyst/eslint": "file:../eslint",
         "eslint": "^8.33.0",
         "i18next": "^23.11.2",
         "react-i18next": "^14.1.1",
