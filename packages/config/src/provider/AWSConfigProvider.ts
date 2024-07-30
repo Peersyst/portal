@@ -1,7 +1,7 @@
 import { Config } from "../types";
 import { IConfigProvider } from "../manager";
 import { AppConfigDataClient, GetLatestConfigurationCommand, StartConfigurationSessionCommand } from "@aws-sdk/client-appconfigdata";
-import { IS_PROD } from "@base-project/env";
+import { IS_PROD } from "@peersyst/env";
 
 /**
  * Implementation of IConfigProvider using AWS AppConfig

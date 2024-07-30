@@ -1,4 +1,4 @@
-import { EventEmitter } from "@base-project/events";
+import { EventEmitter } from "@peersyst/events";
 import { Config } from "../types";
 import { IConfigManagerEvents } from "./IConfigManagerEvents";
 import { DeepPick, NestedKeys } from "@swisstype/essential";

@@ -1,12 +1,12 @@
 {
-    "name": "@base-project/test-utils",
+    "name": "@peersyst/test-utils",
     "version": "1.0.0",
     "author": "Silva Pablo <silvap@peersyst.com>",
     "license": "MIT",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
-        "build": "tsc && rm -rf ./node_modules/@base-project",
+        "build": "tsc && rm -rf ./node_modules/@peersyst",
         "clean": "rm -rf dist node_modules"
     },
     "devDependencies": {

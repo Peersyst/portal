@@ -10,7 +10,7 @@ function main() {
 
     for (const filename of filenames) {
         const data = fs.readFileSync(apiServicesFolder + filename, "utf8");
-        fs.writeFileSync(apiServicesFolder + filename, data.replaceAll(/'..\/models\/.*/g, "'@cbdc-wallet/common';"));
+        fs.writeFileSync(apiServicesFolder + filename, data.replaceAll(/'..\/models\/.*/g, "'@peersyst/common';"));
     }
 
     try {

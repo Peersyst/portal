@@ -22,10 +22,10 @@ function syncChanges(_action, path) {
     apps.forEach((app) => {
         try {
             execSync(`cd ./packages/${package} && yarn build && cd ../..`, { stdio: "pipe" });
-            const exists = existsSync(`./apps/${app}/node_modules/@cbdc-wallet/${package}`);
+            const exists = existsSync(`./apps/${app}/node_modules/@base-project/${package}`);
             if (exists) {
-                execSync(`rm -rf ./apps/${app}/node_modules/@cbdc-wallet/${package}/dist/*`, { stdio: "pipe" });
-                execSync(`cp -r ./packages/${package}/dist/* ./apps/${app}/node_modules/@cbdc-wallet/${package}/dist`, {
+                execSync(`rm -rf ./apps/${app}/node_modules/@base-project/${package}/dist/*`, { stdio: "pipe" });
+                execSync(`cp -r ./packages/${package}/dist/* ./apps/${app}/node_modules/@base-project/${package}/dist`, {
                     stdio: "pipe",
                 });
             }

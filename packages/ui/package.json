@@ -1,18 +1,18 @@
 {
-    "name": "@base-project/ui",
+    "name": "@peersyst/ui",
     "version": "1.0.0",
-    "description": "Contains UI elements shared between base-project frontend apps.",
+    "description": "Contains UI elements shared between peersyst frontend apps.",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
-        "build": "rm -rf dist && tsc && rm -rf ./node_modules/@base-project",
+        "build": "rm -rf dist && tsc && rm -rf ./node_modules/@peersyst",
         "clean": "rm -rf dist node_modules"
     },
     "dependencies": {},
     "peerDependencies": {
-        "@base-project/config": "*",
-        "@base-project/common": "*",
-        "@base-project/locale": "*",
+        "@peersyst/config": "*",
+        "@peersyst/common": "*",
+        "@peersyst/locale": "*",
         "@peersyst/react-utils": "^2.5.0",
         "i18next": "^23.11.2",
         "react": "^18.2.0",
@@ -20,10 +20,10 @@
         "zustand": "4.5.2"
     },
     "devDependencies": {
-        "@base-project/config": "file:../config",
-        "@base-project/common": "file:../common",
-        "@base-project/eslint": "file:../eslint",
-        "@base-project/locale": "file:../locale",
+        "@peersyst/config": "file:../config",
+        "@peersyst/common": "file:../common",
+        "@peersyst/eslint": "file:../eslint",
+        "@peersyst/locale": "file:../locale",
         "@peersyst/react-utils": "^2.5.0",
         "eslint": "^8.33.0",
         "i18next": "^23.11.2",

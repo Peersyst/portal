@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Locale } from "@cbdc-wallet/common";
-import { useTranslate } from "@cbdc-wallet/locale";
+import { Locale } from "@peersyst/common";
+import { useTranslate } from "@peersyst/locale";
 import { useCallback, useMemo } from "react";
 import { DateFormat } from "../types";
 import { FORMAT_DATE_STRATEGIES } from "../constants";

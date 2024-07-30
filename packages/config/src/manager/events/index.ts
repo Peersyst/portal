@@ -1,4 +1,4 @@
-import { EventEmitter } from "@base-project/events";
+import { EventEmitter } from "@peersyst/events";
 import { BaseConfig, BaseProviderConfig } from "../types";
 
 export type ConfigManagerEvents<Config extends BaseConfig, ProviderConfig extends BaseProviderConfig = Omit<Config, "version">> = {
