@@ -36,16 +36,16 @@ function createPackage(name, version, author, description, license, keywords) {
 
     // Define the contents for each file
     const packageJsonContents = `{
-        "name": "@cbdc-wallet/${name}",
+        "name": "@base-project/${name}",
         "version": "${version}",
         "description": "${description}",
         "main": "dist/src/index.js",
         "types": "dist/src/index.d.ts",
         "scripts": {
-            "build": "tsc && rm -rf ./node_modules/@cbdc-wallet"
+            "build": "tsc && rm -rf ./node_modules/@base-project"
         },
         "devDependencies": {
-            "@cbdc-wallet/eslint": "file:../eslint",
+            "@base-project/eslint": "file:../eslint",
             "eslint": "^8.33.0",
             "typescript": "^5.3.2"
         },
@@ -86,7 +86,7 @@ dist
 .DS_Store`;
 
     const eslintContents = `{
-    "extends": ["../../node_modules/@cbdc-wallet/eslint/configs/.eslintrc-node"]
+    "extends": ["../../node_modules/@base-project/eslint/configs/.eslintrc-node"]
 }`;
 
     const eslintIgnoreContents = `node_modules
