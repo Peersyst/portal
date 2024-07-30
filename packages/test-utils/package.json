@@ -1,0 +1,19 @@
+{
+    "name": "@base-project/test-utils",
+    "version": "1.0.0",
+    "author": "Silva Pablo <silvap@peersyst.com>",
+    "license": "MIT",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
+    "scripts": {
+        "build": "tsc && rm -rf ./node_modules/@base-project",
+        "clean": "rm -rf dist node_modules"
+    },
+    "devDependencies": {
+        "@swisstype/essential": "^0.1.1",
+        "@types/jest": "^29.5.12",
+        "jest": "29.7.0",
+        "ts-jest": "29.1.2",
+        "typescript": "^5.4.5"
+    }
+}
