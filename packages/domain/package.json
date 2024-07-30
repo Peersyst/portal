@@ -1,0 +1,35 @@
+{
+    "name": "@peersyst/domain",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
+    "scripts": {
+        "clean": "rm -rf dist node_modules",
+        "build": "tsc && rm -rf ./node_modules/@peersyst"
+    },
+    "peerDependencies": {
+        "@peersyst/config": "*",
+        "@peersyst/common": "*",
+        "jwt-decode": "^4.0.0",
+        "xrpl": "^2.13.0",
+        "zustand": "^4.5.2"
+    },
+    "devDependencies": {
+        "@peersyst/config": "file:../config",
+        "@peersyst/common": "file:../common",
+        "@peersyst/eslint": "file:../eslint",
+        "@swisstype/essential": "^0.1.1",
+        "eslint": "^8.33.0",
+        "jwt-decode": "^4.0.0",
+        "typescript": "^5.3.2",
+        "xrpl": "^2.13.0",
+        "zustand": "^4.5.2"
+    },
+    "sideEffects": false,
+    "author": "Peersyst",
+    "license": "ISC",
+    "keywords": [
+        ""
+    ]
+}
