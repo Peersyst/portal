@@ -18,12 +18,26 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
+        "@peersyst/apis": "file:../../packages/apis",
+        "@peersyst/common": "file:../../packages/common",
+        "@peersyst/config": "file:../../packages/config",
+        "@peersyst/domain": "file:../../packages/domain",
+        "@peersyst/env": "file:../../packages/env",
+        "@peersyst/events": "file:../../packages/events",
+        "@peersyst/locale": "file:../../packages/locale",
         "@peersyst/react-components": "^3.9.34",
         "@peersyst/react-hooks": "^2.2.15",
         "@peersyst/react-utils": "^2.5.0",
+        "@peersyst/ui": "file:../../packages/ui",
+        "@tanstack/query-sync-storage-persister": "^5.51.15",
+        "@tanstack/react-query": "^5.51.15",
+        "@tanstack/react-query-persist-client": "^5.51.15",
+        "buffer": "^6.0.3",
+        "events": "^3.3.0",
         "init": "^0.1.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "react-router-dom": "^6.25.1",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
@@ -39,8 +53,11 @@
         "@storybook/react": "^8.2.6",
         "@storybook/react-vite": "^8.2.6",
         "@storybook/test": "^8.2.6",
+        "@types/events": "^3.0.3",
+        "@types/node": "^22.0.0",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
+        "@types/styled-components": "^5.1.34",
         "@typescript-eslint/eslint-plugin": "^7.15.0",
         "@typescript-eslint/parser": "^7.15.0",
         "@vitejs/plugin-react": "^4.3.1",
@@ -50,6 +67,7 @@
         "eslint-plugin-storybook": "^0.8.0",
         "storybook": "^8.2.6",
         "typescript": "^5.2.2",
-        "vite": "^5.3.5"
+        "vite": "^5.3.5",
+        "vite-tsconfig-paths": "^4.3.2"
     }
 }

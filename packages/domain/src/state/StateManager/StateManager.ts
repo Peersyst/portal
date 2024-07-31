@@ -1,7 +1,7 @@
 import { StateStorage } from "zustand/middleware";
 import { IStateManager, States, IDomainStates, IStates } from "./StateManager.types";
 import { Difference } from "@swisstype/essential";
-import { createAuthState } from "../../modules";
+import { createAuthState, createSettingsState } from "../../modules";
 
 class StateManager implements IStateManager {
     private _persistenceStorage: StateStorage | undefined = undefined;
@@ -36,6 +36,7 @@ class StateManager implements IStateManager {
     createStates(extraStates: States<Difference<IStates, IDomainStates>>): void {
         this.states = {
             auth: createAuthState(),
+            settings: createSettingsState(),
             ...extraStates,
         };
 

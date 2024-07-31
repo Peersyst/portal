@@ -6,7 +6,7 @@
     "types": "dist/src/index.d.ts",
     "scripts": {
         "clean": "rm -rf dist node_modules",
-        "build": "tsc -b tsconfig.build.json && rm -rf ./node_modules/@cbdc-wallet",
+        "build": "tsc && rm -rf ./node_modules/@peersyst",
         "lint": "eslint . --ext .ts,.json --max-warnings=0",
         "generate:openapi": "openapi -i ../../apps/api/openapi-spec.json -o src/api --exportSchemas=false --useUnionTypes  --exportServices=false --exportCore=false"
     },
