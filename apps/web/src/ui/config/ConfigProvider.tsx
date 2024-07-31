@@ -1,22 +1,24 @@
 import { ConfigProvider as GenesysConfigProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
 import { StyleSheetManager } from "styled-components";
-import config from "./config";
-import { GlobalStyles } from "./theme/GlobalStyles";
+import { GlobalStyles } from "../theme/GlobalStyles";
+import useUIConfig from "./hook/useUIConfig";
 
 export interface ConfigProviderProps {
-  children?: ReactNode;
+    children?: ReactNode;
 }
 
 const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
-  return (
-    <GenesysConfigProvider config={config}>
-      <StyleSheetManager target={document.head}>
-        <GlobalStyles />
-      </StyleSheetManager>
-      {children}
-    </GenesysConfigProvider>
-  );
+    const config = useUIConfig();
+
+    return (
+        <GenesysConfigProvider config={config}>
+            <StyleSheetManager target={document.head}>
+                <GlobalStyles />
+            </StyleSheetManager>
+            {children}
+        </GenesysConfigProvider>
+    );
 };
 
 export default ConfigProvider;

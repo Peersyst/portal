@@ -1,10 +1,11 @@
 import { StateStorage } from "zustand/middleware";
 import { CreateStateReturn } from "../createState";
 import { Difference } from "@swisstype/essential";
-import { IAuthState } from "../../modules";
+import { IAuthState, ISettingsState } from "../../modules";
 
 export interface IDomainStates {
     auth: IAuthState;
+    settings: ISettingsState;
 }
 export interface IStates extends IDomainStates {}
 

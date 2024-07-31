@@ -1,6 +1,9 @@
 {
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "prettier"],
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -15,5 +18,7 @@
         "@typescript-eslint/ban-ts-comment": 0,
         "@typescript-eslint/no-non-null-assertion": 0
     },
-     "ignorePatterns": ["dist"]
+    "ignorePatterns": [
+        "dist"
+    ]
 }
