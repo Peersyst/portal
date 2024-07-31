@@ -1,0 +1,27 @@
+{
+    "name": "@peersyst/apis",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
+    "scripts": {
+        "build": "tsc && rm -rf ./node_modules/@peersyst",
+        "clean": "rm -rf dist node_modules",
+        "generate:openapi": "openapi -i ../../apps/api/openapi-spec.json -o src/openapi --exportSchemas=true --exportModels=false --useUnionTypes --postfixServices=Api && node script/openapiPostScript.js"
+    },
+    "peerDependencies": {
+        "@peersyst/common": "*"
+    },
+    "devDependencies": {
+        "@peersyst/common": "file:../common",
+        "@peersyst/eslint": "file:../eslint",
+        "eslint": "^8.33.0",
+        "typescript": "^5.3.2"
+    },
+    "sideEffects": false,
+    "author": "Peersyst",
+    "license": "ISC",
+    "keywords": [
+        ""
+    ]
+}

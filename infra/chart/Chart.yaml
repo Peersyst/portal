@@ -1,0 +1,4 @@
+apiVersion: v2
+name: BASE-PROJECT
+description: base-project
+version: 1.0.0+${TAG}
