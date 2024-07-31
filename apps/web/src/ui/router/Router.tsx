@@ -6,7 +6,7 @@ function Routes() {
     return useRoutes([
         {
             path: "*",
-            element: <p>Hello World</p>,
+            element: <p>Peersyst web base project</p>,
         },
     ]);
 }

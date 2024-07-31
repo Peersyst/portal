@@ -19,7 +19,7 @@ export default function App(): JSX.Element | null {
     const { isLoading } = useInit();
 
     return isLoading ? (
-        <>dasdasdas</>
+        <></>
     ) : (
         <Suspense fallback={<></>}>
             <Providers>
