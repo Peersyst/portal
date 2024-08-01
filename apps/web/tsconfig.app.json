@@ -28,5 +28,5 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src", ".storybook/stories"]
+    "include": ["src"]
 }
