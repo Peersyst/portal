@@ -4,8 +4,8 @@ import { Authenticated } from "@peersyst/auth-module";
 import { CreateUserRequest } from "./create-user.request";
 import { UserService } from "./user.service";
 import { UserDto } from "./user.dto";
-import { UserType } from "src/database/entities/User";
 import { ApiErrorDecorators } from "../common/exception/error-response.decorator";
+import { UserType } from "@peersyst/database";
 
 @ApiTags("user")
 @Controller("users")
