@@ -10,5 +10,5 @@ module.exports = {
     },
     setupFilesAfterEnv: ["./ui/setup.tsx"],
     testRegex: ".*\\.spec\\.(ts|tsx)$",
-    testPathIgnorePatterns: ["domain/", "data-access/"],
+    testPathIgnorePatterns: ["@/domain/", "@/data-access/"],
 };

@@ -8,15 +8,15 @@ module.exports = function (api) {
                 {
                     root: ["./src"],
                     alias: {
-                        ui: "./src/ui",
-                        domain: "./src/domain",
-                        asset: "./src/asset",
-                        "data-access": "./src/data-access",
-                        common: "./src/common",
+                        "@/ui": "./src/ui",
+                        "@/domain": "./src/domain",
+                        "@/asset": "./src/asset",
+                        "@/data-access": "./src/data-access",
+                        "@/common": "./src/common",
                     },
                 },
             ],
-            "react-native-reanimated/plugin"
+            "react-native-reanimated/plugin",
         ],
     };
 };

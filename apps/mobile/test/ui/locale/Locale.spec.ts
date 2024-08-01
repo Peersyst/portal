@@ -1,4 +1,4 @@
-import { resources } from "ui/locale/i18n";
+import { resources } from "@/ui/locale/i18n";
 
 describe("Test for the locales", () => {
     test("All locales have the same keys", () => {

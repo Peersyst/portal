@@ -1,18 +1,15 @@
 import { ConfigProvider as GenesysConfigProvider } from "@peersyst/react-native-components";
-import useTranslate from "ui/locale/hooks/useTranslate";
 import { ReactNode } from "react";
-import config from "./config";
-import { useTranslation } from "react-i18next";
+import useUIConfig from "./hook/useUIConfig";
 
 export interface ConfigProviderProps {
     children?: ReactNode;
 }
 
 const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
-    const translate = useTranslate("error");
-    const { i18n } = useTranslation();
+    const config = useUIConfig();
 
-    return <GenesysConfigProvider config={{ ...config, translate, locale: i18n.language }}>{children}</GenesysConfigProvider>;
+    return <GenesysConfigProvider config={config}>{children}</GenesysConfigProvider>;
 };
 
 export default ConfigProvider;

@@ -18,7 +18,10 @@
         "noEmit": true,
         "jsx": "react-native",
         "baseUrl": "src",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "paths": {
+            "@/*": ["*"]
+        }
     },
     "include": ["src", "test"],
     "exclude": ["node_modules"]

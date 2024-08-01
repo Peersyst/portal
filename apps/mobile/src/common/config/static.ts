@@ -1,0 +1,9 @@
+import { createConfig } from "@peersyst/config";
+
+/**
+ * Static config which is the base of the config.
+ * It can be overridden by the ConfigManager.
+ */
+const config = createConfig({});
+
+export default config;

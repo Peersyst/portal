@@ -1,3 +1,3 @@
-import DomainError from "domain/error/DomainError";
+import { DomainError } from "@peersyst/domain";
 
 export type IDomainError = DomainError;

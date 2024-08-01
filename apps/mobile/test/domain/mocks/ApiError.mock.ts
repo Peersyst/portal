@@ -1,4 +1,4 @@
-import { IApiError } from "domain/adapter/api/IApiError";
+import { IApiError } from "@/domain/adapter/api/IApiError";
 import { ApiRequestOptions } from "../../../src/data-access/api/service/core/ApiRequestOptions";
 
 export default class ApiErrorMock extends Error implements IApiError {

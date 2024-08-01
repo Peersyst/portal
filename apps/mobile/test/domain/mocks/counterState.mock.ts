@@ -1,4 +1,4 @@
-import State from "domain/common/State";
+import State from "@/domain/common/State";
 import createMock from "../../utils/createMock";
 import MethodMock from "../../utils/MethodMock";
 

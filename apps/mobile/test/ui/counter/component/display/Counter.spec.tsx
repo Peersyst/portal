@@ -1,5 +1,5 @@
 import { screen, fireEvent } from "@testing-library/react-native";
-import Counter from "ui/counter/components/display/Counter";
+import Counter from "@/ui/counter/components/display/Counter";
 import { render } from "../../../utils/test-utils";
 
 describe("Counter", () => {
