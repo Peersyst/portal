@@ -1,18 +1,21 @@
-import useNavigator from "ui/navigator/hooks/useNavigator";
+import { useNavigation } from "@react-navigation/native";
 import { LinkProps } from "./Link.types";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { StackParamList } from "ui/navigator/Stack";
+import { Pressable } from "react-native";
 
-const Link = ({ to, onPress, children }: LinkProps): JSX.Element => {
-    const navigator = useNavigator();
+const Link = ({ to, onPress, children, ...linkProps }: LinkProps): JSX.Element => {
+    const navigation = useNavigation();
 
     const handlePress = () => {
         onPress?.();
-        if (typeof to === "string") navigator.navigate(to as keyof StackParamList);
-        else navigator.navigate(to.screen, to.params);
+        if (typeof to === "string") navigation.navigate(to as any);
+        else navigation.navigate(to.screen as any, to.params as any);
     };
 
-    return <TouchableWithoutFeedback onPress={handlePress}>{children}</TouchableWithoutFeedback>;
+    return (
+        <Pressable onPress={handlePress} {...linkProps}>
+            {children}
+        </Pressable>
+    );
 };
 
 export default Link;

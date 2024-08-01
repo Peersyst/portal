@@ -9,5 +9,5 @@ module.exports = {
         color: "magenta",
     },
     testRegex: ".*\\.spec\\.ts$",
-    testPathIgnorePatterns: ["ui/", "domain/"],
+    testPathIgnorePatterns: ["@/ui/", "@/domain/"],
 };

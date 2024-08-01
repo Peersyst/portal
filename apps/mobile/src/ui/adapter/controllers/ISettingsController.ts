@@ -1,4 +1,4 @@
-import { Settings, Locale } from "common/models";
+import { Settings, Locale } from "@peersyst/common";
 
 export interface ISettingsController {
     getSettings(): Promise<Settings | undefined>;

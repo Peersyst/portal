@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from "react";
-import useTranslate from "ui/locale/hooks/useTranslate";
+import { useTranslate } from "@peersyst/locale";
 import UIErrorEvent from "ui/error/UIErrorEvent";
 import { useToast } from "@peersyst/react-native-components";
 
@@ -9,7 +9,9 @@ const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
 
     useEffect(() => {
         const handleUiError = (event: UIErrorEvent) => {
-            showToast(translateError([event.error.message as any, "somethingWentWrong"]), { type: event.error.severity });
+            showToast(translateError([event.error.message as any, "somethingWentWrong"], event.error.data || {}) as string, {
+                type: event.error.severity,
+            });
         };
 
         const uiErrorSubscription = UIErrorEvent.addListener(handleUiError);

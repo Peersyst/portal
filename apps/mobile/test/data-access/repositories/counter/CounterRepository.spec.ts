@@ -1,4 +1,4 @@
-import CounterRepository from "data-access/repository/counter/CounterRepository";
+import CounterRepository from "@/data-access/repository/counter/CounterRepository";
 import StorageRepositoryGlobalMock from "../../mocks/StorageRepository.globalMock";
 
 describe("CounterRepository", () => {

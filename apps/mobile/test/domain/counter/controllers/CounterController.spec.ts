@@ -1,5 +1,5 @@
-import CounterController from "domain/counter/controllers/CounterController";
-import DomainErrorCodes from "domain/error/DomainErrorCodes";
+import CounterController from "@/domain/counter/controllers/CounterController";
+import DomainErrorCodes from "@/domain/error/DomainErrorCodes";
 import CounterStateMock from "../../mocks/counterState.mock";
 import CounterRepositoryMock from "../../mocks/CounterRepository.mock";
 
