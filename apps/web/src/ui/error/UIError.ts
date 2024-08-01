@@ -1,7 +1,7 @@
+import { LocaleErrorResource } from "@peersyst/locale";
 import { AnyObject } from "@swisstype/essential";
-import { ParseKeys } from "i18next";
 
-export type UIErrorMessage = ParseKeys<"error"> | string;
+export type UIErrorMessage = LocaleErrorResource | string;
 export type UIErrorSeverity = "error" | "warning";
 
 export default class UIError extends Error {
