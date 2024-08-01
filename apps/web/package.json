@@ -8,8 +8,8 @@
         "build": "tsc -b && vite build",
         "bootstrap": "yarn install",
         "generate": "npm run generate:icons && npm run generate:images",
-        "generate:icons": "node script/iconGenerator.js src/ui/assets/icons/ src/ui/common/icons/",
-        "generate:images": "node script/imagesGenerator.js src/ui/assets/images/",
+        "generate:icons": "node script/iconGenerator.cjs src/ui/assets/icons/ src/ui/common/icons/",
+        "generate:images": "node script/imagesGenerator.cjs src/ui/assets/images/",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --maxWorkers=30%",
         "test:ui": "yarn test ./test/ui",
         "test:data-access": "yarn test ./test/data-access",
@@ -30,8 +30,8 @@
         "lint": "eslint . --ext .ts,.json --max-warnings=0 && yarn check-types",
         "lint:fix": "eslint . --ext .ts,.json --max-warnings=0 --fix && yarn check-types",
         "preview": "vite preview",
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "storybook": "DISABLE_ESLINT_PLUGIN=true storybook dev -p 6006 -c storybook",
+        "build-storybook": "storybook build -c storybook"
     },
     "dependencies": {
         "@peersyst/apis": "file:../../packages/apis",
