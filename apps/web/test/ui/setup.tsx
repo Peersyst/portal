@@ -12,26 +12,26 @@ import { LightMatchMediaMock } from "./mocks/MatchMedia.mock";
 import { IntersectionObserverMock } from "./mocks/IntersectionObserver.mock";
 import { ResizeObserverMock } from "./mocks/ResizeObserver.mock";
 
-jest.mock("@peersyst/react-components", () => ({
+jest.mockModule("@peersyst/react-components", () => ({
     __esModule: true,
-    ...jest.requireActual("@peersyst/react-components"),
+    ...(jest.requireActual("@peersyst/react-components") as any),
 }));
 
-jest.mock("react-transition-group", () => ({
+jest.mockModule("react-transition-group", () => ({
     __esModule: true,
-    ...jest.requireActual("react-transition-group"),
+    ...(jest.requireActual("react-transition-group") as any),
     Transition: ({ children }: any) => children("visible"),
 }));
 
-jest.mock("react-router-dom", () => ({
+jest.mockModule("react-router-dom", () => ({
     __esModule: true,
-    ...jest.requireActual("react-router-dom"),
+    ...(jest.requireActual("react-router-dom") as any),
 }));
 
 Object.defineProperty(window, "matchMedia", {
     writable: true,
-    value: jest.fn().mockImplementation(LightMatchMediaMock),
+    value: jest.fn().mockImplementation(LightMatchMediaMock as any),
 });
 
-window.IntersectionObserver = jest.fn().mockImplementation(IntersectionObserverMock);
-window.ResizeObserver = jest.fn().mockImplementation(ResizeObserverMock);
+window.IntersectionObserver = jest.fn().mockImplementation(IntersectionObserverMock) as any;
+window.ResizeObserver = jest.fn().mockImplementation(ResizeObserverMock) as any;
