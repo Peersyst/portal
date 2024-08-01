@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     collectCoverageFrom: [
         // UI
         "src/ui/**/*.(ts|js|tsx|jsx)",

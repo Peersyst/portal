@@ -3,12 +3,12 @@ const commonConfig = require("../../jest.config.common.js");
 
 module.exports = {
     ...commonConfig,
-    rootDir: "../../",
+    rootDir: "../",
     displayName: {
         name: "UI",
         color: "yellowBright",
     },
-    setupFilesAfterEnv: ["./test/ui/setup.tsx"],
+    setupFilesAfterEnv: ["./ui/setup.tsx"],
     testRegex: ".*\\.spec\\.(ts|tsx)$",
-    testPathIgnorePatterns: ["test/domain/", "test/data-access/"],
+    testPathIgnorePatterns: ["domain/", "data-access/"],
 };
