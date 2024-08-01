@@ -1,3 +1,8 @@
 {
-    "extends": ["../../node_modules/@peersyst/eslint/configs/.eslintrc-node"]
+    "extends": ["../../node_modules/@peersyst/eslint/configs/.eslintrc-node"],
+    "env": {
+        "browser": true,
+        "amd": true,
+        "node": true
+    }
 }

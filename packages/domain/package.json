@@ -6,17 +6,22 @@
     "types": "dist/src/index.d.ts",
     "scripts": {
         "clean": "rm -rf dist node_modules",
-        "build": "tsc && rm -rf ./node_modules/@peersyst"
+        "build": "tsc && rm -rf ./node_modules/@peersyst",
+        "test": "jest --maxWorkers=30%",
+        "test:coverage": "yarn test --coverage",
+        "test:watch": "yarn test --watch",
+        "test:debug": "jest --no-cache --runInBand",
+        "test:ci": "jest --runInBand"
     },
     "peerDependencies": {
-        "@peersyst/config": "*",
         "@peersyst/common": "*",
+        "@peersyst/config": "*",
         "jwt-decode": "^4.0.0",
         "zustand": "^4.5.2"
     },
     "devDependencies": {
-        "@peersyst/config": "file:../config",
         "@peersyst/common": "file:../common",
+        "@peersyst/config": "file:../config",
         "@peersyst/eslint": "file:../eslint",
         "@swisstype/essential": "^0.1.1",
         "eslint": "^8.33.0",
@@ -29,5 +34,11 @@
     "license": "ISC",
     "keywords": [
         ""
-    ]
+    ],
+    "dependencies": {
+        "@types/jest": "^29.5.12",
+        "babel-jest": "^29.7.0",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.4"
+    }
 }
