@@ -1,6 +1,5 @@
 import * as crypto from "crypto";
-import { buildConfig } from "./util/config.utils";
-import { validB64Key, validPort } from "./util/config.validator";
+import { buildConfig, validPort, validB64Key } from "@peersyst/env-config";
 
 interface ServerConfig {
     port: number;

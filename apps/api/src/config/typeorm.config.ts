@@ -1,6 +1,5 @@
 import { DataSourceOptions, DataSource } from "typeorm";
-import { buildConfig, ConfigValidators } from "./util/config.utils";
-import { validPort } from "./util/config.validator";
+import { buildConfig, validPort, ConfigValidators } from "@peersyst/env-config";
 
 export type NestConnectionOptions = DataSourceOptions & {
     autoLoadEntities?: boolean;
