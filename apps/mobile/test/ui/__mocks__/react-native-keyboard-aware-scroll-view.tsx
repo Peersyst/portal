@@ -1,7 +1,3 @@
-import { ReactNode } from "react";
+import { View } from "react-native";
 
-const keyboardAwareScrollView = jest.createMockFromModule("react-native-keyboard-aware-scroll-view") as any;
-
-keyboardAwareScrollView.KeyboardAwareScrollView = ({ children }: { children: ReactNode }) => children;
-
-export default keyboardAwareScrollView.KeyboardAwareScrollView;
+exports.KeyboardAwareScrollView = View;

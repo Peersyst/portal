@@ -8,7 +8,7 @@ import i18n from "./locale";
 import ErrorHandler from "./common/components/feedback/ErrorHandler/ErrorHandler";
 import StylesheetProvider from "./stylesheets/StylesheetsProvider";
 import { ConfigManagerProvider } from "@peersyst/config";
-import { configManager } from "common/config";
+import { configManager } from "@/common/config";
 
 const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
     <ConfigManagerProvider value={configManager}>

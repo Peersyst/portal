@@ -1,6 +1,6 @@
 import { Config, createConfig } from "@peersyst/react-native-components";
 import { useConfig } from "@peersyst/config";
-import useSettingsState from "ui/adapter/state/useSettingsState";
+import useSettingsState from "@/ui/adapter/state/useSettingsState";
 import { useMemo } from "react";
 import { config as staticUIConfig } from "../config";
 import { useLanguage, useTranslate } from "@peersyst/locale";

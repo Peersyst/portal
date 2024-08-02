@@ -1,4 +1,4 @@
-import { To } from "ui/navigator/navigator.types";
+import { To } from "@/ui/navigator/navigator.types";
 import * as React from "react";
 import { ViewStyle } from "react-native";
 

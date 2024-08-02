@@ -7,13 +7,19 @@ export interface NavigatorProps {
     onReady?: (() => void) | undefined;
 }
 
+function HomeScreen() {
+    return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Text>Peersyst mobile base project</Text>
+        </View>
+    );
+}
+
 const Navigator = (props: NavigatorProps): JSX.Element => (
     <NavigationContainer {...props}>
         <ModalProvider>
-            <Stack.Navigator screenOptions={{ contentStyle: { padding: 10 } }}>
-                <View>
-                    <Text>Peersyst mobile base project</Text>
-                </View>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={HomeScreen} />
             </Stack.Navigator>
         </ModalProvider>
     </NavigationContainer>

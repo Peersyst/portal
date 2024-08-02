@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useTranslate } from "@peersyst/locale";
-import UIErrorEvent from "ui/error/UIErrorEvent";
+import UIErrorEvent from "@/ui/error/UIErrorEvent";
 import { useToast } from "@peersyst/react-native-components";
 
 const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
