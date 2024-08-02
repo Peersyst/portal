@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { i18nextInitializationPromise } from "ui/locale";
+import { i18nextInitializationPromise } from "@/ui/locale";
 import { useAppState } from "../state/appState";
 import { useInitFactories } from "./useInitFactories";
-import { configManager } from "common/config";
+import { configManager } from "@/common/config";
 import { useLoad } from "./useLoad";
 
 export interface UseLoadResult {

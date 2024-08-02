@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
-import { IDomainError } from "ui/adapter/IDomainError";
-import UIErrorEvent from "ui/error/UIErrorEvent";
+import { IDomainError } from "@/ui/adapter/IDomainError";
+import UIErrorEvent from "@/ui/error/UIErrorEvent";
 import { QueryClient, QueryClientConfig, QueryCache } from "@tanstack/react-query";
 import isDomainError from "../../adapter/utils/isDomainError";
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";

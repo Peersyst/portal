@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { ModalProvider } from "@peersyst/react-native-components";
 import { ConfigProvider } from "@/ui/config";
 import { I18nextProvider } from "react-i18next";
-import i18n from "@/ui/locale/i18n";
+import i18n from "@/ui/locale";
 
 export interface CreateWrapperConfig {
     queryClientConfig?: QueryClientConfig;

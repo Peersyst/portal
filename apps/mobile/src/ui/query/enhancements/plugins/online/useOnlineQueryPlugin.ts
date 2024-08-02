@@ -1,6 +1,6 @@
 import { forwardQueryPlugin, ForwardedQueryPlugin } from "../forwardQueryPlugin";
 import { onlineQueryPlugin } from "./onlineQueryPlugin";
-import { useIsOnline } from "ui/network/hooks/useIsOnline";
+import { useIsOnline } from "@/ui/network/hooks/useIsOnline";
 
 export interface UseOnlineQueryPluginOptions {
     requireNetwork?: boolean;

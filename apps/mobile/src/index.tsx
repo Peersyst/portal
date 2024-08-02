@@ -11,11 +11,11 @@ import "@/domain/setup";
 import "@/ui/locale";
 
 import { Suspense } from "react";
-import Providers from "@/ui/Providers";
 import Navigator from "@/ui/navigator/Navigator";
 import { useInit } from "@/ui/common/hooks/useInit";
 import { Platform, UIManager, LogBox } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
+import Providers from "@/ui/Providers";
 
 //Explanation link :https://github.com/facebook/react-native/issues/12981#issuecomment-652745831
 LogBox.ignoreLogs(["Setting a timer"]);

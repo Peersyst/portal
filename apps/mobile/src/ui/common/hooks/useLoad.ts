@@ -1,7 +1,7 @@
 import { useNetInfo } from "@react-native-community/netinfo";
 import { useEffect, useRef, useState } from "react";
 import { loadFactories } from "../utils/factories/loadFactories";
-import { configManager } from "common/config";
+import { configManager } from "@/common/config";
 
 export function useLoad(areFactoriesInitialized: boolean): boolean {
     const { isConnected } = useNetInfo();

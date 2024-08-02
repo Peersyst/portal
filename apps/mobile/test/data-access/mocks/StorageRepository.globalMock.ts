@@ -1,8 +1,7 @@
 import StorageRepository from "@/data-access/repository/common/StorageRepository";
-import createGlobalMock from "../../utils/createGlobalMock";
-import MethodMock from "../../utils/MethodMock";
+import { createGlobalMock, MethodMock } from "@peersyst/test-utils";
 
-export default createGlobalMock(StorageRepository.prototype, {
+export default createGlobalMock(StorageRepository.prototype as unknown as { get: () => any; set: () => any; clear: () => any }, {
     get: new MethodMock("mockResolvedValue", "test"),
     set: new MethodMock("mockResolvedValue"),
     clear: new MethodMock("mockResolvedValue"),

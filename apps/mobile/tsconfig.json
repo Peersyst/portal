@@ -17,10 +17,10 @@
         "downlevelIteration": true,
         "noEmit": true,
         "jsx": "react-native",
-        "baseUrl": "src",
+        "baseUrl": ".",
         "experimentalDecorators": true,
         "paths": {
-            "@/*": ["*"]
+            "@/*": ["src/*"]
         }
     },
     "include": ["src", "test"],
