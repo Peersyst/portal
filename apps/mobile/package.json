@@ -100,6 +100,7 @@
         "@babel/core": "^7.24.4",
         "@peersyst/eslint": "file:../../packages/eslint",
         "@peersyst/test-utils": "file:../../packages/test-utils",
+        "@react-navigation/drawer": "^6.7.2",
         "@testing-library/jest-native": "^5.4.3",
         "@testing-library/react-native": "^12.0.0",
         "@types/jest": "^29.5.12",
