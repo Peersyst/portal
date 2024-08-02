@@ -1,21 +1,11 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { Locale } from "common/models";
+import { Locale } from "@peersyst/common";
 import { LanguageDetectorAsyncModule } from "i18next";
-import ControllerFactory from "ui/adapter/ControllerFactory";
-import getBrowserLocale from "../utils/getBrowserLocale";
-
-export function getDefaultLocale(): Locale {
-    const supportedLocales: Locale[] = ["en", "es"];
-    const defaultLocale = getBrowserLocale();
-    const systemLocaleEnd = defaultLocale.slice(-2).toLowerCase();
-    const systemLocaleStart = defaultLocale.slice(0, 2).toLowerCase();
-    return supportedLocales.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
-}
+// import ControllerFactory from "@/ui/adapter/ControllerFactory";
 
 export async function detect(): Promise<Locale> {
     try {
-        const storedLocale = await ControllerFactory.settingsController.getLocale();
-        return storedLocale || getDefaultLocale();
+        // return await ControllerFactory.settingsController.getLocale();
+        return "en";
     } catch (error) {
         /* eslint-disable no-console */
         console.warn("Error reading language", error);

@@ -1,41 +1,30 @@
 import {
-    useInfiniteQuery,
     InfiniteQueryObserverResult,
     UseQueryResult,
-    QueryFunction,
     QueryKey,
-    UseInfiniteQueryOptions,
-    UseInfiniteQueryResult,
+    UseQueryOptions,
+    UseMutationOptions,
+    UseMutationResult,
 } from "@tanstack/react-query";
 
-export interface PaginatedData<TData extends unknown[] = unknown[]> {
-    currentPage: number;
-    pages: number;
-    items: TData;
-}
+export type QueryOptions<TQueryFnData = unknown, TError = unknown, TData = TQueryFnData, TQueryKey extends QueryKey = QueryKey> = Omit<
+    UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+    "queryKey" | "queryFn"
+>;
 
-type UseCustomInfiniteQuery = <
-    TQueryFnData extends PaginatedData = PaginatedData,
-    TError = unknown,
-    TData = TQueryFnData,
-    TQueryKey extends QueryKey = QueryKey,
->(
-    queryKey: TQueryKey,
-    queryFn: QueryFunction<TQueryFnData, TQueryKey>,
-    options?: Omit<
-        UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryFnData, TQueryKey>,
-        "queryKey" | "queryFn" | "getNextPageParam"
-    >,
-) => UseInfiniteQueryResult<TData, TError>;
+export type MutationOptions<TData = unknown, TError = unknown, TVariables = void, TContext = unknown> = Omit<
+    UseMutationOptions<TData, TError, TVariables, TContext>,
+    "mutationFn"
+>;
 
-const useCustomInfiniteQuery: UseCustomInfiniteQuery = (queryKey, queryFn, options) =>
-    useInfiniteQuery(queryKey, queryFn, {
-        getNextPageParam: ({ currentPage, pages }) => (currentPage < pages ? currentPage + 1 : undefined),
-        ...options,
-    });
+export type MutationResult<TData = unknown, TError = unknown, TVariables = unknown, TContext = unknown> = UseMutationResult<
+    TData,
+    TError,
+    TVariables,
+    TContext
+>;
 
 export type InfiniteQueryResult<TData = unknown, TError = unknown> = InfiniteQueryObserverResult<TData, TError>;
 export type QueryResult<TData = unknown, TError = unknown> = UseQueryResult<TData, TError>;
 
 export * from "@tanstack/react-query";
-export { useCustomInfiniteQuery as useInfiniteQuery };

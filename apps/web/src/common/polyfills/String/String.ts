@@ -32,4 +32,30 @@ String.prototype.toCamelCase = function (this: string) {
         .join("");
 };
 
+/**
+ * abbreviate
+ */
+String.prototype.ellipsize = function (
+    this: string,
+    options?: { ellipsis: "start" | "middle" | "end"; length?: number | [number, number] },
+) {
+    const { ellipsis = "middle", length: lengths } = options || {};
+
+    const strLength = this.length;
+    if (!lengths) return this;
+
+    const [leftLength, rightLength] = Array.isArray(lengths) ? lengths : [lengths, lengths];
+
+    if (ellipsis === "middle") {
+        if (strLength <= leftLength + rightLength) return this;
+        return this.substring(0, leftLength) + "..." + this.substring(strLength - rightLength, strLength);
+    } else if (ellipsis === "end") {
+        if (strLength <= leftLength) return this;
+        return this.substring(0, leftLength) + "...";
+    } else {
+        if (strLength <= rightLength) return this;
+        return "..." + this.substring(strLength - rightLength, rightLength);
+    }
+};
+
 export {};

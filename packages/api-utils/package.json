@@ -14,8 +14,7 @@
         "@nestjs/common": "^10.3.0",
         "@nestjs/typeorm": "^10.0.1",
         "@nestjs/swagger": "^7.1.16",
-        "class-validator": "^0.14.0",
-        "xrpl": "^2.13.0"
+        "class-validator": "^0.14.0"
     },
     "devDependencies": {
         "@peersyst/common": "file:../common",
@@ -23,7 +22,6 @@
         "@nestjs/typeorm": "^10.0.1",
         "@nestjs/swagger": "^7.1.16",
         "class-validator": "^0.14.0",
-        "typescript": "4.9.5",
-        "xrpl": "^2.13.0"
+        "typescript": "4.9.5"
     }
 }

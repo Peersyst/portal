@@ -1,0 +1,37 @@
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import "@testing-library/jest-dom";
+
+// Setup domain
+import "domain/setup";
+
+// matchmedia mock
+import { LightMatchMediaMock } from "./mocks/MatchMedia.mock";
+import { IntersectionObserverMock } from "./mocks/IntersectionObserver.mock";
+import { ResizeObserverMock } from "./mocks/ResizeObserver.mock";
+
+jest.mockModule("@peersyst/react-components", () => ({
+    __esModule: true,
+    ...(jest.requireActual("@peersyst/react-components") as any),
+}));
+
+jest.mockModule("react-transition-group", () => ({
+    __esModule: true,
+    ...(jest.requireActual("react-transition-group") as any),
+    Transition: ({ children }: any) => children("visible"),
+}));
+
+jest.mockModule("react-router-dom", () => ({
+    __esModule: true,
+    ...(jest.requireActual("react-router-dom") as any),
+}));
+
+Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation(LightMatchMediaMock as any),
+});
+
+window.IntersectionObserver = jest.fn().mockImplementation(IntersectionObserverMock) as any;
+window.ResizeObserver = jest.fn().mockImplementation(ResizeObserverMock) as any;

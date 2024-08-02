@@ -1,17 +1,20 @@
-import { TFuncKey } from "i18next";
+import { LocaleErrorResource } from "@peersyst/locale";
+import { AnyObject } from "@swisstype/essential";
 
-export type UIErrorMesage = TFuncKey<"error"> | string;
+export type UIErrorMessage = LocaleErrorResource | string;
 export type UIErrorSeverity = "error" | "warning";
 
 export default class UIError extends Error {
-    message: UIErrorMesage;
+    message: UIErrorMessage;
     severity: UIErrorSeverity;
+    data?: AnyObject;
 
-    constructor(message: UIErrorMesage, severity: UIErrorSeverity = "error") {
+    constructor(message: UIErrorMessage, severity: UIErrorSeverity = "error", data?: AnyObject) {
         super(message);
 
         this.name = "UIError";
         this.message = message.toCamelCase();
         this.severity = severity;
+        this.data = data;
     }
 }

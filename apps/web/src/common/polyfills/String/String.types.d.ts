@@ -6,5 +6,6 @@ declare global {
         upperFirst(): string;
         capitalize(): string;
         toCamelCase(): string;
+        ellipsize(options?: { ellipsis?: "start" | "middle" | "end"; length?: number | [number, number] }): string;
     }
 }

@@ -1,21 +1,18 @@
 import { ConfigProvider as GenesysConfigProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
 import { StyleSheetManager } from "styled-components";
-import useTranslate from "ui/locale/hooks/useTranslate";
-import config from "./config";
-import { GlobalStyles } from "./theme/GlobalStyles";
-import { useTranslation } from "react-i18next";
+import { GlobalStyles } from "../theme/GlobalStyles";
+import useUIConfig from "./hook/useUIConfig";
 
 export interface ConfigProviderProps {
     children?: ReactNode;
 }
 
 const ConfigProvider = ({ children }: ConfigProviderProps): JSX.Element => {
-    const translate = useTranslate("error");
-    const { i18n } = useTranslation();
+    const config = useUIConfig();
 
     return (
-        <GenesysConfigProvider config={{ ...config, translate, locale: i18n.language }}>
+        <GenesysConfigProvider config={config}>
             <StyleSheetManager target={document.head}>
                 <GlobalStyles />
             </StyleSheetManager>

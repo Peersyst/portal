@@ -1,2 +1,2 @@
 //@ts-nocheck
-export { default as logo } from "./logo.svg";
+export { default as dummy } from "./dummy.svg";

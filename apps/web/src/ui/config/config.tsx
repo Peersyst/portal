@@ -1,15 +1,3 @@
-import { createConfig } from "@peersyst/react-components";
-import darkTheme from "./theme/darkTheme";
-import lightTheme from "./theme/lightTheme";
-import { config } from "common/config";
+import { CreateConfig } from "@peersyst/react-components";
 
-const uiConfig = createConfig({
-    projectName: config.projectName,
-    themes: {
-        default: lightTheme,
-        light: lightTheme,
-        dark: darkTheme,
-    },
-});
-
-export default uiConfig;
+export const config: Partial<CreateConfig> = {};

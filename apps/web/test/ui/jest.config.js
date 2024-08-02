@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const commonConfig = require("../../jest.config.common.js");
+import commonConfig from "../../jest.config.common.js";
 
-module.exports = {
+export default {
     ...commonConfig,
-    rootDir: "../../",
+    rootDir: "../",
     displayName: {
         name: "UI",
         color: "yellowBright",
     },
-    setupFilesAfterEnv: ["./test/ui/setup.ts"],
+    setupFilesAfterEnv: ["./setup.ts", "./ui/setup.tsx"],
     testRegex: ".*\\.spec\\.(ts|tsx)$",
-    testPathIgnorePatterns: ["test/domain/", "test/data-access/"],
+    testPathIgnorePatterns: ["domain/", "data-access/"],
 };

@@ -1,11 +1,13 @@
-import { useQueryClient, QueryKey, RefetchOptions } from "@tanstack/react-query";
+import { useQueryClient, RefetchQueryFilters, RefetchOptions } from "@tanstack/react-query";
 
-export const useRefetchQueries = (): ((queryKeys: QueryKey[], options?: RefetchOptions) => Promise<void>) => {
+/**
+ * Returns a function to refetch queries.
+ * @returns A function to refetch queries.
+ */
+export function useRefetchQueries(): (filters?: RefetchQueryFilters, options?: RefetchOptions) => Promise<void> {
     const queryClient = useQueryClient();
 
-    async function refetch(queryKeys: QueryKey[], options?: RefetchOptions): Promise<void> {
-        await Promise.all(queryKeys.map((queryKey) => queryClient.refetchQueries({ queryKey }, options)));
-    }
-
-    return refetch;
-};
+    return function refetchQueries(filters?: RefetchQueryFilters, options?: RefetchOptions): Promise<void> {
+        return queryClient.refetchQueries(filters, options);
+    };
+}
