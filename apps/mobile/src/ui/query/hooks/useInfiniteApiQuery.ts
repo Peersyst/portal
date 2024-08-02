@@ -1,6 +1,5 @@
 import { InfiniteData, QueryFunction, QueryKey, UseInfiniteQueryResult, useInfiniteQuery } from "@tanstack/react-query";
 import { UseEnhancedInfiniteQueryOptions, UseQueryPlugin } from "../enhancements/types";
-import { useOnlineQueryPlugin } from "../enhancements/plugins/online/useOnlineQueryPlugin";
 import { Loosen } from "@peersyst/react-types";
 
 export type InfiniteApiQueryPageParam = number | undefined;
@@ -51,10 +50,10 @@ export function useInfiniteApiQuery<
 ): UseInfiniteQueryResult<TData, TError> {
     const { queryKey, queryFn, plugins = [], ...restOptions } = options;
 
-    const [finalQueryKey, finalQueryFn, { initialPageParam = undefined, ...finalOptions }] = [
-        ...plugins,
-        useOnlineQueryPlugin({ requireNetwork: false }),
-    ].reduce(([qk, qfn, opts], plugin) => plugin(qk, qfn, opts), [queryKey, queryFn, restOptions]);
+    const [finalQueryKey, finalQueryFn, { initialPageParam = undefined, ...finalOptions }] = [...plugins].reduce(
+        ([qk, qfn, opts], plugin) => plugin(qk, qfn, opts),
+        [queryKey, queryFn, restOptions],
+    );
 
     return useInfiniteQuery<TQueryFnData, TError, TData, TQueryKey, InfiniteApiQueryPageParam>({
         queryKey: finalQueryKey,
