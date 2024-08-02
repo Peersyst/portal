@@ -12,10 +12,6 @@ export default {
         "!src/ui/**/router/*Router.tsx",
         "!src/ui/locale/**/*",
         "!src/ui/error/**/*",
-        // Domain
-        "src/domain/**/*.(ts|js|tsx|jsx)",
-        "!src/domain/error/**/*",
-        "!src/domain/**/state/*",
         // Data Access
         "src/data-access/**/*.(ts|js|tsx|jsx)",
         "!src/data-access/repository/error/**/*",
