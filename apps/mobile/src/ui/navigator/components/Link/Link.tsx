@@ -7,7 +7,7 @@ const Link = ({ to, onPress, children, ...linkProps }: LinkProps): JSX.Element =
 
     const handlePress = () => {
         onPress?.();
-        if (typeof to === "string") navigation.navigate(to as any);
+        if (typeof to === "string") navigation.navigate(to);
         else navigation.navigate(to.screen as any, to.params as any);
     };
 
