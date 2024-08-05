@@ -1,6 +1,6 @@
 import "@peersyst/react-native-components";
 import { TFunction } from "react-i18next";
-import { Theme as ThemeModel } from "@cbdc-wallet/common";
+import { Theme as ThemeModel } from "@peersyst/common";
 
 declare module "@peersyst/react-native-components" {
     export interface ConfigTypes {
