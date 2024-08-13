@@ -1,5 +1,6 @@
 import { NestFactory } from "@nestjs/core";
-import { CommandModule, CommandService } from "nestjs-command";
+import { CommandModule } from "nestjs-command/dist/command.module.js";
+import { CommandService } from "nestjs-command/dist/command.service.js";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {

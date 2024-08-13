@@ -1,0 +1,60 @@
+{
+    "name": "@frontend/config",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./browser": {
+            "require": "./dist/browser/index.js",
+            "import": "./dist/browser/index.mjs",
+            "types": "./dist/browser/index.d.ts"
+        },
+        "./providers": {
+            "require": "./dist/providers/index.js",
+            "import": "./dist/providers/index.mjs",
+            "types": "./dist/providers/index.d.ts"
+        },
+        "./react": {
+            "require": "./dist/react/index.js",
+            "import": "./dist/react/index.mjs",
+            "types": "./dist/react/index.d.s"
+        },
+        "./react-native": {
+            "require": "./dist/react-native/index.js",
+            "import": "./dist/react-native/index.mjs",
+            "types": "./dist/react-native/index.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "@aws-sdk/client-appconfigdata": "^3.556.0",
+        "@frontend/events": "workspace:*",
+        "@peersyst/react-utils": "^2.5.0",
+        "@react-native-async-storage/async-storage": "1.21.0",
+        "@shared/env": "workspace:*",
+        "react": "^18.2.0",
+        "stable-hash": "^0.0.4"
+    },
+    "devDependencies": {
+        "@aws-sdk/client-appconfigdata": "^3.556.0",
+        "@frontend/events": "workspace:*",
+        "@peersyst/react-utils": "^2.5.0",
+        "@react-native-async-storage/async-storage": "1.21.0",
+        "@shared/env": "workspace:*",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@swisstype/essential": "^0.1.1",
+        "@types/react": "^18.3.2",
+        "react": "^18.2.0",
+        "stable-hash": "^0.0.4",
+        "typescript": "latest"
+    }
+}

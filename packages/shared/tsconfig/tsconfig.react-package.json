@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.browser-package.json",
+    "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "jsx": "preserve",
+        "lib": ["DOM", "DOM.Iterable"]
+    }
+}

@@ -1,6 +1,0 @@
-node_modules
-build
-coverage
-package-lock.json
-yarn.lock
-openapi-spec.json
