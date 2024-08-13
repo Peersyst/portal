@@ -17,8 +17,11 @@
         "downlevelIteration": true,
         "noEmit": true,
         "jsx": "react-native",
-        "baseUrl": "src",
-        "experimentalDecorators": true
+        "baseUrl": ".",
+        "experimentalDecorators": true,
+        "paths": {
+            "@/*": ["src/*"]
+        }
     },
     "include": ["src", "test"],
     "exclude": ["node_modules"]

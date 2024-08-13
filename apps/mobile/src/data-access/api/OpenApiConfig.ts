@@ -1,7 +1,13 @@
-import { config } from "../../common/config";
-import { OpenAPI } from "./service";
+import { configManager } from "@/common/config";
+import { OpenAPI } from "@peersyst/apis";
 
-OpenAPI.TOKEN = async () => /*((await RepositoryFactory.authTokenRepository.getToken())!*/ "";
+// import RepositoryFactory from "@/domain/adapter/RepositoryFactory";
+
+OpenAPI.TOKEN = async () => /*(awaitRepositoryFactory.authRepository.getToken())! || */ "";
 OpenAPI.WITH_CREDENTIALS = true;
-OpenAPI.BASE = config.backendUrl;
 OpenAPI.CREDENTIALS = "omit";
+
+// Set dynamic OpenAPI config attributes
+configManager.on("load", (config) => {
+    OpenAPI.BASE = config.backendUrl;
+});
