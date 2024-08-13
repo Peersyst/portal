@@ -1,6 +1,6 @@
 import "@testing-library/jest-native";
 
-import "common/polyfills";
+import "@/common/polyfills";
 
 import "react-native-gesture-handler/jestSetup";
 
