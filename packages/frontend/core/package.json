@@ -1,0 +1,66 @@
+{
+    "name": "@frontend/core",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "exports": {
+        "./data-access/api/error": {
+            "require": "./dist/data-access/api/error/index.js",
+            "import": "./dist/data-access/api/error/index.mjs",
+            "types": "./dist/data-access/api/error/index.d.ts"
+        },
+        "./data-access/repository": {
+            "require": "./dist/data-access/repository/index.js",
+            "import": "./dist/data-access/repository/index.mjs",
+            "types": "./dist/data-access/repository/index.d.ts"
+        },
+        "./data-access/repository/browser": {
+            "require": "./dist/data-access/repository/browser/index.js",
+            "import": "./dist/data-access/repository/browser/index.mjs",
+            "types": "./dist/data-access/repository/browser/index.d.ts"
+        },
+        "./data-access/repository/expo": {
+            "require": "./dist/data-access/repository/expo/index.js",
+            "import": "./dist/data-access/repository/expo/index.mjs",
+            "types": "./dist/data-access/repository/expo/index.d.ts"
+        },
+        "./data-access/repository/react-native": {
+            "require": "./dist/data-access/repository/react-native/index.js",
+            "import": "./dist/data-access/repository/react-native/index.mjs",
+            "types": "./dist/data-access/repository/react-native/index.d.ts"
+        },
+        "./domain/error": {
+            "require": "./dist/domain/error/index.js",
+            "import": "./dist/domain/error/index.mjs",
+            "types": "./dist/domain/error/index.d.ts"
+        },
+        "./domain/state": {
+            "require": "./dist/domain/state/index.js",
+            "import": "./dist/domain/state/index.mjs",
+            "types": "./dist/domain/state/index.d.ts"
+        },
+        "./ui": {
+            "require": "./dist/domain/state/index.js",
+            "import": "./dist/domain/state/index.mjs",
+            "types": "./dist/domain/state/index.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "@react-native-async-storage/async-storage": "1.17.11",
+        "expo-secure-store": "~12.1.1",
+        "zustand": "^4.3.6"
+    },
+    "devDependencies": {
+        "@react-native-async-storage/async-storage": "1.17.11",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@swisstype/essential": "^0.1.1",
+        "expo-secure-store": "~12.1.1",
+        "zustand": "^4.3.6",
+        "typescript": "latest"
+    }
+}

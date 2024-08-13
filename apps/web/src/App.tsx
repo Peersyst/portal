@@ -1,19 +1,19 @@
 // Load polyfills
-import "@/common/polyfills";
+import "@/core/polyfills";
 
-// Load OpenApi config
-import "@/data-access/api/OpenApiConfig";
+// Set up data access
+import "@/core/data-access/setup";
 
 // Set up domain
-import "@/domain/setup";
+import "@/core/domain/setup";
 
 // Load locale
-import "@/ui/locale";
+import "@/locale";
 
-import Providers from "@/ui/Providers";
-import { useInit } from "@/ui/common/hooks/useInit";
+import Providers from "@/Providers";
+import { useInit } from "@/common/hooks/useInit";
 import { Suspense } from "react";
-import Router from "@/ui/router/Router";
+import Router from "./router/Router";
 
 export default function App(): JSX.Element | null {
     const { isLoading } = useInit();

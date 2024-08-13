@@ -1,32 +1,32 @@
-node_modules/
-*/**/node_modules/
-.idea/
-.DS_Store
-.vscode
-.expo
+# Node modules
+node_modules
 
-dist/
-*/**/dist/
-build/
-*/**/build/
-data/
-*/**/data/
-logs/
+# OS
+.DS_Store
+
+# IDE
+.idea
+.vscode
+
+
+# Builds
+dist
+
+# Logs
+logs
 */**/logs/
 */**/*.log
 
+# Env
 .env*
-*/**/.env
-*/**/.env*
 !.env.example
-!*/**/.env.example
-yarn-error.log
-*/**/yarn-error.log
 
-*/**/coverage/
-.nyc_output/
+# Tests
+coverage
 
+# Docker
 docker-data
 
-.nx/cache
-crunchfish
+# Caches
+.turbo
+.expo

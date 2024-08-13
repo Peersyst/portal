@@ -1,0 +1,45 @@
+{
+    "name": "@backend/core",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "exports": {
+        "./decorators": {
+            "require": "./dist/decorators/index.js",
+            "import": "./dist/decorators/index.mjs",
+            "types": "./dist/decorators/index.d.ts"
+        },
+        "./exceptions": {
+            "require": "./dist/exceptions/index.js",
+            "import": "./dist/exceptions/index.mjs",
+            "types": "./dist/exceptions/index.d.ts"
+        },
+        "./pagination": {
+            "require": "./dist/pagination/index.js",
+            "import": "./dist/pagination/index.mjs",
+            "types": "./dist/pagination/index.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "@nestjs/common": "^10.3.0",
+        "@nestjs/typeorm": "^10.0.1",
+        "@nestjs/swagger": "^7.1.16",
+        "express": "^4.19.2",
+        "express-openapi-validator": "^5.3.1"
+    },
+    "devDependencies": {
+        "@nestjs/common": "^10.3.0",
+        "@nestjs/typeorm": "^10.0.1",
+        "@nestjs/swagger": "^7.1.16",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@types/express": "^4.17.17",
+        "express": "^4.19.2",
+        "express-openapi-validator": "^5.3.1",
+        "typescript": "latest"
+    }
+}

@@ -6,8 +6,8 @@ import configuration from "./config";
 import { join } from "path";
 import * as OpenApiValidator from "express-openapi-validator";
 import { APP_FILTER } from "@nestjs/core";
-import { CommandModule } from "nestjs-command";
-import { TypeORMSeederAdapter } from "@peersyst/database";
+import { CommandModule } from "nestjs-command/dist/command.module.js";
+//import { TypeORMSeederAdapter } from "@peersyst/database";
 import { ErrorFilter } from "./modules/common/exception/error.filter";
 import { AuthModule } from "@peersyst/auth-module";
 
@@ -54,7 +54,7 @@ import { AuthModule } from "@peersyst/auth-module";
             },
         }),
     ],
-    providers: [TypeORMSeederAdapter, { provide: APP_FILTER, useClass: ErrorFilter }],
+    providers: [{ provide: APP_FILTER, useClass: ErrorFilter }],
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer): void {
