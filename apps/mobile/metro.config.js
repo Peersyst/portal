@@ -7,10 +7,12 @@ const root = __dirname;
 
 const config = getDefaultConfig(root);
 
-config.resolver = {
-    extraNodeModules: {
-        src: path.resolve(__dirname, "src"),
-    },
+config.resolver.extraNodeModules = {
+    crypto: path.resolve(__dirname, "src/common/polyfills/Crypto"),
+    https: require.resolve("https-browserify"),
+    stream: require.resolve("stream-browserify"),
+    http: require.resolve("stream-http"),
+    url: require.resolve("url"),
 };
 
 module.exports = config;

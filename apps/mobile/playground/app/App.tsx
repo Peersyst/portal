@@ -1,10 +1,11 @@
-import "../../src/common/polyfills";
-import "../../src/ui/locale/i18n";
+import "@/common/polyfills";
+import "@/ui/locale";
+
 import { StatusBar } from "@peersyst/react-native-components";
 import Navigator from "./Navigator";
-import Providers from "../../src/ui/Providers";
-import { useLoad } from "../../src/ui/common/hooks/useLoad";
 import * as SplashScreen from "expo-splash-screen";
+import { useLoad } from "./hooks/useLoad";
+import Providers from "./config/Providers";
 
 SplashScreen.preventAutoHideAsync();
 

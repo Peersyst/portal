@@ -1,11 +1,12 @@
-import { config } from "common/config";
-import UIError, { UIErrorMesage } from "./UIError";
+import { configManager } from "@/common/config";
+import UIError, { UIErrorMessage } from "./UIError";
 import { EmitterSubscription, DeviceEventEmitter } from "react-native";
+import { AnyObject } from "@swisstype/essential";
 
 export type UIErrorEventSeverity = "error" | "warning";
 
 export default class UIErrorEvent {
-    static type = `${config.projectName}-error`;
+    static type = `${configManager.get("projectName")}-error`;
 
     error: UIError;
 
@@ -21,7 +22,7 @@ export default class UIErrorEvent {
         subscription.remove();
     }
 
-    static dispatch(message: UIErrorMesage, severity: UIErrorEventSeverity = "error"): void {
-        DeviceEventEmitter.emit(UIErrorEvent.type, new UIErrorEvent(new UIError(message, severity)));
+    static dispatch(message: UIErrorMessage, severity: UIErrorEventSeverity = "error", data?: AnyObject): void {
+        DeviceEventEmitter.emit(UIErrorEvent.type, new UIErrorEvent(new UIError(message, severity, data)));
     }
 }
