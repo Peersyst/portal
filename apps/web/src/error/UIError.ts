@@ -1,5 +1,6 @@
 import { AnyObject } from "@swisstype/essential";
 import { LocaleErrorResource } from "@frontend/locale";
+import { toCamelCase } from "@shared/string";
 
 export type UIErrorMessage = LocaleErrorResource | string;
 export type UIErrorSeverity = "error" | "warning";
@@ -13,7 +14,7 @@ export default class UIError extends Error {
         super(message);
 
         this.name = "UIError";
-        this.message = message.toCamelCase();
+        this.message = toCamelCase(message);
         this.severity = severity;
         this.data = data;
     }
