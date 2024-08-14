@@ -30,6 +30,7 @@
         "@peersyst/react-utils": "^2.5.0",
         "@shared/api": "workspace:*",
         "@shared/env": "workspace:*",
+        "@shared/string": "workspace:*",
         "@shared/utils": "workspace:*",
         "@tanstack/query-sync-storage-persister": "^5.51.15",
         "@tanstack/react-query": "^5.51.15",
