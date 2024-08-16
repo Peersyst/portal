@@ -22,6 +22,7 @@
     "dependencies": {
         "@frontend/config": "workspace:*",
         "@frontend/core": "workspace:*",
+        "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@frontend/locale": "workspace:*",
         "@frontend/settings": "workspace:*",

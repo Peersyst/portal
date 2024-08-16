@@ -204,6 +204,9 @@ importers:
       '@frontend/core':
         specifier: workspace:*
         version: link:../../packages/frontend/core
+      '@frontend/design-system-core':
+        specifier: workspace:*
+        version: link:../../packages/frontend/design-system/core
       '@frontend/events':
         specifier: workspace:*
         version: link:../../packages/frontend/events
@@ -523,6 +526,22 @@ importers:
       zustand:
         specifier: ^4.3.6
         version: 4.5.4(@types/react@18.3.3)(react@18.3.1)
+
+  packages/frontend/design-system/core:
+    dependencies:
+      '@peersyst/react-components':
+        specifier: ^3.9.35
+        version: 3.9.35(@types/react-dom@18.3.0)(@types/react@18.3.3)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+    devDependencies:
+      '@shared/eslint':
+        specifier: workspace:*
+        version: link:../../../shared/eslint
+      '@shared/tsconfig':
+        specifier: workspace:*
+        version: link:../../../shared/tsconfig
+      typescript:
+        specifier: latest
+        version: 5.5.4
 
   packages/frontend/events:
     devDependencies:
