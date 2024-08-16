@@ -12,6 +12,11 @@
             "require": "./dist/palette/index.js",
             "import": "./dist/palette/index.mjs",
             "types": "./dist/palette/index.d.ts"
+        },
+        "./theme": {
+            "require": "./dist/theme/index.js",
+            "import": "./dist/theme/index.mjs",
+            "types": "./dist/theme/index.d.ts"
         }
     },
     "dependencies": {
