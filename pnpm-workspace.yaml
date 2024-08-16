@@ -5,3 +5,4 @@ packages:
     - "packages/database/*"
     - "packages/frontend/*"
     - "packages/shared/*"
+    - "packages/frontend/design-system/*"
