@@ -2,9 +2,9 @@ const wordPattern = new RegExp(["[A-Z][a-z]+", "[A-Z]+(?=[A-Z][a-z])", "[A-Z]+",
 
 export function toWords(string: string, pattern?: RegExp | string): string[] {
     if (pattern === undefined) {
-        return string.match(wordPattern) || [];
+        return wordPattern.exec(string) || [];
     }
-    return string.match(pattern) || [];
+    return wordPattern.exec(string) || [];
 }
 
 export function upperFirst(string: string): string {
@@ -15,7 +15,7 @@ export function capitalize(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-export function toCamelCase(string: string): string {
+export function camelCase(string: string): string {
     return toWords(string)
         .map((word, index) => (index === 0 ? word.toLowerCase() : upperFirst(word.toLowerCase())))
         .join("");
