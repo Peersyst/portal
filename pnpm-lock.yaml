@@ -564,9 +564,15 @@ importers:
       '@eslint/js':
         specifier: ^9.9.0
         version: 9.9.0
+      '@frontend/config':
+        specifier: workspace:*
+        version: link:../../config
       '@frontend/design-system-core':
         specifier: workspace:*
         version: link:../core
+      '@frontend/locale':
+        specifier: workspace:*
+        version: link:../../locale
       '@shared/eslint':
         specifier: workspace:*
         version: link:../../../shared/eslint

@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react";
 import React from "react";
-import { ConfigProvider } from "@peersyst/react-components";
+import { ConfigProvider } from "../src/config";
 
 const preview: Preview = {
     parameters: {
@@ -14,7 +14,7 @@ const preview: Preview = {
     },
     decorators: [
         (Story) => (
-            <ConfigProvider config={{} as any}>
+            <ConfigProvider>
                 <Story />
             </ConfigProvider>
         ),
