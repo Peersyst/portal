@@ -13,16 +13,14 @@
             "import": "./dist/palette/index.mjs",
             "types": "./dist/palette/index.d.ts"
         },
-        "./theme": {
-            "require": "./dist/theme/index.js",
-            "import": "./dist/theme/index.mjs",
-            "types": "./dist/theme/index.d.ts"
+        "./themes/default": {
+            "require": "./dist/themes/default/index.js",
+            "import": "./dist/themes/default/index.mjs",
+            "types": "./dist/themes/default/index.d.ts"
         }
     },
-    "dependencies": {
-        "@peersyst/react-components": "^3.9.35"
-    },
     "devDependencies": {
+        "@peersyst/react-components-core": "^1.7.19",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "typescript": "latest"
