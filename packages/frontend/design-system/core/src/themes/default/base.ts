@@ -1,4 +1,4 @@
-import { BasePalette, GrayShades, BlueShades, GreenShades, OrangeShades, RedShades, YellowShades } from "../palette";
+import { BasePalette, GrayShades, BlueShades, GreenShades, OrangeShades, RedShades, YellowShades } from "../../palette";
 
 const blue: BlueShades = {
     electric: "#008CFF",
@@ -34,7 +34,7 @@ const yellow: YellowShades = {
     gold: "#FFC700",
 };
 
-export const basePalette: BasePalette = {
+export const baseDefaultPalette: BasePalette = {
     gray,
     blue,
     green,
