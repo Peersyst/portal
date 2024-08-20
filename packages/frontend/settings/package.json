@@ -28,31 +28,38 @@
             "import": "./dist/domain/decorators/index.mjs",
             "types": "./dist/domain/decorators/index.d.ts"
         },
-        "./errors": {
+        "./domain/errors": {
             "require": "./dist/domain/settings.errors.js",
             "import": "./dist/domain/settings.errors.mjs",
             "types": "./dist/domain/settings.errors.d.ts"
         },
-        "./events": {
+        "./domain/events": {
             "require": "./dist/domain/settings.events.js",
             "import": "./dist/domain/settings.events.mjs",
             "types": "./dist/domain/settings.events.d.ts"
         },
-        "./state": {
+        "./domain/state": {
             "require": "./dist/domain/settings.state.js",
             "import": "./dist/domain/settings.state.mjs",
             "types": "./dist/domain/settings.state.d.ts"
+        },
+        "./ui/state": {
+            "require": "./dist/ui/state/index.js",
+            "import": "./dist/ui/state/index.mjs",
+            "types": "./dist/ui/state/index.d.ts"
         }
     },
     "peerDependencies": {
         "@frontend/core": "workspace:*",
-        "@frontend/events": "workspace:*"
+        "@frontend/events": "workspace:*",
+        "zustand": "^4.3.6"
     },
     "devDependencies": {
         "@frontend/core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
-        "typescript": "latest"
+        "typescript": "latest",
+        "zustand": "^4.3.6"
     }
 }
