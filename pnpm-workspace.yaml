@@ -1,0 +1,7 @@
+packages:
+    - "apps/api"
+    - "apps/web"
+    - "packages/backend/*"
+    - "packages/database/*"
+    - "packages/frontend/*"
+    - "packages/shared/*"

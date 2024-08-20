@@ -1,5 +1,5 @@
-import { DataSourceOptions, DataSource } from "typeorm";
-import { buildConfig, validPort, ConfigValidators } from "@peersyst/env-config";
+import { DataSourceOptions } from "typeorm";
+import { apiDatabaseConfig } from "@database/api/config";
 
 export type NestConnectionOptions = DataSourceOptions & {
     autoLoadEntities?: boolean;
@@ -7,42 +7,13 @@ export type NestConnectionOptions = DataSourceOptions & {
     retryDelay?: number;
     retryAttempts?: number;
 };
-function getTypeORMConfig(secrets: Record<string, string> = {}): DataSourceOptions {
-    return buildConfig<DataSourceOptions>(
-        {
-            host: {
-                default: process.env.DB_HOST || secrets.DB_HOST || "db",
-                development: "localhost",
-            },
-            port: {
-                default: parseInt(process.env.DB_PORT) || parseInt(secrets.DB_PORT) || 5432,
-            },
-            username: {
-                default: process.env.DB_USER || secrets.DB_USER || "db_user",
-            },
-            password: {
-                default: process.env.DB_PASSWORD || secrets.DB_PASSWORD || "db_password",
-            },
-            database: {
-                default: process.env.DB_DATABASE || secrets.DB_DATABASE || "db_database",
-            },
-            type: "postgres",
-            synchronize: false,
-            migrationsRun: true,
-            entities: [__dirname + "/../database/entities/*{.ts,.js}"],
-            migrations: [__dirname + "/../database/migrations/**/*{.ts,.js}"],
-        },
-        {
-            port: validPort,
-        } as ConfigValidators<DataSourceOptions>,
-    );
+function getTypeORMConfig(): DataSourceOptions {
+    return apiDatabaseConfig;
 }
 
-export function getNestTypeORMConfig(secrets?: Record<string, string>): NestConnectionOptions {
+export function getNestTypeORMConfig(): NestConnectionOptions {
     return {
-        ...getTypeORMConfig(secrets),
+        ...getTypeORMConfig(),
         autoLoadEntities: true,
     };
 }
-
-export const ConnectionSource = new DataSource(getTypeORMConfig());

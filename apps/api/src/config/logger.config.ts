@@ -1,4 +1,4 @@
-import { buildConfig } from "@peersyst/env-config";
+import { buildConfig } from "@backend/config";
 
 interface LoggerConfig {
     logLevel: "error" | "info" | "verbose" | "debug";

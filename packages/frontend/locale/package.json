@@ -1,0 +1,38 @@
+{
+    "name": "@frontend/locale",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./react": {
+            "require": "./dist/react/index.js",
+            "import": "./dist/react/index.mjs",
+            "types": "./dist/react/index.d.ts"
+        },
+        "./resources": {
+            "require": "./dist/resources/index.js",
+            "import": "./dist/resources/index.mjs",
+            "types": "./dist/resources/index.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "i18next": "^23.11.2",
+        "react-i18next": "^14.1.1"
+    },
+    "devDependencies": {
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "i18next": "^23.11.2",
+        "react-i18next": "^14.1.1",
+        "typescript": "latest"
+    }
+}

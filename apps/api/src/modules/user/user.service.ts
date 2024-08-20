@@ -3,11 +3,11 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateUserRequest } from "./create-user.request";
-import { User, UserType } from "@peersyst/database";
 import { UserDto } from "./user.dto";
 import { AuthUserServiceI } from "@peersyst/auth-module";
 import { BusinessException } from "../common/exception/business.exception";
 import { ErrorCode } from "../common/exception/error-codes";
+import { User, UserType } from "@database/api/entities";
 
 @Injectable()
 export class UserService implements AuthUserServiceI {

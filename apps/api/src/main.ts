@@ -2,17 +2,14 @@ import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import * as fs from "fs";
 import helmet from "helmet";
-import * as morgan from "morgan";
+import morgan from "morgan";
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from "nest-winston";
 import * as winston from "winston";
 import { AppModule } from "./app.module";
 import * as packageJson from "../package.json";
 import { ConfigService } from "@nestjs/config";
-import { getConfigEnv } from "@peersyst/env-config";
-import { runSeeders } from "./seeds";
 
 async function bootstrap() {
-    if (getConfigEnv() === "preview") await runSeeders(true);
     const app = await NestFactory.create(AppModule);
     const configService = app.get(ConfigService);
     const logLevel = configService.get("logger.logLevel");
