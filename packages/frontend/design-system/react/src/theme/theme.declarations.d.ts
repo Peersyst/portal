@@ -3,14 +3,15 @@ import type { CSSProp } from "styled-components";
 import type {} from "@peersyst/react-components";
 import type { Theme } from "@peersyst/react-components";
 import type { ThemeSpacing } from "./common/spacing";
-import type { TypographyVariantsOverrides as ProjectTypographyVariantsOverrides } from "./common/typography";
-import type { GeneralPalette, SpecificPalette } from "./common/palette/types";
+// import type { TypographyVariantsOverrides as ProjectTypographyVariantsOverrides } from "./common/typography";
+import type { SpecificPalette } from "./common/palette/types";
+import { GeneralPalette } from "@frontend/design-system-core/palette";
 
 // Custom components theme
 declare module "@peersyst/react-components" {
     export interface ThemePalette extends GeneralPalette, SpecificPalette {}
 
-    export interface TypographyVariantsOverrides extends ProjectTypographyVariantsOverrides {}
+    // export interface TypographyVariantsOverrides extends ProjectTypographyVariantsOverrides {}
 
     export interface CreateTheme {
         spacing: ThemeSpacing;

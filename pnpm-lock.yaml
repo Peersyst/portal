@@ -207,6 +207,9 @@ importers:
       '@frontend/design-system-core':
         specifier: workspace:*
         version: link:../../packages/frontend/design-system/core
+      '@frontend/design-system-react':
+        specifier: workspace:*
+        version: link:../../packages/frontend/design-system/react
       '@frontend/events':
         specifier: workspace:*
         version: link:../../packages/frontend/events

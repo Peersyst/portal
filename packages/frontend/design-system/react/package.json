@@ -1,12 +1,12 @@
 {
-    "name": "@design-system/react",
-    "private": true,
+    "name": "@frontend/design-system-react",
+    "author": "Peersyst",
     "version": "0.0.0",
-    "type": "module",
+    "license": "UNLICENSED",
     "scripts": {
         "lint": "eslint .",
-        "dev": "storybook dev -p 6006",
-        "build": "storybook build"
+        "dev": "storybook dev -p 6006 -c storybook",
+        "build": "tsup"
     },
     "dependencies": {
         "@peersyst/react-components": "^3.9.35",
@@ -47,5 +47,22 @@
         "extends": [
             "plugin:storybook/recommended"
         ]
+    },
+    "exports": {
+        "./button": {
+            "require": "./dist/components/button/index.js",
+            "import": "./dist/components/button/index.mjs",
+            "types": "./dist/components/button/index.d.ts"
+        },
+        "./config": {
+            "require": "./dist/config/index.js",
+            "import": "./dist/config/index.mjs",
+            "types": "./dist/config/index.d.ts"
+        },
+        "./theme": {
+            "require": "./dist/theme/index.js",
+            "import": "./dist/theme/index.mjs",
+            "types": "./dist/theme/index.d.ts"
+        }
     }
 }
