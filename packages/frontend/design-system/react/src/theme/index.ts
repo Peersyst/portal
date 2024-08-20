@@ -1,9 +1,9 @@
 import { CreateTheme } from "@peersyst/react-components";
-import { lightTheme, darkTheme } from "./default";
+import { defaultLightTheme, defaultDarkTheme } from "./default";
 
 export const themes: Record<string, { light: CreateTheme; dark: CreateTheme }> = {
     default: {
-        light: lightTheme,
-        dark: darkTheme,
+        light: defaultLightTheme,
+        dark: defaultDarkTheme,
     },
 };

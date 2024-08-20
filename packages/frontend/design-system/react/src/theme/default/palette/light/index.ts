@@ -1,8 +1,8 @@
+import { baseDefaultLightPalette } from "@frontend/design-system-core/themes/default";
 import { LightPalette } from "../../../common/palette/types";
 import { lightButtonPalette } from "../components/button";
-import { baseLightPalette } from "./base";
 
-export const lightPalette: LightPalette = {
-    ...baseLightPalette,
+export const defaultLightPalette: LightPalette = {
+    ...baseDefaultLightPalette,
     button: lightButtonPalette,
 };
