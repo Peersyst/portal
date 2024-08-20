@@ -1,6 +1,6 @@
 import { createStore, Mutate, StateCreator, StoreApi, StoreMutatorIdentifier } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { StateManager } from "./StateManager";
+import { StateManager } from "./state.manager/index.js";
 
 export type CreateStateOptions = {
     persist?: boolean;

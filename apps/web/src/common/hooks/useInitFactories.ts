@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { initFactories } from "../utils/factories/initFactories";
 import { configManager } from "@/core/config";
-import { StateManager } from "@frontend/core/domain/state";
+import { StateManager } from "@frontend/core/domain/state/manager";
 
 export function useInitFactories(): boolean {
     const [isInitialized, setIsInitialized] = useState(false);
@@ -16,13 +16,6 @@ export function useInitFactories(): boolean {
          * This means, waiting for the state manager to hydrate the states from the storage.
          * @see https://github.com/pmndrs/zustand/blob/main/docs/integrations/persisting-store-data.md#hydration-and-asynchronous-storages
          */
-
-        async function wait() {
-            await StateManager.initialization;
-        }
-
-        wait();
-
         Promise.all([configManager.initialization, StateManager.initialization]).then(() => {
             initFactories().then(() => {
                 setIsInitialized(true);

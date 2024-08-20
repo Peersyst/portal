@@ -1,5 +1,9 @@
-import { Factory } from "@shared/utils";
+import { ApiFactory } from "@frontend/core/data-access/api/factory";
 
-export interface IApiFactory {}
+declare module "@frontend/core/data-access/api/factory" {
+    export interface IApiFactory {}
+}
 
-export const ApiFactory = Factory<IApiFactory>({});
+ApiFactory.create({});
+
+export { ApiFactory } from "@frontend/core/data-access/api/factory";
