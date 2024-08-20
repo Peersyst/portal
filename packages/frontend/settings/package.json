@@ -1,0 +1,58 @@
+{
+    "name": "@frontend/settings",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/common/index.js",
+            "import": "./dist/common/index.mjs",
+            "types": "./dist/common/index.d.ts"
+        },
+        "./data-access/repositories": {
+            "require": "./dist/data-access/repositories/index.js",
+            "import": "./dist/data-access/repositories/index.mjs",
+            "types": "./dist/data-access/repositories/index.d.ts"
+        },
+        "./domain/controllers": {
+            "require": "./dist/domain/controllers/index.js",
+            "import": "./dist/domain/controllers/index.mjs",
+            "types": "./dist/domain/controllers/index.d.ts"
+        },
+        "./domain/decorators": {
+            "require": "./dist/domain/decorators/index.js",
+            "import": "./dist/domain/decorators/index.mjs",
+            "types": "./dist/domain/decorators/index.d.ts"
+        },
+        "./errors": {
+            "require": "./dist/domain/settings.errors.js",
+            "import": "./dist/domain/settings.errors.mjs",
+            "types": "./dist/domain/settings.errors.d.ts"
+        },
+        "./events": {
+            "require": "./dist/domain/settings.events.js",
+            "import": "./dist/domain/settings.events.mjs",
+            "types": "./dist/domain/settings.events.d.ts"
+        },
+        "./state": {
+            "require": "./dist/domain/settings.state.js",
+            "import": "./dist/domain/settings.state.mjs",
+            "types": "./dist/domain/settings.state.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*"
+    },
+    "devDependencies": {
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "typescript": "latest"
+    }
+}

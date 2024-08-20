@@ -1,5 +1,5 @@
+import { buildConfig, validB64Key, validPort } from "@backend/config";
 import * as crypto from "crypto";
-import { buildConfig, validPort, validB64Key } from "@peersyst/env-config";
 
 interface ServerConfig {
     port: number;
@@ -12,10 +12,12 @@ interface ServerConfig {
 export default (secrets: Record<any, any>): ServerConfig => {
     return buildConfig<ServerConfig>(
         {
-            port: parseInt(process.env.APP_PORT) || {
-                default: 3000,
-                development: 3001,
-            },
+            port: process.env.APP_PORT
+                ? parseInt(process.env.APP_PORT)
+                : {
+                      default: 3000,
+                      development: 3001,
+                  },
             secretKey: process.env.APP_JWT_KEY || {
                 default: crypto.randomBytes(32).toString("base64"),
                 development: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",

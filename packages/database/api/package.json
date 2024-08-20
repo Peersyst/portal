@@ -1,0 +1,63 @@
+{
+    "name": "@database/api",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
+        "db:migration:create": "yarn typeorm migration:create",
+        "db:migration:generate": "yarn typeorm migration:generate",
+        "db:migration:run": "yarn typeorm migration:run",
+        "db:migration:revert": "yarn typeorm migration:revert",
+        "db:schema:drop": "yarn typeorm -- schema:drop"
+    },
+    "exports": {
+        "./config": {
+            "require": "./dist/config.js",
+            "import": "./dist/config.mjs",
+            "types": "./dist/config.d.ts"
+        },
+        "./data-source": {
+            "require": "./dist/data-source.js",
+            "import": "./dist/data-source.mjs",
+            "types": "./dist/data-source.d.ts"
+        },
+        "./entities": {
+            "require": "./dist/entities/index.js",
+            "import": "./dist/entities/index.mjs",
+            "types": "./dist/entities/index.d.ts"
+        },
+        "./seed/seeder": {
+            "require": "./dist/seed/seeder.js",
+            "import": "./dist/seed/seeder.mjs",
+            "types": "./dist/seed/seeder.d.ts"
+        },
+        "./seed/seeds": {
+            "require": "./dist/seed/seeds/index.js",
+            "import": "./dist/seed/seeds/index.mjs",
+            "types": "./dist/seed/seeds/index.d.ts"
+        }
+    },
+    "peerDependencies": {
+        "@backend/config": "workspace:*",
+        "@database/seed": "workspace:*",
+        "@nestjs/config": "^3.1.1",
+        "@peersyst/auth-module": "^0.14.6",
+        "passport-jwt": "4.0.1",
+        "typeorm": "^0.3.0"
+    },
+    "devDependencies": {
+        "@backend/config": "workspace:*",
+        "@database/seed": "workspace:*",
+        "@peersyst/auth-module": "^0.14.6",
+        "@nestjs/config": "^3.1.1",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@types/node": "22.2.0",
+        "passport-jwt": "4.0.1",
+        "typeorm": "^0.3.0",
+        "typescript": "latest"
+    }
+}

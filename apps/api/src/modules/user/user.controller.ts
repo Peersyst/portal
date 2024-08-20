@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post, Request } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Authenticated } from "@peersyst/auth-module";
+import { UserType } from "@database/api/entities";
 import { CreateUserRequest } from "./create-user.request";
 import { UserService } from "./user.service";
 import { UserDto } from "./user.dto";
 import { ApiErrorDecorators } from "../common/exception/error-response.decorator";
-import { UserType } from "@peersyst/database";
 
 @ApiTags("user")
 @Controller("users")
@@ -23,7 +23,7 @@ export class UserController {
     @ApiOperation({ summary: "Show user info" })
     @Authenticated()
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    async info(@Request() req): Promise<UserDto> {
+    async info(@Request() req: any): Promise<UserDto> {
         return this.userService.findById(req.user.id);
     }
 
