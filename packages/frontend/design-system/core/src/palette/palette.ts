@@ -1,4 +1,4 @@
-import { ThemePalette } from "@peersyst/react-components";
+import { ThemePalette } from "@peersyst/react-components-core";
 import { BlueShades, GrayShades, GreenShades, OrangeShades, RedShades, YellowShades } from "./shades";
 
 export interface GeneralPalette extends Pick<ThemePalette, "primary"> {
