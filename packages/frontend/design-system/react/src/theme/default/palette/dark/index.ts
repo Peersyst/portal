@@ -1,8 +1,8 @@
 import { DarkPalette } from "@frontend/design-system-core/palette";
-import { baseDarkPalette } from "./base";
 import { darkButtonPalette } from "../components/button";
+import { baseDefaultDarkPalette } from "@frontend/design-system-core/themes/default";
 
-export const darkPalette: DarkPalette = {
-    ...baseDarkPalette,
+export const deafultDarkPalette: DarkPalette = {
+    ...baseDefaultDarkPalette,
     button: darkButtonPalette,
 };

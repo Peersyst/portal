@@ -2,7 +2,7 @@ import { Config, createConfig, createTheme } from "@peersyst/react-components";
 import { useMemo } from "react";
 import { useTranslate, useLanguage } from "@frontend/locale/react";
 import { config as staticUIConfig } from "../config";
-import { darkTheme, lightTheme } from "../../theme/default";
+import { defaultDarkTheme, defaultLightTheme } from "../../theme/default";
 
 export function useUIConfig(): Config {
     const translate = useTranslate("error");
@@ -12,8 +12,8 @@ export function useUIConfig(): Config {
         return createConfig({
             projectName: "peersyst",
             themes: {
-                light: createTheme(lightTheme),
-                dark: createTheme(darkTheme),
+                light: createTheme(defaultLightTheme),
+                dark: createTheme(defaultDarkTheme),
             },
             translate,
             locale: language,

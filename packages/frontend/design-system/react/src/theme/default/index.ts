@@ -1,8 +1,8 @@
 import { CreateTheme } from "@peersyst/react-components";
 import { baseTheme } from "../common";
-import { lightPalette } from "./palette/light";
-import { darkPalette } from "./palette/dark";
+import { defaultLightPalette } from "./palette/light";
+import { deafultDarkPalette } from "./palette/dark";
 
-export const lightTheme: CreateTheme = { ...baseTheme, palette: lightPalette };
+export const defaultLightTheme: CreateTheme = { ...baseTheme, palette: defaultLightPalette };
 
-export const darkTheme: CreateTheme = { ...baseTheme, palette: darkPalette };
+export const defaultDarkTheme: CreateTheme = { ...baseTheme, palette: deafultDarkPalette };
