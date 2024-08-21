@@ -87,22 +87,42 @@
             "require": "./dist/domain/state/index.js",
             "import": "./dist/domain/state/index.mjs",
             "types": "./dist/domain/state/index.d.ts"
+        },
+        "./ui/error": {
+            "require": "./dist/ui/error/index.js",
+            "import": "./dist/ui/error/index.mjs",
+            "types": "./dist/ui/error/index.d.ts"
+        },
+        "./ui/error/browser": {
+            "require": "./dist/ui/error/browser/index.js",
+            "import": "./dist/ui/error/browser/index.mjs",
+            "types": "./dist/ui/error/browser/index.d.ts"
+        },
+        "./ui/error/react-native": {
+            "require": "./dist/ui/error/react-native/index.js",
+            "import": "./dist/ui/error/react-native/index.mjs",
+            "types": "./dist/ui/error/react-native/index.d.ts"
         }
     },
     "peerDependencies": {
         "@react-native-async-storage/async-storage": "1.17.11",
+        "@shared/string": "workspace:*",
         "@shared/utils": "workspace:*",
         "expo-secure-store": "~12.1.1",
+        "react-native": "0.73.6",
         "zustand": "^4.3.6"
     },
     "devDependencies": {
         "@react-native-async-storage/async-storage": "1.17.11",
+        "@types/react-native": "0.73.0",
         "@shared/eslint": "workspace:*",
+        "@shared/string": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/utils": "workspace:*",
         "@swisstype/essential": "^0.1.1",
         "expo-secure-store": "~12.1.1",
-        "zustand": "^4.3.6",
-        "typescript": "latest"
+        "react-native": "0.73.6",
+        "typescript": "latest",
+        "zustand": "^4.3.6"
     }
 }
