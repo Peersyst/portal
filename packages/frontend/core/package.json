@@ -8,6 +8,11 @@
         "build": "tsup"
     },
     "exports": {
+        "./common/utils/singleton": {
+            "require": "./dist/common/utils/singleton/index.js",
+            "import": "./dist/common/utils/singleton/index.mjs",
+            "types": "./dist/common/utils/singleton/index.d.ts"
+        },
         "./data-access/api/factory": {
             "require": "./dist/data-access/api/factory/index.js",
             "import": "./dist/data-access/api/factory/index.mjs",
@@ -43,10 +48,20 @@
             "import": "./dist/data-access/repository/react-native/index.mjs",
             "types": "./dist/data-access/repository/react-native/index.d.ts"
         },
+        "./data-access/service": {
+            "require": "./dist/data-access/service/index.js",
+            "import": "./dist/data-access/service/index.mjs",
+            "types": "./dist/data-access/service/index.d.ts"
+        },
         "./data-access/service/factory": {
             "require": "./dist/data-access/service/factory/index.js",
             "import": "./dist/data-access/service/factory/index.mjs",
             "types": "./dist/data-access/service/factory/index.d.ts"
+        },
+        "./domain/controller": {
+            "require": "./dist/domain/controller/index.js",
+            "import": "./dist/domain/controller/index.mjs",
+            "types": "./dist/domain/controller/index.d.ts"
         },
         "./domain/controller/factory": {
             "require": "./dist/domain/controller/factory/index.js",
