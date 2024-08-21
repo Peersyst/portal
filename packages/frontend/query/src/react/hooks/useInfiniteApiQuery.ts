@@ -50,7 +50,7 @@ export function useInfiniteApiQuery<
 ): UseInfiniteQueryResult<TData, TError> {
     const { queryKey, queryFn, plugins = [], ...restOptions } = options;
 
-    const [finalQueryKey, finalQueryFn, { initialPageParam = undefined, ...finalOptions }] = plugins.reduce(
+    const [finalQueryKey, finalQueryFn, { initialPageParam = undefined, ...finalOptions }] = [...plugins].reduce(
         ([qk, qfn, opts], plugin) => plugin(qk, qfn, opts),
         [queryKey, queryFn, restOptions],
     );
