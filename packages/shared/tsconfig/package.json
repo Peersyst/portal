@@ -9,6 +9,7 @@
         "./browser": "./tsconfig.browser.json",
         "./browser-package": "./tsconfig.browser-package.json",
         "./react": "./tsconfig.react.json",
+        "./react-package": "./tsconfig.react-package.json",
         "./react-native": "./tsconfig.react-native.json"
     }
 }
