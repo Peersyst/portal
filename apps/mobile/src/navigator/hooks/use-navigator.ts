@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../stack";
+import { StackParamList } from "../stack.tmp";
 
 /**
  * A hook to access the navigation prop of the Navigator.

@@ -14,8 +14,8 @@ import { Suspense } from "react";
 import { Platform, UIManager, LogBox } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useInit } from "./common/hooks/use-init";
-import Providers from "./providers";
-import Navigator from "./navigator/navigator";
+import Providers from "./providers.tpm";
+import Navigator from "./navigator/navigator.tpm";
 
 // Explanation link :https://github.com/facebook/react-native/issues/12981#issuecomment-652745831
 LogBox.ignoreLogs(["Setting a timer"]);
