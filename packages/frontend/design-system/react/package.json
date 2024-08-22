@@ -1,0 +1,69 @@
+{
+    "name": "@frontend/design-system-react",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "lint": "eslint .",
+        "dev": "storybook dev -p 6006 -c storybook",
+        "build": "tsup"
+    },
+    "dependencies": {
+        "@peersyst/react-components": "^3.9.35"
+    },
+    "peerDependencies": {
+        "@frontend/config": "workspace:*",
+        "@frontend/design-system-core": "workspace:*",
+        "@frontend/locale": "workspace:*",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "styled-components": "^5.3.6"
+    },
+    "devDependencies": {
+        "@chromatic-com/storybook": "^1.6.1",
+        "@frontend/config": "workspace:*",
+        "@frontend/design-system-core": "workspace:*",
+        "@frontend/locale": "workspace:*",
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@storybook/addon-essentials": "^8.2.9",
+        "@storybook/addon-interactions": "^8.2.9",
+        "@storybook/addon-links": "^8.2.9",
+        "@storybook/addon-onboarding": "^8.2.9",
+        "@storybook/blocks": "^8.2.9",
+        "@storybook/react": "^8.2.9",
+        "@storybook/react-vite": "^8.2.9",
+        "@storybook/test": "^8.2.9",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@types/styled-components": "^5.1.34",
+        "@vitejs/plugin-react": "^4.3.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "storybook": "^8.2.9",
+        "styled-components": "^5.3.6",
+        "typescript": "latest"
+    },
+    "exports": {
+        "./button": {
+            "require": "./dist/components/button/index.js",
+            "import": "./dist/components/button/index.mjs",
+            "types": "./dist/components/button/index.d.ts"
+        },
+        "./config": {
+            "require": "./dist/config/index.js",
+            "import": "./dist/config/index.mjs",
+            "types": "./dist/config/index.d.ts"
+        },
+        "./theme": {
+            "require": "./dist/theme/index.js",
+            "import": "./dist/theme/index.mjs",
+            "types": "./dist/theme/index.d.ts"
+        },
+        "./styles/global-styles": {
+            "require": "./dist/styles/global-styles.js",
+            "import": "./dist/styles/global-styles.mjs",
+            "types": "./dist/styles/global-styles.d.ts"
+        }
+    }
+}

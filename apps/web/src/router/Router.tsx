@@ -3,7 +3,7 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function Home(): JSX.Element {
-    return <p>Welcome to Peersyst web base project</p>;
+    return <div>Welcome to Peersyst web base project</div>;
 }
 
 function Routes() {
