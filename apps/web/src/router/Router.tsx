@@ -2,11 +2,15 @@ import { ModalProvider } from "@peersyst/react-components";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
+function Home(): JSX.Element {
+    return <div>Welcome to Peersyst web base project</div>;
+}
+
 function Routes() {
     return useRoutes([
         {
             path: "*",
-            element: <div>Peersyst web base project</div>,
+            element: <Home />,
         },
     ]);
 }

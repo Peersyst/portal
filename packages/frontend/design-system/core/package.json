@@ -19,6 +19,9 @@
             "types": "./dist/themes/default/index.d.ts"
         }
     },
+    "peerDependencies": {
+        "@peersyst/react-components-core": "^1.7.19"
+    },
     "devDependencies": {
         "@peersyst/react-components-core": "^1.7.19",
         "@shared/eslint": "workspace:*",

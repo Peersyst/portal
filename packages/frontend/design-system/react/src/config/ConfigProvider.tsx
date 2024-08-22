@@ -2,7 +2,7 @@ import * as React from "react";
 import { ConfigProvider as GenesysConfigProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
 import { StyleSheetManager } from "styled-components";
-import { GlobalStyles } from "../theme/GlobalStyles/GlobalStyles";
+import { GlobalStyles } from "../styles/global-styles";
 import { useUIConfig } from "./hook/useUIConfig";
 
 export interface ConfigProviderProps {
