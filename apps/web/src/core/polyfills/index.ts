@@ -1,2 +1,2 @@
 import "./big-number";
-import "./buffer.tpm";
+import "./buffer";

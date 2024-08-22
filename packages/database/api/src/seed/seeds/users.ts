@@ -1,5 +1,5 @@
 import { Seed } from "@database/seed";
-import { User } from "../../entities/user.tmp";
+import { User } from "../../entities/user";
 
 export const users = new Seed(User, {
     development: [
