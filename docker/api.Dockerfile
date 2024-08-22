@@ -56,6 +56,4 @@ COPY --from=build /project/apps/api/templates /app/templates
 COPY --from=build /project/apps/api/files /app/files
 COPY --from=build /project/apps/api/node_modules /app/node_modules
 
-RUN node /app/node_modules/puppeteer/install.mjs
-
 CMD [ "/app/dist/src/main" ]

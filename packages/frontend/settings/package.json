@@ -13,6 +13,16 @@
             "import": "./dist/common/index.mjs",
             "types": "./dist/common/index.d.ts"
         },
+        "./data-access/services/browser": {
+            "require": "./dist/data-access/services/browser/index.js",
+            "import": "./dist/data-access/services/browser/index.mjs",
+            "types": "./dist/data-access/services/browser/index.d.ts"
+        },
+        "./data-access/services/react-native": {
+            "require": "./dist/data-access/services/react-native/index.js",
+            "import": "./dist/data-access/services/react-native/index.mjs",
+            "types": "./dist/data-access/services/react-native/index.d.ts"
+        },
         "./data-access/repositories": {
             "require": "./dist/data-access/repositories/index.js",
             "import": "./dist/data-access/repositories/index.mjs",
@@ -28,31 +38,54 @@
             "import": "./dist/domain/decorators/index.mjs",
             "types": "./dist/domain/decorators/index.d.ts"
         },
-        "./errors": {
+        "./domain/errors": {
             "require": "./dist/domain/settings.errors.js",
             "import": "./dist/domain/settings.errors.mjs",
             "types": "./dist/domain/settings.errors.d.ts"
         },
-        "./events": {
+        "./domain/events": {
             "require": "./dist/domain/settings.events.js",
             "import": "./dist/domain/settings.events.mjs",
             "types": "./dist/domain/settings.events.d.ts"
         },
-        "./state": {
+        "./domain/state": {
             "require": "./dist/domain/settings.state.js",
             "import": "./dist/domain/settings.state.mjs",
             "types": "./dist/domain/settings.state.d.ts"
+        },
+        "./domain/interfaces": {
+            "require": "./dist/domain/interfaces/index.js",
+            "import": "./dist/domain/interfaces/index.mjs",
+            "types": "./dist/domain/interfaces/index.d.ts"
+        },
+        "./ui/state": {
+            "require": "./dist/ui/state/index.js",
+            "import": "./dist/ui/state/index.mjs",
+            "types": "./dist/ui/state/index.d.ts"
+        },
+        "./ui/interfaces": {
+            "require": "./dist/ui/interfaces/index.js",
+            "import": "./dist/ui/interfaces/index.mjs",
+            "types": "./dist/ui/interfaces/index.d.ts"
         }
     },
     "peerDependencies": {
         "@frontend/core": "workspace:*",
-        "@frontend/events": "workspace:*"
+        "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@tanstack/react-query": "^5.51.15",
+        "expo-localization": "~14.8.4",
+        "zustand": "^5.0.0-rc.0"
     },
     "devDependencies": {
         "@frontend/core": "workspace:*",
         "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
-        "typescript": "latest"
+        "@tanstack/react-query": "^5.51.15",
+        "expo-localization": "~14.8.4",
+        "typescript": "latest",
+        "zustand": "^5.0.0-rc.0"
     }
 }
