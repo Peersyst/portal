@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import QueryClientProvider from "./query/QueryClientProvider";
+import QueryClientProvider from "./query/query-client.provider";
 import { ToastProvider } from "@peersyst/react-native-components";
 import { ConfigProvider } from "./config";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./locale";
-import { ErrorHandler } from "./common/components/feedback/ErrorHandler/ErrorHandler";
-import StylesheetProvider from "./stylesheets/StylesheetsProvider";
+import { ErrorHandler } from "./common/components/feedback/error-handler/error-handler";
+import StylesheetProvider from "./stylesheets/stylesheet.provider";
 import { ConfigManagerProvider } from "@frontend/config/react";
 import { configManager } from "./core/config";
 
