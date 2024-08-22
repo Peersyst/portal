@@ -8,6 +8,21 @@
         "build": "tsup"
     },
     "exports": {
+        "./common/utils/singleton": {
+            "require": "./dist/common/utils/singleton/index.js",
+            "import": "./dist/common/utils/singleton/index.mjs",
+            "types": "./dist/common/utils/singleton/index.d.ts"
+        },
+        "./common/utils/factories": {
+            "require": "./dist/common/utils/factories/index.js",
+            "import": "./dist/common/utils/factories/index.mjs",
+            "types": "./dist/common/utils/factories/index.d.ts"
+        },
+        "./data-access/api/factory": {
+            "require": "./dist/data-access/api/factory/index.js",
+            "import": "./dist/data-access/api/factory/index.mjs",
+            "types": "./dist/data-access/api/factory/index.d.ts"
+        },
         "./data-access/api/error": {
             "require": "./dist/data-access/api/error/index.js",
             "import": "./dist/data-access/api/error/index.mjs",
@@ -17,6 +32,11 @@
             "require": "./dist/data-access/repository/index.js",
             "import": "./dist/data-access/repository/index.mjs",
             "types": "./dist/data-access/repository/index.d.ts"
+        },
+        "./data-access/repository/factory": {
+            "require": "./dist/data-access/repository/factory/index.js",
+            "import": "./dist/data-access/repository/factory/index.mjs",
+            "types": "./dist/data-access/repository/factory/index.d.ts"
         },
         "./data-access/repository/browser": {
             "require": "./dist/data-access/repository/browser/index.js",
@@ -33,6 +53,26 @@
             "import": "./dist/data-access/repository/react-native/index.mjs",
             "types": "./dist/data-access/repository/react-native/index.d.ts"
         },
+        "./data-access/service": {
+            "require": "./dist/data-access/service/index.js",
+            "import": "./dist/data-access/service/index.mjs",
+            "types": "./dist/data-access/service/index.d.ts"
+        },
+        "./data-access/service/factory": {
+            "require": "./dist/data-access/service/factory/index.js",
+            "import": "./dist/data-access/service/factory/index.mjs",
+            "types": "./dist/data-access/service/factory/index.d.ts"
+        },
+        "./domain/controller": {
+            "require": "./dist/domain/controller/index.js",
+            "import": "./dist/domain/controller/index.mjs",
+            "types": "./dist/domain/controller/index.d.ts"
+        },
+        "./domain/controller/factory": {
+            "require": "./dist/domain/controller/factory/index.js",
+            "import": "./dist/domain/controller/factory/index.mjs",
+            "types": "./dist/domain/controller/factory/index.d.ts"
+        },
         "./domain/error": {
             "require": "./dist/domain/error/index.js",
             "import": "./dist/domain/error/index.mjs",
@@ -43,24 +83,51 @@
             "import": "./dist/domain/state/index.mjs",
             "types": "./dist/domain/state/index.d.ts"
         },
+        "./domain/state/manager": {
+            "require": "./dist/domain/state/state.manager/index.js",
+            "import": "./dist/domain/state/state.manager/index.mjs",
+            "types": "./dist/domain/state/state.manager/index.d.ts"
+        },
         "./ui": {
             "require": "./dist/domain/state/index.js",
             "import": "./dist/domain/state/index.mjs",
             "types": "./dist/domain/state/index.d.ts"
+        },
+        "./ui/error": {
+            "require": "./dist/ui/error/index.js",
+            "import": "./dist/ui/error/index.mjs",
+            "types": "./dist/ui/error/index.d.ts"
+        },
+        "./ui/error/browser": {
+            "require": "./dist/ui/error/browser/index.js",
+            "import": "./dist/ui/error/browser/index.mjs",
+            "types": "./dist/ui/error/browser/index.d.ts"
+        },
+        "./ui/error/react-native": {
+            "require": "./dist/ui/error/react-native/index.js",
+            "import": "./dist/ui/error/react-native/index.mjs",
+            "types": "./dist/ui/error/react-native/index.d.ts"
         }
     },
     "peerDependencies": {
         "@react-native-async-storage/async-storage": "1.17.11",
+        "@shared/string": "workspace:*",
+        "@shared/utils": "workspace:*",
         "expo-secure-store": "~12.1.1",
-        "zustand": "^4.3.6"
+        "react-native": "0.73.6",
+        "zustand": "^5.0.0-rc.0"
     },
     "devDependencies": {
         "@react-native-async-storage/async-storage": "1.17.11",
+        "@types/react-native": "0.73.0",
         "@shared/eslint": "workspace:*",
+        "@shared/string": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@shared/utils": "workspace:*",
         "@swisstype/essential": "^0.1.1",
         "expo-secure-store": "~12.1.1",
-        "zustand": "^4.3.6",
-        "typescript": "latest"
+        "react-native": "0.73.6",
+        "typescript": "latest",
+        "zustand": "^5.0.0-rc.0"
     }
 }

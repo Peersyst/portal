@@ -9,14 +9,18 @@
         "build": "tsup"
     },
     "dependencies": {
-        "@peersyst/react-components": "^3.9.35",
+        "@peersyst/react-components": "^3.9.35"
+    },
+    "peerDependencies": {
+        "@frontend/config": "workspace:*",
+        "@frontend/design-system-core": "workspace:*",
+        "@frontend/locale": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
         "@chromatic-com/storybook": "^1.6.1",
-        "@eslint/js": "^9.9.0",
         "@frontend/config": "workspace:*",
         "@frontend/design-system-core": "workspace:*",
         "@frontend/locale": "workspace:*",
@@ -34,19 +38,11 @@
         "@types/react-dom": "^18.3.0",
         "@types/styled-components": "^5.1.34",
         "@vitejs/plugin-react": "^4.3.1",
-        "eslint": "^9.9.0",
-        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-        "eslint-plugin-react-refresh": "^0.4.9",
-        "eslint-plugin-storybook": "^0.8.0",
-        "globals": "^15.9.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
         "storybook": "^8.2.9",
-        "typescript": "^5.5.3",
-        "typescript-eslint": "^8.0.1"
-    },
-    "eslintConfig": {
-        "extends": [
-            "plugin:storybook/recommended"
-        ]
+        "styled-components": "^5.3.6",
+        "typescript": "latest"
     },
     "exports": {
         "./button": {
@@ -63,6 +59,11 @@
             "require": "./dist/theme/index.js",
             "import": "./dist/theme/index.mjs",
             "types": "./dist/theme/index.d.ts"
+        },
+        "./styles/global-styles": {
+            "require": "./dist/styles/global-styles.js",
+            "import": "./dist/styles/global-styles.mjs",
+            "types": "./dist/styles/global-styles.d.ts"
         }
     }
 }
