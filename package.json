@@ -24,8 +24,6 @@
         "db:api:pack": "nx run-many --target=db:pack --projects=api"
     },
     "devDependencies": {
-        "node-watch": "^0.7.4",
-        "ora": "^8.0.1",
         "prettier": "^2.8.3",
         "rimraf": "^3.0.2",
         "tsup": "^8.2.4",

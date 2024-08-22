@@ -5,4 +5,4 @@ export type ISettingsState = Settings;
 
 export const defaultSettingsState: ISettingsState = {};
 
-export const createSettingsState = () => createState<ISettingsState>("settings-state", () => defaultSettingsState);
+export const settingsState = createState<ISettingsState>("settings-state", () => defaultSettingsState);

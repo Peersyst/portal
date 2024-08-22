@@ -1,5 +1,15 @@
-import { Factory } from "@shared/utils";
+import { ServiceFactory } from "@frontend/core/data-access/service/factory";
+import { ILocalizationService } from "@frontend/settings/domain/interfaces";
+import { BrowserLocalizationService } from "@frontend/settings/data-access/services/browser";
 
-export interface IServiceFactory {}
+declare module "@frontend/core/data-access/service/factory" {
+    export interface IServiceFactory {
+        localizationService: ILocalizationService;
+    }
+}
 
-export const ServiceFactory = Factory<IServiceFactory>({});
+ServiceFactory.create({
+    localizationService: () => new BrowserLocalizationService(),
+});
+
+export { ServiceFactory } from "@frontend/core/data-access/service/factory";

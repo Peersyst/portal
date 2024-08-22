@@ -1,5 +1,6 @@
 packages:
     - "apps/api"
+    - "apps/mobile"
     - "apps/web"
     - "packages/backend/*"
     - "packages/database/*"

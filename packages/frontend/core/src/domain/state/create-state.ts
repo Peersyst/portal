@@ -1,6 +1,6 @@
 import { createStore, Mutate, StateCreator, StoreApi, StoreMutatorIdentifier } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { StateManager } from "./StateManager";
+import { StateManager } from "./state.manager/index.js";
 
 export type CreateStateOptions = {
     persist?: boolean;
@@ -40,8 +40,7 @@ export function createState<T, Mos extends [StoreMutatorIdentifier, unknown][] =
     }
 
     state.reset = () => {
-        // Idk what this `setState` generic is for...
-        state.setState<any>(state.getInitialState(), true);
+        state.setState(state.getInitialState(), true);
 
         if ("clearStorage" in state && typeof state.clearStorage === "function") state.clearStorage();
     };
