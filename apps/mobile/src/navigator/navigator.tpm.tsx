@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { ModalProvider } from "@peersyst/react-native-components";
-import Stack from "./stack";
+import Stack from "./stack.tmp";
 import { Text, View } from "react-native";
 
 export interface NavigatorProps {

@@ -1,1 +1,1 @@
-export * from "./forwardQueryPlugin";
+export * from "./forward-query-plugin";

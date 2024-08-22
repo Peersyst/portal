@@ -1,5 +1,5 @@
 import "./big-number";
-import "./crypto";
+import "./crypto.tmp";
 
 /*
  * Import atob polyfill since react native does not support it
