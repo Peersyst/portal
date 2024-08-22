@@ -52,13 +52,17 @@
     "peerDependencies": {
         "@frontend/core": "workspace:*",
         "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@tanstack/react-query": "^5.51.15",
         "zustand": "^4.3.6"
     },
     "devDependencies": {
         "@frontend/core": "workspace:*",
         "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@tanstack/react-query": "^5.51.15",
         "typescript": "latest",
         "zustand": "^4.3.6"
     }
