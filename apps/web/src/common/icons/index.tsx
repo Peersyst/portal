@@ -1,1 +1,1 @@
-export { default as DummyIcon } from "./DummyIcon";
+export * from "./dummy.icon";

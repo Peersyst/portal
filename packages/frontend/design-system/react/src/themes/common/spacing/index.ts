@@ -1,3 +1,3 @@
 export * from "./spacing";
 export * from "./spacing.types";
-export * from "./spacingProxy";
+export * from "./spacing.proxy";

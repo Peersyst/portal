@@ -1,3 +1,3 @@
 export * from "./config.utils";
 export * from "./config.validator";
-export * from "./loadAwsSecrets";
+export * from "./load-aws-secrets";

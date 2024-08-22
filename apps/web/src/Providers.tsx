@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
 import { ToastProvider } from "@peersyst/react-components";
-import { QueryClientProvider } from "./query/QueryClientProvider";
+import { QueryClientProvider } from "./query/query-client.provider";
 import { ConfigProvider } from "./config";
-import { ErrorHandler } from "./common/components/feedback/ErrorHandler/ErrorHandler";
+import { ErrorHandler } from "./common/components/feedback/error-handler/error-handler";
 import { ConfigManagerProvider } from "@frontend/config/react";
 import { configManager } from "./core/config";
 

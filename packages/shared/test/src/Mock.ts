@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { OmitType, TypeKeys } from "@swisstype/essential";
-import { MethodMock } from "./MethodMock";
+import { MethodMock } from "./method-mock";
 
 export interface IMock {
     clearMocks(): void;

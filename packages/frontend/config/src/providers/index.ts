@@ -1,1 +1,1 @@
-export * from "./AWSConfigProvider";
+export * from "./aws-config.provider";

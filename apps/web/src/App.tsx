@@ -10,10 +10,10 @@ import "./core/domain/setup";
 // Load locale
 import "./locale";
 
-import Providers from "./Providers";
-import { useInit } from "./common/hooks/useInit";
+import Providers from "./providers";
+import { useInit } from "./common/hooks/use-init";
 import { Suspense } from "react";
-import Router from "./router/Router";
+import Router from "./router/router";
 
 export default function App(): JSX.Element | null {
     const { isLoading } = useInit();

@@ -21,7 +21,7 @@ jest.mock("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/clien
 
 // Mock `configManager`
 jest.mock("../src/core/config", () => {
-    const { ConfigManagerMock } = require("./mocks/config/ConfigManager.mock");
+    const { ConfigManagerMock } = require("./mocks/config/config.manager.mock");
 
     return {
         configManager: new ConfigManagerMock(),

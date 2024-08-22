@@ -1,2 +1,2 @@
-export * from "./settings.repository.interface";
-export * from "./localization.service.interface";
+export * from "./i-settings.repository";
+export * from "./i-localization.service";

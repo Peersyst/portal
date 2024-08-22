@@ -1,1 +1,1 @@
-export * from "./ReactNativeAsyncConfigStorage";
+export * from "./react-native-async-config.storage";

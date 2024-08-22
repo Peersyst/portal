@@ -1,2 +1,2 @@
-import "./BigNumber";
-import "./Buffer";
+import "./big-number";
+import "./buffer";

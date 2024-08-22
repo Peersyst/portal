@@ -1,1 +1,1 @@
-export * from "./useSettingsState";
+export * from "./use-settings-state";
