@@ -1,5 +1,5 @@
 import { IFactory } from "@shared/utils";
 
-export type IDIFactoryInstance<T extends Record<string, any>> = T & {
+export type IDIFactoryInstance<T extends Record<string, any>> = IFactory<T> & {
     create(modules: Record<keyof T, (resolve: T) => T[keyof T]>): IFactory<T>;
 };

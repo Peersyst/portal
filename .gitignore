@@ -30,3 +30,4 @@ docker-data
 # Caches
 .turbo
 .expo
+.cache

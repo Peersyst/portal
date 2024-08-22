@@ -5,19 +5,16 @@
 import "@testing-library/jest-dom";
 
 // Load polyfills
-import "@/core/polyfills";
+import "../src/core/polyfills";
 
 // Set up data access
-import "@/core/data-access/setup";
+import "../src/core/data-access/setup";
 
 // Set up domain
-import "@/core/domain/setup";
+import "../src/core/domain/setup";
 
-// Set jest global
-import { jest as baseJest } from "@jest/globals";
-const globalJest = baseJest as unknown as typeof jest;
-globalJest.mockModule = baseJest.unstable_mockModule;
-global.jest = globalJest;
+// Set up jest
+import "./jest.setup";
 
 // Mock `withRetries` to avoid retries in tests
 jest.mockModule("@shared/utils", () => ({

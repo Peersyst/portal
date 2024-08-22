@@ -13,7 +13,8 @@ export function DIFactory<T extends Record<string, any>>(name: string): IDIFacto
     }
 
     return new Proxy({} as IDIFactoryInstance<T>, {
-        get: function (_target, prop) {
+        get: function (target, prop) {
+            if (prop === "$$typeof") return target[prop];
             if (prop === "create") return create;
             else {
                 if (!_ref) {

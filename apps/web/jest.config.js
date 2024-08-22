@@ -10,23 +10,26 @@ export default {
         ],
         "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest",
     },
+    globals: {
+        "ts-jest": {
+            tsConfig: "./test/tsconfig.json",
+        },
+    },
     transformIgnorePatterns: ["node_modules/(?!variables/.*)"],
     moduleNameMapper: {
         "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/file.mock.js",
         "\\.svg$": "<rootDir>/mocks/svg.mock.js",
         "\\.(css|less|sass)$": "identity-obj-proxy",
-        "^@/(.*)$": "<rootDir>/../src/$1",
     },
     extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
+    setupFilesAfterEnv: ["./test/setup.tsx"],
     collectCoverageFrom: [
-        // UI
         "src/**/*.(ts|js|tsx|jsx)",
         "!src/Providers.tsx",
         "!src/main.tsx",
         "!src/App.tsx",
         "!src/assets/**/*",
         "!src/core/**/*",
-        "!src/error/**/*",
         "!src/locale/**/*",
         "!src/router/**/*",
     ],
