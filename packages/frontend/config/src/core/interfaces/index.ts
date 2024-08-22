@@ -1,2 +1,2 @@
-export * from "./IConfigManager";
-export * from "./IConfigManagerEvents";
+export * from "./i-config.manager";
+export * from "./i-config.manager.events";

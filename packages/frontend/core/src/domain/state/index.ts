@@ -1,2 +1,2 @@
 export * from "./create-state";
-export * from "./State";
+export * from "./state.types";

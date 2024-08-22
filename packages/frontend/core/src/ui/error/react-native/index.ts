@@ -1,1 +1,1 @@
-export * from "./ReactNativeErrorEvent";
+export * from "./react-native-error-event";

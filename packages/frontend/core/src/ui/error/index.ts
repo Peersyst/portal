@@ -1,1 +1,1 @@
-export * from "./UIError";
+export * from "./ui-error";

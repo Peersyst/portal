@@ -1,1 +1,3 @@
-export * from "./Buffer";
+import { Buffer } from "buffer";
+
+globalThis.Buffer = Buffer;

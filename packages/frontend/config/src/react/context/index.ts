@@ -1,1 +1,1 @@
-export * from "./ConfigManagerContext";
+export * from "./config.manager.context";

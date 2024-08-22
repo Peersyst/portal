@@ -1,3 +1,3 @@
 import "./config.types";
 
-export * from "./ConfigProvider";
+export * from "./config.provider";
