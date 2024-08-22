@@ -1,6 +1,6 @@
-import { ControllerFactory } from "@/core/domain/factories/controller.factory";
 import { Locale } from "@frontend/settings";
 import { LanguageDetectorAsyncModule } from "i18next";
+import { ControllerFactory } from "../../core/domain/factories/controller.factory";
 
 export async function detect(): Promise<Locale> {
     try {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { initFactories } from "../utils/factories/initFactories";
-import { configManager } from "@/core/config";
 import { StateManager } from "@frontend/core/domain/state/manager";
+import { initFactories } from "@frontend/core/common/utils/factories";
+import { configManager } from "../../core/config";
 
 export function useInitFactories(): boolean {
     const [isInitialized, setIsInitialized] = useState(false);

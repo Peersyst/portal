@@ -2,7 +2,7 @@ import { EmitterSubscription, DeviceEventEmitter } from "react-native";
 import { AnyObject } from "@swisstype/essential";
 import { UIError, UIErrorSeverity } from "../UIError";
 
-export default class ReactNativeErrorEvent {
+export class ReactNativeErrorEvent {
     static type = `ui-error`;
 
     error: UIError;
