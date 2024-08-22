@@ -23,6 +23,7 @@
         "@aws-sdk/client-appconfigdata": "^3.556.0",
         "@frontend/config": "workspace:*",
         "@frontend/core": "workspace:*",
+        "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@frontend/locale": "workspace:*",
         "@frontend/settings": "workspace:*",
