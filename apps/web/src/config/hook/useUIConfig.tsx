@@ -7,7 +7,7 @@ import { useSettingsState } from "@frontend/settings/ui/state";
 
 const useUIConfig = (): Config => {
     const config = useConfig();
-    const translate = useTranslate("error");
+    const translate = useTranslate();
     const language = useLanguage();
     const settings = useSettingsState();
 
@@ -19,7 +19,7 @@ const useUIConfig = (): Config => {
             theme: settings.theme,
             ...staticUIConfig,
         });
-    }, [config, translate, language, settings]);
+    }, [config, translate, language, settings.theme]);
 
     return uiConfig;
 };
