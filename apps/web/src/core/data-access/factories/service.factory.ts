@@ -1,5 +1,9 @@
-import { Factory } from "@shared/utils";
+import { ServiceFactory } from "@frontend/core/data-access/service/factory";
 
-export interface IServiceFactory {}
+declare module "@frontend/core/data-access/service/factory" {
+    export interface IServiceFactory {}
+}
 
-export const ServiceFactory = Factory<IServiceFactory>({});
+ServiceFactory.create({});
+
+export { ServiceFactory } from "@frontend/core/data-access/service/factory";

@@ -1,5 +1,5 @@
 import { StateStorage } from "zustand/middleware";
-import { IStateManager, States, IStates } from "./StateManager.types";
+import { IStateManager, States, IStates } from "./state.manager.types";
 import { CreateStateReturn } from "../create-state";
 
 class StateManager implements IStateManager {

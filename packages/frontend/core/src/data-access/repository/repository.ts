@@ -1,7 +1,11 @@
-export abstract class Repository<T> {
+import { Singleton } from "../../common/utils/singleton/singleton";
+
+export abstract class Repository<T> extends Singleton {
     protected readonly storageKey: string;
 
     protected constructor(key: string) {
+        super();
+
         this.storageKey = key;
     }
 
