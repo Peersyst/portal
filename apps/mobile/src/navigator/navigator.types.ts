@@ -1,4 +1,4 @@
-import { StackParamList } from "./stack.tmp";
+import { StackParamList } from "./stack";
 
 export type To<
     ParamList extends ReactNavigation.RootParamList = ReactNavigation.RootParamList,

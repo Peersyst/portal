@@ -1,1 +1,1 @@
-export * from "./user.tmp";
+export * from "./user";

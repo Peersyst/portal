@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Pressable } from "react-native";
-import { LinkProps } from "./link.tmp.types";
+import { LinkProps } from "./link.types";
 
 const Link = ({ to, onPress, children, ...linkProps }: LinkProps): JSX.Element => {
     const navigation = useNavigation();
