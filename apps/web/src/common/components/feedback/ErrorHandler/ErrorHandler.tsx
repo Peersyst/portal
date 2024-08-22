@@ -1,27 +1,25 @@
 import { useToast } from "@peersyst/react-components";
 import { PropsWithChildren, useEffect } from "react";
-import UIErrorEvent from "@/error/UIErrorEvent";
 import { useTranslate } from "@frontend/locale/react";
+import { BrowserErrorEvent } from "@frontend/core/ui/error/browser";
 
-const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
+export const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
     const translateError = useTranslate("error");
     const { showToast } = useToast();
 
     useEffect(() => {
-        const handleUiError = (event: UIErrorEvent) => {
+        const handleUiError = (event: BrowserErrorEvent) => {
             showToast(translateError([event.error.message as any, "somethingWentWrong"], event.error.data || {}) as string, {
                 type: event.error.severity,
             });
         };
 
-        UIErrorEvent.addListener(handleUiError);
+        BrowserErrorEvent.addListener(handleUiError);
 
         return () => {
-            UIErrorEvent.removeListener(handleUiError);
+            BrowserErrorEvent.removeListener(handleUiError);
         };
     }, []);
 
     return <>{children}</>;
 };
-
-export default ErrorHandler;
