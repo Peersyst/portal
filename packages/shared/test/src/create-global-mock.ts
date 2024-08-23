@@ -1,6 +1,6 @@
 import { TypeKeys } from "@swisstype/essential";
 import { MethodMock } from "./method-mock";
-import { ExtendedMock, Mock, MockMethods } from "./Mock-temp";
+import { ExtendedMock, Mock, MockMethods } from "./mock";
 
 // TODO: Replace with MethodData to support properties
 
