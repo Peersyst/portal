@@ -1,1 +1,1 @@
-export * from "./LocalStorageConfigStorage";
+export * from "./local-storage-config.storage";

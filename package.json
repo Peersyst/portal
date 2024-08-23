@@ -12,16 +12,7 @@
         "clean": "nx run-many --target=clean",
         "clean:all": "yarn clean && rm -rf .nx/cache && rm -rf node_modules",
         "test": "nx run-many --target=test --output-style=stream --projects",
-        "lint": "nx run-many --target=lint --projects",
-        "run:project": "node ./scripts/run-project-script.js",
-        "new:package": "node scripts/new-package.js",
-        "db:migration:create": "yarn --cwd ./packages/database db:migration:create",
-        "db:migration:generate": "yarn --cwd ./packages/database db:migration:generate",
-        "db:migration:run": "yarn --cwd ./packages/database db:migration:run",
-        "db:migration:revert": "yarn --cwd ./packages/database db:migration:revert",
-        "db:schema:drop": "yarn --cwd ./packages/database db:schema:drop",
-        "db:entities:generate": "yarn --cwd ./packages/database db:entities:generate",
-        "db:api:pack": "nx run-many --target=db:pack --projects=api"
+        "lint": "nx run-many --target=lint --projects"
     },
     "devDependencies": {
         "prettier": "^2.8.3",

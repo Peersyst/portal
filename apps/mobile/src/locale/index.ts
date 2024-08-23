@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import LanguageDetectorPlugin from "./plugins/LanguageDetectorPlugin/LanguageDetectorPlugin";
+import LanguageDetectorPlugin from "./plugins/language-detector.plugin";
 import { resources } from "@frontend/locale/resources";
 
 export const i18nextInitializationPromise = i18next

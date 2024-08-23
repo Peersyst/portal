@@ -54,9 +54,9 @@ jest.mockModule("react-router-dom", () => ({
 }));
 
 // Window mocks
-import { LightMatchMediaMock } from "./mocks/MatchMedia.mock";
-import { IntersectionObserverMock } from "./mocks/IntersectionObserver.mock";
-import { ResizeObserverMock } from "./mocks/ResizeObserver.mock";
+import { LightMatchMediaMock } from "./mocks/match-media.mock";
+import { IntersectionObserverMock } from "./mocks/intersection-observer.mock";
+import { ResizeObserverMock } from "./mocks/resize-observer.mock";
 Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: jest.fn().mockImplementation(LightMatchMediaMock as any),

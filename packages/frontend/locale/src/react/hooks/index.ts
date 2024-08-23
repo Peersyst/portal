@@ -1,2 +1,2 @@
-export * from "./useTranslate";
-export * from "./useLanguage";
+export * from "./use-translate";
+export * from "./use-language";

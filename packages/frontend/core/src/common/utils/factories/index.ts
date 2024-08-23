@@ -1,2 +1,2 @@
-export * from "./initFactories";
-export * from "./loadFactories";
+export * from "./init-factories";
+export * from "./load-factories";

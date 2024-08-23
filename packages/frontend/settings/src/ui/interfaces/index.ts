@@ -1,1 +1,1 @@
-export * from "./settings.controller.interface";
+export * from "./i-settings.controller";
