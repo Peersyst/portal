@@ -4,9 +4,54 @@
     "version": "0.0.0",
     "license": "UNLICENSED",
     "scripts": {
-        "lint": "eslint .",
-        "dev": "storybook dev -p 6006 -c storybook",
-        "build": "tsup"
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "storybook": "storybook dev -p 6006 -c storybook",
+        "generate:icons": "node scripts/icon-generator.js src/assets/icons/ src/components/icons/",
+        "lint": "eslint ."
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/core/index.js",
+            "import": "./dist/core/index.mjs",
+            "types": "./dist/core/index.d.ts"
+        },
+        "./config": {
+            "require": "./dist/config/index.js",
+            "import": "./dist/config/index.mjs",
+            "types": "./dist/config/index.d.ts"
+        },
+        "./themes": {
+            "require": "./dist/themes/index.js",
+            "import": "./dist/themes/index.mjs",
+            "types": "./dist/themes/index.d.ts"
+        },
+        "./theme/types": {
+            "require": "./dist/themes/common/theme.types.js",
+            "import": "./dist/themes/common/theme.types.mjs",
+            "types": "./dist/themes/common/theme.types.d.ts"
+        },
+        "./styles/types": {
+            "require": "./dist/styles/styles.types.js",
+            "import": "./dist/styles/styles.types.mjs",
+            "types": "./dist/styles/styles.types.d.ts"
+        },
+        "./styles/fonts": "./dist/styles/fonts.css",
+        "./styles/global-styles": {
+            "require": "./dist/styles/global-styles.js",
+            "import": "./dist/styles/global-styles.mjs",
+            "types": "./dist/styles/global-styles.d.ts"
+        },
+        "./icons": {
+            "require": "./dist/components/icons/index.js",
+            "import": "./dist/components/icons/index.mjs",
+            "types": "./dist/components/icons/index.d.ts"
+        },
+        "./button": {
+            "require": "./dist/components/button/index.js",
+            "import": "./dist/components/button/index.mjs",
+            "types": "./dist/components/button/index.d.ts"
+        }
     },
     "dependencies": {
         "@peersyst/react-components": "^3.9.35"
@@ -43,27 +88,5 @@
         "storybook": "^8.2.9",
         "styled-components": "^5.3.6",
         "typescript": "latest"
-    },
-    "exports": {
-        "./button": {
-            "require": "./dist/components/button/index.js",
-            "import": "./dist/components/button/index.mjs",
-            "types": "./dist/components/button/index.d.ts"
-        },
-        "./config": {
-            "require": "./dist/config/index.js",
-            "import": "./dist/config/index.mjs",
-            "types": "./dist/config/index.d.ts"
-        },
-        "./theme": {
-            "require": "./dist/theme/index.js",
-            "import": "./dist/theme/index.mjs",
-            "types": "./dist/theme/index.d.ts"
-        },
-        "./styles/global-styles": {
-            "require": "./dist/styles/global-styles.js",
-            "import": "./dist/styles/global-styles.mjs",
-            "types": "./dist/styles/global-styles.d.ts"
-        }
     }
 }

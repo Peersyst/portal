@@ -6,7 +6,8 @@ import { CoreConfig } from "./types";
  */
 export const config: CoreConfig = {
     version: 0,
-    projectName: "peersyst",
+    projectName: "",
     publicUrl: "/",
     backendUrl: "http://localhost:3001",
+    theme: "default",
 };

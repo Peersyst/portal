@@ -6,5 +6,5 @@
         "allowImportingTsExtensions": true,
         "useDefineForClassFields": true
     },
-    "include": ["src"]
+    "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
