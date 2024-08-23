@@ -1,1 +1,1 @@
-export * from "./BrowserErrorEvent";
+export * from "./browser-error-event";

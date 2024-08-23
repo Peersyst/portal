@@ -1,3 +1,3 @@
-export * from "./useConfigManagerContext";
-export * from "./useConfigManager";
-export * from "./useConfig";
+export * from "./use-config-manager-context";
+export * from "./use-config-manager";
+export * from "./use-config";
