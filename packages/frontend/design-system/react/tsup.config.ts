@@ -6,7 +6,6 @@ export default defineConfig((options: Options) => ({
     format: ["esm", "cjs"],
     dts: true,
     minify: true,
-    external: ["react"],
     esbuildOptions(options) {
         options.assetNames = "[dir]/[name]";
     },

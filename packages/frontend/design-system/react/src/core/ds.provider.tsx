@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ConfigProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
 import { StyleSheetManager } from "styled-components";
