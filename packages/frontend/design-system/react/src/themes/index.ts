@@ -1,7 +1,7 @@
-import { CreateTheme } from "@peersyst/react-components";
 import { defaultLightTheme, defaultDarkTheme } from "./default";
+import { Themes } from "@frontend/design-system-core/themes";
 
-export const themes: Record<string, { light: CreateTheme; dark: CreateTheme }> = {
+export const themes: Themes = {
     default: {
         light: defaultLightTheme,
         dark: defaultDarkTheme,
