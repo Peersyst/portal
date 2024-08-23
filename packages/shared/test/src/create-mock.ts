@@ -1,5 +1,5 @@
 import { MethodMock } from "./method-mock";
-import { Mock, ExtendedMock, MockData } from "./Mock-temp";
+import { Mock, ExtendedMock, MockData } from "./mock";
 
 /**
  * Creates a global mock
