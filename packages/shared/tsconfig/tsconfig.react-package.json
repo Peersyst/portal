@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.browser-package.json",
     "compilerOptions": {
-        "jsx": "preserve",
-        "lib": ["ES2022", "DOM", "DOM.Iterable"]
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
+        "jsx": "react-jsx"
     }
 }
