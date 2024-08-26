@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import "./fonts.css"
 
 export const GlobalStyles = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
