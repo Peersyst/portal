@@ -10,6 +10,9 @@ import "./core/domain/setup";
 // Load locale
 import "./locale";
 
+// Load design system fonts
+import "@frontend/design-system-react/styles/fonts";
+
 import Providers from "./providers";
 import { useInit } from "./common/hooks/use-init";
 import { Suspense } from "react";

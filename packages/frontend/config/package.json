@@ -36,6 +36,7 @@
     },
     "peerDependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
+        "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.21.0",
@@ -45,6 +46,7 @@
     },
     "devDependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
+        "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.21.0",

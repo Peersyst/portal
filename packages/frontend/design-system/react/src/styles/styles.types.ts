@@ -1,11 +1,7 @@
-import "styled-components";
-import "@peersyst/react-components";
-import { Theme } from "@peersyst/react-components";
 import "styled-components/cssprop";
-import { CSSProp } from "styled-components";
 
-// Custom components theme
-declare module "@peersyst/react-components" {}
+import { Theme } from "@peersyst/react-components";
+import { CSSProp } from "styled-components";
 
 // Type styled components theme with our components theme
 declare module "styled-components" {
