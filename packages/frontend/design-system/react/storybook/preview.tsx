@@ -1,6 +1,5 @@
 import type { Preview } from "@storybook/react";
-import React from "react";
-import { ConfigProvider } from "../src/config";
+import { DSProvider } from "../src/core";
 
 const preview: Preview = {
     parameters: {
@@ -14,9 +13,9 @@ const preview: Preview = {
     },
     decorators: [
         (Story) => (
-            <ConfigProvider>
+            <DSProvider projectName="design-system">
                 <Story />
-            </ConfigProvider>
+            </DSProvider>
         ),
     ],
 };
