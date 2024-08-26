@@ -1,5 +1,3 @@
-import "./fonts.css";
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -31,7 +29,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     color: #121212;
-    font-family: sans-serif;
+    font-family: Montserrat;
     font-size: clamp(14px, 1.5vw, 16px);
   }
 

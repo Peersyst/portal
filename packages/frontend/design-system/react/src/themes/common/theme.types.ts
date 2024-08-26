@@ -1,17 +1,15 @@
 import type {} from "react";
-import type { CSSProp } from "styled-components";
 import type {} from "@peersyst/react-components";
-import type { Theme } from "@peersyst/react-components";
 import type { ThemeSpacing } from "./spacing";
-// import type { TypographyVariantsOverrides as ProjectTypographyVariantsOverrides } from "./common/typography";
 import type { SpecificPalette } from "./palette/types";
 import { GeneralPalette } from "@frontend/design-system-core/palette";
+import { MergedTypographyVariantsOverrides } from "./typography/typography.types";
 
 // Custom components theme
 declare module "@peersyst/react-components" {
     export interface ThemePalette extends GeneralPalette, SpecificPalette {}
 
-    // export interface TypographyVariantsOverrides extends ProjectTypographyVariantsOverrides {}
+    export interface TypographyVariantsOverrides extends MergedTypographyVariantsOverrides {}
 
     export interface CreateTheme {
         spacing: ThemeSpacing;
@@ -29,17 +27,5 @@ declare module "@peersyst/react-components" {
         borderRadiusSm: string;
         borderRadiusLg: string;
         borderRadiusMax: string;
-    }
-}
-
-// Type styled components theme with our components theme
-declare module "styled-components" {
-    export interface DefaultTheme extends Theme {}
-}
-
-// Use css prop in components
-declare module "react" {
-    export interface Attributes {
-        css?: CSSProp<Theme>;
     }
 }
