@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { DSProvider } from "../src/core";
+import "../src/styles/fonts.css"
 
 const preview: Preview = {
     parameters: {
