@@ -18,7 +18,7 @@ export function formatMonthYear<T extends TLocale>(
 
         const year = new Intl.DateTimeFormat(locale, { year: options.year }).format(finalDate);
         return `${month} ${year}`;
-    } catch (e) {
+    } catch (_e) {
         return date?.toString() || "";
     }
 }

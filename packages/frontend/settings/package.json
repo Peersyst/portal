@@ -5,68 +5,71 @@
     "license": "UNLICENSED",
     "scripts": {
         "dev": "tsup --watch",
-        "build": "tsup"
+        "build": "tsup",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
     },
     "exports": {
         ".": {
+            "types": "./dist/common/index.d.ts",
             "require": "./dist/common/index.js",
-            "import": "./dist/common/index.mjs",
-            "types": "./dist/common/index.d.ts"
+            "import": "./dist/common/index.mjs"
         },
         "./data-access/services/browser": {
+            "types": "./dist/data-access/services/browser/index.d.ts",
             "require": "./dist/data-access/services/browser/index.js",
-            "import": "./dist/data-access/services/browser/index.mjs",
-            "types": "./dist/data-access/services/browser/index.d.ts"
+            "import": "./dist/data-access/services/browser/index.mjs"
         },
         "./data-access/services/react-native": {
+            "types": "./dist/data-access/services/react-native/index.d.ts",
             "require": "./dist/data-access/services/react-native/index.js",
-            "import": "./dist/data-access/services/react-native/index.mjs",
-            "types": "./dist/data-access/services/react-native/index.d.ts"
+            "import": "./dist/data-access/services/react-native/index.mjs"
         },
         "./data-access/repositories": {
+            "types": "./dist/data-access/repositories/index.d.ts",
             "require": "./dist/data-access/repositories/index.js",
-            "import": "./dist/data-access/repositories/index.mjs",
-            "types": "./dist/data-access/repositories/index.d.ts"
+            "import": "./dist/data-access/repositories/index.mjs"
         },
         "./domain/controllers": {
+            "types": "./dist/domain/controllers/index.d.ts",
             "require": "./dist/domain/controllers/index.js",
-            "import": "./dist/domain/controllers/index.mjs",
-            "types": "./dist/domain/controllers/index.d.ts"
+            "import": "./dist/domain/controllers/index.mjs"
         },
         "./domain/decorators": {
+            "types": "./dist/domain/decorators/index.d.ts",
             "require": "./dist/domain/decorators/index.js",
-            "import": "./dist/domain/decorators/index.mjs",
-            "types": "./dist/domain/decorators/index.d.ts"
+            "import": "./dist/domain/decorators/index.mjs"
         },
         "./domain/errors": {
+            "types": "./dist/domain/settings.errors.d.ts",
             "require": "./dist/domain/settings.errors.js",
-            "import": "./dist/domain/settings.errors.mjs",
-            "types": "./dist/domain/settings.errors.d.ts"
+            "import": "./dist/domain/settings.errors.mjs"
         },
         "./domain/events": {
+            "types": "./dist/domain/settings.events.d.ts",
             "require": "./dist/domain/settings.events.js",
-            "import": "./dist/domain/settings.events.mjs",
-            "types": "./dist/domain/settings.events.d.ts"
+            "import": "./dist/domain/settings.events.mjs"
         },
         "./domain/state": {
+            "types": "./dist/domain/settings.state.d.ts",
             "require": "./dist/domain/settings.state.js",
-            "import": "./dist/domain/settings.state.mjs",
-            "types": "./dist/domain/settings.state.d.ts"
+            "import": "./dist/domain/settings.state.mjs"
         },
         "./domain/interfaces": {
+            "types": "./dist/domain/interfaces/index.d.ts",
             "require": "./dist/domain/interfaces/index.js",
-            "import": "./dist/domain/interfaces/index.mjs",
-            "types": "./dist/domain/interfaces/index.d.ts"
+            "import": "./dist/domain/interfaces/index.mjs"
         },
         "./ui/state": {
+            "types": "./dist/ui/state/index.d.ts",
             "require": "./dist/ui/state/index.js",
-            "import": "./dist/ui/state/index.mjs",
-            "types": "./dist/ui/state/index.d.ts"
+            "import": "./dist/ui/state/index.mjs"
         },
         "./ui/interfaces": {
+            "types": "./dist/ui/interfaces/index.d.ts",
             "require": "./dist/ui/interfaces/index.js",
-            "import": "./dist/ui/interfaces/index.mjs",
-            "types": "./dist/ui/interfaces/index.d.ts"
+            "import": "./dist/ui/interfaces/index.mjs"
         }
     },
     "peerDependencies": {
@@ -83,6 +86,7 @@
         "@frontend/query": "workspace:*",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
         "@tanstack/react-query": "^5.51.15",
         "expo-localization": "~14.8.4",
         "typescript": "latest",

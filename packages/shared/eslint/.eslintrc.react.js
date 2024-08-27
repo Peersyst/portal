@@ -1,0 +1,25 @@
+module.exports = {
+    extends: ["./.eslintrc.base.js", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:react-hooks/recommended"],
+    plugins: ["react"],
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+        },
+        ecmaVersion: 2021,
+        sourceType: "module",
+    },
+    rules: {
+        "react-hooks/exhaustive-deps": "off",
+        "react/no-unknown-property": ["error", { ignore: ["css"] }],
+    },
+    env: {
+        browser: true,
+        node: true,
+    },
+    settings: {
+        react: {
+            pragma: "React",
+            version: "detect",
+        },
+    },
+};

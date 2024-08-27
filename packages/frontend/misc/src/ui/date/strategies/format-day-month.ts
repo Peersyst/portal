@@ -19,7 +19,7 @@ export function formatDayMonth<T extends TLocale>(
         }
 
         return `${month} ${day}`;
-    } catch (e) {
+    } catch (_e) {
         return date.toString();
     }
 }

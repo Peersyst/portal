@@ -34,10 +34,10 @@ jest.mockModule("../src/core/config", () => {
     };
 });
 
-// Add es module to `@peersyst/react-components`
-jest.mockModule("@peersyst/react-components", () => ({
+// Add es module to `@frontend/design-system-react`
+jest.mockModule("@frontend/design-system-react", () => ({
     __esModule: true,
-    ...(jest.requireActual("@peersyst/react-components") as any),
+    ...(jest.requireActual("@frontend/design-system-react") as any),
 }));
 
 // Add es module to `react-transition-group`

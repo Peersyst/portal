@@ -11,7 +11,7 @@ export function formatMonth<T extends TLocale>(
         const finalDate = new Date(date);
         const month = capitalize(new Intl.DateTimeFormat(locale, { month: options.month }).format(finalDate));
         return `${month}`;
-    } catch (e) {
+    } catch (_e) {
         return date?.toString() || "";
     }
 }
