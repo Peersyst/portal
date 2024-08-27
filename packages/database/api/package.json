@@ -6,6 +6,9 @@
     "scripts": {
         "dev": "tsup --watch",
         "build": "tsup",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit",
         "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
         "db:migration:create": "yarn typeorm migration:create",
         "db:migration:generate": "yarn typeorm migration:generate",
@@ -15,29 +18,29 @@
     },
     "exports": {
         "./config": {
+            "types": "./dist/config.d.ts",
             "require": "./dist/config.js",
-            "import": "./dist/config.mjs",
-            "types": "./dist/config.d.ts"
+            "import": "./dist/config.mjs"
         },
         "./data-source": {
+            "types": "./dist/data-source.d.ts",
             "require": "./dist/data-source.js",
-            "import": "./dist/data-source.mjs",
-            "types": "./dist/data-source.d.ts"
+            "import": "./dist/data-source.mjs"
         },
         "./entities": {
+            "types": "./dist/entities/index.d.ts",
             "require": "./dist/entities/index.js",
-            "import": "./dist/entities/index.mjs",
-            "types": "./dist/entities/index.d.ts"
+            "import": "./dist/entities/index.mjs"
         },
         "./seed/seeder": {
+            "types": "./dist/seed/seeder.d.ts",
             "require": "./dist/seed/seeder.js",
-            "import": "./dist/seed/seeder.mjs",
-            "types": "./dist/seed/seeder.d.ts"
+            "import": "./dist/seed/seeder.mjs"
         },
         "./seed/seeds": {
+            "types": "./dist/seed/seeds/index.d.ts",
             "require": "./dist/seed/seeds/index.js",
-            "import": "./dist/seed/seeds/index.mjs",
-            "types": "./dist/seed/seeds/index.d.ts"
+            "import": "./dist/seed/seeds/index.mjs"
         }
     },
     "peerDependencies": {
@@ -55,6 +58,7 @@
         "@nestjs/config": "^3.1.1",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
         "@types/node": "22.2.0",
         "passport-jwt": "4.0.1",
         "typeorm": "^0.3.0",

@@ -5,28 +5,31 @@
     "license": "UNLICENSED",
     "scripts": {
         "dev": "tsup --watch",
-        "build": "tsup"
+        "build": "tsup",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
     },
     "exports": {
         "./ui/date": {
+            "types": "./dist/ui/date/index.d.ts",
             "require": "./dist/ui/date/index.js",
-            "import": "./dist/ui/date/index.mjs",
-            "types": "./dist/ui/date/index.d.ts"
+            "import": "./dist/ui/date/index.mjs"
         },
         "./ui/date/constants": {
+            "types": "./dist/ui/date/constants/index.d.ts",
             "require": "./dist/ui/date/constants/index.js",
-            "import": "./dist/ui/date/constants/index.mjs",
-            "types": "./dist/ui/date/constants/index.d.ts"
+            "import": "./dist/ui/date/constants/index.mjs"
         },
         "./ui/date/react": {
+            "types": "./dist/ui/date/react/index.d.ts",
             "require": "./dist/ui/date/react/index.js",
-            "import": "./dist/ui/date/react/index.mjs",
-            "types": "./dist/ui/date/react/index.d.ts"
+            "import": "./dist/ui/date/react/index.mjs"
         },
         "./ui/dimensions": {
+            "types": "./dist/ui/dimensions/index.d.ts",
             "require": "./dist/ui/dimensions/index.js",
-            "import": "./dist/ui/dimensions/index.mjs",
-            "types": "./dist/ui/dimensions/index.d.ts"
+            "import": "./dist/ui/dimensions/index.mjs"
         }
     },
     "peerDependencies": {
@@ -39,6 +42,7 @@
         "@peersyst/react-utils": "^2.5.0",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
         "@types/react": "^18.3.4",
         "react": "^18.3.1",
         "typescript": "latest"

@@ -15,7 +15,7 @@ export function formatMinimalDate<T extends TLocale>(
         const month = capitalize(new Intl.DateTimeFormat(locale, { month: options.month }).format(finalDate));
         const year = new Intl.DateTimeFormat(locale, { year: options.year }).format(finalDate);
         return `${weekday}, ${day} ${month} ${year}`;
-    } catch (e) {
+    } catch (_e) {
         return date?.toString() || "";
     }
 }

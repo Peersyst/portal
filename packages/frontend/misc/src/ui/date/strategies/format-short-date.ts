@@ -15,7 +15,7 @@ export function formatShortDate<T extends TLocale>(
         const month = new Intl.DateTimeFormat(locale, { month: options.month }).format(finalDate).toLowerCase();
         const year = new Intl.DateTimeFormat(locale, { year: options.year }).format(finalDate);
         return `${weekday} ${day} ${month} ${year}`;
-    } catch (e) {
+    } catch (_e) {
         return date?.toString() || "";
     }
 }

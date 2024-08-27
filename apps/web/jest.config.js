@@ -12,7 +12,7 @@ export default {
     },
     globals: {
         "ts-jest": {
-            tsConfig: "./test/tsconfig.json",
+            tsConfig: "./tsconfig.app.json",
         },
     },
     transformIgnorePatterns: ["node_modules/(?!variables/.*)"],

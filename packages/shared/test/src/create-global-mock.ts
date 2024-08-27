@@ -4,7 +4,7 @@ import { ExtendedMock, Mock, MockMethods } from "./mock";
 
 // TODO: Replace with MethodData to support properties
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export type MockDataMethods<C extends object> = Pick<MockMethods<keyof C>, TypeKeys<C, Function>>;
 
 /**

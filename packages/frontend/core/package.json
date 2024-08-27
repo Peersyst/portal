@@ -5,108 +5,111 @@
     "license": "UNLICENSED",
     "scripts": {
         "dev": "tsup --watch",
-        "build": "tsup"
+        "build": "tsup",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
     },
     "exports": {
         "./common/utils/singleton": {
+            "types": "./dist/common/utils/singleton/index.d.ts",
             "require": "./dist/common/utils/singleton/index.js",
-            "import": "./dist/common/utils/singleton/index.mjs",
-            "types": "./dist/common/utils/singleton/index.d.ts"
+            "import": "./dist/common/utils/singleton/index.mjs"
         },
         "./common/utils/factories": {
+            "types": "./dist/common/utils/factories/index.d.ts",
             "require": "./dist/common/utils/factories/index.js",
-            "import": "./dist/common/utils/factories/index.mjs",
-            "types": "./dist/common/utils/factories/index.d.ts"
+            "import": "./dist/common/utils/factories/index.mjs"
         },
         "./data-access/api/factory": {
+            "types": "./dist/data-access/api/factory/index.d.ts",
             "require": "./dist/data-access/api/factory/index.js",
-            "import": "./dist/data-access/api/factory/index.mjs",
-            "types": "./dist/data-access/api/factory/index.d.ts"
+            "import": "./dist/data-access/api/factory/index.mjs"
         },
         "./data-access/api/error": {
+            "types": "./dist/data-access/api/error/index.d.ts",
             "require": "./dist/data-access/api/error/index.js",
-            "import": "./dist/data-access/api/error/index.mjs",
-            "types": "./dist/data-access/api/error/index.d.ts"
+            "import": "./dist/data-access/api/error/index.mjs"
         },
         "./data-access/repository": {
+            "types": "./dist/data-access/repository/index.d.ts",
             "require": "./dist/data-access/repository/index.js",
-            "import": "./dist/data-access/repository/index.mjs",
-            "types": "./dist/data-access/repository/index.d.ts"
+            "import": "./dist/data-access/repository/index.mjs"
         },
         "./data-access/repository/factory": {
+            "types": "./dist/data-access/repository/factory/index.d.ts",
             "require": "./dist/data-access/repository/factory/index.js",
-            "import": "./dist/data-access/repository/factory/index.mjs",
-            "types": "./dist/data-access/repository/factory/index.d.ts"
+            "import": "./dist/data-access/repository/factory/index.mjs"
         },
         "./data-access/repository/browser": {
+            "types": "./dist/data-access/repository/browser/index.d.ts",
             "require": "./dist/data-access/repository/browser/index.js",
-            "import": "./dist/data-access/repository/browser/index.mjs",
-            "types": "./dist/data-access/repository/browser/index.d.ts"
+            "import": "./dist/data-access/repository/browser/index.mjs"
         },
         "./data-access/repository/expo": {
+            "types": "./dist/data-access/repository/expo/index.d.ts",
             "require": "./dist/data-access/repository/expo/index.js",
-            "import": "./dist/data-access/repository/expo/index.mjs",
-            "types": "./dist/data-access/repository/expo/index.d.ts"
+            "import": "./dist/data-access/repository/expo/index.mjs"
         },
         "./data-access/repository/react-native": {
+            "types": "./dist/data-access/repository/react-native/index.d.ts",
             "require": "./dist/data-access/repository/react-native/index.js",
-            "import": "./dist/data-access/repository/react-native/index.mjs",
-            "types": "./dist/data-access/repository/react-native/index.d.ts"
+            "import": "./dist/data-access/repository/react-native/index.mjs"
         },
         "./data-access/service": {
+            "types": "./dist/data-access/service/index.d.ts",
             "require": "./dist/data-access/service/index.js",
-            "import": "./dist/data-access/service/index.mjs",
-            "types": "./dist/data-access/service/index.d.ts"
+            "import": "./dist/data-access/service/index.mjs"
         },
         "./data-access/service/factory": {
+            "types": "./dist/data-access/service/factory/index.d.ts",
             "require": "./dist/data-access/service/factory/index.js",
-            "import": "./dist/data-access/service/factory/index.mjs",
-            "types": "./dist/data-access/service/factory/index.d.ts"
+            "import": "./dist/data-access/service/factory/index.mjs"
         },
         "./domain/controller": {
+            "types": "./dist/domain/controller/index.d.ts",
             "require": "./dist/domain/controller/index.js",
-            "import": "./dist/domain/controller/index.mjs",
-            "types": "./dist/domain/controller/index.d.ts"
+            "import": "./dist/domain/controller/index.mjs"
         },
         "./domain/controller/factory": {
+            "types": "./dist/domain/controller/factory/index.d.ts",
             "require": "./dist/domain/controller/factory/index.js",
-            "import": "./dist/domain/controller/factory/index.mjs",
-            "types": "./dist/domain/controller/factory/index.d.ts"
+            "import": "./dist/domain/controller/factory/index.mjs"
         },
         "./domain/error": {
+            "types": "./dist/domain/error/index.d.ts",
             "require": "./dist/domain/error/index.js",
-            "import": "./dist/domain/error/index.mjs",
-            "types": "./dist/domain/error/index.d.ts"
+            "import": "./dist/domain/error/index.mjs"
         },
         "./domain/state": {
+            "types": "./dist/domain/state/index.d.ts",
             "require": "./dist/domain/state/index.js",
-            "import": "./dist/domain/state/index.mjs",
-            "types": "./dist/domain/state/index.d.ts"
+            "import": "./dist/domain/state/index.mjs"
         },
         "./domain/state/manager": {
+            "types": "./dist/domain/state/state.manager/index.d.ts",
             "require": "./dist/domain/state/state.manager/index.js",
-            "import": "./dist/domain/state/state.manager/index.mjs",
-            "types": "./dist/domain/state/state.manager/index.d.ts"
+            "import": "./dist/domain/state/state.manager/index.mjs"
         },
         "./ui": {
+            "types": "./dist/domain/state/index.d.ts",
             "require": "./dist/domain/state/index.js",
-            "import": "./dist/domain/state/index.mjs",
-            "types": "./dist/domain/state/index.d.ts"
+            "import": "./dist/domain/state/index.mjs"
         },
         "./ui/error": {
+            "types": "./dist/ui/error/index.d.ts",
             "require": "./dist/ui/error/index.js",
-            "import": "./dist/ui/error/index.mjs",
-            "types": "./dist/ui/error/index.d.ts"
+            "import": "./dist/ui/error/index.mjs"
         },
         "./ui/error/browser": {
+            "types": "./dist/ui/error/browser/index.d.ts",
             "require": "./dist/ui/error/browser/index.js",
-            "import": "./dist/ui/error/browser/index.mjs",
-            "types": "./dist/ui/error/browser/index.d.ts"
+            "import": "./dist/ui/error/browser/index.mjs"
         },
         "./ui/error/react-native": {
+            "types": "./dist/ui/error/react-native/index.d.ts",
             "require": "./dist/ui/error/react-native/index.js",
-            "import": "./dist/ui/error/react-native/index.mjs",
-            "types": "./dist/ui/error/react-native/index.d.ts"
+            "import": "./dist/ui/error/react-native/index.mjs"
         }
     },
     "peerDependencies": {
@@ -123,6 +126,7 @@
         "@shared/eslint": "workspace:*",
         "@shared/string": "workspace:*",
         "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
         "@shared/utils": "workspace:*",
         "@swisstype/essential": "^0.1.1",
         "expo-secure-store": "~12.1.1",
