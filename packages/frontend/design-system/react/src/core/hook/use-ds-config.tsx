@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useTranslate, useLanguage } from "@frontend/locale/react";
 import { DSConfigOptions } from "../ds.types";
 import { themes } from "../../themes";
+import { dsConfig } from "../ds.config";
 
 /**
  * Uses de design system configuration
@@ -26,6 +27,7 @@ export function useDSConfig({ projectName, themeKey, themeMode, ...restConfig }:
             translate,
             locale: language,
             theme: themeMode,
+            ...dsConfig,
             ...restConfig,
         });
     }, [translate, language, themeKey, themeMode]);
