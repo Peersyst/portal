@@ -5,17 +5,18 @@
     "author": "Peersyst",
     "private": true,
     "scripts": {
-        "prebuild": "rimraf dist",
+        "start": "nest start --watch",
         "build": "nest build",
-        "dev": "nest start --watch",
-        "test": "jest --coverage --maxWorkers=30%",
-        "test:unit": "jest --watch",
+        "clean": "rimraf .turbo coverage dist node_modules",
+        "test": "jest  --maxWorkers=30%",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
         "test:e2e": "jest --config ./test/jest-e2e.json --coverage",
-        "clean": "rimraf dist coverage node_modules",
-        "lint": "eslint . --ext .ts,.json --max-warnings=0",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit",
         "ts-script": "env-cmd --silent ts-node --skipProject --compilerOptions '{\"module\":\"NodeNext\",\"target\":\"ES2022\",\"moduleResolution\":\"NodeNext\",\"esModuleInterop\":true,\"skipLibCheck\":true,\"allowJs\":true,\"resolveJsonModule\":true,\"isolatedModules\":true,\"strict\":true,\"forceConsistentCasingInFileNames\":true,\"strictPropertyInitialization\":false,\"declaration\":false,\"removeComments\":true,\"sourceMap\":true,\"emitDecoratorMetadata\":true,\"experimentalDecorators\":true}'",
-        "db:seed": "pnpm ts-script src/seed/cmd/seed.ts",
-        "db:pack": "pnpm ts-script src/seed/cmd/pack.ts"
+        "db:seed": "nr ts-script src/seed/cmd/seed.ts",
+        "db:pack": "nr ts-script src/seed/cmd/pack.ts"
     },
     "jest": {
         "moduleFileExtensions": [
@@ -69,6 +70,7 @@
         "class-transformer": "0.5.1",
         "class-validator": "0.14.0",
         "cross-env": "^7.0.3",
+        "express": "^4.19.2",
         "express-openapi-validator": "^5.0.1",
         "helmet": "^6.0.1",
         "morgan": "^1.10.0",
@@ -79,7 +81,6 @@
         "passport-local": "1.0.0",
         "pg": "^8.9.0",
         "reflect-metadata": "0.1.13",
-        "rimraf": "4.1.2",
         "rxjs": "^7.8.0",
         "swagger-ui-express": "4.6.0",
         "typeorm": "^0.3.12",

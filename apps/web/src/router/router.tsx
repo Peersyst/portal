@@ -1,4 +1,4 @@
-import { ModalProvider } from "@peersyst/react-components";
+import { ModalProvider } from "@frontend/design-system-react/modal";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import ScrollToTop from "./components/scroll-to-top/scroll-to-top";
 

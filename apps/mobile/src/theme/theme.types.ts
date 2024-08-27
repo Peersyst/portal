@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-import "@peersyst/react-native-styled";
+import {} from "@peersyst/react-native-styled";
 import { Theme as RNCTheme } from "@peersyst/react-native-components";
 
 // Custom components theme

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { ToastProvider } from "@peersyst/react-components";
+import { ToastProvider } from "@frontend/design-system-react/toast";
 import { QueryClientProvider } from "./query/query-client.provider";
 import { ErrorHandler } from "./common/components/feedback/error-handler/error-handler";
 import { ConfigManagerProvider } from "@frontend/config/react";

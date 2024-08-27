@@ -3,21 +3,22 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "genesys": "genesys",
+        "build": "npx turbo run build && echo '🚀 Build completed'",
+        "clean": "npx turbo run clean && echo 'root: cleaning' && rimraf node_modules .turbo && echo '\n🧼 Clean completed'",
+        "test": "npx turbo run test && echo '🧪 Test completed'",
+        "lint": "npx turbo run lint && echo '🧹 Lint completed'",
+        "check-types": "npx turbo run check-types && echo '🔎 Check types completed'",
         "docker:start:dev": "docker-compose up -d",
         "docker:build:api": "docker build -f ./apps/api/Dockerfile -t api .",
         "docker:build:indexer": "docker build -f ./apps/indexer/Dockerfile -t indexer .",
-        "docker:build:app": "docker build -f ./apps/app/Dockerfile -t app .",
-        "build": "turbo run build",
-        "dev": "turbo run dev",
-        "clean": "nx run-many --target=clean",
-        "clean:all": "yarn clean && rm -rf .nx/cache && rm -rf node_modules",
-        "test": "nx run-many --target=test --output-style=stream --projects",
-        "lint": "nx run-many --target=lint --projects"
+        "docker:build:app": "docker build -f ./apps/app/Dockerfile -t app ."
     },
     "devDependencies": {
+        "@antfu/ni": "^0.22.4",
+        "@shared/cli": "workspace:*",
         "prettier": "^2.8.3",
-        "rimraf": "^3.0.2",
-        "tsup": "^8.2.4",
+        "rimraf": "^6.0.1",
         "turbo": "^2.0.12"
     },
     "packageManager": "pnpm@9.7.0"

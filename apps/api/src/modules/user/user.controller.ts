@@ -22,7 +22,6 @@ export class UserController {
     @Get("info")
     @ApiOperation({ summary: "Show user info" })
     @Authenticated()
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     async info(@Request() req: any): Promise<UserDto> {
         return this.userService.findById(req.user.id);
     }
