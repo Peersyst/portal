@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { OmitType, TypeKeys } from "@swisstype/essential";
 import { MethodMock } from "./method-mock";
 

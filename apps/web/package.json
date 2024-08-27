@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite",
+        "start": "vite",
         "preview": "vite preview",
         "generate": "npm run generate:images",
         "generate:images": "node script/images-generator.cjs src/assets/images/",
@@ -14,9 +14,9 @@
         "test:watch": "test --watch",
         "test:debug": "jest --no-cache --runInBand",
         "test:ci": "jest --runInBand",
-        "check-types": "tsc --noemit",
-        "lint": "eslint . --ext .ts,.json --max-warnings=0 && yarn check-types",
-        "lint:fix": "eslint . --ext .ts,.json --max-warnings=0 --fix && yarn check-types"
+        "clean": "rimraf .turbo node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
     },
     "dependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
@@ -27,7 +27,6 @@
         "@frontend/events": "workspace:*",
         "@frontend/locale": "workspace:*",
         "@frontend/settings": "workspace:*",
-        "@peersyst/react-components": "^3.9.34",
         "@peersyst/react-hooks": "^2.2.15",
         "@peersyst/react-utils": "^2.5.0",
         "@shared/api": "workspace:*",

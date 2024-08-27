@@ -12,9 +12,9 @@ export const browserCookies = {
         document.cookie = cookie + ";path=/";
     },
     get(name: string): string | undefined {
-        let cookieName = name + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
+        const cookieName = name + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const ca = decodedCookie.split(";");
         for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
             while (c.charAt(0) == " ") {

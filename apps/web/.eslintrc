@@ -1,6 +1,0 @@
-{
-    "extends": ["@shared/eslint/react"],
-    "rules": {
-        "react/no-unknown-property": ["error", { "ignore": ["css"] }]
-    }
-}

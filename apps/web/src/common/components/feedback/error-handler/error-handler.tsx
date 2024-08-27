@@ -1,4 +1,4 @@
-import { useToast } from "@peersyst/react-components";
+import { useToast } from "@frontend/design-system-react/toast";
 import { PropsWithChildren, useEffect } from "react";
 import { useTranslate } from "@frontend/locale/react";
 import { BrowserErrorEvent } from "@frontend/core/ui/error/browser";

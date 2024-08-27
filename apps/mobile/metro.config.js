@@ -19,9 +19,6 @@ const defaultConfig = getDefaultConfig(projectRoot);
  * @returns {import('expo/metro-config').MetroConfig}
  */
 function withMonorepoPaths(config) {
-    const projectRoot = __dirname;
-    const workspaceRoot = path.resolve(projectRoot, "../..");
-
     // Watch all files in the monorepo
     config.watchFolders = [workspaceRoot];
 
