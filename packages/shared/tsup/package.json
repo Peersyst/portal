@@ -20,7 +20,7 @@
     "devDependencies": {
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
-        "@types/node": "^22.2.0",
+        "@types/node": "latest",
         "tsup": "^8.2.4",
         "typescript": "latest"
     }

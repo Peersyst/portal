@@ -59,7 +59,7 @@
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
-        "@types/node": "22.2.0",
+        "@types/node": "latest",
         "passport-jwt": "4.0.1",
         "typeorm": "^0.3.0",
         "typescript": "latest"
