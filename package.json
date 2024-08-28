@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "genesys": "genesys",
+        "watch": "npx turbo run dev --concurrency=1000 --filter",
         "build": "npx turbo run build && echo '🚀 Build completed'",
         "build:packages": "npx turbo run build --filter=\"./packages/**/*\" && echo '🚀 Build packages completed'",
         "clean": "npx turbo run clean && echo 'root: cleaning' && rimraf node_modules .turbo && echo '\n🧼 Clean completed'",
@@ -18,11 +19,11 @@
         "docker:build:app": "docker build -f ./apps/app/Dockerfile -t app ."
     },
     "devDependencies": {
-        "@antfu/ni": "^0.22.4",
+        "@antfu/ni": "^0.23.0",
         "@shared/cli": "workspace:*",
-        "prettier": "^2.8.3",
+        "prettier": "^3.3.3",
         "rimraf": "^6.0.1",
-        "turbo": "^2.0.12",
+        "turbo": "^2.1.0",
         "tsup": "^8.2.4"
     },
     "packageManager": "pnpm@9.7.0"
