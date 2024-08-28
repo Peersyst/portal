@@ -44,7 +44,7 @@ spec:
             secretProviderClass: api-{{ .Values.environment }}-secrets
       containers:
       - name: api
-        image: peersyst/base-project-api:{{ .Values.tagApi }}
+        image: peersyst/genesys-api:{{ .Values.tagApi }}
         imagePullPolicy: Always
         resources:
           requests:

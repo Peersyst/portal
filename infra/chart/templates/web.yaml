@@ -37,7 +37,7 @@ spec:
       serviceAccountName: peersyst-secrets-iamserviceaccount
       containers:
       - name: web
-        image: peersyst/base-project-web:{{ .Values.tagWeb }}
+        image: peersyst/genesys-web:{{ .Values.tagWeb }}
         imagePullPolicy: Always
         resources:
           requests:

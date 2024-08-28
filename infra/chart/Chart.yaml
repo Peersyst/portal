@@ -1,4 +1,4 @@
 apiVersion: v2
-name: BASE-PROJECT
-description: base-project
+name: GENESYS
+description: genesys
 version: 1.0.0+${TAG}
