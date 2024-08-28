@@ -30,6 +30,11 @@
             "types": "./dist/ui/dimensions/index.d.ts",
             "require": "./dist/ui/dimensions/index.js",
             "import": "./dist/ui/dimensions/index.mjs"
+        },
+        "./ui/number/react": {
+            "types": "./dist/ui/number/react/index.d.ts",
+            "require": "./dist/ui/number/react/index.js",
+            "import": "./dist/ui/number/react/index.mjs"
         }
     },
     "peerDependencies": {
