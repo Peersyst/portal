@@ -4,6 +4,7 @@ import { useTranslate, useLanguage } from "@frontend/locale/react";
 import { DSConfigOptions } from "../ds.types";
 import { themes } from "../../themes";
 import { dsConfig } from "../ds.config";
+import { deepmerge } from "@peersyst/react-utils";
 
 /**
  * Uses de design system configuration
@@ -14,6 +15,7 @@ import { dsConfig } from "../ds.config";
 export function useDSConfig({ projectName, themeKey, themeMode, ...restConfig }: DSConfigOptions): Config {
     const translate = useTranslate("error");
     const language = useLanguage();
+    const staticConfig = deepmerge(dsConfig, restConfig);
 
     const uiConfig: Config = useMemo(() => {
         const theme = themes[themeKey ?? "default"];
@@ -27,8 +29,7 @@ export function useDSConfig({ projectName, themeKey, themeMode, ...restConfig }:
             translate,
             locale: language,
             theme: themeMode,
-            ...dsConfig,
-            ...restConfig,
+            ...staticConfig,
         });
     }, [translate, language, themeKey, themeMode]);
 
