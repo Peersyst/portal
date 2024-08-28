@@ -6,7 +6,7 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: {{ .Values.ingress.certificate }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
-    alb.ingress.kubernetes.io/load-balancer-name: base-project-{{ .Values.environment }}
+    alb.ingress.kubernetes.io/load-balancer-name: genesys-{{ .Values.environment }}
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     {{- if .Values.api.enabled }}
@@ -17,7 +17,7 @@ metadata:
     alb.ingress.kubernetes.io/actions.web-{{ .Values.environment }}: >
       {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"web-{{ .Values.environment }}","servicePort":"web","weight":20}]}}
     {{- end }}
-  name: base-project-{{ .Values.environment }}
+  name: genesys-{{ .Values.environment }}
   namespace: {{ .Values.ingress.namespace }}
 spec:
   ingressClassName: alb
