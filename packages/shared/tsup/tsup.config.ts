@@ -1,8 +1,7 @@
-import { defineConfig, Options } from "./src";
+import { defineConfig } from "./src";
 
-export default defineConfig((options: Options) => ({
+export default defineConfig({
     entry: ["src/**/*.ts"],
     format: ["esm", "cjs"],
     dts: true,
-    ...options,
-}));
+});

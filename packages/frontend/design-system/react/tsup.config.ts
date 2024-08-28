@@ -1,7 +1,7 @@
-import { defineConfig, Options } from "@shared/tsup";
+import { defineConfig } from "@shared/tsup";
 
-export default defineConfig((options: Options) => ({
-    entry: ["src/**/*.ts", "src/**/*.tsx", "src/assets/fonts/*.ttf", "src/styles/fonts.css"],
+export default defineConfig({
+    entry: ["src"],
     format: ["esm", "cjs"],
     dts: true,
     esbuildOptions(options) {
@@ -11,5 +11,4 @@ export default defineConfig((options: Options) => ({
         ".ttf": "file",
         ".css": "file",
     },
-    ...options,
-}));
+});
