@@ -1,14 +1,17 @@
 {
-    "name": "base-project",
+    "name": "genesys",
     "private": true,
     "type": "module",
     "scripts": {
         "genesys": "genesys",
         "watch": "npx turbo run dev --concurrency=1000 --filter",
         "build": "npx turbo run build && echo '🚀 Build completed'",
+        "build:packages": "npx turbo run build --filter=\"./packages/**/*\" && echo '🚀 Build packages completed'",
         "clean": "npx turbo run clean && echo 'root: cleaning' && rimraf node_modules .turbo && echo '\n🧼 Clean completed'",
         "test": "npx turbo run test && echo '🧪 Test completed'",
+        "test:packages": "npx turbo run test --filter=\"./packages/**/*\" && echo '🧪 Test packages completed'",
         "lint": "npx turbo run lint && echo '🧹 Lint completed'",
+        "lint:packages": "npx turbo run lint --filter=\"./packages/**/*\" && echo '🧹 Lint packages completed'",
         "check-types": "npx turbo run check-types && echo '🔎 Check types completed'",
         "docker:start:dev": "docker-compose up -d",
         "docker:build:api": "docker build -f ./apps/api/Dockerfile -t api .",
@@ -20,7 +23,8 @@
         "@shared/cli": "workspace:*",
         "prettier": "^3.3.3",
         "rimraf": "^6.0.1",
-        "turbo": "^2.1.0"
+        "turbo": "^2.1.0",
+        "tsup": "^8.2.4"
     },
     "packageManager": "pnpm@9.7.0"
 }
