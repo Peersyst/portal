@@ -28,6 +28,11 @@
             "require": "./dist/themes/index.js",
             "import": "./dist/themes/index.mjs"
         },
+        "./theme": {
+            "types": "./dist/themes/common/index.d.ts",
+            "require": "./dist/themes/common/index.js",
+            "import": "./dist/themes/common/index.mjs"
+        },
         "./theme/types": {
             "types": "./dist/themes/common/theme.types.d.ts",
             "require": "./dist/themes/common/theme.types.js",

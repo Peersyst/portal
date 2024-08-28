@@ -1,6 +1,9 @@
+import "../src/styles/fonts.css";
+
 import type { Preview } from "@storybook/react";
 import { DSProvider } from "../src/core";
-import "../src/styles/fonts.css"
+import { ToastProvider } from "../src/components/toast";
+import { ModalProvider } from "../src/components/modal";
 
 const preview: Preview = {
     parameters: {
@@ -15,7 +18,11 @@ const preview: Preview = {
     decorators: [
         (Story) => (
             <DSProvider projectName="design-system">
-                <Story />
+                <ToastProvider>
+                    <ModalProvider>
+                        <Story />
+                    </ModalProvider>
+                </ToastProvider>
             </DSProvider>
         ),
     ],
