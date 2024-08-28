@@ -1,0 +1,68 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        type: choice
+        description: Package
+        options:
+          - api
+          - app
+          - web
+      commit_branch:
+        description: The branch or the commit sha to push tag to
+        required: true
+      tag:
+        description: The tag of the release
+        required: true
+      is_latest_release:
+        description: Is this the latest release
+        type: boolean
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.commit_branch }}
+      # - name: Check package.json version
+      #   working-directory: app/${{ github.event.inputs.package }}
+      #   shell: bash
+      #   run: |
+      #     TAG="${{ github.event.inputs.tag }}"
+      #     VERSION=${TAG:1}
+      #     PACKAGE_VERSION=$(jq -r '.version' package.json)
+      #     if [[ $PACKAGE_VERSION != $VERSION ]]; then
+      #       echo "Invalid package.json version number, please update the version to ${{ github.event.inputs.tag }}"
+      #       exit 1
+      #     fi
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+      # Docker login
+      - uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PUSH_TOKEN }}
+      # Build and push docker image
+      - name: Build docker image
+        uses: docker/build-push-action@v4
+        with:
+          file: docker/${{ github.event.inputs.package }}.Dockerfile
+          target: release
+          push: ${{ github.event.inputs.package != 'app' }}
+          build-args: |
+            EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}
+            PROFILES=staging
+          tags: |
+            peersyst/genesys-${{ github.event.inputs.package }}:${{ github.event.inputs.tag }}
+            ${{ fromJSON(format('["", "peersyst/genesys-{0}:latest"]', github.event.inputs.package))[github.event.inputs.is_latest_release == 'true'] }}
+      # Build and push docker image
+      - name: Generate Github release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.inputs.package }}@${{ github.event.inputs.tag }}
+          tag_name: ${{ github.event.inputs.package }}@${{ github.event.inputs.tag }}
+          target_commitish: ${{ github.event.inputs.commit_branch }}
