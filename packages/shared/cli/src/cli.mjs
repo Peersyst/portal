@@ -31,6 +31,12 @@ if (group) {
         exec(`npx nr genesys deps ${target} dev`);
     }
 
+    // TODO: Support packages
+    if (group === GROUPS.pkg) {
+        console.error("Packages are not yet supported");
+        process.exit(1);
+    }
+
     if (group === GROUPS.app || group === GROUPS.pkg) {
         const targetScript =
             group === GROUPS.app
@@ -43,8 +49,12 @@ if (group) {
         // Runs the dependencies script in a new terminal
         spawnTerminal(`cd ${process.cwd()} && node ${__dirname}/turbo.mjs ${script} --filter=${target}^... ${args.slice(3).join(" ")}`);
     }
+
+    process.exit(0);
 } else {
     console.error(`Invalid group: ${groupArg}.
 Available groups: ${Object.keys(GROUPS).join(", ")}
 Usage: genesys [group] [target] [...args]`);
+
+    process.exit(1);
 }
