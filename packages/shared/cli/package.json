@@ -14,14 +14,14 @@
         "check-types": "npx tsc --noEmit"
     },
     "peerDependencies": {
-        "turbo": "^2.0.12"
+        "turbo": "^2.1.0"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
-        "@types/node": "^22.2.0",
-        "turbo": "^2.0.12",
+        "@types/node": "latest",
+        "turbo": "^2.1.0",
         "typescript": "latest"
     }
 }

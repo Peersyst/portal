@@ -1,6 +1,6 @@
-import { defineConfig, Options } from "@shared/tsup";
+import { defineConfig } from "@shared/tsup";
 
-export default defineConfig((options: Options) => ({
+export default defineConfig({
     entry: ["src/**/*"],
     format: ["esm", "cjs"],
     dts: true,
@@ -10,5 +10,4 @@ export default defineConfig((options: Options) => ({
     loader: {
         ".json": "file",
     },
-    ...options,
-}));
+});

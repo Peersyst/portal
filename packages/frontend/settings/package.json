@@ -76,7 +76,7 @@
         "@frontend/core": "workspace:*",
         "@frontend/events": "workspace:*",
         "@frontend/query": "workspace:*",
-        "@tanstack/react-query": "^5.51.15",
+        "@tanstack/react-query": "^5.52.2",
         "expo-localization": "~14.8.4",
         "zustand": "^5.0.0-rc.0"
     },
@@ -87,7 +87,7 @@
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
-        "@tanstack/react-query": "^5.51.15",
+        "@tanstack/react-query": "^5.52.2",
         "expo-localization": "~14.8.4",
         "typescript": "latest",
         "zustand": "^5.0.0-rc.0"

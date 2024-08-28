@@ -24,9 +24,9 @@
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
-        "@types/node": "^22.2.0",
-        "@types/validator": "^13.11.9",
+        "@types/node": "latest",
+        "@types/validator": "^13.12.1",
         "typescript": "latest",
-        "validator": "13.11.0"
+        "validator": "13.12.0"
     }
 }

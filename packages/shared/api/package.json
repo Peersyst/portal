@@ -22,7 +22,7 @@
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
-        "@types/node": "^22.2.0",
+        "@types/node": "latest",
         "openapi-typescript": "^7.3.0",
         "openapi-typescript-codegen": "^0.29.0",
         "typescript": "latest"
