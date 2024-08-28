@@ -1,5 +1,5 @@
 import { CreateTheme } from "@peersyst/react-components";
-import { baseTheme } from "../common";
+import { baseTheme } from "../common/base";
 import { defaultLightPalette } from "./palette/light";
 import { defaultDarkPalette } from "./palette/dark";
 
