@@ -1,4 +1,4 @@
-ARG BASE_TAG=latest
+ARG BASE_IMAGE=latest
 FROM ${BASE_IMAGE} as integration
 
 COPY apps/web /project/apps/web
