@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 
 // Load polyfills
-import "../src/core/polyfills";
+import "../src/polyfills";
 
 // Set up data access
 import "../src/core/data-access/setup";

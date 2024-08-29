@@ -1,5 +1,5 @@
 import { OpenAPI } from "@shared/api";
-import { configManager } from "../config";
+import { configManager } from "../../config";
 
 // import RepositoryFactory from "@/domain/adapter/RepositoryFactory";
 

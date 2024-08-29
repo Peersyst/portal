@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@antfu/ni':
-        specifier: ^0.22.4
-        version: 0.22.4
+        specifier: ^0.23.0
+        version: 0.23.0
       '@shared/cli':
         specifier: workspace:*
         version: link:packages/shared/cli
       prettier:
-        specifier: ^2.8.3
-        version: 2.8.8
+        specifier: ^3.3.3
+        version: 3.3.3
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -24,8 +24,8 @@ importers:
         specifier: ^8.2.4
         version: 8.2.4(postcss@8.4.41)(typescript@5.5.4)(yaml@2.5.0)
       turbo:
-        specifier: ^2.0.12
-        version: 2.0.14
+        specifier: ^2.1.0
+        version: 2.1.0
 
   apps/api:
     dependencies:
@@ -213,6 +213,9 @@ importers:
       '@frontend/locale':
         specifier: workspace:*
         version: link:../../packages/frontend/locale
+      '@frontend/query':
+        specifier: workspace:*
+        version: link:../../packages/frontend/query
       '@frontend/settings':
         specifier: workspace:*
         version: link:../../packages/frontend/settings
@@ -255,12 +258,9 @@ importers:
       '@tanstack/query-async-storage-persister':
         specifier: ^5.51.17
         version: 5.52.0
-      '@tanstack/react-query':
-        specifier: ^5.51.18
-        version: 5.52.0(react@18.3.1)
       '@tanstack/react-query-persist-client':
         specifier: ^5.51.18
-        version: 5.52.0(@tanstack/react-query@5.52.0(react@18.3.1))(react@18.3.1)
+        version: 5.52.0(@tanstack/react-query@5.52.2(react@18.3.1))(react@18.3.1)
       bignumber.js:
         specifier: ^9.1.2
         version: 9.1.2
@@ -445,6 +445,9 @@ importers:
       '@frontend/locale':
         specifier: workspace:*
         version: link:../../packages/frontend/locale
+      '@frontend/query':
+        specifier: workspace:*
+        version: link:../../packages/frontend/query
       '@frontend/settings':
         specifier: workspace:*
         version: link:../../packages/frontend/settings
@@ -469,12 +472,9 @@ importers:
       '@tanstack/query-sync-storage-persister':
         specifier: ^5.51.15
         version: 5.52.0
-      '@tanstack/react-query':
-        specifier: ^5.51.15
-        version: 5.52.0(react@18.3.1)
       '@tanstack/react-query-persist-client':
         specifier: ^5.51.15
-        version: 5.52.0(@tanstack/react-query@5.52.0(react@18.3.1))(react@18.3.1)
+        version: 5.52.0(@tanstack/react-query@5.52.2(react@18.3.1))(react@18.3.1)
       bignumber.js:
         specifier: ^9.1.2
         version: 9.1.2
@@ -773,9 +773,6 @@ importers:
       '@swisstype/essential':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.5.4)
-      '@types/react-native':
-        specifier: 0.73.0
-        version: 0.73.0(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.3.1)
       expo-secure-store:
         specifier: ~12.1.1
         version: 12.1.1(expo@50.0.20(@babel/core@7.25.2)(@react-native/babel-preset@0.73.21(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))))
@@ -977,6 +974,10 @@ importers:
         version: 5.5.4
 
   packages/frontend/query:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.52.2
+        version: 5.52.2(react@18.3.1)
     devDependencies:
       '@shared/eslint':
         specifier: workspace:*
@@ -990,9 +991,6 @@ importers:
       '@swisstype/essential':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.5.4)
-      '@tanstack/react-query':
-        specifier: ^5.52.2
-        version: 5.52.2(react@18.3.1)
       typescript:
         specifier: latest
         version: 5.5.4
@@ -1017,9 +1015,6 @@ importers:
       '@shared/tsup':
         specifier: workspace:*
         version: link:../../shared/tsup
-      '@tanstack/react-query':
-        specifier: ^5.52.2
-        version: 5.52.2(react@18.3.1)
       expo-localization:
         specifier: ~14.8.4
         version: 14.8.4(expo@50.0.20(@babel/core@7.25.2)(@react-native/babel-preset@0.73.21(@babel/core@7.25.2)))
@@ -1236,8 +1231,8 @@ packages:
     resolution: {integrity: sha512-QRVEYpIfgkprNHc916JlPuNbLzOgrm9DZalHasnLUz4P6g7pR21olb8YCyM2OTJjombNhya9ZpckcADU5Qyvlg==}
     engines: {node: ^18.13.0 || >=20.9.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
-  '@antfu/ni@0.22.4':
-    resolution: {integrity: sha512-uCzh43cmUwQQcgv2BPyo0JWOMgXhcaE+F2I6Ucmfc7f9ir52lfA4OtZXdfL5D8cMa5GAwuCSNqOshIol8YN82g==}
+  '@antfu/ni@0.23.0':
+    resolution: {integrity: sha512-R5/GkA3PfGewAXLzz6lN5XagunF6PKeDtWt8dbZQXvHfebLS0qEczV+Azg/d+tKgSh6kRBpxvu8oSjARdPtw0A==}
     hasBin: true
 
   '@apidevtools/json-schema-ref-parser@11.7.0':
@@ -2573,7 +2568,7 @@ packages:
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {'0': node >=0.10.0}
+    engines: {node: '>=0.10.0'}
 
   '@expo/cli@0.17.13':
     resolution: {integrity: sha512-n13yxOmI3I0JidzMdFCH68tYKGDtK4XlDFk1vysZX7AIRKeDVRsSbHhma5jCla2bDt25RKmJBHA9KtzielwzAA==}
@@ -3959,11 +3954,6 @@ packages:
       '@tanstack/react-query': ^5.52.0
       react: ^18 || ^19
 
-  '@tanstack/react-query@5.52.0':
-    resolution: {integrity: sha512-T8tLZdPEopSD3A1EBZ/sq7WkI76pKLKKiT82F486K8wf26EPgYCdeiSnJfuayssdQjWwLQMQVl/ROUBNmlWgCQ==}
-    peerDependencies:
-      react: ^18.0.0
-
   '@tanstack/react-query@5.52.2':
     resolution: {integrity: sha512-d4OwmobpP+6+SvuAxW1RzAY95Pv87Gu+0GjtErzFOUXo+n0FGcwxKvzhswCsXKxsgnAr3bU2eJ2u+GXQAutkCQ==}
     peerDependencies:
@@ -4204,10 +4194,6 @@ packages:
 
   '@types/react-native@0.71.13':
     resolution: {integrity: sha512-UBYrqo7AFmQdABbx0yuygRkLpTUsoWaERgvFCU4OxsY8SnYmS+n6ACbWV+GuUY8eBIcbfgrbPAVuwTW/1fpRYQ==}
-
-  '@types/react-native@0.73.0':
-    resolution: {integrity: sha512-6ZRPQrYM72qYKGWidEttRe6M5DZBEV5F+MHMHqd4TTYx0tfkcdrUFGdef6CCxY0jXU7wldvd/zA/b0A/kTeJmA==}
-    deprecated: This is a stub types definition. react-native provides its own type definitions, so you do not need this installed.
 
   '@types/react@18.3.4':
     resolution: {integrity: sha512-J7W30FTdfCxDDjmfRM+/JqLHBIyl7xUIp9kwK637FGmY7+mkSFSe6L4jpZzhj5QMfLssSDP4/i75AKkrdC7/Jw==}
@@ -8245,11 +8231,6 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
@@ -9503,19 +9484,9 @@ packages:
   tty-browserify@0.0.1:
     resolution: {integrity: sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==}
 
-  turbo-darwin-64@2.0.14:
-    resolution: {integrity: sha512-kwfDmjNwlNfvtrvT29+ZBg5n1Wvxl891bFHchMJyzMoR0HOE9N1NSNdSZb9wG3e7sYNIu4uDkNk+VBEqJW0HzQ==}
-    cpu: [x64]
-    os: [darwin]
-
   turbo-darwin-64@2.1.0:
     resolution: {integrity: sha512-gHwpDk2gyB7qZ57gUUwDIS/IkglqEjjVtPZCTxmCRg28Tiwjui0azsLVKrnHP9UZHllozwbi28x8HXLXLEFF1w==}
     cpu: [x64]
-    os: [darwin]
-
-  turbo-darwin-arm64@2.0.14:
-    resolution: {integrity: sha512-m3LXYEshCx3wc4ZClM6gb01KYpFmtjQ9IBF3A7ofjb6ahux3xlYZJZ3uFCLAGHuvGLuJ3htfiPbwlDPTdknqqw==}
-    cpu: [arm64]
     os: [darwin]
 
   turbo-darwin-arm64@2.1.0:
@@ -9523,19 +9494,9 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.0.14:
-    resolution: {integrity: sha512-7vBzCPdoTtR92SNn2JMgj1FlMmyonGmpMaQdgAB1OVYtuQ6NVGoh7/lODfaILqXjpvmFSVbpBIDrKOT6EvcprQ==}
-    cpu: [x64]
-    os: [linux]
-
   turbo-linux-64@2.1.0:
     resolution: {integrity: sha512-VzBOsj7JyGoZtiNZZ6brjnY7UehRnClluw7pwznuLPzClkqOOPMd2jOcgkWxnP/xW4NBmOoFANXXrtvKBD4f2w==}
     cpu: [x64]
-    os: [linux]
-
-  turbo-linux-arm64@2.0.14:
-    resolution: {integrity: sha512-jwH+c0bfjpBf26K/tdEFatmnYyXwGROjbr6bZmNcL8R+IkGAc/cglL+OToqJnQZTgZvH7uDGbeSyUo7IsHyjuA==}
-    cpu: [arm64]
     os: [linux]
 
   turbo-linux-arm64@2.1.0:
@@ -9543,29 +9504,15 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@2.0.14:
-    resolution: {integrity: sha512-w9/XwkHSzvLjmioo6cl3S1yRfI6swxsV1j1eJwtl66JM4/pn0H2rBa855R0n7hZnmI6H5ywLt/nLt6Ae8RTDmw==}
-    cpu: [x64]
-    os: [win32]
-
   turbo-windows-64@2.1.0:
     resolution: {integrity: sha512-iSobNud2MrJ1SZ1upVPlErT8xexsr0MQtKapdfq6z0M0rBnrDGEq5bUCSScWyGu+O4+glB4br9xkTAkGFqaxqQ==}
     cpu: [x64]
-    os: [win32]
-
-  turbo-windows-arm64@2.0.14:
-    resolution: {integrity: sha512-XaQlyYk+Rf4xS5XWCo8XCMIpssgGGy8blzLfolN6YBp4baElIWMlkLZHDbGyiFmCbNf9I9gJI64XGRG+LVyyjA==}
-    cpu: [arm64]
     os: [win32]
 
   turbo-windows-arm64@2.1.0:
     resolution: {integrity: sha512-d61jN4rjE5PnUfF66GKrKoj8S8Ql4FGXzFFzZz4kjsHpZZzCTtqlzPZBmd1byzGYhDPTorTqG3G1USohbdyohA==}
     cpu: [arm64]
     os: [win32]
-
-  turbo@2.0.14:
-    resolution: {integrity: sha512-00JjdCMD/cpsjP0Izkjcm8Oaor5yUCfDwODtaLb+WyblyadkaDEisGhy3Dbd5az9n+5iLSPiUgf+WjPbns6MRg==}
-    hasBin: true
 
   turbo@2.1.0:
     resolution: {integrity: sha512-A969/LO/sPHKlapIarY2VVzqQ5JnnW2/1kksZlnMEpsRD6gwOELvVL+ozfMiO7av9RILt3UeN02L17efr6HUCA==}
@@ -10259,7 +10206,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@antfu/ni@0.22.4': {}
+  '@antfu/ni@0.23.0': {}
 
   '@apidevtools/json-schema-ref-parser@11.7.0':
     dependencies:
@@ -14720,15 +14667,10 @@ snapshots:
       '@tanstack/query-core': 5.52.0
       '@tanstack/query-persist-client-core': 5.52.0
 
-  '@tanstack/react-query-persist-client@5.52.0(@tanstack/react-query@5.52.0(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-query-persist-client@5.52.0(@tanstack/react-query@5.52.2(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/query-persist-client-core': 5.52.0
-      '@tanstack/react-query': 5.52.0(react@18.3.1)
-      react: 18.3.1
-
-  '@tanstack/react-query@5.52.0(react@18.3.1)':
-    dependencies:
-      '@tanstack/query-core': 5.52.0
+      '@tanstack/react-query': 5.52.2(react@18.3.1)
       react: 18.3.1
 
   '@tanstack/react-query@5.52.2(react@18.3.1)':
@@ -15000,18 +14942,6 @@ snapshots:
   '@types/react-native@0.71.13':
     dependencies:
       '@types/react': 18.3.4
-
-  '@types/react-native@0.73.0(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.3.1)':
-    dependencies:
-      react-native: 0.73.6(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.3.1)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/preset-env'
-      - bufferutil
-      - encoding
-      - react
-      - supports-color
-      - utf-8-validate
 
   '@types/react@18.3.4':
     dependencies:
@@ -20423,8 +20353,6 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@2.8.8: {}
-
   prettier@3.3.3: {}
 
   pretty-bytes@5.6.0: {}
@@ -21924,50 +21852,23 @@ snapshots:
 
   tty-browserify@0.0.1: {}
 
-  turbo-darwin-64@2.0.14:
-    optional: true
-
   turbo-darwin-64@2.1.0:
-    optional: true
-
-  turbo-darwin-arm64@2.0.14:
     optional: true
 
   turbo-darwin-arm64@2.1.0:
     optional: true
 
-  turbo-linux-64@2.0.14:
-    optional: true
-
   turbo-linux-64@2.1.0:
-    optional: true
-
-  turbo-linux-arm64@2.0.14:
     optional: true
 
   turbo-linux-arm64@2.1.0:
     optional: true
 
-  turbo-windows-64@2.0.14:
-    optional: true
-
   turbo-windows-64@2.1.0:
-    optional: true
-
-  turbo-windows-arm64@2.0.14:
     optional: true
 
   turbo-windows-arm64@2.1.0:
     optional: true
-
-  turbo@2.0.14:
-    optionalDependencies:
-      turbo-darwin-64: 2.0.14
-      turbo-darwin-arm64: 2.0.14
-      turbo-linux-64: 2.0.14
-      turbo-linux-arm64: 2.0.14
-      turbo-windows-64: 2.0.14
-      turbo-windows-arm64: 2.0.14
 
   turbo@2.1.0:
     optionalDependencies:

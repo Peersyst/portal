@@ -1,4 +1,4 @@
-import { InfiniteQueryObserverResult, QueryKey, UseQueryOptions, UseMutationOptions } from "@tanstack/react-query";
+import { QueryKey, UseQueryOptions, UseMutationOptions } from "@tanstack/react-query";
 
 export type UseExternalQueryOptions<
     TQueryFnData = unknown,
@@ -11,5 +11,3 @@ export type UseExternalMutationOptions<TData = unknown, TError = Error, TVariabl
     UseMutationOptions<TData, TError, TVariables, TContext>,
     "mutationFn"
 >;
-
-export type UseInfiniteQueryResult<TData = unknown, TError = Error> = InfiniteQueryObserverResult<TData, TError>;

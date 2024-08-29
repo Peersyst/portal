@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useAppState } from "../state/app.state";
 import { useInitFactories } from "./use-init-factories";
 import { useLoad } from "./use-load";
-import { configManager } from "../../core/config";
-import { i18nextInitializationPromise } from "../../locale";
+import { configManager } from "../../../config";
+import { i18nextInitializationPromise } from "../../../locale";
 
 export interface UseLoadResult {
     isLoading: boolean;
