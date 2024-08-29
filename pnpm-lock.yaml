@@ -761,6 +761,9 @@ importers:
       '@shared/string':
         specifier: workspace:*
         version: link:../../shared/string
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../../shared/test
       '@shared/tsconfig':
         specifier: workspace:*
         version: link:../../shared/tsconfig
@@ -1009,15 +1012,27 @@ importers:
       '@shared/eslint':
         specifier: workspace:*
         version: link:../../shared/eslint
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../../shared/test
       '@shared/tsconfig':
         specifier: workspace:*
         version: link:../../shared/tsconfig
       '@shared/tsup':
         specifier: workspace:*
         version: link:../../shared/tsup
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.12
       expo-localization:
         specifier: ~14.8.4
         version: 14.8.4(expo@50.0.20(@babel/core@7.25.2)(@react-native/babel-preset@0.73.21(@babel/core@7.25.2)))
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.5.1)(ts-node@10.9.2(@types/node@22.5.1)(typescript@5.5.4))
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.1)(ts-node@10.9.2(@types/node@22.5.1)(typescript@5.5.4)))(typescript@5.5.4)
       typescript:
         specifier: latest
         version: 5.5.4
