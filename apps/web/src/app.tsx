@@ -1,5 +1,5 @@
 // Load polyfills
-import "./core/polyfills";
+import "./polyfills";
 
 // Set up data access
 import "./core/data-access/setup";
@@ -14,7 +14,7 @@ import "./locale";
 import "@frontend/design-system-react/styles/fonts";
 
 import Providers from "./providers";
-import { useInit } from "./common/hooks/use-init";
+import { useInit } from "./modules/common/hooks/use-init";
 import { Suspense } from "react";
 import Router from "./router/router";
 

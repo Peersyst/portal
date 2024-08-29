@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { loadFactories } from "@frontend/core/common/utils/factories";
-import { configManager } from "../../core/config";
+import { configManager } from "../../../config";
 
 export function useLoad(areFactoriesInitialized: boolean): boolean {
     const [isLoaded, setIsLoaded] = useState(false);

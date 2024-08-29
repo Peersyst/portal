@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { QueryClient, QueryClientConfig, QueryCache } from "@tanstack/react-query";
+import { QueryClient, QueryClientConfig, QueryCache } from "@frontend/query/react";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { isDomainError } from "@frontend/core/domain/error";
