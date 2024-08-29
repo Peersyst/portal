@@ -26,7 +26,7 @@ jest.mockModule("@shared/utils", () => ({
 jest.mockModule("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));
 
 // Mock `configManager`
-jest.mockModule("../src/core/config", () => {
+jest.mockModule("../src/config", () => {
     const { ConfigManagerMock } = require("./mocks/config/ConfigManager.mock");
 
     return {

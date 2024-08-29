@@ -110,7 +110,8 @@
             "types": "./dist/ui/error/react-native/index.d.ts",
             "require": "./dist/ui/error/react-native/index.js",
             "import": "./dist/ui/error/react-native/index.mjs"
-        }
+        },
+        "./mocks/data-access/repository": "./test/mocks/data-access/repository/index.ts"
     },
     "peerDependencies": {
         "@react-native-async-storage/async-storage": "1.17.11",
@@ -124,6 +125,7 @@
         "@react-native-async-storage/async-storage": "1.17.11",
         "@shared/eslint": "workspace:*",
         "@shared/string": "workspace:*",
+        "@shared/test": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@shared/utils": "workspace:*",

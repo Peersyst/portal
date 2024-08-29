@@ -1,6 +1,13 @@
 export default {
     testEnvironment: "jsdom",
+    globals: {
+        "ts-jest": {
+            tsConfig: "./tsconfig.app.json",
+        },
+    },
     moduleDirectories: ["src", "node_modules"],
+    extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
+    setupFilesAfterEnv: ["./test/setup.tsx"],
     transform: {
         "\\.[jt]sx?$": [
             "ts-jest",
@@ -10,19 +17,12 @@ export default {
         ],
         "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest",
     },
-    globals: {
-        "ts-jest": {
-            tsConfig: "./tsconfig.app.json",
-        },
-    },
     transformIgnorePatterns: ["node_modules/(?!variables/.*)"],
     moduleNameMapper: {
         "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/file.mock.js",
         "\\.svg$": "<rootDir>/mocks/svg.mock.js",
         "\\.(css|less|sass)$": "identity-obj-proxy",
     },
-    extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
-    setupFilesAfterEnv: ["./test/setup.tsx"],
     collectCoverageFrom: [
         "src/**/*.(ts|js|tsx|jsx)",
         "!src/Providers.tsx",
