@@ -17,7 +17,7 @@
             "import": "./dist/react/index.mjs"
         }
     },
-    "dependencies": {
+    "peerDependencies": {
         "@tanstack/react-query": "^5.52.2"
     },
     "devDependencies": {
@@ -25,6 +25,7 @@
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@swisstype/essential": "^0.1.1",
+        "@tanstack/react-query": "^5.52.2",
         "typescript": "latest"
     }
 }

@@ -34,6 +34,7 @@
         "@shared/string": "workspace:*",
         "@shared/utils": "workspace:*",
         "@tanstack/query-sync-storage-persister": "^5.51.15",
+        "@tanstack/react-query": "^5.52.2",
         "@tanstack/react-query-persist-client": "^5.51.15",
         "bignumber.js": "^9.1.2",
         "buffer": "^6.0.3",
