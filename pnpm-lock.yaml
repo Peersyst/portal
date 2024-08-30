@@ -472,6 +472,9 @@ importers:
       '@tanstack/query-sync-storage-persister':
         specifier: ^5.51.15
         version: 5.52.0
+      '@tanstack/react-query':
+        specifier: ^5.52.2
+        version: 5.52.2(react@18.3.1)
       '@tanstack/react-query-persist-client':
         specifier: ^5.51.15
         version: 5.52.0(@tanstack/react-query@5.52.2(react@18.3.1))(react@18.3.1)
@@ -977,10 +980,6 @@ importers:
         version: 5.5.4
 
   packages/frontend/query:
-    dependencies:
-      '@tanstack/react-query':
-        specifier: ^5.52.2
-        version: 5.52.2(react@18.3.1)
     devDependencies:
       '@shared/eslint':
         specifier: workspace:*
@@ -994,6 +993,9 @@ importers:
       '@swisstype/essential':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.5.4)
+      '@tanstack/react-query':
+        specifier: ^5.52.2
+        version: 5.52.2(react@18.3.1)
       typescript:
         specifier: latest
         version: 5.5.4
