@@ -4,5 +4,5 @@
         "outDir": "./dist"
     },
     "include": ["src/**/*.mjs"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["dist"]
 }

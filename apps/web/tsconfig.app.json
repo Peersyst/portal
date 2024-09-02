@@ -7,5 +7,5 @@
         "useDefineForClassFields": true
     },
     "include": ["*/**/*.ts", "*/**/*.tsx"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["dist"]
 }

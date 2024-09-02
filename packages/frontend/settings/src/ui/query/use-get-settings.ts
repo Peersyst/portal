@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from "@frontend/query/react";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { Settings } from "../../common";
 import { getInstance } from "@frontend/core/common/utils/singleton";
 import { SettingsController } from "../../domain/controllers";
