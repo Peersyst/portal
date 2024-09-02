@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { defineConfig as tsupDefineConfig, Options as TsupOptions } from "tsup";
-import { spawnSync } from "child_process";
+import { execSync } from "child_process";
 
 export type Options = Omit<TsupOptions, "onSuccess"> & {
     onSuccess?: Exclude<TsupOptions["onSuccess"], string>;
@@ -13,7 +13,12 @@ export function defineConfig({ dts = false, onSuccess, ...restOptions }: Options
         async onSuccess() {
             if (dts) {
                 console.log("\x1b[34m%s\x1b[0m", "TSC", "Building declaration files...");
-                spawnSync("npx", ["tsc", "--project", "./tsconfig.build.json", "--emitDeclarationOnly", "--declaration"]);
+                try {
+                    execSync("npx tsc --project ./tsconfig.build.json --emitDeclarationOnly --declaration");
+                } catch (e) {
+                    console.error("\x1b[31m%s\x1b[0m", "TSC", (e as any).stdout.toString());
+                    process.exit(1);
+                }
                 console.log("\x1b[34m%s\x1b[0m", "TSC", "⚡️ Build success");
             }
             return onSuccess?.();
