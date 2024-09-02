@@ -10,6 +10,8 @@ export function defineConfig({ dts = false, onSuccess, ...restOptions }: Options
     return {
         ...restOptions,
         dts: false,
+        splitting: false,
+        bundle: false,
         async onSuccess() {
             if (dts) {
                 console.log("\x1b[34m%s\x1b[0m", "TSC", "Building declaration files...");
