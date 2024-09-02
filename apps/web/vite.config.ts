@@ -17,7 +17,13 @@ export default defineConfig(({ mode }) => {
                     process: false,
                 },
             }),
-            react(),
+            react({
+                babel: {
+                    plugins: ["styled-components"],
+                    babelrc: false,
+                    configFile: false,
+                },
+            }),
         ],
         define: {
             "process.env": env,
