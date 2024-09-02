@@ -1,6 +1,7 @@
-import { IStorage, StorageRepository } from "@frontend/core/data-access/repository";
+import { IStorage, StorageRepository, Repository } from "@frontend/core/data-access/repository";
 import { Locale, Settings } from "../../common";
 
+@Repository()
 export class SettingsRepository extends StorageRepository<Settings> {
     constructor(storage: IStorage<Settings>) {
         super("settings", storage);

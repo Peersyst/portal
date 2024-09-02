@@ -1,8 +1,7 @@
-interface ISingleton {
-    new (...args: any[]): any;
-    getInstance(): any;
-}
+export function getInstance<T extends { new (...args: any[]): any }>(singleton: T): InstanceType<T> {
+    if ("getInstance" in singleton && typeof singleton.getInstance === "function") {
+        return singleton.getInstance();
+    }
 
-export function getInstance<T extends ISingleton>(singleton: T): InstanceType<T> {
-    return singleton.getInstance();
+    throw new Error(`${singleton.name} is not a singleton`);
 }

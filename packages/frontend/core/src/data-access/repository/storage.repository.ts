@@ -1,8 +1,11 @@
-import { Repository } from "./repository";
+import { AbstractRepository } from "./abstract.repository";
 import { IStorage } from "./storage";
 
-export class StorageRepository<T> extends Repository<T> {
-    constructor(storageKey: string, private readonly storage: IStorage<T>) {
+export class StorageRepository<T> extends AbstractRepository<T> {
+    constructor(
+        storageKey: string,
+        private readonly storage: IStorage<T>,
+    ) {
         super(storageKey);
     }
 

@@ -1,3 +1,9 @@
-import { Singleton } from "../../common/utils/singleton/singleton";
+import { Singleton, ISingleton } from "../../common/utils/singleton/singleton";
 
-export abstract class Controller extends Singleton {}
+export interface IController<T extends { new (...args: any[]): {} } = any> extends ISingleton<T> {}
+
+export function Controller(): <T extends { new (...args: any[]): {} }>(constructor: T) => IController<T> {
+    return function Controller<T extends { new (...args: any[]): {} }>(constructor: T): IController<T> {
+        return Singleton()<T>(constructor);
+    };
+}

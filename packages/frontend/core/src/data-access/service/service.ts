@@ -1,3 +1,9 @@
-import { Singleton } from "../../common/utils/singleton/singleton";
+import { Singleton, ISingleton } from "../../common/utils/singleton/singleton";
 
-export abstract class Service extends Singleton {}
+export interface IService<T extends { new (...args: any[]): {} } = any> extends ISingleton<T> {}
+
+export function Service(): <T extends { new (...args: any[]): {} }>(constructor: T) => IService<T> {
+    return function Service<T extends { new (...args: any[]): {} }>(constructor: T): IService<T> {
+        return Singleton()<T>(constructor);
+    };
+}

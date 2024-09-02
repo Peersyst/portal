@@ -5,14 +5,13 @@ import { ISettingsState } from "../../settings.state";
 import { supportedLocales } from "../../../common";
 import { ILocalizationService, ISettingsRepository } from "../../interfaces";
 
-export class SettingsController extends Controller {
+@Controller()
+export class SettingsController {
     constructor(
         private readonly settingsRepository: ISettingsRepository,
         private readonly localizationService: ILocalizationService,
         readonly settingsState: State<ISettingsState>,
-    ) {
-        super();
-    }
+    ) {}
 
     getSettings(): Promise<Settings | undefined> {
         return this.settingsRepository.getSettings();

@@ -1,3 +1,6 @@
+import { Service } from "@frontend/core/data-access/service";
+
+@Service()
 export class BrowserLocalizationService {
     private getBrowserLocale(): string {
         if (typeof window === "undefined") {

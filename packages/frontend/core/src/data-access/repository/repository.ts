@@ -1,17 +1,9 @@
-import { Singleton } from "../../common/utils/singleton/singleton";
+import { Singleton, ISingleton } from "../../common/utils/singleton/singleton";
 
-export abstract class Repository<T> extends Singleton {
-    protected readonly storageKey: string;
+export interface IRepository<T extends { new (...args: any[]): {} } = any> extends ISingleton<T> {}
 
-    protected constructor(key: string) {
-        super();
-
-        this.storageKey = key;
-    }
-
-    protected abstract set(value: T): Promise<void>;
-
-    protected abstract get(): Promise<T | undefined>;
-
-    protected abstract clear(): Promise<void>;
+export function Repository(): <T extends { new (...args: any[]): {} }>(constructor: T) => IRepository<T> {
+    return function Repository<T extends { new (...args: any[]): {} }>(constructor: T): IRepository<T> {
+        return Singleton()<T>(constructor);
+    };
 }
