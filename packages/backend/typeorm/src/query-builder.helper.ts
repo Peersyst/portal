@@ -1,9 +1,5 @@
 import { DeleteQueryBuilder, EntityManager, EntityTarget, ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
-
-export enum OrderType {
-    ASC = "ASC",
-    DESC = "DESC",
-}
+import { OrderType } from "@shared/utils";
 
 export enum NullsPosition {
     NULLS_FIRST = "NULLS FIRST",
