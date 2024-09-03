@@ -1,10 +1,6 @@
 export default {
+    preset: "ts-jest",
     testEnvironment: "jsdom",
-    globals: {
-        "ts-jest": {
-            tsConfig: "./tsconfig.app.json",
-        },
-    },
     moduleDirectories: ["src", "node_modules"],
     extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
     setupFilesAfterEnv: ["./test/setup.tsx"],
@@ -12,6 +8,7 @@ export default {
         "\\.[jt]sx?$": [
             "ts-jest",
             {
+                tsconfig: "./tsconfig.app.json",
                 useESM: true,
             },
         ],

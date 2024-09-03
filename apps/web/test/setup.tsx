@@ -13,21 +13,18 @@ import "../src/core/data-access/setup";
 // Set up domain
 import "../src/core/domain/setup";
 
-// Set up jest
-import "./jest.setup";
-
 // Mock `withRetries` to avoid retries in tests
-jest.mockModule("@shared/utils", () => ({
+jest.mock("@shared/utils", () => ({
     ...(jest.requireActual("@shared/utils") as any),
     withRetries: (fn: () => any) => fn(),
 }));
 
 // Use require.resolve to force the module to be resolved using the CSJ entry point. Otherwise, jest cannot transform ESM.
-jest.mockModule("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));
+jest.mock("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));
 
 // Mock `configManager`
-jest.mockModule("../src/config", () => {
-    const { ConfigManagerMock } = require("./mocks/config/ConfigManager.mock");
+jest.mock("../src/config", () => {
+    const { ConfigManagerMock } = require("./mocks/config/config.manager.mock");
 
     return {
         configManager: new ConfigManagerMock(),
@@ -35,20 +32,20 @@ jest.mockModule("../src/config", () => {
 });
 
 // Add es module to `@frontend/design-system-react`
-jest.mockModule("@frontend/design-system-react", () => ({
+jest.mock("@frontend/design-system-react", () => ({
     __esModule: true,
     ...(jest.requireActual("@frontend/design-system-react") as any),
 }));
 
 // Add es module to `react-transition-group`
-jest.mockModule("react-transition-group", () => ({
+jest.mock("react-transition-group", () => ({
     __esModule: true,
     ...(jest.requireActual("react-transition-group") as any),
     Transition: ({ children }: any) => children("visible"),
 }));
 
 // Add es module to `react-router-dom`
-jest.mockModule("react-router-dom", () => ({
+jest.mock("react-router-dom", () => ({
     __esModule: true,
     ...(jest.requireActual("react-router-dom") as any),
 }));
