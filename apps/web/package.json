@@ -9,7 +9,7 @@
         "preview": "vite preview",
         "generate": "npm run generate:images",
         "generate:images": "node script/images-generator.cjs src/assets/images/",
-        "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest --maxWorkers=30%",
+        "test": "jest --maxWorkers=30%",
         "test:coverage": "test --coverage",
         "test:watch": "test --watch",
         "test:debug": "jest --no-cache --runInBand",
