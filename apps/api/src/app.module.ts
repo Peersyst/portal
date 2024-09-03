@@ -7,9 +7,8 @@ import { join } from "path";
 import * as OpenApiValidator from "express-openapi-validator";
 import { APP_FILTER } from "@nestjs/core";
 import { CommandModule } from "nestjs-command/dist/command.module.js";
-//import { TypeORMSeederAdapter } from "@peersyst/database";
-import { ErrorFilter } from "./modules/common/exception/error.filter";
 import { AuthModule } from "@peersyst/auth-module";
+import { ErrorFilter } from "@backend/core/exceptions";
 
 @Module({
     imports: [
