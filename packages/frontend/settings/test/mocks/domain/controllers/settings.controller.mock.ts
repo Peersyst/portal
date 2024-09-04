@@ -1,5 +1,5 @@
 import { createMock, MethodMock } from "@shared/test";
-import { SettingsController } from "../../../../src/domain/controllers/settings.controller";
+import { SettingsController } from "../../../../src/domain/controllers/settings";
 import { SettingsMock } from "../../common/settings.mock";
 import { SettingsStateMock } from "../settings.state.mock";
 
