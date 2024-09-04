@@ -641,6 +641,9 @@ importers:
       '@shared/tsup':
         specifier: workspace:*
         version: link:../../shared/tsup
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
       typeorm:
         specifier: ^0.3.0
         version: 0.3.20(pg@8.12.0)(ts-node@10.9.2(@types/node@22.5.2)(typescript@5.5.4))
