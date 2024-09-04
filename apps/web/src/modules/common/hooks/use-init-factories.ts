@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { StateManager } from "@frontend/core/domain/state/manager";
 import { initFactories } from "@frontend/core/common/utils/factories";
 import { configManager } from "../../../config";
+import { ServiceFactory } from "../../../core/data-access/factories/service.factory";
+import { RepositoryFactory } from "../../../core/data-access/factories/repository.factory";
+import { ControllerFactory } from "../../../core/domain/factories/controller.factory";
 
 export function useInitFactories(): boolean {
     const [isInitialized, setIsInitialized] = useState(false);
@@ -17,7 +20,7 @@ export function useInitFactories(): boolean {
          * @see https://github.com/pmndrs/zustand/blob/main/docs/integrations/persisting-store-data.md#hydration-and-asynchronous-storages
          */
         Promise.all([configManager.initialization, StateManager.initialization]).then(() => {
-            initFactories().then(() => {
+            initFactories(ServiceFactory, RepositoryFactory, ControllerFactory).then(() => {
                 setIsInitialized(true);
             });
         });
