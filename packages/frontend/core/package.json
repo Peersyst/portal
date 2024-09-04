@@ -36,6 +36,11 @@
             "require": "./dist/data-access/repository/index.js",
             "import": "./dist/data-access/repository/index.mjs"
         },
+        "./data-access/repository/error": {
+            "types": "./dist/data-access/repository/error/index.d.ts",
+            "require": "./dist/data-access/repository/error/index.js",
+            "import": "./dist/data-access/repository/error/index.mjs"
+        },
         "./data-access/repository/factory": {
             "types": "./dist/data-access/repository/factory/index.d.ts",
             "require": "./dist/data-access/repository/factory/index.js",
@@ -60,6 +65,11 @@
             "types": "./dist/data-access/service/index.d.ts",
             "require": "./dist/data-access/service/index.js",
             "import": "./dist/data-access/service/index.mjs"
+        },
+        "./data-access/service/error": {
+            "types": "./dist/data-access/service/error/index.d.ts",
+            "require": "./dist/data-access/service/error/index.js",
+            "import": "./dist/data-access/service/error/index.mjs"
         },
         "./data-access/service/factory": {
             "types": "./dist/data-access/service/factory/index.d.ts",
