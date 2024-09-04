@@ -84,7 +84,7 @@
         "./mocks/data-access/service": "./test/mocks/data-access/service/index.ts",
         "./mocks/data-access/repositories": "./test/mocks/data-access/repositories/index.ts",
         "./mocks/domain/controllers": "./test/mocks/domain/controllers/index.ts",
-        "./mocks/domain/state": "./test/mocks/domain/state/index.ts",
+        "./mocks/domain/state": "./test/mocks/domain/state/settings.state.mock.ts",
         "./mocks/ui/state": "./test/mocks/ui/state/index.ts"
     },
     "peerDependencies": {
