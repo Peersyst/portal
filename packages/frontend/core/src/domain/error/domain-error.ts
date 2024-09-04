@@ -8,11 +8,11 @@ export class DomainError extends Error {
     severity: DomainErrorSeverity;
     data?: AnyObject;
 
-    constructor(code: string, severity: DomainErrorSeverity = "error", data?: AnyObject) {
-        super(code);
+    constructor(message: string, severity: DomainErrorSeverity = "error", data?: AnyObject) {
+        super(message);
 
         this.name = "DomainError";
-        this.message = code;
+        this.message = message;
         this.severity = severity;
         this.data = data;
     }
