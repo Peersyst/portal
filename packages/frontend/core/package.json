@@ -81,6 +81,11 @@
             "require": "./dist/domain/controller/index.js",
             "import": "./dist/domain/controller/index.mjs"
         },
+        "./domain/decorator": {
+            "types": "./dist/domain/decorator/index.d.ts",
+            "require": "./dist/domain/decorator/index.js",
+            "import": "./dist/domain/decorator/index.mjs"
+        },
         "./domain/controller/factory": {
             "types": "./dist/domain/controller/factory/index.d.ts",
             "require": "./dist/domain/controller/factory/index.js",
