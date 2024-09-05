@@ -5,3 +5,4 @@ export * from "./is-valid-url";
 export * from "./pagination.types";
 export * from "./with-retries";
 export * from "./order-type";
+export * from "./query-result-mock";
