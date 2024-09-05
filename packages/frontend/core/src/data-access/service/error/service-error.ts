@@ -1,6 +1,6 @@
 import { AnyObject } from "@swisstype/essential";
 
-export default class ServiceError extends Error {
+export class ServiceError extends Error {
     message: string;
     data?: AnyObject;
 
