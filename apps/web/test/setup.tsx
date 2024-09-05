@@ -50,6 +50,14 @@ jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as any),
 }));
 
+// Mock `useTranslate` and `useLanguage`. Otherwise, `DSProvider` fails to render
+import i18next from "i18next";
+jest.mock("@frontend/locale/react", () => ({
+    ...(jest.requireActual("@frontend/locale/react") as any),
+    useTranslate: jest.fn(i18next.t),
+    useLanguage: jest.fn(() => "en"),
+}));
+
 // Window mocks
 import { LightMatchMediaMock } from "./mocks/match-media.mock";
 import { IntersectionObserverMock } from "./mocks/intersection-observer.mock";
