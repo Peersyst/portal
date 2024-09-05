@@ -51,7 +51,7 @@ jest.mock("react-router-dom", () => ({
 import i18next from "i18next";
 jest.mock("@frontend/locale/react", () => ({
     ...(jest.requireActual("@frontend/locale/react") as any),
-    useTranslate: jest.fn(i18next.t),
+    useTranslate: jest.fn(() => (key: string) => i18next.t(key)),
     useLanguage: jest.fn(() => "en"),
 }));
 
