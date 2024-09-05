@@ -3,6 +3,6 @@
     "compilerOptions": {
         "outDir": "./dist"
     },
-    "include": ["*/**/*.ts", "*/**/*.tsx", "../test/src/query-result-mock.ts"],
+    "include": ["*/**/*.ts", "*/**/*.tsx"],
     "exclude": ["dist"]
 }
