@@ -1,6 +1,6 @@
 import { AnyObject } from "@swisstype/essential";
 
-export default class RepositoryError extends Error {
+export class RepositoryError extends Error {
     message: string;
     data?: AnyObject;
 
