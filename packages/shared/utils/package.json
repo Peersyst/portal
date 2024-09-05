@@ -15,7 +15,8 @@
             "types": "./dist/index.d.ts",
             "require": "./dist/index.js",
             "import": "./dist/index.mjs"
-        }
+        },
+        "./mock": "./test/mock.ts"
     },
     "peerDependencies": {
         "validator": "13.11.0"

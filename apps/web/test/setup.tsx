@@ -13,11 +13,8 @@ import "../src/core/data-access/setup";
 // Set up domain
 import "../src/core/domain/setup";
 
-// Mock `withRetries` to avoid retries in tests
-jest.mock("@shared/utils", () => ({
-    ...(jest.requireActual("@shared/utils") as any),
-    withRetries: (fn: () => any) => fn(),
-}));
+// Mock utils that are not needed in tests
+import "@shared/utils/mock";
 
 // Use require.resolve to force the module to be resolved using the CSJ entry point. Otherwise, jest cannot transform ESM.
 jest.mock("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));
