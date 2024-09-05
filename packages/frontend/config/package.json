@@ -35,7 +35,8 @@
             "types": "./dist/react-native/index.d.ts",
             "require": "./dist/react-native/index.js",
             "import": "./dist/react-native/index.mjs"
-        }
+        },
+        "./test/mocks": "./test/mocks/index.ts"
     },
     "peerDependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
