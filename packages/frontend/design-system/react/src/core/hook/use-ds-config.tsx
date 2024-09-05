@@ -15,9 +15,9 @@ import { deepmerge } from "@peersyst/react-utils";
 export function useDSConfig({ projectName, themeKey, themeMode, ...restConfig }: DSConfigOptions): Config {
     const translate = useTranslate("error");
     const language = useLanguage();
-    const staticConfig = deepmerge(dsConfig, restConfig);
 
     const uiConfig: Config = useMemo(() => {
+        const staticConfig = deepmerge(dsConfig, restConfig);
         const theme = themes[themeKey ?? "default"];
 
         return createConfig({
