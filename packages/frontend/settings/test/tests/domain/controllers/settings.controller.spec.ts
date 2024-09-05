@@ -9,6 +9,7 @@ describe("SettingsController", () => {
     let settingsController: SettingsController;
 
     const settingsMock = new SettingsMock();
+
     const settingsRepositoryMock = new SettingsRepositoryMock({
         getSettings: new MethodMock("mockResolvedValue", settingsMock),
         getLocale: new MethodMock("mockResolvedValue", settingsMock.locale),
@@ -19,6 +20,10 @@ describe("SettingsController", () => {
     });
 
     beforeEach(() => {
+        settingsRepositoryMock.clearMocks();
+        localizationServiceMock.clearMocks();
+        settingsStateMock.clearMocks();
+
         settingsController = new SettingsController(settingsRepositoryMock, localizationServiceMock, settingsStateMock);
     });
 
