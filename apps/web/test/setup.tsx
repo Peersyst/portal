@@ -13,18 +13,15 @@ import "../src/core/data-access/setup";
 // Set up domain
 import "../src/core/domain/setup";
 
-// Mock `withRetries` to avoid retries in tests
-jest.mock("@shared/utils", () => ({
-    ...(jest.requireActual("@shared/utils") as any),
-    withRetries: (fn: () => any) => fn(),
-}));
+// Mock utils that are not needed in tests
+import "@shared/utils/mock";
 
 // Use require.resolve to force the module to be resolved using the CSJ entry point. Otherwise, jest cannot transform ESM.
 jest.mock("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));
 
 // Mock `configManager`
 jest.mock("../src/config", () => {
-    const { ConfigManagerMock } = require("./mocks/config/config.manager.mock");
+    const { ConfigManagerMock } = require("@frontend/config/test/mocks");
 
     return {
         configManager: new ConfigManagerMock(),
@@ -48,6 +45,14 @@ jest.mock("react-transition-group", () => ({
 jest.mock("react-router-dom", () => ({
     __esModule: true,
     ...(jest.requireActual("react-router-dom") as any),
+}));
+
+// Mock `useTranslate` and `useLanguage`. Otherwise, `DSProvider` fails to render
+import i18next from "i18next";
+jest.mock("@frontend/locale/react", () => ({
+    ...(jest.requireActual("@frontend/locale/react") as any),
+    useTranslate: jest.fn(() => (key: string) => i18next.t(key)),
+    useLanguage: jest.fn(() => "en"),
 }));
 
 // Window mocks

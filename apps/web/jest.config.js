@@ -1,7 +1,9 @@
 export default {
-    preset: "ts-jest",
     testEnvironment: "jsdom",
     moduleDirectories: ["src", "node_modules"],
+    moduleFileExtensions: ["js", "ts", "tsx", "jsx"],
+    rootDir: ".",
+    testRegex: ".*\\.spec\\.tsx?$",
     extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
     setupFilesAfterEnv: ["./test/setup.tsx"],
     transform: {
