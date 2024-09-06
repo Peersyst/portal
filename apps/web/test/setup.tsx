@@ -14,7 +14,7 @@ import "../src/core/data-access/setup";
 import "../src/core/domain/setup";
 
 // Mock utils that are not needed in tests
-import "@shared/utils/mock";
+import "@shared/utils/automock";
 
 // Use require.resolve to force the module to be resolved using the CSJ entry point. Otherwise, jest cannot transform ESM.
 jest.mock("@aws-sdk/client-appconfigdata", () => require.resolve("@aws-sdk/client-appconfigdata"));

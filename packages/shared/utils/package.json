@@ -16,7 +16,7 @@
             "require": "./dist/index.js",
             "import": "./dist/index.mjs"
         },
-        "./mock": "./test/mock.ts"
+        "./automock": "./test/automock.ts"
     },
     "peerDependencies": {
         "validator": "13.11.0"

@@ -4,4 +4,4 @@ export * from "./create-mock";
 export * from "./mock";
 export * from "./mockify";
 export * from "./utils/deepmerge";
-export * from "./query-result-mock";
+export * from "./mocked";

@@ -1002,6 +1002,9 @@ importers:
       '@shared/eslint':
         specifier: workspace:*
         version: link:../../shared/eslint
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../../shared/test
       '@shared/tsconfig':
         specifier: workspace:*
         version: link:../../shared/tsconfig
