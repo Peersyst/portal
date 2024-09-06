@@ -96,6 +96,11 @@
             "require": "./dist/domain/error/index.js",
             "import": "./dist/domain/error/index.mjs"
         },
+        "./domain/error/decorators": {
+            "types": "./dist/domain/error/decorators/index.d.ts",
+            "require": "./dist/domain/error/decorators/index.js",
+            "import": "./dist/domain/error/decorators/index.mjs"
+        },
         "./domain/state": {
             "types": "./dist/domain/state/index.d.ts",
             "require": "./dist/domain/state/index.js",
