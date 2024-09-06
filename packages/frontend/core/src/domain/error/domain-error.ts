@@ -3,6 +3,12 @@ import { isApiError } from "../../data-access/api/error/is-api-error";
 
 export type DomainErrorSeverity = "error" | "warning";
 
+export interface DomainErrorOptions {
+    message: string;
+    severity?: DomainErrorSeverity;
+    data?: AnyObject;
+}
+
 export class DomainError extends Error {
     message: string;
     severity: DomainErrorSeverity;
@@ -15,6 +21,16 @@ export class DomainError extends Error {
         this.message = message;
         this.severity = severity;
         this.data = data;
+    }
+
+    /**
+     * Creates a DomainError from a `DomainErrorOptions` object
+     * @param options The error options
+     * @param data The error data
+     * @returns The DomainError
+     */
+    static fromOptions(options: DomainErrorOptions) {
+        return new DomainError(options.message, options.severity, options.data);
     }
 
     /**

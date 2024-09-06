@@ -1,0 +1,18 @@
+import { isServiceError } from "../../../data-access/service/error";
+import { createErrorHandlerDecorator } from "../../decorator";
+import { DomainError, DomainErrorOptions } from "../domain-error";
+
+function handleServiceError(error: any, errors: Record<string, string | DomainErrorOptions>) {
+    if (isServiceError(error)) {
+        const domainError = errors[error.message];
+        throw typeof domainError === "string"
+            ? new DomainError(domainError)
+            : DomainError.fromOptions({ ...domainError, data: { ...error.data, ...domainError.data } });
+    } else throw error;
+}
+
+/**
+ * Decorator to handle service errors
+ * @param errors A map of error messages to domain errors `{ USER_NOT_FOUND: UserErrors.USER_NOT_FOUND }`
+ */
+export const ServiceErrors = createErrorHandlerDecorator(handleServiceError);
