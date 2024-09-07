@@ -16,18 +16,27 @@ export type MockData<I extends object = any> = Pick<MockMethods<keyof I>, TypeKe
  * Mock class with helper methods
  */
 export class Mock implements IMock {
+    /**
+     * Clears the mocks.
+     */
     clearMocks(): void {
         Object.values(this).forEach((value) => {
             if ((value as any)?.mockClear) value.mockClear();
         });
     }
 
+    /**
+     * Resets the mocks.
+     */
     resetMocks(): void {
         Object.values(this).forEach((value) => {
             if ((value as any)?.mockReset) value.mockReset();
         });
     }
 
+    /**
+     * Restores the mocks.
+     */
     restoreMocks(): void {
         Object.values(this).forEach((value) => {
             if ((value as any)?.mockRestore) value.mockRestore();

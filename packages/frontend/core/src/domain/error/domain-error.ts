@@ -24,20 +24,19 @@ export class DomainError extends Error {
     }
 
     /**
-     * Creates a DomainError from a `DomainErrorOptions` object
-     * @param options The error options
-     * @param data The error data
-     * @returns The DomainError
+     * Creates a DomainError from a `DomainErrorOptions` object.
+     * @param options The error options.
+     * @returns The DomainError.
      */
-    static fromOptions(options: DomainErrorOptions) {
+    static fromOptions(options: DomainErrorOptions): DomainError {
         return new DomainError(options.message, options.severity, options.data);
     }
 
     /**
-     * Creates a DomainError from an ApiError
-     * @param error Any error
-     * @param handlers Handlers for especific ApiError codes coming from the backend. If no handler is provided for a code, the error will be UNKNOWN_ERROR
-     * @returns The corresponding DomainError
+     * Creates a DomainError from an ApiError.
+     * @param error Any error.
+     * @param handlers Handlers for especific ApiError codes coming from the backend. If no handler is provided for a code, the error will be UNKNOWN_ERROR.
+     * @returns The corresponding DomainError.
      */
     static fromApiError(error: any, handlers: Record<string, string | [string, DomainErrorSeverity]> = {}): DomainError {
         if (isApiError(error)) {

@@ -3,7 +3,10 @@ import { CommandModule } from "nestjs-command/dist/command.module.js";
 import { CommandService } from "nestjs-command/dist/command.service.js";
 import { AppModule } from "./app.module";
 
-async function bootstrap() {
+/**
+ * Bootstraps the CLI application.
+ */
+async function bootstrap(): Promise<void> {
     const app = await NestFactory.createApplicationContext(AppModule, {
         logger: ["error"],
     });

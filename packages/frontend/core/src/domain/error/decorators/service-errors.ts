@@ -2,7 +2,7 @@ import { isServiceError } from "../../../data-access/service/error";
 import { createErrorHandlerDecorator } from "../../decorator";
 import { DomainError, DomainErrorOptions } from "../domain-error";
 
-function handleServiceError(error: any, errors: Record<string, string | DomainErrorOptions>) {
+function handleServiceError(error: any, errors: Record<string, string | DomainErrorOptions>): void {
     if (isServiceError(error)) {
         const domainError = errors[error.message];
         throw typeof domainError === "string"

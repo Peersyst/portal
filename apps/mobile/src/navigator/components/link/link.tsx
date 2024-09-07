@@ -2,10 +2,15 @@ import { useNavigation } from "@react-navigation/native";
 import { Pressable } from "react-native";
 import { LinkProps } from "./link.types";
 
+/**
+ * Link.
+ * @param props The props.
+ * @returns The `Link`.
+ */
 const Link = ({ to, onPress, children, ...linkProps }: LinkProps): JSX.Element => {
     const navigation = useNavigation();
 
-    const handlePress = () => {
+    const handlePress = (): void => {
         onPress?.();
         // @ts-ignore TODO: Fix these types
         if (typeof to === "string") navigation.navigate(to as any);

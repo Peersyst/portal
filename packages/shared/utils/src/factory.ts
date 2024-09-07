@@ -4,8 +4,9 @@ export type IFactory<T extends Record<string, any>> = T & {
 };
 
 /**
- * Creates a factory
- * @param modules Modules to be resolved
+ * Creates a factory.
+ * @param modules Modules to be resolved.
+ * @returns The factory.
  */
 export function Factory<T extends Record<string, any>>(modules: Record<keyof T, (resolve: T) => T[keyof T]>): IFactory<T> {
     const resolutions = {} as T;
@@ -26,7 +27,7 @@ export function Factory<T extends Record<string, any>>(modules: Record<keyof T, 
         resolutions[module as keyof T] = modules[module](resolve);
     }
 
-    const init = async () => {
+    const init = async (): Promise<void> => {
         await Promise.all(
             Object.values(resolutions).map((resolution) => {
                 if ((resolution as any).onInit) return Promise.resolve((resolution as any).onInit());
@@ -34,13 +35,13 @@ export function Factory<T extends Record<string, any>>(modules: Record<keyof T, 
         );
     };
 
-    const load = async () => {
+    const load = async (): Promise<() => void> => {
         const results = await Promise.all(
             Object.values(resolutions).map((resolution) => {
                 if ((resolution as any).onLoad) return Promise.resolve((resolution as any).onLoad());
             }),
         );
-        return () => {
+        return (): void => {
             for (const result of results) {
                 if (result) result();
             }

@@ -9,7 +9,10 @@ import { AppModule } from "./app.module";
 import * as packageJson from "../package.json";
 import { ConfigService } from "@nestjs/config";
 
-async function bootstrap() {
+/**
+ * Bootstraps the application.
+ */
+async function bootstrap(): Promise<void> {
     const app = await NestFactory.create(AppModule);
     const configService = app.get(ConfigService);
     const logLevel = configService.get("logger.logLevel");

@@ -7,8 +7,8 @@ import { ReactNativeErrorEvent } from "@frontend/core/ui/error/react-native";
 import { isDomainError } from "@frontend/core/domain/error";
 
 /**
- * Receives an error and dispatches a UIErrorEvent
- * @param error The error to handle
+ * Receives an error and dispatches a UIErrorEvent.
+ * @param error The error to handle.
  */
 function handleQueryClientError(error: any): void {
     if (isDomainError(error)) ReactNativeErrorEvent.dispatch(error.message, error.severity, error.data);

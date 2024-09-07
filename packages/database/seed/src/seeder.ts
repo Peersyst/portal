@@ -15,35 +15,61 @@ export abstract class Seeder {
         this.connection = connection;
     }
 
+    /**
+     * Deletes the data for the given seed.
+     * @param seed The seed.
+     * @returns The data for the given seed.
+     */
     protected delete<T extends AnyObject>(seed: Seed<T>): Promise<void> {
         return this.adapter!.delete(seed.entity);
     }
 
+    /**
+     * Inserts the data for the given seed.
+     * @param seed The seed.
+     * @returns The data for the given seed.
+     */
     protected insert<T extends AnyObject>(seed: Seed<T>): Promise<void> {
         return this.adapter!.insert(seed.entity, seed.getSeed(CONFIG_ENV) as T[]);
     }
 
-    logError(error: Error): void {
+    /**
+     * Logs the error.
+     * @param error The error.
+     */
+    protected logError(error: Error): void {
         this.logger.error(error);
     }
 
+    /**
+     * Connects to the database.
+     */
     async connect(): Promise<void> {
         this.connection = await this.connection!.initialize();
         this.adapter = new TypeORMSeederAdapter(this.connection);
         this.logger.log("Connected to database successfully!");
     }
 
+    /**
+     * Disconnects from the database.
+     */
     async disconnect(): Promise<void> {
         await this.connection!.destroy();
         this.connection = null;
         this.adapter = null;
     }
 
+    /**
+     * Resets the database.
+     */
     async reset(): Promise<void> {
         await this.connection!.dropDatabase();
         await this.connection!.runMigrations();
     }
 
+    /**
+     * Seeds the database.
+     */
     async seed(): Promise<void> {
         if (!this.connection || !this.adapter) {
             this.logger.error("Connection not acquired");
@@ -57,6 +83,10 @@ export abstract class Seeder {
         this.logger.log("Seeding finished.");
     }
 
+    /**
+     * Runs the seeder.
+     * @param pack Whether to reset the database.
+     */
     async run(pack = false): Promise<void> {
         try {
             await this.connect();
@@ -69,7 +99,13 @@ export abstract class Seeder {
         }
     }
 
+    /**
+     * Deletes all the data.
+     */
     abstract deleteAll(): Promise<void>;
 
+    /**
+     * Inserts all the data.
+     */
     abstract insertAll(): Promise<void>;
 }

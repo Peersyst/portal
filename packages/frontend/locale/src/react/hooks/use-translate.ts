@@ -6,6 +6,12 @@ import { FlatNamespace, KeyPrefix } from "i18next";
  */
 export type $Tuple<T> = readonly [T?, ...T[]];
 
+/**
+ * Hook to translate a string.
+ * @param ns The namespace.
+ * @param options The options.
+ * @returns The translated string.
+ */
 export function useTranslate<
     Ns extends FlatNamespace | $Tuple<FlatNamespace> | undefined = undefined,
     KPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined,

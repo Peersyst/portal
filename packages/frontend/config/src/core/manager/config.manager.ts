@@ -8,6 +8,9 @@ import { IS_PROD } from "@shared/env";
 export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omit<Config, "version"> = Omit<Config, "version">> {
     private logger = console;
 
+    /**
+     * The config.
+     */
     private _config: Config;
     get config(): Config {
         return this._config;
@@ -16,6 +19,9 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         this._config = config;
     }
 
+    /**
+     * The initialization promise.
+     */
     private _initialization: Promise<void>;
     get initialization(): Promise<void> {
         return this._initialization;
@@ -24,21 +30,43 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         this._initialization = initialization;
     }
 
-    // Config is fetched from the provider and stored in the storage
+    /**
+     * Whether the config is fetched from the provider and stored in the storage.
+     */
     isLoaded = false;
 
-    // Config is outdated and needs to be updated
+    /**
+     * Whether the config is outdated and needs to be update.
+     */
     isOutdated = false;
 
-    // Config is ready to be used
+    /**
+     * Whether the config is ready to be used.
+     * @returns Whether the config is ready to be used.
+     */
     private get isReady(): boolean {
         return this.isLoaded || this.isOutdated;
     }
 
+    /**
+     * The event emitter.
+     */
     private readonly eventEmitter = new ConfigManagerEventEmitter<Config>({ maxListeners: Infinity });
 
+    /**
+     * Adds an event listener.
+     * @param event The event.
+     * @param listener The listener.
+     * @returns The unsubscriber function.
+     */
     readonly on: ConfigManagerEventEmitter<Config>["on"] = this.eventEmitter.on.bind(this.eventEmitter);
 
+    /**
+     * Adds an event listener that is only called once.
+     * @param event The event.
+     * @param listener The listener.
+     * @returns The unsubscriber function.
+     */
     readonly once: ConfigManagerEventEmitter<Config>["once"] = this.eventEmitter.once.bind(this.eventEmitter);
 
     constructor(
@@ -51,6 +79,9 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         this.initialization = this.init();
     }
 
+    /**
+     * Initializes the config manager.
+     */
     private async init(): Promise<void> {
         try {
             await this.load();
@@ -102,6 +133,9 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         this.eventEmitter.emit("load", this.config);
     }
 
+    /**
+     * Reloads the config.
+     */
     async reload(): Promise<void> {
         await this.initialization;
 
@@ -110,6 +144,10 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         }
     }
 
+    /**
+     * Gets the config.
+     * @returns The config.
+     */
     getAll(): Config {
         if (!this.isReady)
             this.logger.warn(
@@ -118,11 +156,20 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         return this.config;
     }
 
+    /**
+     * Gets the config.
+     * @returns The config.
+     */
     async getAllAsync(): Promise<Config> {
         await this.initialization;
         return this.config;
     }
 
+    /**
+     * Gets the config.
+     * @param key The key.
+     * @returns The config.
+     */
     get<K extends NestedKeys<Config>>(key: K): DeepPick<Config, K> {
         if (!this.isReady)
             this.logger.warn(
@@ -137,6 +184,11 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
         ) as DeepPick<Config, K>;
     }
 
+    /**
+     * Gets the config.
+     * @param key The key.
+     * @returns The config.
+     */
     async getAsync<K extends NestedKeys<Config>>(key: K): Promise<DeepPick<Config, K>> {
         await this.initialization;
         return this.get(key) as DeepPick<Config, K>;

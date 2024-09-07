@@ -9,6 +9,11 @@ interface ServerConfig {
     enableCors: boolean;
 }
 
+/**
+ * Builds the server configuration.
+ * @param secrets The secrets.
+ * @returns The server configuration.
+ */
 export default (secrets: Record<any, any>): ServerConfig => {
     return buildConfig<ServerConfig>(
         {

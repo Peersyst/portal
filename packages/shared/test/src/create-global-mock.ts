@@ -8,9 +8,10 @@ import { ExtendedMock, Mock, MockMethods } from "./mock";
 export type MockDataMethods<C extends object> = Pick<MockMethods<keyof C>, TypeKeys<C, Function>>;
 
 /**
- * Creates a global mock
- * @param obj Object to mock globally
- * @param data Mocked methods
+ * Creates a global mock.
+ * @param obj Object to mock globally.
+ * @param data Mocked methods.
+ * @returns The global mock.
  */
 export function createGlobalMock<C extends object>(
     obj: C,

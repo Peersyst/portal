@@ -1,9 +1,10 @@
 module.exports = {
     plugins: ["import"],
-    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:jsdoc/recommended-typescript-error", "prettier"],
     rules: {
         "import/no-unresolved": "error",
         "import/no-extraneous-dependencies": "error",
+        "import/newline-after-import": ["error", { considerComments: true }],
         "no-console": "warn",
         "no-empty": "off",
         "@typescript-eslint/no-empty-interface": "off",
@@ -25,11 +26,36 @@ module.exports = {
         ],
         "@typescript-eslint/no-empty-object-type": "off",
         "@typescript-eslint/no-namespace": "off",
+        "jsdoc/require-description": "error",
+        "jsdoc/require-param": [
+            "error",
+            {
+                checkDestructured: false,
+            },
+        ],
+        "jsdoc/check-param-names": [
+            "error",
+            {
+                checkDestructured: false,
+            },
+        ],
+        "jsdoc/require-hyphen-before-param-description": ["error", "never"],
+        "jsdoc/require-jsdoc": "off",
+        "jsdoc/match-description": [
+            "error",
+            {
+                message: "Needs to begin with a capital letter and end with an end mark.",
+                matchDescription: "^(?:[A-Z]|`).*\\.(?:\n.*)*",
+                tags: {
+                    param: true,
+                    return: true,
+                },
+            },
+        ],
     },
     env: {
         node: true,
     },
-    ignorePatterns: ["dist"],
     settings: {
         "import/parsers": {
             "@typescript-eslint/parser": [".ts", ".tsx"],
@@ -40,4 +66,7 @@ module.exports = {
             },
         },
     },
+    ignorePatterns: ["dist"],
 };
+
+// ^(?:[A-Z]|`).*\.(?:\n(?:[A-Z]|`).*\.)*
