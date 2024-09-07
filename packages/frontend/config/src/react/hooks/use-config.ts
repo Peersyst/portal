@@ -8,7 +8,6 @@ import { Config } from "../../core/types";
  * Cache used to maintain references.
  * If references are not maintained, they'll change when config is loaded even if the "slice" value stays the same.
  * This would cause unnecessary re-renders.
- *
  * @example
  * Without maintaining refs:
  * ```ts
@@ -39,8 +38,8 @@ export function useConfig<Keys extends NestedKeys<Config>[] = []>(
 ): Keys["length"] extends 0
     ? Config
     : Keys["length"] extends 1
-    ? DeepPick<Config, Keys[0]>
-    : { [key in Exclude<Keys[number], undefined>]: DeepPick<Config, key> } {
+      ? DeepPick<Config, Keys[0]>
+      : { [key in Exclude<Keys[number], undefined>]: DeepPick<Config, key> } {
     const configManager = useConfigManager();
 
     /**

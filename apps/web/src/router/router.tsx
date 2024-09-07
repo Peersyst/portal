@@ -6,7 +6,7 @@ function Home(): JSX.Element {
     return <div>Welcome to Peersyst web base project</div>;
 }
 
-function Routes() {
+function Routes(): JSX.Element | null {
     return useRoutes([
         {
             path: "*",

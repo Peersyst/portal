@@ -5,7 +5,6 @@ import stableHash from "stable-hash";
  * Class used to maintain references in a cache.
  * Sometimes we want to maintain references to values, even if their reference changes, the value stays the same.
  * This can be useful to prevent unnecessary re-renders in react.
- *
  * @example
  * Without maintaining refs:
  * ```ts

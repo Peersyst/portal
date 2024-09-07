@@ -9,8 +9,9 @@ import { StackParamList } from "../stack";
  *
  * For example, the Navigator (main native stack navigator of the app) implements
  * a useNavigator with the corresponding types. Meanwhile, a nested Drawer navigator
- * would implement a useDrawerNavigator
+ * would implement a useDrawerNavigator.
+ * @returns The navigation prop.
  */
-export default function useNavigator() {
+export default function useNavigator(): NativeStackNavigationProp<StackParamList> {
     return useNavigation<NativeStackNavigationProp<StackParamList>>();
 }

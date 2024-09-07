@@ -7,10 +7,10 @@ import { dsConfig } from "../ds.config";
 import { deepmerge } from "@peersyst/react-utils";
 
 /**
- * Uses de design system configuration
+ * Uses de design system configuration.
  * @param options The available options for the design system configuration.
  * It is important to notice that only the theme configuration can be dynamic, the rest of the configuration must be static.
- * @returns
+ * @returns The design system configuration.
  */
 export function useDSConfig({ projectName, themeKey, themeMode, ...restConfig }: DSConfigOptions): Config {
     const translate = useTranslate("error");

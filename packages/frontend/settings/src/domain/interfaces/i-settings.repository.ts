@@ -1,4 +1,5 @@
 import { Locale, Settings } from "../../common/types";
+
 export interface ISettingsRepository {
     getSettings(): Promise<Settings | undefined>;
     setSettings(settings: Partial<Settings>): Promise<void>;

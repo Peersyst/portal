@@ -1,12 +1,18 @@
 import { capitalize } from "@peersyst/react-utils";
 import { TLocale } from "../types";
 
-// Date format: Monday, 1 January 2023
+/**
+ * Formats a date to minimal date (e.g. Monday, 1 January 2023).
+ * @param locale The locale.
+ * @param date The date.
+ * @param options The options.
+ * @returns The formatted date.
+ */
 export function formatMinimalDate<T extends TLocale>(
     locale: T,
     date?: Date | string | number | undefined,
     options: Intl.DateTimeFormatOptions = { weekday: "long", day: "2-digit", month: "long", year: "numeric" },
-) {
+): string {
     try {
         if (date === undefined || date === "") return "";
         const finalDate = new Date(date);

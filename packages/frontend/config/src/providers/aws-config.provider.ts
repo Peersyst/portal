@@ -27,6 +27,10 @@ export class AWSConfigProvider implements IConfigProvider<Config> {
         }
     }
 
+    /**
+     * Gets the session token.
+     * @returns The session token.
+     */
     private async getSessionToken(): Promise<string> {
         if (!this._sessionToken) {
             const startConfigurationSessionCommand = new StartConfigurationSessionCommand({
@@ -41,6 +45,10 @@ export class AWSConfigProvider implements IConfigProvider<Config> {
         return this._sessionToken;
     }
 
+    /**
+     * Fetches the config.
+     * @returns The config.
+     */
     async fetchConfig(): Promise<Config> {
         if (!this._config) {
             const sessionToken = await this.getSessionToken();

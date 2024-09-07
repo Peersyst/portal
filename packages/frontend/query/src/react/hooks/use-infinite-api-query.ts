@@ -25,11 +25,9 @@ export type UseInfiniteApiQueryOptions<
 >;
 
 /**
- * A version of `useInfiniteQuery` that automatically handles API pagination
- * @param queryKey The query key
- * @param queryFn The query function
- * @param options The use enhanced infinite query options
- * @returns A `useInfiniteQuery` result
+ * A version of `useInfiniteQuery` that automatically handles API pagination.
+ * @param options The use enhanced infinite query options.
+ * @returns A `useInfiniteQuery` result.
  */
 export function useInfiniteApiQuery<
     TQueryFnData extends PaginatedData = PaginatedData,

@@ -10,12 +10,22 @@ export type ConfigKeys<T> = { [P in keyof T]: ConfigKey<T[P]> };
 
 export type ConfigValidators<T> = Partial<Record<keyof T, (value: any) => boolean>>;
 
+/**
+ * Get the config environment.
+ * @returns The config environment.
+ */
 export function getConfigEnv(): ConfigEnvType {
     const env: any = process.env.CONFIG_ENV || process.env.NODE_ENV || "development";
     if (ConfigEnvs.indexOf(env) === -1) throw new Error("Invalid env value " + env);
     return env;
 }
 
+/**
+ * Build the config.
+ * @param config The config.
+ * @param validators The validators.
+ * @returns The config.
+ */
 export function buildConfig<T>(config: ConfigKeys<T>, validators: ConfigValidators<T> = {}): T {
     const configEnv = getConfigEnv();
     const keys = Object.keys(config) as (keyof T)[];

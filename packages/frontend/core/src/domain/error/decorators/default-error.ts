@@ -1,7 +1,7 @@
 import { createErrorHandlerDecorator } from "../../decorator";
 import { DomainError, DomainErrorOptions } from "../domain-error";
 
-function handleDefaultError(error: any, domainError: string | DomainErrorOptions) {
+function handleDefaultError(error: any, domainError: string | DomainErrorOptions): void {
     if (!(error instanceof DomainError))
         throw typeof domainError === "string" ? new DomainError(domainError) : DomainError.fromOptions(domainError);
     else throw error;

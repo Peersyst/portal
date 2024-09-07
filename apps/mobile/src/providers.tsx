@@ -10,6 +10,11 @@ import StylesheetProvider from "./stylesheets/stylesheet.provider";
 import { ConfigManagerProvider } from "@frontend/config/react";
 import { configManager } from "./core/config";
 
+/**
+ * Providers.
+ * @param props The props.
+ * @returns The `Providers`.
+ */
 const Providers = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
     <ConfigManagerProvider value={configManager}>
         <SafeAreaProvider>

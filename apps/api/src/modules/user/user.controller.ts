@@ -13,12 +13,22 @@ import { ApiErrorDecorators } from "../common/exception/error-response.decorator
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    /**
+     * Creates a new user.
+     * @param createUserRequestDto The request to create a new user.
+     * @returns The created user.
+     */
     @Post("create")
     @ApiOperation({ summary: "Create user" })
     async create(@Body() createUserRequestDto: CreateUserRequest): Promise<UserDto> {
         return this.userService.createUser(createUserRequestDto);
     }
 
+    /**
+     * Gets the user info.
+     * @param req The request object.
+     * @returns The user info.
+     */
     @Get("info")
     @ApiOperation({ summary: "Show user info" })
     @Authenticated()
@@ -26,6 +36,10 @@ export class UserController {
         return this.userService.findById(req.user.id);
     }
 
+    /**
+     * Gets all users.
+     * @returns All users.
+     */
     @Get("all")
     @ApiOperation({ summary: "Find all users" })
     @Authenticated(UserType.ADMIN)

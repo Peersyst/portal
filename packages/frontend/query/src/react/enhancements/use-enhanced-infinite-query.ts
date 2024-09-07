@@ -2,11 +2,9 @@ import { InfiniteData, QueryFunction, QueryKey, UseInfiniteQueryResult, useInfin
 import { UseQueryPlugin, UseEnhancedInfiniteQueryOptions } from "./types";
 
 /**
- * An enhanced version of `useInfiniteQuery` that allows plugins
- * @param queryKey The query key
- * @param queryFn The query function
- * @param options The use enhanced infinite query options
- * @returns A `useInfiniteQuery` result
+ * An enhanced version of `useInfiniteQuery` that allows plugins.
+ * @param options The use enhanced infinite query options.
+ * @returns A `useInfiniteQuery` result.
  */
 export function useEnhancedInfiniteQuery<
     TQueryFnData = unknown,

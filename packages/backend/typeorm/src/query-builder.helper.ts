@@ -56,6 +56,13 @@ export interface QBFrom<T> {
 }
 
 export class QueryBuilderHelper {
+    /**
+     * Adds relations to the query builder.
+     * @param qb The query builder.
+     * @param alias The alias.
+     * @param relations The relations.
+     * @returns The query builder.
+     */
     private static addRelations<T extends ObjectLiteral>(
         qb: SelectQueryBuilder<T>,
         alias: string,
@@ -81,6 +88,13 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds where clauses to the query builder.
+     * @param qb The query builder.
+     * @param wheres The where clauses.
+     * @param alias The alias.
+     * @returns The query builder.
+     */
     private static addWheres<T extends ObjectLiteral>(
         qb: SelectQueryBuilder<T> | DeleteQueryBuilder<T>,
         wheres: QBWhere[] = [],
@@ -107,6 +121,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds order clauses to the query builder.
+     * @param qb The query builder.
+     * @param orders The order clauses.
+     * @returns The query builder.
+     */
     private static addOrders<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, orders: QBOrder[] = []): SelectQueryBuilder<T> {
         for (const order of orders) {
             if (order.type && order.nullsPosition) {
@@ -120,6 +140,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds an offset to the query builder.
+     * @param qb The query builder.
+     * @param offset The offset.
+     * @returns The query builder.
+     */
     private static addOffset<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, offset?: number): SelectQueryBuilder<T> {
         if (typeof offset === "number" && offset > 0 && Number.isInteger(offset)) {
             qb = qb.offset(offset);
@@ -127,6 +153,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds a limit to the query builder.
+     * @param qb The query builder.
+     * @param limit The limit.
+     * @returns The query builder.
+     */
     private static addLimit<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, limit?: number): SelectQueryBuilder<T> {
         if (typeof limit === "number" && limit > 0 && Number.isInteger(limit)) {
             qb = qb.limit(limit);
@@ -134,6 +166,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds a select clause to the query builder.
+     * @param qb The query builder.
+     * @param select The select clause.
+     * @returns The query builder.
+     */
     private static addSelect<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, select: string | string[] = []): SelectQueryBuilder<T> {
         if (typeof select === "string") {
             qb = qb.select(select);
@@ -143,6 +181,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds from clauses to the query builder.
+     * @param qb The query builder.
+     * @param froms The from clauses.
+     * @returns The query builder.
+     */
     private static addFroms<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, froms: QBFrom<T>[] = []): SelectQueryBuilder<T> {
         if (froms.length === 1) {
             qb = qb.from(froms[0].entityTarget, froms[0].alias);
@@ -154,6 +198,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds group by clauses to the query builder.
+     * @param qb The query builder.
+     * @param groupBys The group by clauses.
+     * @returns The query builder.
+     */
     private static addGroupBys<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, groupBys: string[] = []): SelectQueryBuilder<T> {
         for (const groupBy of groupBys) {
             qb = qb.addGroupBy(groupBy);
@@ -161,6 +211,12 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Adds parameters to the query builder.
+     * @param qb The query builder.
+     * @param parameters The parameters.
+     * @returns The query builder.
+     */
     private static addParameters<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, parameters?: ObjectLiteral): SelectQueryBuilder<T> {
         if (parameters) {
             qb = qb.setParameters(parameters);
@@ -168,6 +224,14 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Builds a delete query.
+     * @param repository The repository.
+     * @param entity The entity.
+     * @param from The from.
+     * @param wheres The where clauses.
+     * @returns The query builder.
+     */
     public static async buildDelete<T extends ObjectLiteral>(
         repository: Repository<T>,
         entity: EntityTarget<T>,
@@ -179,6 +243,21 @@ export class QueryBuilderHelper {
         await qb.execute();
     }
 
+    /**
+     * Builds a query.
+     * @param repository The repository.
+     * @param alias The alias.
+     * @param select The select clause.
+     * @param from The from clauses.
+     * @param relations The relations.
+     * @param wheres The where clauses.
+     * @param orders The order clauses.
+     * @param groupBys The group by clauses.
+     * @param parameters The parameters.
+     * @param offset The offset.
+     * @param limit The limit.
+     * @returns The query builder.
+     */
     public static buildQuery<T extends ObjectLiteral>(
         repository: Repository<T> | EntityManager,
         alias = "table",
@@ -211,6 +290,19 @@ export class QueryBuilderHelper {
         return qb;
     }
 
+    /**
+     * Builds a query and returns raw results.
+     * @param repository The repository.
+     * @param alias The alias.
+     * @param select The select clause.
+     * @param from The from clauses.
+     * @param relations The relations.
+     * @param wheres The where clauses.
+     * @param orders The order clauses.
+     * @param groupBys The group by clauses.
+     * @param parameters The parameters.
+     * @returns The query builder.
+     */
     public static async buildFindRawMany<T extends ObjectLiteral, S>(
         repository: Repository<T> | EntityManager,
         alias = "table",
@@ -226,6 +318,17 @@ export class QueryBuilderHelper {
         return qb.getRawMany<S>();
     }
 
+    /**
+     * Builds a query and returns a tuple of results and count.
+     * @param repository The repository.
+     * @param alias The alias.
+     * @param offset The offset.
+     * @param limit The limit.
+     * @param relations The relations.
+     * @param wheres The where clauses.
+     * @param orders The order clauses.
+     * @returns The query builder.
+     */
     public static async buildFindManyAndCount<T extends ObjectLiteral>(
         repository: Repository<T> | EntityManager,
         alias = "table",
