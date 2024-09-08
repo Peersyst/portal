@@ -13,15 +13,28 @@ export class SettingsController {
         readonly settingsState: State<ISettingsState>,
     ) {}
 
+    /**
+     * Gets the settings.
+     * @returns The settings or undefined if the settings are not defined.
+     */
     getSettings(): Promise<Settings | undefined> {
         return this.settingsRepository.getSettings();
     }
 
+    /**
+     * Sets the settings.
+     * @param settings The settings to set.
+     * @returns A promise that resolves when the settings are set.
+     */
     async setSettings(settings: Partial<Settings>): Promise<void> {
         this.settingsState.setState(settings);
         return this.settingsRepository.setSettings(settings);
     }
 
+    /**
+     * Gets the locale.
+     * @returns The locale or undefined if the locale is not defined.
+     */
     async getLocale(): Promise<Locale | undefined> {
         const locale = (await this.settingsRepository.getLocale()) || this.localizationService.getLocale();
 
@@ -30,6 +43,11 @@ export class SettingsController {
         return supportedLocales.find((l) => systemLocaleStart === l || systemLocaleEnd === l) ?? "en";
     }
 
+    /**
+     * Sets the locale.
+     * @param locale The locale to set.
+     * @returns A promise that resolves when the locale is set.
+     */
     async setLocale(locale: Locale): Promise<void> {
         this.settingsState.setState({ locale });
         return this.settingsRepository.setLocale(locale);
