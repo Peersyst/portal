@@ -46,9 +46,10 @@ jest.mock("expo-localization", () => ({
 
 // Mock @peersyst/react-native-component
 import { BackdropProps } from "@peersyst/react-native-components";
+
 jest.mock("@peersyst/react-native-components", () => {
-    const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps) => {
-        const handleClose = () => {
+    const MockBackdrop = ({ children, onOpen, onClose, onExited, onEntered }: BackdropProps): JSX.Element => {
+        const handleClose = (): void => {
             onClose?.();
             onExited?.();
         };

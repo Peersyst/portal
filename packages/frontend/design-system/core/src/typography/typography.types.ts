@@ -13,8 +13,8 @@ export type CreateArrayOfLength<T extends number, U extends unknown[] = []> = Co
 export type CoreCreateArrayOfLength<T extends number, U extends unknown[] = [], I extends number = MaxRecursiveIterations> = I extends 0
     ? U
     : U["length"] extends T
-    ? U
-    : CoreCreateArrayOfLength<T, [...U, U["length"]], Iterations[I]>;
+      ? U
+      : CoreCreateArrayOfLength<T, [...U, U["length"]], Iterations[I]>;
 
 export type TypographyVariantKey = (typeof BASE_TYPOGRAPHY_VARIANTS)[number];
 

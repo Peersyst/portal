@@ -7,10 +7,19 @@ export type NestConnectionOptions = DataSourceOptions & {
     retryDelay?: number;
     retryAttempts?: number;
 };
+
+/**
+ * Gets the TypeORM configuration.
+ * @returns The TypeORM configuration.
+ */
 function getTypeORMConfig(): DataSourceOptions {
     return apiDatabaseConfig;
 }
 
+/**
+ * Gets the Nest TypeORM configuration.
+ * @returns The Nest TypeORM configuration.
+ */
 export function getNestTypeORMConfig(): NestConnectionOptions {
     return {
         ...getTypeORMConfig(),

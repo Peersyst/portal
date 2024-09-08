@@ -4,9 +4,9 @@ const fs = require("fs");
 const { execSync } = require("child_process");
 
 /**
- * Transforms a string into CamelCase
- * @param string Non CamelCased string
- * @returns {string} CamelCased string
+ * Transforms a string into CamelCase.
+ * @param string Non CamelCased string.
+ * @returns CamelCased string.
  */
 function toCamelCase(string) {
     const words = string.split("-");
@@ -21,11 +21,11 @@ const outputFolder = process.argv[3];
 const svgs = [];
 
 /**
- * Generates icon component's code
- * @param name Icon name
- * @param data Icon's svg code
- * @param removeFill remove fill boolean
- * @returns {string} Icon component's code
+ * Generates icon component's code.
+ * @param name Icon name.
+ * @param data Icon's svg code.
+ * @param removeFill Remove fill boolean.
+ * @returns Icon component's code.
  */
 function generateComponent(name, data, removeFill) {
     return `import { SvgIcon, SvgIconProps } from "@peersyst/react-components";
@@ -34,8 +34,8 @@ import clsx from "clsx";
 export function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon {...rest} data-testid="${name}Icon" className={clsx(${
-        removeFill ? undefined : '"Filled"'
-    }, "Icon", className)} fill="none">
+            removeFill ? undefined : '"Filled"'
+        }, "Icon", className)} fill="none">
             ${data}
         </SvgIcon>
     )
@@ -44,9 +44,9 @@ export function ${name}Icon ({ className, ...rest }: Omit<SvgIconProps, "childre
 }
 
 /**
- * Generates icon component's export inside index
- * @param name Name of the icon
- * @returns {string} Export code
+ * Generates icon component's export inside index.
+ * @param name Name of the icon.
+ * @returns Export code.
  */
 function generateExport(name) {
     const iconName = name + ".icon";
@@ -54,8 +54,8 @@ function generateExport(name) {
 }
 
 /**
- * Adds svgs data
- * @param folder Folder path containing svgs
+ * Adds svgs data.
+ * @param folder Folder path containing svgs.
  * @param removeFill Boolean indicating whether to remove the fill property or not.
  */
 function addSvgs(folder, removeFill) {

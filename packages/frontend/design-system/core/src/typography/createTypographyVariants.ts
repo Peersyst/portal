@@ -8,7 +8,14 @@ export interface TypographyCSSObject extends CSSProperties, TypographyCSSPseudos
     [key: string]: TypographyCSSObject | string | number | undefined;
 }
 
-export function createTypographyStyle(variantStyles: CSSProperties, fontFamily: string, fontWeight: FontWeight) {
+/**
+ * Creates a typography style.
+ * @param variantStyles The styles for the variant.
+ * @param fontFamily The font family.
+ * @param fontWeight The font weight.
+ * @returns The typography style.
+ */
+export function createTypographyStyle(variantStyles: CSSProperties, fontFamily: string, fontWeight: FontWeight): TypographyCSSObject {
     return {
         ...variantStyles,
         fontFamily,
@@ -16,13 +23,31 @@ export function createTypographyStyle(variantStyles: CSSProperties, fontFamily: 
     };
 }
 
-export function createTypographyObjectVariant(variant: string, variantStyles: CSSProperties, fontFamily: string, fontWeight: FontWeight) {
+/**
+ * Creates a typography object variant.
+ * @param variant The variant.
+ * @param variantStyles The styles for the variant.
+ * @param fontFamily The font family.
+ * @param fontWeight The font weight.
+ * @returns The typography object variant.
+ */
+export function createTypographyObjectVariant(
+    variant: string,
+    variantStyles: CSSProperties,
+    fontFamily: string,
+    fontWeight: FontWeight,
+): { component: string; style: TypographyCSSObject } {
     return {
         component: variant[0] === "h" ? variant : "p",
         style: createTypographyStyle(variantStyles, fontFamily, fontWeight),
     };
 }
 
+/**
+ * Creates a typography variant.
+ * @param font The font.
+ * @returns The typography variant.
+ */
 function createTypographyVariant<F extends Font>(font: F): Record<string, { component: string; style: TypographyCSSObject }> {
     const variants: Record<string, { component: string; style: TypographyCSSObject }> = {};
 
@@ -38,6 +63,11 @@ function createTypographyVariant<F extends Font>(font: F): Record<string, { comp
     return variants;
 }
 
+/**
+ * Creates the typography variants.
+ * @param fonts The fonts.
+ * @returns The typography variants.
+ */
 export function createTypographyVariants<Fonts extends Readonly<Array<Font<any, any, any>>>>(
     fonts: Fonts,
 ): Record<TypographyVariants<Fonts>, { component: string; style: TypographyCSSObject }> {

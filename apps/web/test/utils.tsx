@@ -24,6 +24,11 @@ export interface RouterConfig {
     path?: string;
 }
 
+/**
+ * Creates a wrapper component for the tests.
+ * @param config The config for the wrapper.
+ * @returns The wrapper component.
+ */
 export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): JSXElementConstructor<{ children: ReactNode }> => {
     const queryClient = new QueryClient(
         deepmerge(
@@ -66,6 +71,12 @@ export const createWrapper = ({ queryClientConfig }: CreateWrapperConfig = {}): 
     };
 };
 
+/**
+ * Custom render function for the tests.
+ * @param ui The element to render.
+ * @param config The config.
+ * @returns The rendered result.
+ */
 const customRender = (
     ui: ReactElement,
     {
@@ -87,6 +98,12 @@ const customRender = (
     );
 };
 
+/**
+ * Custom render hook function for the tests.
+ * @param callback The callback to render the hook.
+ * @param config The config.
+ * @returns The rendered hook.
+ */
 const customRenderHook = <
     TResult,
     TProps,

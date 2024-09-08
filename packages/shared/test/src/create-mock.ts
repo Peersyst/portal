@@ -2,8 +2,9 @@ import { MethodMock } from "./method-mock";
 import { Mock, ExtendedMock, MockData } from "./mock";
 
 /**
- * Creates a global mock
- * @param data Mocked methods
+ * Creates a global mock.
+ * @param data Mocked methods.
+ * @returns The mock.
  */
 export function createMock<I extends object = any>(
     data: MockData<I>,

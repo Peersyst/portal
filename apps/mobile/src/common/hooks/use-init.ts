@@ -12,7 +12,9 @@ export interface UseLoadResult {
 }
 
 /**
- * Hook used to initialize the app data
+ * Hook used to initialize the app.
+ * It waits for the config, the state manager and the factories to be initialized and then sets the app state to success.
+ * @returns The result of the initialization.
  */
 export function useInit(): UseLoadResult {
     const { isLoading, isError, isSuccess, setIsSuccess, setIsError } = useAppState();
@@ -21,7 +23,7 @@ export function useInit(): UseLoadResult {
 
     useLoad(areFactoriesInitialized);
 
-    const init = async () => {
+    const init = async (): Promise<void> => {
         try {
             await configManager.initialization;
 

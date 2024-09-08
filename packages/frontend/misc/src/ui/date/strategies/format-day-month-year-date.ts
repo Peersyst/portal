@@ -1,11 +1,18 @@
 import { capitalize } from "@peersyst/react-utils";
 import { TLocale } from "../types";
 
+/**
+ * Formats a date to day/month/year.
+ * @param locale The locale.
+ * @param date The date.
+ * @param options The options.
+ * @returns The formatted date.
+ */
 export function formatDayMonthYearDate<T extends TLocale>(
     locale: T,
     date?: Date | string | number | undefined,
     options: Intl.DateTimeFormatOptions = { weekday: "long", day: "2-digit", month: "2-digit", year: "numeric" },
-) {
+): string {
     try {
         if (date === undefined || date === "") return "";
         const finalDate = new Date(date);

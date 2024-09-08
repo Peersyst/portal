@@ -2,11 +2,9 @@ import { QueryFunction, QueryKey, UseQueryResult, useQuery } from "@tanstack/rea
 import { UseQueryPlugin, UseEnhancedQueryOptions } from "./types";
 
 /**
- * An enhanced version of `useQuery` that allows plugins
- * @param queryKey The query key
- * @param queryFn The query function
- * @param options The use enhanced query options
- * @returns A `useQuery` result
+ * An enhanced version of `useQuery` that allows plugins.
+ * @param options The use enhanced query options.
+ * @returns A `useQuery` result.
  */
 export function useEnhancedQuery<
     TQueryFnData = unknown,

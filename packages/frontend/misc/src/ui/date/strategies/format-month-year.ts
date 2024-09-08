@@ -1,12 +1,18 @@
 import { capitalize } from "@peersyst/react-utils";
 import { TLocale } from "../types";
 
-// Format: Month Year (e.g. November 2023)
+/**
+ * Formats a date to month/year (e.g. November 2023).
+ * @param locale The locale.
+ * @param date The date.
+ * @param options The options.
+ * @returns The formatted date.
+ */
 export function formatMonthYear<T extends TLocale>(
     locale: T,
     date: Date | string | number | undefined = new Date(),
     options: Intl.DateTimeFormatOptions = { year: "numeric", month: "short" },
-) {
+): string {
     try {
         if (date === undefined || date === "") return "";
         const finalDate = new Date(date);

@@ -6,8 +6,8 @@ import { isDomainError } from "@frontend/core/domain/error";
 import { BrowserErrorEvent } from "@frontend/core/ui/error/browser";
 
 /**
- * Receives an error and dispatches a UIErrorEvent
- * @param error The error to handle
+ * Receives an error and dispatches a UIErrorEvent.
+ * @param error The error to handle.
  */
 function handleQueryClientError(error: any): void {
     if (isDomainError(error)) BrowserErrorEvent.dispatch(error.message, error.severity, error.data);

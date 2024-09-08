@@ -6,6 +6,12 @@ import { ServiceFactory } from "../../core/data-access/factories/service.factory
 import { RepositoryFactory } from "../../core/data-access/factories/repository.factory";
 import { ControllerFactory } from "../../core/domain/factories/controller.factory";
 
+/**
+ * Hook used to load the app.
+ * It waits for the config and the state manager to be initialized and then initializes the factories.
+ * @param areFactoriesInitialized `true` if the factories are initialized, `false` otherwise.
+ * @returns `true` if the app is loaded, `false` otherwise.
+ */
 export function useLoad(areFactoriesInitialized: boolean): boolean {
     const { isConnected } = useNetInfo();
 
@@ -14,7 +20,7 @@ export function useLoad(areFactoriesInitialized: boolean): boolean {
     const loadingRef = useRef(false);
     const loadFactoriesCleanupRef = useRef<() => void>();
 
-    async function load() {
+    async function load(): Promise<void> {
         loadingRef.current = true;
 
         try {

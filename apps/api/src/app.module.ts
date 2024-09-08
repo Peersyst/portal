@@ -56,6 +56,10 @@ import { ErrorFilter } from "@backend/core/exceptions";
     providers: [{ provide: APP_FILTER, useClass: ErrorFilter }],
 })
 export class AppModule {
+    /**
+     * Configures the middleware for the application.
+     * @param consumer The middleware consumer.
+     */
     configure(consumer: MiddlewareConsumer): void {
         consumer
             .apply(

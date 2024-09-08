@@ -9,7 +9,12 @@ export interface DateRange {
     lastDay: Date;
 }
 
-export function useLastMonths({ months = 12 }: UseLastMonthsProps = {}) {
+/**
+ * Hook to get the last months.
+ * @param props The props.
+ * @returns The last months.
+ */
+export function useLastMonths({ months = 12 }: UseLastMonthsProps = {}): DateRange[] {
     return useMemo(() => {
         const today = new Date();
         const result: DateRange[] = [];
