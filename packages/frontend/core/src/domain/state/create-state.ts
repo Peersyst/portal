@@ -11,6 +11,13 @@ export type CreateStateReturn<T, Mos extends [StoreMutatorIdentifier, unknown][]
     promise: Promise<void>;
 };
 
+/**
+ * Creates a state for the state manager.
+ * @param name The name of the state.
+ * @param initializer The initializer for the state.
+ * @param options The options for the state.
+ * @returns The state.
+ */
 export function createState<T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(
     name: string,
     initializer: StateCreator<T, [], Mos>,
@@ -26,10 +33,8 @@ export function createState<T, Mos extends [StoreMutatorIdentifier, unknown][] =
             persist(initializer, {
                 name,
                 storage: createJSONStorage(() => StateManager.persistenceStorage!),
-                /**
-                 * The arrow function will be called before the state rehydration
-                 * The resolvePromise will be called after the state rehydration or when an error occurred.
-                 */
+                // The arrow function will be called before the state rehydration
+                // The resolvePromise will be called after the state rehydration or when an error occurred.
                 onRehydrateStorage: () => resolvePromise,
             }) as StateCreator<T, [], Mos>,
         ) as CreateStateReturn<T, Mos>;
@@ -39,7 +44,7 @@ export function createState<T, Mos extends [StoreMutatorIdentifier, unknown][] =
         state = createStore<T, Mos>(initializer) as CreateStateReturn<T, Mos>;
     }
 
-    state.reset = () => {
+    state.reset = (): void => {
         state.setState(state.getInitialState(), true);
 
         if ("clearStorage" in state && typeof state.clearStorage === "function") state.clearStorage();

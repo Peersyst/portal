@@ -6,6 +6,11 @@ import { HttpError } from "express-openapi-validator/dist/framework/types";
 
 @Catch(...Object.values(error))
 export class ErrorFilter implements ExceptionFilter {
+    /**
+     * Catches and handles HTTP errors.
+     * @param err The HTTP error.
+     * @param host The arguments host.
+     */
     catch(err: HttpError, host: ArgumentsHost): void {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();

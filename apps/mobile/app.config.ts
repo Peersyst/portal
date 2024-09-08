@@ -1,5 +1,10 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
+/**
+ * The app config.
+ * @param config The Expo config.
+ * @returns The Expo config.
+ */
 export default ({ config }: ConfigContext): ExpoConfig => ({
     ...config,
     name: "mobile-base-project",

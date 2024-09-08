@@ -29,6 +29,6 @@ export type ThemeSpacing = ThemeSpacingValues & {
      * @param indices top, bottom
      * @returns string
      * @example padding: ${theme.spacing.vertical(1, 2)}; (padding: 4rem 0rem 8rem 0rem;)
-     * */
+     */
     vertical(...indices: SpaceDirectionParams): string;
 };

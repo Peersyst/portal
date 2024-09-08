@@ -7,10 +7,10 @@ export type ForwardedQueryPlugin<TQueryPluginOptions extends QueryPluginOptions 
 ) => QueryPluginResult;
 
 /**
- * Forwards a query plugin
- * This is just a util to avoid rewriting a function every time a query plugin is forwarded
- * @param queryPlugin The query plugin to forward
- * @returns The forwarded query plugin
+ * Forwards a query plugin.
+ * This is just a util to avoid rewriting a function every time a query plugin is forwarded.
+ * @param queryPlugin The query plugin to forward.
+ * @returns The forwarded query plugin.
  */
 export function forwardQueryPlugin<TQueryPluginOptions extends QueryPluginOptions = QueryPluginOptions>(
     queryPlugin: ForwardedQueryPlugin<TQueryPluginOptions>,

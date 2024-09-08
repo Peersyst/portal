@@ -1,6 +1,11 @@
 import { SvgIcon, SvgIconProps } from "@peersyst/react-native-components";
 import { Path } from "react-native-svg";
 
+/**
+ * ArrowIcon.
+ * @param props Props for the ArrowIcon component.
+ * @returns The icon element.
+ */
 export function ArrowIcon(props: Omit<SvgIconProps, "children">): JSX.Element {
     return (
         <SvgIcon

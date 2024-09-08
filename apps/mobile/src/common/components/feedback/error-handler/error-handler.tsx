@@ -8,7 +8,7 @@ export const ErrorHandler = ({ children }: PropsWithChildren): JSX.Element => {
     const { showToast } = useToast();
 
     useEffect(() => {
-        const handleUiError = (event: ReactNativeErrorEvent) => {
+        const handleUiError = (event: ReactNativeErrorEvent): void => {
             showToast(translateError([event.error.message as any, "somethingWentWrong"], event.error.data || {}) as string, {
                 type: event.error.severity,
             });

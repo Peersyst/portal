@@ -9,9 +9,9 @@ const imgFolder = process.argv[2];
 const imgRequires = [];
 
 /**
- * Generates image's name
- * @param filename Image filename
- * @returns {string} Image name
+ * Generates image's name.
+ * @param filename Image filename.
+ * @returns Image name
  */
 function generateName(filename) {
     const paths = filename.split("/");
@@ -24,15 +24,19 @@ function generateName(filename) {
 }
 
 /**
- * Generates image's require inside index
- * @param filename Image filename
- * @param path Image path
- * @returns {string} Require code
+ * Generates image's require inside index.
+ * @param filename Image filename.
+ * @param path Image path.
+ * @returns Require code.
  */
 function generateExport(filename, path) {
     return `export { default as ${generateName(filename)} } from "./${path}"`;
 }
 
+/**
+ * Adds images to the index.
+ * @param folder Folder containing images.
+ */
 function addImages(folder) {
     const filenames = fs.readdirSync(folder);
     for (const filename of filenames) {

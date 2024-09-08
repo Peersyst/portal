@@ -7,6 +7,11 @@ export interface useFormatDateProps {
     format: DateFormat;
 }
 
+/**
+ * Hook to format a date.
+ * @param props The props.
+ * @returns The formatted date.
+ */
 export function useFormatDate({
     format,
 }: useFormatDateProps): (date?: Date | string | number | undefined, options?: Intl.DateTimeFormatOptions) => string {

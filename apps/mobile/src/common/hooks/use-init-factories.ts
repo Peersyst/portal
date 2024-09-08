@@ -6,6 +6,11 @@ import { ServiceFactory } from "../../core/data-access/factories/service.factory
 import { RepositoryFactory } from "../../core/data-access/factories/repository.factory";
 import { ControllerFactory } from "../../core/domain/factories/controller.factory";
 
+/**
+ * Hook that initializes the factories.
+ * It waits for the config and the state manager to be initialized and then initializes the factories.
+ * @returns `true` if the factories are initialized, `false` otherwise.
+ */
 export function useInitFactories(): boolean {
     const [isInitialized, setIsInitialized] = useState(false);
 

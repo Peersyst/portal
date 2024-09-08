@@ -10,5 +10,6 @@ import "core-js/stable/atob";
 global.Buffer = require("buffer").Buffer;
 
 const TextEncodingPolyfill = require("text-encoding");
+
 global.TextEncoder = TextEncodingPolyfill.TextEncoder;
 global.TextDecoder = TextEncodingPolyfill.TextDecoder;

@@ -13,10 +13,9 @@ const defaultConfig = getDefaultConfig(projectRoot);
 /**
  * Add the monorepo paths to the Metro config.
  * This allows Metro to resolve modules from the monorepo.
- *
  * @see https://docs.expo.dev/guides/monorepos/#modify-the-metro-config
- * @param {import('expo/metro-config').MetroConfig} config
- * @returns {import('expo/metro-config').MetroConfig}
+ * @param config The Metro config.
+ * @returns The Metro config.
  */
 function withMonorepoPaths(config) {
     // Watch all files in the monorepo
@@ -31,10 +30,9 @@ function withMonorepoPaths(config) {
 /**
  * Move the Metro cache to the `.cache/metro` folder.
  * If you have any environment variables, you can configure Turborepo to invalidate it when needed.
- *
  * @see https://turbo.build/repo/docs/reference/configuration#env
- * @param {import('expo/metro-config').MetroConfig} config
- * @returns {import('expo/metro-config').MetroConfig}
+ * @param config The Metro config.
+ * @returns The Metro config.
  */
 function withTurborepoManagedCache(config) {
     config.cacheStores = [new FileStore({ root: path.join(__dirname, ".cache/metro") })];
@@ -43,8 +41,8 @@ function withTurborepoManagedCache(config) {
 
 /**
  * Add polyfills to the Metro config.
- * @param {import('expo/metro-config').MetroConfig} config
- * @returns {import('expo/metro-config').MetroConfig}
+ * @param config The Metro config.
+ * @returns The Metro config.
  */
 function withPolyfills(config) {
     config.resolver.extraNodeModules = {

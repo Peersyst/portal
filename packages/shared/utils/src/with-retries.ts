@@ -1,5 +1,13 @@
 import { delay } from "./delay";
 
+/**
+ * Executes a function with retries.
+ * @param fn The function to execute.
+ * @param maxRetries The maximum number of retries.
+ * @param timeout The timeout between retries.
+ * @param onRetry The function to call on retry.
+ * @returns The result of the function.
+ */
 export async function withRetries<T>(
     fn: () => T,
     maxRetries: number,

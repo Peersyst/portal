@@ -5,6 +5,10 @@ interface LoggerConfig {
     logFile: string;
 }
 
+/**
+ * Builds the logger configuration.
+ * @returns The logger configuration.
+ */
 export default (): LoggerConfig => {
     return buildConfig<LoggerConfig>({
         logLevel: {

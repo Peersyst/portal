@@ -1,14 +1,14 @@
 import { useTranslate } from "@frontend/locale/react";
 
 /**
- * Hook to format numbers
- * @param n Number to format
- * @param options Number format options
+ * Hook to format numbers.
+ * @param options Number format options.
+ * @returns The formatted number.
  */
-export function useFormatNumber(options: Intl.NumberFormatOptions = {}) {
+export function useFormatNumber(options: Intl.NumberFormatOptions = {}): (n: number | string) => string {
     const translate = useTranslate();
 
-    return (n: number | string) => {
+    return (n: number | string): string => {
         return translate("number", {
             val: n,
             ...options,

@@ -2,7 +2,7 @@ import { isRepositoryError } from "../../../data-access/repository/error";
 import { createErrorHandlerDecorator } from "../../decorator";
 import { DomainError, DomainErrorOptions } from "../domain-error";
 
-function handleRepositoryError(error: any, errors: Record<string, string | DomainErrorOptions>) {
+function handleRepositoryError(error: any, errors: Record<string, string | DomainErrorOptions>): void {
     if (isRepositoryError(error)) {
         const domainError = errors[error.message];
         throw typeof domainError === "string"

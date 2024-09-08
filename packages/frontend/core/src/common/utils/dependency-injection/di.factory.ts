@@ -1,6 +1,11 @@
 import { Factory, IFactory } from "@shared/utils";
 import { IDIFactoryInstance } from "./di.factory.types";
 
+/**
+ * Creates a factory for dependency injection.
+ * @param name The name of the factory.
+ * @returns The factory.
+ */
 export function DIFactory<T extends Record<string, any>>(name: string): IDIFactoryInstance<T> {
     let _ref: IFactory<T> | undefined = undefined;
 

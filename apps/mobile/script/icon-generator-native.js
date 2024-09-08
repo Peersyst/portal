@@ -2,9 +2,9 @@
 const fs = require("fs");
 
 /**
- * Transforms a string into CamelCase
- * @param string Non CamelCased string
- * @returns {string} CamelCased string
+ * Transforms a string into CamelCase.
+ * @param string Non CamelCased string.
+ * @returns CamelCased string.
  */
 function toCamelCase(string) {
     const words = string.split("-");
@@ -19,10 +19,10 @@ const outputFolder = process.argv[3];
 const svgs = [];
 
 /**
- * Generates icon component's code
- * @param name Icon name
- * @param data Icon's svg code
- * @returns {string} Icon component's code
+ * Generates icon component's code.
+ * @param name Icon name.
+ * @param data Icon's svg code.
+ * @returns Icon component's code.
  */
 function generateComponent(name, data) {
     // Array containing Svg tags that will be imported from react-native-svg
@@ -52,17 +52,17 @@ export function ${name}Icon (props: Omit<SvgIconProps, "children">): JSX.Element
 }
 
 /**
- * Generates icon component's export inside index
- * @param name Name of the icon
- * @returns {string} Export code
+ * Generates icon component's export inside index.
+ * @param name Name of the icon.
+ * @returns Export code.
  */
 function generateExport(name) {
     return 'export * from "./' + name + '.icon";';
 }
 
 /**
- * Adds svgs data
- * @param folder Folder path containing svgs
+ * Adds svgs data.
+ * @param folder Folder path containing svgs.
  * @param removeFill Boolean indicating whether to remove the fill property or not.
  */
 function addSvgs(folder, removeFill) {
@@ -76,7 +76,7 @@ function addSvgs(folder, removeFill) {
             const data = fs.readFileSync(folder + filename, "utf8");
             const name = filename.split(".")[0];
             svgs.push({
-                filename: name,
+                filename: name.toLowerCase(),
                 name: toCamelCase(name),
                 // Remove svg tags and maybe fill. Then, replace all kebab-case svg properties for camelCase React properties
                 data: data
