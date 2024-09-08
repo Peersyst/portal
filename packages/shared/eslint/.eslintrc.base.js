@@ -48,7 +48,7 @@ module.exports = {
                 matchDescription: "^(?:[A-Z]|`).*\\.(?:\n.*)*",
                 tags: {
                     param: true,
-                    return: true,
+                    returns: true,
                 },
             },
         ],
