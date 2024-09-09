@@ -14,7 +14,7 @@
         "db:migration:generate": "pnpm run typeorm migration:generate",
         "db:migration:run": "pnpm run typeorm migration:run",
         "db:migration:revert": "pnpm run typeorm migration:revert",
-        "db:schema:drop": "pnpm run typeorm -- schema:drop"
+        "db:schema:drop": "pnpm run typeorm schema:drop"
     },
     "exports": {
         "./config": {
