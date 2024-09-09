@@ -1,6 +1,6 @@
 import { getAttribute } from "@peersyst/react-utils";
 import { NestedKeys, DeepPick } from "@swisstype/essential";
-import { Config, config, IConfigManager } from "../../src";
+import { Config, config, IConfigManager } from "../../../../src";
 import { createMock, MethodMock } from "@shared/test";
 
 export const ConfigManagerMock = createMock<IConfigManager>({
