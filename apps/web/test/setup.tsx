@@ -64,5 +64,5 @@ Object.defineProperty(window, "matchMedia", {
     value: jest.fn().mockImplementation(LightMatchMediaMock as any),
 });
 
-window.IntersectionObserver = jest.fn().mockImplementation(IntersectionObserverMock) as any;
-window.ResizeObserver = jest.fn().mockImplementation(ResizeObserverMock) as any;
+window.IntersectionObserver = jest.fn().mockReturnValue(new IntersectionObserverMock()) as any;
+window.ResizeObserver = jest.fn().mockReturnValue(new ResizeObserverMock()) as any;
