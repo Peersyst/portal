@@ -9,12 +9,12 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
-        "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
-        "db:migration:create": "yarn typeorm migration:create",
-        "db:migration:generate": "yarn typeorm migration:generate",
-        "db:migration:run": "yarn typeorm migration:run",
-        "db:migration:revert": "yarn typeorm migration:revert",
-        "db:schema:drop": "yarn typeorm -- schema:drop"
+        "typeorm": "typeorm-ts-node-commonjs -d ./dist/data-source.js",
+        "db:migration:create": "pnpm run typeorm migration:create",
+        "db:migration:generate": "pnpm run typeorm migration:generate",
+        "db:migration:run": "pnpm run typeorm migration:run",
+        "db:migration:revert": "pnpm run typeorm migration:revert",
+        "db:schema:drop": "pnpm run typeorm -- schema:drop"
     },
     "exports": {
         "./config": {
@@ -54,13 +54,14 @@
     "devDependencies": {
         "@backend/config": "workspace:*",
         "@database/seed": "workspace:*",
-        "@peersyst/auth-module": "^0.14.6",
         "@nestjs/config": "^3.1.1",
+        "@peersyst/auth-module": "^0.14.6",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@types/node": "latest",
         "passport-jwt": "4.0.1",
+        "ts-node": "10.9.2",
         "typeorm": "^0.3.0",
         "typescript": "latest"
     }
