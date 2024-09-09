@@ -2,9 +2,9 @@ import { PrivateAuthUserDtoI } from "@peersyst/auth-module";
 import { User, UserType } from "@database/api/entities";
 
 export class UserDto implements PrivateAuthUserDtoI {
-    public id: number;
-    public email: string;
-    public type: UserType;
+    id: number;
+    email: string;
+    type: UserType;
 
     /**
      * Converts a User entity to a UserDto.

@@ -35,6 +35,12 @@ module.exports = {
         ],
         "@typescript-eslint/no-empty-object-type": "off",
         "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+            "error",
+            {
+                accessibility: "no-public",
+            },
+        ],
         "jsdoc/require-description": "error",
         "jsdoc/require-param": [
             "error",
