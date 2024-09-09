@@ -1,3 +1,7 @@
+const { getRequireJSDocConfig } = require("./utils/jsdoc");
+
+const jsdocConfig = getRequireJSDocConfig();
+
 module.exports = {
     plugins: ["import"],
     extends: [
@@ -45,7 +49,7 @@ module.exports = {
             },
         ],
         "jsdoc/require-hyphen-before-param-description": ["error", "never"],
-        "jsdoc/require-jsdoc": "off",
+        "jsdoc/require-jsdoc": ["error", jsdocConfig],
         "jsdoc/match-description": [
             "error",
             {
@@ -73,5 +77,3 @@ module.exports = {
     },
     ignorePatterns: ["dist"],
 };
-
-// ^(?:[A-Z]|`).*\.(?:\n(?:[A-Z]|`).*\.)*

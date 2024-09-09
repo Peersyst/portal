@@ -1,4 +1,6 @@
-export const IntersectionObserverMock = (): { observe: () => unknown; disconnect: () => void } => ({
+import { mockify } from "@shared/test";
+
+export const IntersectionObserverMock = mockify<IntersectionObserver>({
     observe: () => null,
     disconnect: () => undefined,
 });

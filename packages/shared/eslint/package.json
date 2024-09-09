@@ -21,6 +21,7 @@
         "./nest": "./.eslintrc.nest.js",
         "./package": "./.eslintrc.package.js",
         "./react": "./.eslintrc.react.js",
-        "./react-native": "./.eslintrc.react-native.js"
+        "./react-native": "./.eslintrc.react-native.js",
+        "./utils/jsdoc": "./utils/jsdoc.js"
     }
 }

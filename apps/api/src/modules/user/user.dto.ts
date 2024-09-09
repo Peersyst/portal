@@ -6,6 +6,11 @@ export class UserDto implements PrivateAuthUserDtoI {
     public email: string;
     public type: UserType;
 
+    /**
+     * Converts a User entity to a UserDto.
+     * @param user The user to convert to a UserDto.
+     * @returns A UserDto.
+     */
     static fromEntity(user: User): UserDto {
         return {
             id: user.id,

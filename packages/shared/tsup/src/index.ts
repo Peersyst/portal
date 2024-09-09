@@ -6,6 +6,11 @@ export type Options = Omit<TsupOptions, "onSuccess"> & {
     onSuccess?: Exclude<TsupOptions["onSuccess"], string>;
 };
 
+/**
+ * `tsup.defineConfig` wrapper to build declaration files.
+ * @param config The tsup config.
+ * @returns The tsup config.
+ */
 export function defineConfig({ dts = false, onSuccess, ...restOptions }: Options): ReturnType<typeof tsupDefineConfig> {
     return {
         ...restOptions,

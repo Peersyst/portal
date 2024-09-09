@@ -21,6 +21,10 @@ export function Singleton(): <T extends { new (...args: any[]): {} }>(constructo
                 return instance;
             }
 
+            /**
+             * Gets the instance of the singleton.
+             * @returns The instance of the singleton.
+             */
             public static getInstance(): InstanceType<T> {
                 if (!instance) throw new Error(`${this.name} has not been initialized`);
 
