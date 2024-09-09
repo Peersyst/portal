@@ -8,8 +8,9 @@ export interface UseSearchParamOptions<T = string> {
 }
 
 /**
- * @param key - The search parameter key.
- * @param options - The options for the search parameter.
+ * Flexible to use search parameter.
+ * @param key The search parameter key.
+ * @param options The options for the search parameter.
  * @returns A tuple containing the search parameter and a function to set the search parameter.
  */
 export function useSearchParam<T = string>(
