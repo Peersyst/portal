@@ -232,7 +232,7 @@ export class QueryBuilderHelper {
      * @param wheres The where clauses.
      * @returns The query builder.
      */
-    public static async buildDelete<T extends ObjectLiteral>(
+    static async buildDelete<T extends ObjectLiteral>(
         repository: Repository<T>,
         entity: EntityTarget<T>,
         from: string,
@@ -258,7 +258,7 @@ export class QueryBuilderHelper {
      * @param limit The limit.
      * @returns The query builder.
      */
-    public static buildQuery<T extends ObjectLiteral>(
+    static buildQuery<T extends ObjectLiteral>(
         repository: Repository<T> | EntityManager,
         alias = "table",
         select: string[] | string = [],
@@ -303,7 +303,7 @@ export class QueryBuilderHelper {
      * @param parameters The parameters.
      * @returns The query builder.
      */
-    public static async buildFindRawMany<T extends ObjectLiteral, S>(
+    static async buildFindRawMany<T extends ObjectLiteral, S>(
         repository: Repository<T> | EntityManager,
         alias = "table",
         select: string[] | string = [],
@@ -329,7 +329,7 @@ export class QueryBuilderHelper {
      * @param orders The order clauses.
      * @returns The query builder.
      */
-    public static async buildFindManyAndCount<T extends ObjectLiteral>(
+    static async buildFindManyAndCount<T extends ObjectLiteral>(
         repository: Repository<T> | EntityManager,
         alias = "table",
         offset?: number,
