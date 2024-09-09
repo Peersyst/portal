@@ -7,7 +7,8 @@ export interface SearchParamOptions {
 }
 
 /**
- * @param params - An array of search parameters.
+ * Flexible to use search parameter group.
+ * @param params An array of search parameters.
  * @returns A tuple containing the search parameter group and a function to set the search parameter group.
  */
 export function useSearchParamGroup<K extends string = string>(
