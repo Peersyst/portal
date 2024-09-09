@@ -8,7 +8,7 @@ import { I18nextProvider } from "react-i18next";
 import { queries, Queries } from "@testing-library/dom";
 import { Container as RendererableContainer } from "react-dom/client";
 import { ConfigManagerProvider } from "@frontend/config/react";
-import { ConfigManagerMock } from "@frontend/config/test/mocks";
+import { ConfigManagerMock } from "@frontend/config/mocks/core/manager";
 import { DSProvider } from "../src/design-system/ds.provider";
 import i18next from "i18next";
 import { ToastProvider } from "@frontend/design-system-react/toast";
