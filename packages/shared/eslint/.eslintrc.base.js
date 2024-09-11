@@ -67,6 +67,12 @@ module.exports = {
                 },
             },
         ],
+        "jsdoc/check-tag-names": [
+            "error",
+            {
+                definedTags: ["pre"],
+            },
+        ],
     },
     env: {
         node: true,
