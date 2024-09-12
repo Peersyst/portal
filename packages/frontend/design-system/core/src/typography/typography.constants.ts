@@ -1,6 +1,10 @@
 export const BASE_TYPOGRAPHY_VARIANTS = [
     "h1",
     "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
     "title1",
     "title2",
     "title3",
@@ -12,13 +16,16 @@ export const BASE_TYPOGRAPHY_VARIANTS = [
     "caption",
 ] as const;
 
-export const FONT_WEIGHTS = ["light", "regular", "medium", "semibold", "bold", "heavy"] as const;
+export const FONT_WEIGHTS = ["thin", "extraLight", "light", "regular", "medium", "semibold", "bold", "extraBold", "black"] as const;
 
 export const FONT_WEIGHT: Record<(typeof FONT_WEIGHTS)[number], number> = {
+    thin: 100,
+    extraLight: 200,
     light: 300,
     regular: 400,
     medium: 500,
     semibold: 600,
     bold: 700,
-    heavy: 900,
+    extraBold: 800,
+    black: 900,
 };

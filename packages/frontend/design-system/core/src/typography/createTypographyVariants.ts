@@ -1,6 +1,6 @@
 import { Properties as CSSProperties, Pseudos as CSSPseudos } from "csstype";
 import { FONT_WEIGHT } from "./typography.constants";
-import { Font, FontWeight, TypographyVariants } from "./typography.types";
+import { Font, FontVariantDef, FontWeight, TypographyVariants } from "./typography.types";
 import { capitalize } from "@shared/string";
 
 export type TypographyCSSPseudosObject = { [K in CSSPseudos]?: TypographyCSSObject };
@@ -26,20 +26,20 @@ export function createTypographyStyle(variantStyles: CSSProperties, fontFamily: 
 /**
  * Creates a typography object variant.
  * @param variant The variant.
- * @param variantStyles The styles for the variant.
+ * @param variantDef The styles for the variant.
  * @param fontFamily The font family.
  * @param fontWeight The font weight.
  * @returns The typography object variant.
  */
 export function createTypographyObjectVariant(
     variant: string,
-    variantStyles: CSSProperties,
+    variantDef: FontVariantDef,
     fontFamily: string,
     fontWeight: FontWeight,
 ): { component: string; style: TypographyCSSObject } {
     return {
-        component: variant[0] === "h" ? variant : "p",
-        style: createTypographyStyle(variantStyles, fontFamily, fontWeight),
+        component: variantDef.component ?? (variant[0] === "h" ? variant : "p"),
+        style: createTypographyStyle(variantDef, fontFamily, fontWeight),
     };
 }
 
