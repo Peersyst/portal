@@ -5,6 +5,8 @@ import { BridgeTransferModalProps } from "./bridge-transfer-modal.types";
 import { useTranslate } from "@frontend/locale/react";
 import { ControllerFactory } from "@frontend/core/domain/controller/factory";
 import { Tabs, TabPanel } from "@frontend/design-system-react/tabs";
+import { BridgeRoutes } from "../../bridge.router";
+import { BridgeTransferSteps } from "../bridge-transfer-steps/bridge-transfer-steps";
 
 export const BridgeTransferModal = createModal<BridgeTransferModalProps>(function BridgeTransferModal({
     data,
@@ -48,7 +50,7 @@ export const BridgeTransferModal = createModal<BridgeTransferModalProps>(functio
                     <BridgeTransferSteps data={data} />
                 </TabPanel>
                 <TabPanel index={1}>
-                    <BridgeAttestations />
+                    <></>
                 </TabPanel>
             </Tabs>
         </Modal>

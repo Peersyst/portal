@@ -13,6 +13,9 @@ import { Col } from "@frontend/design-system-react/col";
 import { Button } from "@frontend/design-system-react/button";
 import { AlertCallout } from "@frontend/design-system-react/alert-callout";
 import { BridgeSources } from "../bridge-sources/bridge-sources";
+import { BridgeTransferModal } from "../bridge-transfer-modal/bridge-transfer-modal";
+import BridgeTransferInput from "../bridge-transfer-input/bridge-transfer-input";
+import { BridgeTransferDetails } from "../bridge-transfer-details/bridge-transfer-details";
 
 export function BridgeForm(): JSX.Element {
     const translate = useTranslate();
