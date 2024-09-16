@@ -1,0 +1,100 @@
+{
+    "name": "@frontend/wallet",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "test": "jest --maxWorkers=30%",
+        "test:coverage": "test --coverage",
+        "test:watch": "test --watch",
+        "test:debug": "jest --no-cache --runInBand",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
+        },
+        "./providers": {
+            "types": "./dist/providers/index.d.ts",
+            "require": "./dist/providers/index.js",
+            "import": "./dist/providers/index.mjs"
+        },
+        "./providers/error": {
+            "types": "./dist/providers/core/error/index.d.ts",
+            "require": "./dist/providers/core/error/index.js",
+            "import": "./dist/providers/core/error/index.mjs"
+        },
+        "./providers/interfaces": {
+            "types": "./dist/providers/core/interfaces/index.d.ts",
+            "require": "./dist/providers/core/interfaces/index.js",
+            "import": "./dist/providers/core/interfaces/index.mjs"
+        },
+        "./providers/evm": {
+            "types": "./dist/providers/evm/index.d.ts",
+            "require": "./dist/providers/evm/index.js",
+            "import": "./dist/providers/evm/index.mjs"
+        },
+        "./providers/evm/metamask": {
+            "types": "./dist/providers/evm/metamask/index.d.ts",
+            "require": "./dist/providers/evm/metamask/index.js",
+            "import": "./dist/providers/evm/metamask/index.mjs"
+        },
+        "./providers/xrp/xrpl/xrpl-faucet": {
+            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/index.d.ts",
+            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/index.js",
+            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/index.mjs"
+        },
+        "./providers/xrp/xrpl/xrpl-faucet/interfaces": {
+            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.d.ts",
+            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.js",
+            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.mjs"
+        },
+        "./providers/xrp/xrpl/xrpl-faucet/repositories": {
+            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.d.ts",
+            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.js",
+            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.mjs"
+        }
+    },
+    "peerDependencies": {
+        "@frontend/blockchain": "workspace:*",
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@shared/api": "workspace:*",
+        "@shared/modules": "workspace:*",
+        "@swisstype/essential": "^0.1.1",
+        "@tanstack/react-query": "^5.52.2",
+        "ethers": "^5.5.3",
+        "xchain-sdk": "^1.2.5",
+        "xrpl": "^3.0.0",
+        "zustand": "^5.0.0-rc.0"
+    },
+    "devDependencies": {
+        "@frontend/blockchain": "workspace:*",
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@shared/api": "workspace:*",
+        "@shared/eslint": "workspace:*",
+        "@shared/modules": "workspace:*",
+        "@shared/test": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
+        "@swisstype/essential": "^0.1.1",
+        "@tanstack/react-query": "^5.52.2",
+        "@types/jest": "^29.5.12",
+        "ethers": "^5.5.3",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5",
+        "typescript": "latest",
+        "xchain-sdk": "^1.2.5",
+        "xrpl": "^3.0.0",
+        "zustand": "^5.0.0-rc.0"
+    }
+}

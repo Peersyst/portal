@@ -7,12 +7,10 @@ export interface ProtectedRouteProps {
     children: ReactNode;
 }
 
-const ProtectedRoute = ({ isAllowed, redirectPath = "/", children }: ProtectedRouteProps): JSX.Element => {
+export const ProtectedRoute = ({ isAllowed, redirectPath = "/", children }: ProtectedRouteProps): JSX.Element => {
     if (!isAllowed) {
         return <Navigate to={redirectPath} replace />;
     }
 
     return <>{children}</>;
 };
-
-export default ProtectedRoute;

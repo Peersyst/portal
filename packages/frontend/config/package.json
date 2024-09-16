@@ -31,27 +31,25 @@
             "require": "./dist/react/index.js",
             "import": "./dist/react/index.mjs"
         },
-        "./react-native": {
-            "types": "./dist/react-native/index.d.ts",
-            "require": "./dist/react-native/index.js",
-            "import": "./dist/react-native/index.mjs"
-        },
         "./mocks/core/manager": "./test/mocks/core/manager/index.ts"
     },
     "peerDependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
         "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
+        "@frontend/wallet": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.21.0",
         "@shared/env": "workspace:*",
         "react": "^18.3.1",
-        "stable-hash": "^0.0.4"
+        "stable-hash": "^0.0.4",
+        "xchain-sdk": "^1.2.5"
     },
     "devDependencies": {
         "@aws-sdk/client-appconfigdata": "^3.556.0",
         "@frontend/design-system-core": "workspace:*",
         "@frontend/events": "workspace:*",
+        "@frontend/wallet": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "@react-native-async-storage/async-storage": "1.21.0",
         "@shared/env": "workspace:*",
@@ -63,6 +61,7 @@
         "@types/react": "^18.3.4",
         "react": "^18.3.1",
         "stable-hash": "^0.0.4",
-        "typescript": "latest"
+        "typescript": "latest",
+        "xchain-sdk": "^1.2.5"
     }
 }

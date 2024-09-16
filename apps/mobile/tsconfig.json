@@ -1,6 +1,0 @@
-{
-    "extends": "@shared/tsconfig/react-native",
-    "compilerOptions": {},
-    "include": ["app.config.ts", "*/**/*.ts", "*/**/*.tsx"],
-    "exclude": ["dist"]
-}
