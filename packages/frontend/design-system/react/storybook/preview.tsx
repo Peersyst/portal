@@ -2,8 +2,8 @@ import "../src/styles/fonts.css";
 
 import type { Preview } from "@storybook/react";
 import { DSProvider } from "../src/core";
-import { ToastProvider } from "../src/components/toast";
-import { ModalProvider } from "../src/components/modal";
+import { ToastProvider } from "../src/components/feedback/toast";
+import { ModalProvider } from "../src/components/feedback/modal";
 
 const preview: Preview = {
     parameters: {

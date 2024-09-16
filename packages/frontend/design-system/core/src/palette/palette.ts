@@ -1,14 +1,18 @@
 import { ThemePalette } from "@peersyst/react-components-core";
-import { BlueShades, GrayShades, GreenShades, OrangeShades, RedShades, YellowShades } from "./shades";
+import { BlueShades, ErrorShades, GrayShades, GreenShades, MagentaShades, OrangeShades, PurpleShades } from "./shades";
 
 export interface GeneralPalette extends Pick<ThemePalette, "primary"> {
+    accent: string;
+    white: string;
+    black: string;
+    purple: PurpleShades;
     blue: BlueShades;
     green: GreenShades;
+    magenta: MagentaShades;
     orange: OrangeShades;
-    red: RedShades;
-    gray: GrayShades;
-    yellow: YellowShades;
-    contrast: string;
+    grey: GrayShades;
+    error: ErrorShades;
+    placeholder: string;
 }
 
 export type BasePalette = GeneralPalette;

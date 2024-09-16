@@ -20,7 +20,11 @@ export type TypographyVariantKey = (typeof BASE_TYPOGRAPHY_VARIANTS)[number];
 
 export type FontWeight = (typeof FONT_WEIGHTS)[number];
 
-export type FontVariants = Partial<Record<TypographyVariantKey, CSSProperties>>;
+export type FontComponent = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+
+export type FontVariantDef = CSSProperties & { component?: FontComponent };
+
+export type FontVariants = Partial<Record<TypographyVariantKey, FontVariantDef>>;
 
 export type Font<V extends FontVariants = FontVariants, W extends FontWeight[] = FontWeight[], P extends string | undefined = undefined> = {
     family: string;

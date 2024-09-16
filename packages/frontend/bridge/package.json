@@ -1,0 +1,122 @@
+{
+    "name": "@frontend/bridge",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "test": "jest --maxWorkers=30%",
+        "test:coverage": "test --coverage",
+        "test:watch": "test --watch",
+        "test:debug": "jest --no-cache --runInBand",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/common/index.d.ts",
+            "require": "./dist/common/index.js",
+            "import": "./dist/common/index.mjs"
+        },
+        "./data-access/repositories": {
+            "types": "./dist/data-access/repositories/index.d.ts",
+            "require": "./dist/data-access/repositories/index.js",
+            "import": "./dist/data-access/repositories/index.mjs"
+        },
+        "./domain/controllers": {
+            "types": "./dist/domain/controllers/index.d.ts",
+            "require": "./dist/domain/controllers/index.js",
+            "import": "./dist/domain/controllers/index.mjs"
+        },
+        "./domain/errors": {
+            "types": "./dist/domain/errors/index.d.ts",
+            "require": "./dist/domain/errors/index.js",
+            "import": "./dist/domain/errors/index.mjs"
+        },
+        "./domain/events": {
+            "types": "./dist/domain/events/index.d.ts",
+            "require": "./dist/domain/events/index.js",
+            "import": "./dist/domain/events/index.mjs"
+        },
+        "./domain/interfaces": {
+            "types": "./dist/domain/interfaces/index.d.ts",
+            "require": "./dist/domain/interfaces/index.js",
+            "import": "./dist/domain/interfaces/index.mjs"
+        },
+        "./domain/states": {
+            "types": "./dist/domain/states/index.d.ts",
+            "require": "./dist/domain/states/index.js",
+            "import": "./dist/domain/states/index.mjs"
+        },
+        "./ui/hooks": {
+            "types": "./dist/ui/hooks/index.d.ts",
+            "require": "./dist/ui/hooks/index.js",
+            "import": "./dist/ui/hooks/index.mjs"
+        },
+        "./ui/interfaces": {
+            "types": "./dist/ui/interfaces/index.d.ts",
+            "require": "./dist/ui/interfaces/index.js",
+            "import": "./dist/ui/interfaces/index.mjs"
+        },
+        "./ui/queries": {
+            "types": "./dist/ui/queries/index.d.ts",
+            "require": "./dist/ui/queries/index.js",
+            "import": "./dist/ui/queries/index.mjs"
+        },
+        "./ui/state": {
+            "types": "./dist/ui/state/index.d.ts",
+            "require": "./dist/ui/state/index.js",
+            "import": "./dist/ui/state/index.mjs"
+        },
+        "./ui/utils": {
+            "types": "./dist/ui/utils/index.d.ts",
+            "require": "./dist/ui/utils/index.js",
+            "import": "./dist/ui/utils/index.mjs"
+        }
+    },
+    "peerDependencies": {
+        "@frontend/blockchain": "workspace:*",
+        "@frontend/config": "workspace:*",
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*",
+        "@frontend/misc": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@frontend/token": "workspace:*",
+        "@frontend/wallet": "workspace:*",
+        "@shared/amount": "workspace:*",
+        "@shared/api": "workspace:*",
+        "@shared/modules": "workspace:*",
+        "@tanstack/react-query": "^5.52.2",
+        "react": "^18.3.1",
+        "xchain-sdk": "^1.2.2",
+        "zustand": "^5.0.0-rc.0"
+    },
+    "devDependencies": {
+        "@frontend/blockchain": "workspace:*",
+        "@frontend/config": "workspace:*",
+        "@frontend/core": "workspace:*",
+        "@frontend/events": "workspace:*",
+        "@frontend/misc": "workspace:*",
+        "@frontend/query": "workspace:*",
+        "@frontend/token": "workspace:*",
+        "@frontend/wallet": "workspace:*",
+        "@shared/amount": "workspace:*",
+        "@shared/eslint": "workspace:*",
+        "@shared/modules": "workspace:*",
+        "@shared/api": "workspace:*",
+        "@shared/test": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
+        "@tanstack/react-query": "^5.52.2",
+        "@types/jest": "^29.5.12",
+        "@types/react": "^18.3.4",
+        "jest": "^29.7.0",
+        "react": "^18.3.1",
+        "ts-jest": "^29.2.5",
+        "typescript": "latest",
+        "xchain-sdk": "^1.2.2",
+        "zustand": "^5.0.0-rc.0"
+    }
+}

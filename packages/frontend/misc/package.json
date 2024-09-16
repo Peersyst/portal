@@ -11,6 +11,16 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
+        "./pagination": {
+            "types": "./dist/common/pagination/index.d.ts",
+            "require": "./dist/common/pagination/index.js",
+            "import": "./dist/common/pagination/index.mjs"
+        },
+        "./ui/amount/react": {
+            "types": "./dist/ui/amount/react/index.d.ts",
+            "require": "./dist/ui/amount/react/index.js",
+            "import": "./dist/ui/amount/react/index.mjs"
+        },
         "./ui/date": {
             "types": "./dist/ui/date/index.d.ts",
             "require": "./dist/ui/date/index.js",
@@ -38,12 +48,16 @@
         }
     },
     "peerDependencies": {
+        "@frontend/config": "workspace:*",
         "@frontend/locale": "workspace:*",
+        "@shared/amount": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "react": "^18.3.1"
     },
     "devDependencies": {
+        "@frontend/config": "workspace:*",
         "@frontend/locale": "workspace:*",
+        "@shared/amount": "workspace:*",
         "@peersyst/react-utils": "^2.5.0",
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",

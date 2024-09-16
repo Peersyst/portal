@@ -56,11 +56,6 @@
             "require": "./dist/data-access/repository/expo/index.js",
             "import": "./dist/data-access/repository/expo/index.mjs"
         },
-        "./data-access/repository/react-native": {
-            "types": "./dist/data-access/repository/react-native/index.d.ts",
-            "require": "./dist/data-access/repository/react-native/index.js",
-            "import": "./dist/data-access/repository/react-native/index.mjs"
-        },
         "./data-access/service": {
             "types": "./dist/data-access/service/index.d.ts",
             "require": "./dist/data-access/service/index.js",
@@ -125,11 +120,6 @@
             "types": "./dist/ui/error/browser/index.d.ts",
             "require": "./dist/ui/error/browser/index.js",
             "import": "./dist/ui/error/browser/index.mjs"
-        },
-        "./ui/error/react-native": {
-            "types": "./dist/ui/error/react-native/index.d.ts",
-            "require": "./dist/ui/error/react-native/index.js",
-            "import": "./dist/ui/error/react-native/index.mjs"
         },
         "./mocks/data-access/repository": "./test/mocks/data-access/repository/index.ts"
     },

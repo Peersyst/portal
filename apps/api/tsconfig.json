@@ -1,9 +1,0 @@
-{
-    "extends": "@shared/tsconfig/nest",
-    "compilerOptions": {
-        "outDir": "./dist",
-        "baseUrl": "./"
-    },
-    "include": ["*/**/*.ts", "*/**/*.tsx"],
-    "exclude": ["dist"]
-}

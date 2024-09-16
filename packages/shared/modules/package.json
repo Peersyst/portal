@@ -1,0 +1,41 @@
+{
+    "name": "@shared/modules",
+    "author": "Peersyst",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "test": "jest --maxWorkers=30%",
+        "test:coverage": "test --coverage",
+        "test:watch": "test --watch",
+        "test:debug": "jest --no-cache --runInBand",
+        "clean": "rimraf .turbo dist node_modules",
+        "lint": "eslint .",
+        "check-types": "npx tsc --noEmit"
+    },
+    "exports": {
+        "./chain": {
+            "types": "./dist/chain/index.d.ts",
+            "require": "./dist/chain/index.js",
+            "import": "./dist/chain/index.mjs"
+        },
+        "./health": {
+            "types": "./dist/health/index.d.ts",
+            "require": "./dist/health/index.js",
+            "import": "./dist/health/index.mjs"
+        },
+        "./network": {
+            "types": "./dist/network/index.d.ts",
+            "require": "./dist/network/index.js",
+            "import": "./dist/network/index.mjs"
+        }
+    },
+    "peerDependencies": {},
+    "devDependencies": {
+        "@shared/eslint": "workspace:*",
+        "@shared/tsconfig": "workspace:*",
+        "@shared/tsup": "workspace:*",
+        "typescript": "latest"
+    }
+}
