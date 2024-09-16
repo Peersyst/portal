@@ -1,13 +1,12 @@
 import type {} from "react";
 import type {} from "@peersyst/react-components";
 import type { ThemeSpacing } from "./spacing";
-import type { SpecificPalette } from "./palette/types";
 import { GeneralPalette } from "@frontend/design-system-core/palette";
 import { MergedTypographyVariantsOverrides } from "./typography/typography.types";
 
 // Custom components theme
 declare module "@peersyst/react-components" {
-    export interface ThemePalette extends GeneralPalette, SpecificPalette {}
+    export interface ThemePalette extends GeneralPalette {}
 
     export interface TypographyVariantsOverrides extends MergedTypographyVariantsOverrides {}
 
@@ -18,6 +17,10 @@ declare module "@peersyst/react-components" {
         borderRadiusSm: string;
         borderRadiusLg: string;
         borderRadiusMax: string;
+        fromControl: {
+            horizontalPadding: string;
+            inputHeight: string;
+        };
     }
 
     export interface Theme {
@@ -27,5 +30,9 @@ declare module "@peersyst/react-components" {
         borderRadiusSm: string;
         borderRadiusLg: string;
         borderRadiusMax: string;
+        fromControl: {
+            horizontalPadding: string;
+            inputHeight: string;
+        };
     }
 }

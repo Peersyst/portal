@@ -25,11 +25,6 @@
             "require": "./dist/data-access/services/browser/index.js",
             "import": "./dist/data-access/services/browser/index.mjs"
         },
-        "./data-access/services/react-native": {
-            "types": "./dist/data-access/services/react-native/index.d.ts",
-            "require": "./dist/data-access/services/react-native/index.js",
-            "import": "./dist/data-access/services/react-native/index.mjs"
-        },
         "./data-access/repositories": {
             "types": "./dist/data-access/repositories/index.d.ts",
             "require": "./dist/data-access/repositories/index.js",
