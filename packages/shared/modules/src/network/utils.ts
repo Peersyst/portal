@@ -46,7 +46,7 @@ export function isMainnet(value: string): boolean {
  * Normalizes a chain name by removing testnet and devnet from it.
  * @example "XRPL Devnet" -> "XRPL"
  * @param name The full name of the chain.
- * @returns The normalized name of the chain
+ * @returns The normalized name of the chain.
  */
 export function normalizeChainName(name: string): string {
     return (
