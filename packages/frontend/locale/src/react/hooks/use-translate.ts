@@ -1,10 +1,6 @@
 import { FallbackNs, useTranslation, UseTranslationOptions, UseTranslationResponse } from "react-i18next";
 import { FlatNamespace, KeyPrefix } from "i18next";
-
-/**
- * Copied from node_modules/react-i18next/helpers.d.ts since the package doesn't have an export path.
- */
-export type $Tuple<T> = readonly [T?, ...T[]];
+import { $Tuple } from "../types";
 
 /**
  * Hook to translate a string.

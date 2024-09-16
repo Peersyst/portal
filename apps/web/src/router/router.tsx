@@ -1,16 +1,17 @@
 import { ModalProvider } from "@frontend/design-system-react/modal";
-import { BrowserRouter, useRoutes } from "react-router-dom";
-import ScrollToTop from "./components/scroll-to-top/scroll-to-top";
-
-function Home(): JSX.Element {
-    return <div>Welcome to Peersyst web base project</div>;
-}
+import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
+import { ScrollToTop } from "./components/scroll-to-top/scroll-to-top";
+import { BridgeRoutes, useBridgeRoutes } from "../modules/bridge/bridge.router";
+import { BasePage } from "../modules/common/containers/base-page/base-page";
 
 function Routes(): JSX.Element | null {
+    const bridgeRoutes = useBridgeRoutes();
+
     return useRoutes([
+        ...bridgeRoutes,
         {
             path: "*",
-            element: <Home />,
+            element: <Navigate to={BridgeRoutes.BRIDGE} />,
         },
     ]);
 }
@@ -20,7 +21,9 @@ export default function Router(): JSX.Element {
         <BrowserRouter>
             <ModalProvider>
                 <ScrollToTop />
-                <Routes />
+                <BasePage>
+                    <Routes />
+                </BasePage>
             </ModalProvider>
         </BrowserRouter>
     );

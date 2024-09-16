@@ -1,4 +1,4 @@
-import { ConfigProvider } from "@peersyst/react-components";
+import { ConfigProvider, ToastProvider } from "@peersyst/react-components";
 import { ReactNode } from "react";
 import { StyleSheetManager } from "styled-components";
 import { GlobalStyles } from "../styles/global-styles";
@@ -15,10 +15,10 @@ export function DSProvider({ children, ...dsConfigOptions }: ConfigProviderProps
     return (
         <ConfigProvider config={config}>
             <StyleSheetManager target={document.head}>
-                <>
+                <ToastProvider>
                     <GlobalStyles />
                     {children}
-                </>
+                </ToastProvider>
             </StyleSheetManager>
         </ConfigProvider>
     );
