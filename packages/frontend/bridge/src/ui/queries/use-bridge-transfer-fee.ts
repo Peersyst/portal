@@ -26,8 +26,8 @@ export function useBridgeTransferFee(
             // origin and destination chains must be defined here
             formatAmount(
                 isDestinationActive
-                    ? new Amount(destinationSignatureReward, destinationChain!.nativeDecimals, destinationChain!.nativeToken)
-                    : new Amount(originSignatureReward, originChain!.nativeDecimals, originChain!.nativeToken),
+                    ? new Amount(destinationSignatureReward, destinationChain!.nativeToken.decimals, destinationChain!.nativeToken.symbol)
+                    : new Amount(originSignatureReward, originChain!.nativeToken.decimals, originChain!.nativeToken.symbol),
             ),
         [formatAmount, destinationChain, originChain, destinationSignatureReward, originSignatureReward],
     );

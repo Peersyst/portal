@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
 import { ScrollToTop } from "./components/scroll-to-top/scroll-to-top";
 import { BridgeRoutes, useBridgeRoutes } from "../modules/bridge/bridge.router";
 import { BasePage } from "../modules/common/containers/base-page/base-page";
+import { InvalidNetworkOverlay } from "../modules/wallet/containers/invalid-network/invalid-network-overlay/invalid-network-overlay";
 
 function Routes(): JSX.Element | null {
     const bridgeRoutes = useBridgeRoutes();
@@ -24,6 +25,7 @@ export default function Router(): JSX.Element {
                 <BasePage>
                     <Routes />
                 </BasePage>
+                <InvalidNetworkOverlay />
             </ModalProvider>
         </BrowserRouter>
     );

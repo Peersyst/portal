@@ -367,10 +367,11 @@
         }
     },
     "dependencies": {
-        "@peersyst/react-components": "^3.9.35"
+        "@peersyst/react-components": "^3.9.38"
     },
     "peerDependencies": {
         "@frontend/bridge": "workspace:*",
+        "@frontend/chain": "workspace:*",
         "@frontend/config": "workspace:*",
         "@frontend/design-system-core": "workspace:*",
         "@frontend/locale": "workspace:*",
@@ -391,6 +392,7 @@
     "devDependencies": {
         "@chromatic-com/storybook": "^1.7.0",
         "@frontend/bridge": "workspace:*",
+        "@frontend/chain": "workspace:*",
         "@frontend/config": "workspace:*",
         "@frontend/design-system-core": "workspace:*",
         "@frontend/locale": "workspace:*",

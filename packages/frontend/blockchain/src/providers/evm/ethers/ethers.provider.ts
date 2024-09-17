@@ -20,10 +20,10 @@ export class EthersProvider extends EthersXChainProvider implements IEthersProvi
      */
     async getXChainBridgeChainToken(xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>, xChainBridge: any): Promise<Token> {
         const tokenContract = await this.getBridgeTokenContract(xChainBridgeChain.doorAddress, xChainBridge);
-        const [decimals, currency] = await Promise.all([tokenContract.decimals(), tokenContract.symbol()]);
+        const [decimals, symbol] = await Promise.all([tokenContract.decimals(), tokenContract.symbol()]);
 
         return {
-            currency,
+            symbol,
             issuer: xChainBridgeChain.issue.issuer,
             decimals,
         };
@@ -83,7 +83,7 @@ export class EthersProvider extends EthersXChainProvider implements IEthersProvi
     ): Promise<Token> {
         if (xChainBridgeChain.issue.issuer === constants.AddressZero)
             return Promise.resolve({
-                currency: xChainBridgeChain.issue.currency,
+                symbol: xChainBridgeChain.issue.currency,
                 decimals: EVM_NATIVE_DECIMALS,
             });
         else return this.getXChainBridgeChainToken(xChainBridgeChain, xChainBridge);

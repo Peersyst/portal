@@ -76,10 +76,10 @@ export class XrplProvider extends XrplXChainProvider implements IXrplProvider {
      */
     getXChainBridgeToken(xChainBridgeChain: XChainBridgeChainFormat<ChainType.XRP>): Promise<Token> {
         if (xChainBridgeChain.issue.issuer === undefined)
-            return Promise.resolve({ currency: xChainBridgeChain.issue.currency, decimals: XRPL_NATIVE_DECIMALS });
+            return Promise.resolve({ symbol: xChainBridgeChain.issue.currency, decimals: XRPL_NATIVE_DECIMALS });
         else
             return Promise.resolve({
-                currency: parseCurrencyCode(xChainBridgeChain.issue.currency),
+                symbol: parseCurrencyCode(xChainBridgeChain.issue.currency),
                 issuer: xChainBridgeChain.issue.issuer,
                 decimals: XRPL_TOKEN_DECIMALS,
             });

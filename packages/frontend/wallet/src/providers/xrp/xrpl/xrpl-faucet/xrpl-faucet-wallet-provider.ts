@@ -17,7 +17,7 @@ export class XrplFaucetWalletProvider extends XrpWalletProvider<IXrplFaucetProvi
      * @inheritdoc
      */
     protected getProvider(): Promise<IXrplFaucetProvider> {
-        return Promise.resolve(new XrplFaucetProvider(new Client(this.chain.nodeUrl), this.chain.faucetUrl!));
+        return Promise.resolve(new XrplFaucetProvider(new Client(this.chain.urls.ws!), this.chain.urls.faucet!));
     }
 
     /**

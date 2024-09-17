@@ -7,6 +7,9 @@ import "./core/data-access/setup";
 // Set up domain
 import "./core/domain/setup";
 
+// Set up wallet module
+import "./modules/wallet/setup";
+
 // Load locale
 import "./locale";
 

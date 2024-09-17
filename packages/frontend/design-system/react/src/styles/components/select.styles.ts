@@ -4,25 +4,29 @@ import { css } from "styled-components";
 export const SelectStyles = css(({ theme }) => ({
     ".FormControl": {
         ".Select": {
-            ".SelectDisplay": {
-                border: "none",
+            "> *:first-child": {
                 backgroundColor: "inherit",
                 borderRadius: "inherit",
-                padding: `0 ${theme.fromControl.horizontalPadding}`,
-                minHeight: theme.fromControl.inputHeight,
-                maxHeight: theme.fromControl.inputHeight,
+                ".SelectDisplay": {
+                    border: "none",
+                    backgroundColor: "inherit",
+                    borderRadius: "inherit",
+                    padding: `0 ${theme.fromControl.horizontalPadding}`,
+                    minHeight: theme.fromControl.inputHeight,
+                    maxHeight: theme.fromControl.inputHeight,
 
-                ".DisplayContent": {
-                    fontWeight: 400,
-                    fontSize: "0.875rem",
+                    ".DisplayContent": {
+                        fontWeight: 400,
+                        fontSize: "0.875rem",
 
-                    "&.Placeholder": {
-                        color: theme.palette.placeholder,
+                        "&.Placeholder": {
+                            color: theme.palette.placeholder,
+                        },
                     },
-                },
 
-                ".SelectDropdown": {
-                    fontSize: "0.5rem",
+                    ".SelectDropdown": {
+                        fontSize: "0.5rem",
+                    },
                 },
             },
 

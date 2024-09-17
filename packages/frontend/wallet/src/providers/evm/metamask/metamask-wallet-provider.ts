@@ -56,7 +56,7 @@ export class MetamaskWalletProvider
      * @inheritdoc
      */
     protected getProvider(): Promise<IEthersProvider> {
-        return Promise.resolve(new EthersProvider(new providers.JsonRpcProvider(this.chain.rpcUrl)));
+        return Promise.resolve(new EthersProvider(new providers.JsonRpcProvider(this.chain.urls.rpc!)));
     }
 
     /**
@@ -132,11 +132,11 @@ export class MetamaskWalletProvider
             await this.signer.addChain({
                 chainId: this.chain.chainId!,
                 chainName: this.chain.name,
-                rpcUrls: [this.chain.rpcUrl],
-                blockExplorerUrls: [this.chain.explorerUrl],
+                rpcUrls: [this.chain.urls.rpc!],
+                blockExplorerUrls: [this.chain.explorer.url],
                 nativeCurrency: {
-                    symbol: this.chain.nativeToken,
-                    decimals: this.chain.nativeDecimals,
+                    symbol: this.chain.nativeToken.symbol,
+                    decimals: this.chain.nativeToken.decimals,
                 },
             });
         } catch (e) {

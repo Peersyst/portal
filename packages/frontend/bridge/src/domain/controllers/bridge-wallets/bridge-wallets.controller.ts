@@ -7,7 +7,9 @@ import { IBridgeWalletsRepository } from "../../interfaces/i-bridge-wallets.repo
 import { BridgeWallet, BridgeWalletPair } from "../../../common/types/bridge-wallet.types";
 import { PersistedWallet } from "@frontend/wallet";
 import { WalletProvider, WalletProviderConnectionError, WalletProviderFactory, WalletProviderId } from "@frontend/wallet/providers";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeWalletsController implements IBridgeWalletsController {
     /**
      * Reference to the origin wallet provider.
@@ -198,11 +200,7 @@ export class BridgeWalletsController implements IBridgeWalletsController {
      * @param wallet The persisted wallet provider to recover.
      * @returns The wallet provider.
      */
-    private async recoverWalletConnection(
-        source: BridgeSource,
-        wallet: PersistedWallet,
-        // @ts-ignore `Type '"requestConnection"' cannot be used to index type ...` Of course it can -_-
-    ): Promise<void> {
+    private async recoverWalletConnection(source: BridgeSource, wallet: PersistedWallet): Promise<void> {
         const walletProvider = await this.setupWalletProvider(source, wallet.providerId);
 
         return walletProvider.recoverConnection(wallet.address);
