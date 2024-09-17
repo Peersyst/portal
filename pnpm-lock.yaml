@@ -32,12 +32,18 @@ importers:
       '@aws-sdk/client-appconfigdata':
         specifier: ^3.556.0
         version: 3.651.1
+      '@frontend/axelar':
+        specifier: workspace:*
+        version: link:../../packages/frontend/axelar
       '@frontend/blockchain':
         specifier: workspace:*
         version: link:../../packages/frontend/blockchain
       '@frontend/bridge':
         specifier: workspace:*
         version: link:../../packages/frontend/bridge
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../../packages/frontend/chain
       '@frontend/config':
         specifier: workspace:*
         version: link:../../packages/frontend/config
@@ -98,15 +104,9 @@ importers:
       '@shared/utils':
         specifier: workspace:*
         version: link:../../packages/shared/utils
-      '@tanstack/query-sync-storage-persister':
-        specifier: ^5.51.15
-        version: 5.56.2
       '@tanstack/react-query':
         specifier: ^5.52.2
         version: 5.56.2(react@18.3.1)
-      '@tanstack/react-query-persist-client':
-        specifier: ^5.51.15
-        version: 5.56.2(@tanstack/react-query@5.56.2(react@18.3.1))(react@18.3.1)
       bignumber.js:
         specifier: ^9.1.2
         version: 9.1.2
@@ -140,6 +140,9 @@ importers:
       styled-components:
         specifier: ^5.3.6
         version: 5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+      text-encoding:
+        specifier: ^0.7.0
+        version: 0.7.0
       vite-plugin-node-polyfills:
         specifier: ^0.22.0
         version: 0.22.0(rollup@4.21.3)(vite@5.4.5(@types/node@22.5.5)(terser@5.32.0))
@@ -192,6 +195,9 @@ importers:
       '@types/styled-components':
         specifier: ^5.1.34
         version: 5.1.34
+      '@types/text-encoding':
+        specifier: ^0.0.39
+        version: 0.0.39
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.5(@types/node@22.5.5)(terser@5.32.0))
@@ -209,7 +215,7 @@ importers:
         version: 29.7.0
       ts-jest:
         specifier: ^29.2.3
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -217,8 +223,56 @@ importers:
         specifier: ^5.4.0
         version: 5.4.5(@types/node@22.5.5)(terser@5.32.0)
 
+  packages/frontend/axelar:
+    devDependencies:
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../chain
+      '@frontend/config':
+        specifier: workspace:*
+        version: link:../config
+      '@frontend/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/eslint':
+        specifier: workspace:*
+        version: link:../../shared/eslint
+      '@shared/modules':
+        specifier: workspace:*
+        version: link:../../shared/modules
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../../shared/test
+      '@shared/tsconfig':
+        specifier: workspace:*
+        version: link:../../shared/tsconfig
+      '@shared/tsup':
+        specifier: workspace:*
+        version: link:../../shared/tsup
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.13
+      '@types/node':
+        specifier: latest
+        version: 22.5.5
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.5.5)
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
+      typescript:
+        specifier: latest
+        version: 5.6.2
+
   packages/frontend/blockchain:
     devDependencies:
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../chain
       '@frontend/core':
         specifier: workspace:*
         version: link:../core
@@ -278,7 +332,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -297,6 +351,9 @@ importers:
       '@frontend/blockchain':
         specifier: workspace:*
         version: link:../blockchain
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../chain
       '@frontend/config':
         specifier: workspace:*
         version: link:../config
@@ -356,7 +413,7 @@ importers:
         version: 18.3.1
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -366,6 +423,48 @@ importers:
       zustand:
         specifier: ^5.0.0-rc.0
         version: 5.0.0-rc.2(@types/react@18.3.6)(react@18.3.1)
+
+  packages/frontend/chain:
+    devDependencies:
+      '@frontend/core':
+        specifier: workspace:*
+        version: link:../core
+      '@frontend/query':
+        specifier: workspace:*
+        version: link:../query
+      '@frontend/token':
+        specifier: workspace:*
+        version: link:../token
+      '@shared/eslint':
+        specifier: workspace:*
+        version: link:../../shared/eslint
+      '@shared/modules':
+        specifier: workspace:*
+        version: link:../../shared/modules
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../../shared/test
+      '@shared/tsconfig':
+        specifier: workspace:*
+        version: link:../../shared/tsconfig
+      '@shared/tsup':
+        specifier: workspace:*
+        version: link:../../shared/tsup
+      '@tanstack/react-query':
+        specifier: ^5.52.2
+        version: 5.56.2(react@18.3.1)
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.13
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.5.5)
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
+      typescript:
+        specifier: latest
+        version: 5.6.2
 
   packages/frontend/config:
     devDependencies:
@@ -496,8 +595,8 @@ importers:
   packages/frontend/design-system/react:
     dependencies:
       '@peersyst/react-components':
-        specifier: ^3.9.35
-        version: 3.9.37(@types/react-dom@18.3.0)(@types/react@18.3.6)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+        specifier: ^3.9.38
+        version: 3.9.38(@types/react-dom@18.3.0)(@types/react@18.3.6)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.7.0
@@ -505,6 +604,9 @@ importers:
       '@frontend/bridge':
         specifier: workspace:*
         version: link:../../bridge
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../../chain
       '@frontend/config':
         specifier: workspace:*
         version: link:../../config
@@ -660,7 +762,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -780,7 +882,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -813,7 +915,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -823,6 +925,9 @@ importers:
       '@frontend/blockchain':
         specifier: workspace:*
         version: link:../blockchain
+      '@frontend/chain':
+        specifier: workspace:*
+        version: link:../chain
       '@frontend/core':
         specifier: workspace:*
         version: link:../core
@@ -867,7 +972,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -1095,7 +1200,7 @@ importers:
         version: 29.7.0(@types/node@22.5.5)
       ts-jest:
         specifier: ^29.2.5
-        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2)
+        version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2)
       typescript:
         specifier: latest
         version: 5.6.2
@@ -2857,8 +2962,8 @@ packages:
       '@types/styled-components':
         optional: true
 
-  '@peersyst/react-components@3.9.37':
-    resolution: {integrity: sha512-9vV5ihVWwzSyo+EFKgm4Ob9R/uNge5NyHSe+m1uFcNB9q8Nb+mQWCtYnurICacT4+WAsqpj4lOvR0VfK6p5mtA==}
+  '@peersyst/react-components@3.9.38':
+    resolution: {integrity: sha512-I/5af9dAs+pm42w/KmpPiW2OYhm5Asz3cBVZDSuwpycWUG87XP1GZek+A8tUcr9DK80T10GfIG+Gw/TISfL/TA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^18.0.0
@@ -3579,18 +3684,6 @@ packages:
   '@tanstack/query-core@5.56.2':
     resolution: {integrity: sha512-gor0RI3/R5rVV3gXfddh1MM+hgl0Z4G7tj6Xxpq6p2I03NGPaJ8dITY9Gz05zYYb/EJq9vPas/T4wn9EaDPd4Q==}
 
-  '@tanstack/query-persist-client-core@5.56.2':
-    resolution: {integrity: sha512-4OZ/rLAxCiQWaJCQjb5q1+UbSNIZclmF4pRMHrav1q2EUj3bjrqWzwTwdy2bUxrMTdY15ZKsFwCpAFGG4r+orA==}
-
-  '@tanstack/query-sync-storage-persister@5.56.2':
-    resolution: {integrity: sha512-aNupwjlJgaDwYW01DThrblkBSarH9E8sKVl3ATafOLpZoGvDg5Jc4SVMCiMmOC1U+PRuRbt5bpS6a8lZnbiYaA==}
-
-  '@tanstack/react-query-persist-client@5.56.2':
-    resolution: {integrity: sha512-bVC0Io6ivxr3cJjOFYSeqPcwXyKBHWlhCPUuiriShvz+C4LPpYAGCExwkPke8Z8YV7RWiX0Le4kIbeIV9pzM+A==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.56.2
-      react: ^18 || ^19
-
   '@tanstack/react-query@5.56.2':
     resolution: {integrity: sha512-SR0GzHVo6yzhN72pnRhkEFRAHMsUo5ZPzAxfTMvUxFIDVS6W9LYUp6nXW3fcHVdg0ZJl8opSH85jqahvm6DSVg==}
     peerDependencies:
@@ -3789,6 +3882,9 @@ packages:
 
   '@types/styled-components@5.1.34':
     resolution: {integrity: sha512-mmiVvwpYklFIv9E8qfxuPyIt/OuyIrn6gMOAMOFUO3WJfSrSE+sGUoa4PiZj77Ut7bKZpaa6o1fBKS/4TOEvnA==}
+
+  '@types/text-encoding@0.0.39':
+    resolution: {integrity: sha512-gRPvgL1aMgP6Pv92Rs310cJvVQ86DSF62E7K30g1FoGmmYWXoNuXT8PV835iAVeiAZkRwr2IW37KuyDn9ljmeA==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -8093,6 +8189,10 @@ packages:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
     engines: {node: '>=8'}
 
+  text-encoding@0.7.0:
+    resolution: {integrity: sha512-oJQ3f1hrOnbRLOcwKz0Liq2IcrvDeZRHXhd9RgLrsT+DjWY/nty1Hi7v3dtkaEYbPYe0mUoOfzRrMwfXXwgPUA==}
+    deprecated: no longer maintained
+
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
@@ -11372,7 +11472,7 @@ snapshots:
       '@types/react-dom': 18.3.0
       '@types/styled-components': 5.1.34
 
-  '@peersyst/react-components@3.9.37(@types/react-dom@18.3.0)(@types/react@18.3.6)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))':
+  '@peersyst/react-components@3.9.38(@types/react-dom@18.3.0)(@types/react@18.3.6)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))':
     dependencies:
       '@babel/runtime': 7.25.6
       '@peersyst/react-components-core': 1.7.19(@types/react-dom@18.3.0)(@types/react@18.3.6)(@types/styled-components@5.1.34)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12563,21 +12663,6 @@ snapshots:
 
   '@tanstack/query-core@5.56.2': {}
 
-  '@tanstack/query-persist-client-core@5.56.2':
-    dependencies:
-      '@tanstack/query-core': 5.56.2
-
-  '@tanstack/query-sync-storage-persister@5.56.2':
-    dependencies:
-      '@tanstack/query-core': 5.56.2
-      '@tanstack/query-persist-client-core': 5.56.2
-
-  '@tanstack/react-query-persist-client@5.56.2(@tanstack/react-query@5.56.2(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@tanstack/query-persist-client-core': 5.56.2
-      '@tanstack/react-query': 5.56.2(react@18.3.1)
-      react: 18.3.1
-
   '@tanstack/react-query@5.56.2(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.56.2
@@ -12809,6 +12894,8 @@ snapshots:
       '@types/hoist-non-react-statics': 3.3.5
       '@types/react': 18.3.6
       csstype: 3.1.3
+
+  '@types/text-encoding@0.0.39': {}
 
   '@types/tough-cookie@4.0.5': {}
 
@@ -18245,6 +18332,8 @@ snapshots:
       glob: 7.2.3
       minimatch: 3.1.2
 
+  text-encoding@0.7.0: {}
+
   text-table@0.2.0: {}
 
   thenify-all@1.6.0:
@@ -18323,7 +18412,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@22.5.5))(typescript@5.6.2):
+  ts-jest@29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0)(typescript@5.6.2):
     dependencies:
       bs-logger: 0.2.6
       ejs: 3.1.10

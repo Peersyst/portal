@@ -1,7 +1,5 @@
 import { PropsWithChildren } from "react";
-import { QueryClient, QueryClientConfig, QueryCache } from "@tanstack/react-query";
-import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { QueryClient, QueryClientConfig, QueryCache, QueryClientProvider as ReactQueryClientProvider } from "@tanstack/react-query";
 import { isDomainError } from "@frontend/core/domain/error";
 import { BrowserErrorEvent } from "@frontend/core/ui/error/browser";
 
@@ -33,14 +31,6 @@ const queryClientConfig: QueryClientConfig = {
 
 const queryClient = new QueryClient(queryClientConfig);
 
-const asyncStoragePersister = createSyncStoragePersister({
-    storage: localStorage,
-});
-
 export const QueryClientProvider = ({ children }: PropsWithChildren): JSX.Element => {
-    return (
-        <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: asyncStoragePersister, maxAge: 604800000 }}>
-            {children}
-        </PersistQueryClientProvider>
-    );
+    return <ReactQueryClientProvider client={queryClient}>{children}</ReactQueryClientProvider>;
 };

@@ -7,7 +7,9 @@ import { IBridgeController } from "../../../ui/interfaces/i-bridge.controller";
 import { IWalletProvider } from "@frontend/wallet/providers/interfaces";
 import { DomainError } from "@frontend/core/domain/error";
 import { BridgeTransferErrors } from "../../errors/bridge-transfer.errors";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeTransferController implements IBridgeTransferController {
     constructor(
         private readonly bridgeChainsController: IBridgeChainsController,

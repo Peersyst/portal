@@ -1,7 +1,7 @@
-import { ChainDto } from "@shared/api";
 import { BridgeSource } from "xchain-sdk";
 import { IBridgeChainsState } from "../../domain/states/bridge-chains.state";
 import { EventEmitter } from "@frontend/events";
+import { Chain } from "@frontend/chain";
 
 export type BridgeChainsEvents = {
     bridgeChainsChange: (chains: IBridgeChainsState, prevChains: IBridgeChainsState) => void;
@@ -10,13 +10,12 @@ export type BridgeChainsEvents = {
 };
 
 export interface IBridgeChainsController {
-    getChains(): Promise<ChainDto[]>;
-    getOriginChain(): ChainDto;
-    setOriginChain(chain: ChainDto): void;
-    getDestinationChain(): ChainDto;
-    setDestinationChain(chain: ChainDto): void;
+    getOriginChain(): Chain;
+    setOriginChain(chain: Chain): void;
+    getDestinationChain(): Chain;
+    setDestinationChain(chain: Chain): void;
     getBridgeChains(): NonNullable<Required<IBridgeChainsState>>;
-    getSourceChain(source: BridgeSource): ChainDto;
+    getSourceChain(source: BridgeSource): Chain;
     swap(): void;
     on: EventEmitter<BridgeChainsEvents>["on"];
 }

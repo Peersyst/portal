@@ -1,10 +1,11 @@
-import { BridgeDoor, BridgeManager } from "xchain-sdk";
+import { BridgeManager } from "xchain-sdk";
 import { IBridgeManagerController } from "../../../ui/interfaces/i-bridge-manager.controller";
 import { BridgeManagerEventEmitter } from "../../events/bridge-manager.events";
 import { DomainError } from "@frontend/core/domain/error";
 import { BridgeManagerErrors } from "../../errors/bridge-manager.errors";
-import { IBridgeDoorsController } from "../../../ui/interfaces/i-bridge-doors.controller";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeManagerController implements IBridgeManagerController {
     /**
      * Reference to the event emitter.
@@ -20,32 +21,7 @@ export class BridgeManagerController implements IBridgeManagerController {
         this._bridgeManager = bridgeDoors;
     }
 
-    constructor(private readonly bridgeDoorsController: IBridgeDoorsController) {}
-
-    /**
-     * Initializes the bridge manager controller.
-     */
-    async onInit(): Promise<void> {
-        this.bridgeDoorsController.on("bridgeDoorsLoad", (bridgeDoors) => {
-            this.loadBridgeManager(bridgeDoors);
-        });
-    }
-
-    /**
-     * Loads the bridge manager.
-     * @param bridgeDoors The bridge doors.
-     */
-    private async loadBridgeManager(bridgeDoors: [BridgeDoor, BridgeDoor] | undefined): Promise<void> {
-        if (bridgeDoors) {
-            const [mainchainBridgeDoor, sidechainBridgeDoor] = bridgeDoors;
-
-            this.bridgeManager = await BridgeManager.createAsync(mainchainBridgeDoor, sidechainBridgeDoor);
-
-            this.eventEmitter.emit("bridgeManagerLoad", this.bridgeManager);
-        } else {
-            this.bridgeManager = undefined;
-        }
-    }
+    constructor() {}
 
     /**
      * Gets the bridge manager.

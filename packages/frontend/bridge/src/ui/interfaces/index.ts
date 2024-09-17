@@ -1,5 +1,4 @@
 export * from "./i-bridge-chains.controller";
-export * from "./i-bridge-doors.controller";
 export * from "./i-bridge-manager.controller";
 export * from "./i-bridge-providers.controller";
 export * from "./i-bridge-token.controller";

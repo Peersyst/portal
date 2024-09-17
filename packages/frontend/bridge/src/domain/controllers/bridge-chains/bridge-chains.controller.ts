@@ -2,13 +2,15 @@ import { BridgeSource } from "xchain-sdk";
 import { IBridgeChainsController } from "../../../ui/interfaces/i-bridge-chains.controller";
 import { BridgeChainsEventEmitter } from "../../events/bridge-chains.events";
 import { IBridgeChainsState } from "../../states/bridge-chains.state";
-import { IBridgeApi } from "../../interfaces/i-bridge.api";
 import { State } from "@frontend/core/domain/state";
 import { IBridgeChainsRepository } from "../../interfaces/i-bridge-chains.repository";
-import { ChainDto } from "@shared/api";
 import { DomainError } from "@frontend/core/domain/error";
 import { BridgeChainsErrors } from "../../errors/bridge-chains.errors";
+import { Chain } from "@frontend/chain";
+import { IChainController } from "@frontend/chain/ui/interfaces";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeChainsController implements IBridgeChainsController {
     /**
      * Reference to the event emitter.
@@ -24,7 +26,7 @@ export class BridgeChainsController implements IBridgeChainsController {
     }
 
     constructor(
-        private readonly bridgeApi: IBridgeApi,
+        private readonly chainController: IChainController,
         private readonly bridgeChainsState: State<IBridgeChainsState>,
         private readonly bridgeChainsRepository: IBridgeChainsRepository,
     ) {}
@@ -40,16 +42,16 @@ export class BridgeChainsController implements IBridgeChainsController {
      * Recovers the bridge chains.
      */
     private async recoverBridgeChains(): Promise<void> {
-        const chains = await this.getChains();
+        const chains = await this.chainController.getChains();
         const bridgeChains = await this.bridgeChainsRepository.getBridgeChains();
 
         if (bridgeChains) {
-            let originChain: ChainDto | undefined;
-            let destinationChain: ChainDto | undefined;
+            let originChain: Chain | undefined;
+            let destinationChain: Chain | undefined;
 
             for (let i = 0; i < chains.length && (!originChain || !destinationChain); i++) {
-                if (chains[i].name === bridgeChains.originChain) originChain = chains[i];
-                else if (chains[i].name === bridgeChains.destinationChain) destinationChain = chains[i];
+                if (chains[i].id === bridgeChains.originChain) originChain = chains[i];
+                else if (chains[i].id === bridgeChains.destinationChain) destinationChain = chains[i];
             }
 
             this.bridgeChainsState.setState({
@@ -62,18 +64,10 @@ export class BridgeChainsController implements IBridgeChainsController {
     }
 
     /**
-     * Gets the chains.
-     * @returns The chains.
-     */
-    getChains(): Promise<ChainDto[]> {
-        return this.bridgeApi.findAllChains();
-    }
-
-    /**
      * Gets the origin chain.
      * @returns The origin chain.
      */
-    getOriginChain(): ChainDto {
+    getOriginChain(): Chain {
         if (!this.bridgeChains.originChain) throw new DomainError(BridgeChainsErrors.ORIGIN_CHAIN_NOT_SET);
         return this.bridgeChains.originChain;
     }
@@ -82,7 +76,7 @@ export class BridgeChainsController implements IBridgeChainsController {
      * Sets the origin chain.
      * @param chain The chain to set as the origin chain.
      */
-    setOriginChain(chain: ChainDto): void {
+    setOriginChain(chain: Chain): void {
         const chains = this.bridgeChains;
         const nextChains: IBridgeChainsState = {
             ...chains,
@@ -90,14 +84,14 @@ export class BridgeChainsController implements IBridgeChainsController {
         };
         this.eventEmitter.emit("bridgeChainsChange", nextChains, chains);
         this.bridgeChainsState.setState(nextChains);
-        this.bridgeChainsRepository.setOriginChain(chain.name);
+        this.bridgeChainsRepository.setOriginChain(chain.id);
     }
 
     /**
      * Gets the destination chain.
      * @returns The destination chain.
      */
-    getDestinationChain(): ChainDto {
+    getDestinationChain(): Chain {
         if (!this.bridgeChains.destinationChain) throw new DomainError(BridgeChainsErrors.DESTINATION_CHAIN_NOT_SET);
         return this.bridgeChains.destinationChain;
     }
@@ -106,7 +100,7 @@ export class BridgeChainsController implements IBridgeChainsController {
      * Sets the destination chain.
      * @param chain The chain to set as the destination chain.
      */
-    setDestinationChain(chain: ChainDto): void {
+    setDestinationChain(chain: Chain): void {
         const chains = this.bridgeChains;
         const nextChains: IBridgeChainsState = {
             ...chains,
@@ -114,7 +108,7 @@ export class BridgeChainsController implements IBridgeChainsController {
         };
         this.eventEmitter.emit("bridgeChainsChange", nextChains, chains);
         this.bridgeChainsState.setState(nextChains);
-        this.bridgeChainsRepository.setDestinationChain(chain.name);
+        this.bridgeChainsRepository.setDestinationChain(chain.id);
     }
 
     /**
@@ -136,7 +130,7 @@ export class BridgeChainsController implements IBridgeChainsController {
      * @param source The source.
      * @returns The source chain.
      */
-    getSourceChain(source: BridgeSource): ChainDto {
+    getSourceChain(source: BridgeSource): Chain {
         return source === BridgeSource.ORIGIN ? this.getOriginChain() : this.getDestinationChain();
     }
 
@@ -154,8 +148,8 @@ export class BridgeChainsController implements IBridgeChainsController {
 
             // Persist swap
             this.bridgeChainsRepository.setBridgeChains({
-                originChain: swappedChains.originChain?.name,
-                destinationChain: swappedChains.destinationChain?.name,
+                originChain: swappedChains.originChain?.id,
+                destinationChain: swappedChains.destinationChain?.id,
             });
 
             return swappedChains;

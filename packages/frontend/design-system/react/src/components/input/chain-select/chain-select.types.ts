@@ -1,6 +1,6 @@
-import { ChainDto } from "@shared/api";
 import { SelectProps } from "../select";
+import { Chain } from "@frontend/chain";
 
-export type ChainSelectProps = Omit<SelectProps<ChainDto>, "options" | "children" | "compare"> & {
-    chains: ChainDto[];
+export type ChainSelectProps = Omit<SelectProps<Chain>, "options" | "children" | "compare"> & {
+    chains: Chain[];
 };

@@ -14,7 +14,7 @@ export function BridgeDestinationAmountField({ disabled = false, ...rest }: Brid
             suffix={
                 !!destinationChainConfig && (
                     <Typography variant="body2Regular" color="grey.200">
-                        {token?.currency && token.currency}
+                        {!!token?.symbol && token.symbol}
                     </Typography>
                 )
             }
