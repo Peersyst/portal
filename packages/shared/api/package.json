@@ -12,11 +12,7 @@
         "generate": "openapi -i ../../../apps/api/openapi-spec.json -o src --exportSchemas=true --exportModels=true --useUnionTypes --postfixServices=Api"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        }
+        ".": "./src/index.ts"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",

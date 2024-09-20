@@ -15,51 +15,15 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        },
-        "./providers": {
-            "types": "./dist/providers/index.d.ts",
-            "require": "./dist/providers/index.js",
-            "import": "./dist/providers/index.mjs"
-        },
-        "./providers/error": {
-            "types": "./dist/providers/core/error/index.d.ts",
-            "require": "./dist/providers/core/error/index.js",
-            "import": "./dist/providers/core/error/index.mjs"
-        },
-        "./providers/interfaces": {
-            "types": "./dist/providers/core/interfaces/index.d.ts",
-            "require": "./dist/providers/core/interfaces/index.js",
-            "import": "./dist/providers/core/interfaces/index.mjs"
-        },
-        "./providers/evm": {
-            "types": "./dist/providers/evm/index.d.ts",
-            "require": "./dist/providers/evm/index.js",
-            "import": "./dist/providers/evm/index.mjs"
-        },
-        "./providers/evm/metamask": {
-            "types": "./dist/providers/evm/metamask/index.d.ts",
-            "require": "./dist/providers/evm/metamask/index.js",
-            "import": "./dist/providers/evm/metamask/index.mjs"
-        },
-        "./providers/xrp/xrpl/xrpl-faucet": {
-            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/index.js",
-            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/index.mjs"
-        },
-        "./providers/xrp/xrpl/xrpl-faucet/interfaces": {
-            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.js",
-            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.mjs"
-        },
-        "./providers/xrp/xrpl/xrpl-faucet/repositories": {
-            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.js",
-            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/repositories/index.mjs"
-        }
+        ".": "./src/index.ts",
+        "./providers": "./src/providers/index.ts",
+        "./providers/error": "./src/providers/core/error/index.ts",
+        "./providers/interfaces": "./src/providers/core/interfaces/index.ts",
+        "./providers/evm": "./src/providers/evm/index.ts",
+        "./providers/evm/metamask": "./src/providers/evm/metamask/index.ts",
+        "./providers/xrp/xrpl/xrpl-faucet": "./src/providers/xrp/xrpl/xrpl-faucet/index.ts",
+        "./providers/xrp/xrpl/xrpl-faucet/interfaces": "./src/providers/xrp/xrpl/xrpl-faucet/interfaces/index.ts",
+        "./providers/xrp/xrpl/xrpl-faucet/repositories": "./src/providers/xrp/xrpl/xrpl-faucet/repositories/index.ts"
     },
     "peerDependencies": {
         "@frontend/blockchain": "workspace:*",

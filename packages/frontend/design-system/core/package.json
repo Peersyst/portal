@@ -11,26 +11,10 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        "./palette": {
-            "types": "./dist/palette/index.d.ts",
-            "require": "./dist/palette/index.js",
-            "import": "./dist/palette/index.mjs"
-        },
-        "./typography": {
-            "types": "./dist/typography/index.d.ts",
-            "require": "./dist/typography/index.js",
-            "import": "./dist/typography/index.mjs"
-        },
-        "./themes": {
-            "types": "./dist/themes/index.d.ts",
-            "require": "./dist/themes/index.js",
-            "import": "./dist/themes/index.mjs"
-        },
-        "./themes/default": {
-            "types": "./dist/themes/default/index.d.ts",
-            "require": "./dist/themes/default/index.js",
-            "import": "./dist/themes/default/index.mjs"
-        }
+        "./palette": "./src/palette/index.ts",
+        "./typography": "./src/typography/index.ts",
+        "./themes": "./src/themes/index.ts",
+        "./themes/default": "./src/themes/default/index.ts"
     },
     "peerDependencies": {
         "@frontend/locale": "workspace:*",
