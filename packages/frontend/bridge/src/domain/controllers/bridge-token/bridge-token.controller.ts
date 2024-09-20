@@ -7,13 +7,15 @@ import { IBridgeManagerController } from "../../../ui/interfaces/i-bridge-manage
 import { IBridgeProvidersController } from "../../../ui/interfaces/i-bridge-providers.controller";
 import { FilterXChainBridgeTokensOptions } from "./bridge-token.controller.types";
 import { Token, TokenLike } from "@frontend/token";
-import { ChainDto } from "@shared/api";
 import { BridgeTokenErrors } from "../../errors/bridge-token.errors";
 import { DomainError } from "@frontend/core/domain/error";
 import { isTokenProvider } from "@frontend/blockchain/providers";
 import { BridgeTokenEventEmitter } from "../../events/bridge-token.events";
 import Amount from "@shared/amount";
+import { Chain } from "@frontend/chain";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeTokenController implements IBridgeTokenController {
     /**
      * Reference to the domain event emitter.
@@ -81,10 +83,10 @@ export class BridgeTokenController implements IBridgeTokenController {
      * @param xChainBridge The XChainBridge.
      * @returns The XChainBridgeChain.
      */
-    private getChainXChainBridgeChain(chain: ChainDto, xChainBridge: XChainBridge): XChainBridgeChainFormat<ChainType> {
-        if (xChainBridge.lockingChain.id !== undefined && xChainBridge.lockingChain.id === chain.name) {
+    private getChainXChainBridgeChain(chain: Chain, xChainBridge: XChainBridge): XChainBridgeChainFormat<ChainType> {
+        if (xChainBridge.lockingChain.id !== undefined && xChainBridge.lockingChain.id === chain.id) {
             return xChainBridge.lockingChain.for(chain.type as ChainType);
-        } else if (xChainBridge.issuingChain.id !== undefined && xChainBridge.issuingChain.id === chain.name) {
+        } else if (xChainBridge.issuingChain.id !== undefined && xChainBridge.issuingChain.id === chain.id) {
             return xChainBridge.issuingChain.for(chain.type as ChainType);
         } else {
             throw new DomainError(BridgeTokenErrors.X_CHAIN_BRIDGE_DOES_NOT_CORRESPOND_TO_CHAIN);
@@ -97,7 +99,7 @@ export class BridgeTokenController implements IBridgeTokenController {
      * @param xChainBridge The XChainBridge.
      * @returns The XChainBridge.
      */
-    private getChainXChainBridge(chain: ChainDto, xChainBridge: XChainBridge): XChainBridgeFormat<ChainType> {
+    private getChainXChainBridge(chain: Chain, xChainBridge: XChainBridge): XChainBridgeFormat<ChainType> {
         return xChainBridge.for(chain.type as ChainType);
     }
 
@@ -144,12 +146,12 @@ export class BridgeTokenController implements IBridgeTokenController {
 
         if (!isTokenProvider(provider)) throw new DomainError(BridgeTokenErrors.NOT_TOKEN_PROVIDER);
 
-        const [decimals, currency] = await Promise.all([provider.getTokenDecimals(tokenAddress), provider.getTokenCurrency(tokenAddress)]);
+        const [decimals, symbol] = await Promise.all([provider.getTokenDecimals(tokenAddress), provider.getTokenCurrency(tokenAddress)]);
 
         return {
             decimals,
             issuer: tokenAddress,
-            currency,
+            symbol,
         };
     }
 
@@ -171,7 +173,7 @@ export class BridgeTokenController implements IBridgeTokenController {
             provider.getXChainBridgeTokenBalance(address, xChainBridgeChainForChainType, xChainBridgeForChainType),
         ]);
 
-        return Amount.fromInt(balance, token.decimals, token.currency);
+        return Amount.fromInt(balance, token.decimals, token.symbol);
     }
 
     /**
@@ -190,7 +192,7 @@ export class BridgeTokenController implements IBridgeTokenController {
             provider.getTokenBalance(tokenAddress),
         ]);
 
-        return Amount.fromInt(balance, token.decimals, token.currency);
+        return Amount.fromInt(balance, token.decimals, token.symbol);
     }
 
     /**

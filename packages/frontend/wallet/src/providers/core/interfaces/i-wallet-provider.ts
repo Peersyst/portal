@@ -9,10 +9,10 @@ import {
 } from "xchain-sdk";
 import { WalletProviderConnectionError, WalletProviderId } from "../../types";
 import { EventEmitter } from "@frontend/events";
-import { ChainDto } from "@shared/api";
+import { Chain } from "@frontend/chain";
 
 export type WalletProviderEvents = {
-    setChain: (chain: ChainDto | undefined) => void;
+    setChain: (chain: Chain | undefined) => void;
     // TODO: Delete isChainValid on double metamask refactor
     connect: (address: string, isChainValid: boolean) => void;
     disconnect: () => void;

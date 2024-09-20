@@ -6,7 +6,9 @@ import { BridgeProvidersErrors } from "../../errors/bridge-providers.errors";
 import { IBridgeChainsController } from "../../../ui/interfaces/i-bridge-chains.controller";
 import { ProviderFactory } from "@frontend/blockchain/providers";
 import { IBridgeChainsState } from "../../states/bridge-chains.state";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeProvidersController implements IBridgeProvidersController {
     private _originProvider: IProvider | undefined;
     private get originProvider(): IProvider {

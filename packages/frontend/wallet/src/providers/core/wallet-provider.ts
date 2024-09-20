@@ -13,10 +13,10 @@ import { IMultipleChainWalletProvider, IWalletProvider, WalletProviderEvents } f
 import { WalletProviderEventEmitter } from "./wallet-provider.events";
 import { WalletProviderConnectionError, WalletProviderId } from "../types";
 import { WalletProviderErrors } from "./wallet-provider.errors";
-import { ChainDto } from "@shared/api";
 import { WalletProviderError } from "./error";
 import { isProviderError } from "@frontend/blockchain/providers/error";
 import { isSignerError } from "@frontend/blockchain/signers/error";
+import { Chain } from "@frontend/chain";
 
 export abstract class WalletProvider<
     Type extends ChainType = ChainType,
@@ -57,8 +57,8 @@ export abstract class WalletProvider<
      * Chain the wallet is connected to.
      * This can be changing when an external agent calls the setChain method.
      */
-    private _chain: ChainDto | undefined = undefined;
-    protected get chain(): ChainDto {
+    private _chain: Chain | undefined = undefined;
+    protected get chain(): Chain {
         if (!this._chain) throw new Error("Chain is not set");
         return this._chain;
     }
@@ -66,7 +66,7 @@ export abstract class WalletProvider<
      * Sets the chain the wallet is connected to.
      * @param chain The chain to set.
      */
-    setChain(chain: ChainDto | undefined): void {
+    setChain(chain: Chain | undefined): void {
         this._chain = chain;
         this.eventEmitter.emit("setChain", chain);
     }

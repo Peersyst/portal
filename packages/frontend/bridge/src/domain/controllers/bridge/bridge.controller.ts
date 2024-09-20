@@ -8,7 +8,9 @@ import { IBridgeTokenController } from "../../../ui/interfaces/i-bridge-token.co
 import { DomainError } from "@frontend/core/domain/error";
 import { BridgeErrors } from "../../errors/bridge.errors";
 import Amount from "@shared/amount";
+import { Controller } from "@frontend/core/domain/controller";
 
+@Controller()
 export class BridgeController implements IBridgeController {
     /**
      * Reference to the event emitter.
@@ -79,13 +81,13 @@ export class BridgeController implements IBridgeController {
             const lockingChainId = xChainBridge.lockingChain.id;
             const issuingChainId = xChainBridge.issuingChain.id;
             if (
-                (lockingChainId !== originChain.name && lockingChainId !== destinationChain.name) ||
-                (issuingChainId !== originChain.name && issuingChainId !== destinationChain.name)
+                (lockingChainId !== originChain.id && lockingChainId !== destinationChain.id) ||
+                (issuingChainId !== originChain.id && issuingChainId !== destinationChain.id)
             )
                 throw new DomainError(BridgeErrors.BRIDGE_DOES_NOT_CORRESPOND_TO_CHAINS);
 
             const direction =
-                xChainBridge.lockingChain.id === originChain.name ? BridgeDirection.LOCKING_TO_ISSUING : BridgeDirection.ISSUING_TO_LOCKING;
+                xChainBridge.lockingChain.id === originChain.id ? BridgeDirection.LOCKING_TO_ISSUING : BridgeDirection.ISSUING_TO_LOCKING;
 
             value = new Bridge(direction, xChainBridge);
         } else {
@@ -113,7 +115,7 @@ export class BridgeController implements IBridgeController {
     getCreateBridgeReward(_doorAddress: string): Promise<Amount> {
         const { originChain } = this.bridgeChainsController.getBridgeChains();
 
-        return Promise.resolve(Amount.fromDec("25", originChain.nativeDecimals, originChain.nativeToken));
+        return Promise.resolve(Amount.fromDec("25", originChain.nativeToken.decimals, originChain.nativeToken.symbol));
     }
 
     /**

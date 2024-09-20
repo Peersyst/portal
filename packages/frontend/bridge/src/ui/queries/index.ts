@@ -3,7 +3,6 @@ export * from "./use-bridge-transfer-fee";
 export * from "./use-destination-can-receive";
 export * from "./use-get-bridge-wallet-balance";
 export * from "./use-get-bridge-wallet-token-balance";
-export * from "./use-get-chains";
 export * from "./use-get-source-bridge-token-balance";
 export * from "./use-get-source-bridge-token";
 export * from "./use-get-source-token";
