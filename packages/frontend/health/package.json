@@ -16,31 +16,11 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/common/index.d.ts",
-            "require": "./dist/common/index.js",
-            "import": "./dist/common/index.mjs"
-        },
-        "./domain/controllers": {
-            "types": "./dist/domain/controllers/index.d.ts",
-            "require": "./dist/domain/controllers/index.js",
-            "import": "./dist/domain/controllers/index.mjs"
-        },
-        "./domain/interfaces": {
-            "types": "./dist/domain/interfaces/index.d.ts",
-            "require": "./dist/domain/interfaces/index.js",
-            "import": "./dist/domain/interfaces/index.mjs"
-        },
-        "./ui/interfaces": {
-            "types": "./dist/ui/interfaces/index.d.ts",
-            "require": "./dist/ui/interfaces/index.js",
-            "import": "./dist/ui/interfaces/index.mjs"
-        },
-        "./ui/queries": {
-            "types": "./dist/ui/queries/index.d.ts",
-            "require": "./dist/ui/queries/index.js",
-            "import": "./dist/ui/queries/index.mjs"
-        }
+        ".": "./src/common/index.ts",
+        "./domain/controllers": "./src/domain/controllers/index.ts",
+        "./domain/interfaces": "./src/domain/interfaces/index.ts",
+        "./ui/interfaces": "./src/ui/interfaces/index.ts",
+        "./ui/queries": "./src/ui/queries/index.ts"
     },
     "peerDependencies": {
         "@frontend/core": "workspace:*",

@@ -11,11 +11,7 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        "./react": {
-            "types": "./dist/react/index.d.ts",
-            "require": "./dist/react/index.js",
-            "import": "./dist/react/index.mjs"
-        },
+        "./react": "./src/react/index.ts",
         "./mocks": "./test/mocks/index.ts"
     },
     "peerDependencies": {
