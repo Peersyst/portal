@@ -1,16 +1,15 @@
 import Amount from "@shared/amount";
-import { XChainBridge } from "xchain-sdk";
 import { MoreAction } from "../../../navigation/more";
 
-export type TokenSelectorListItemData = {
+export type TokenSelectorListItemData<T> = {
     label: string;
-    xChainBridge: XChainBridge;
     icon?: string;
+    value: T;
 };
 
-export type TokenSelectorListItemProps = {
-    item: TokenSelectorListItemData;
-    onSelect: (option: TokenSelectorListItemData) => void;
+export type TokenSelectorListItemProps<T> = {
+    item: TokenSelectorListItemData<T>;
+    onSelect: (option: T) => void;
     balance?: Amount;
     more?: MoreAction[];
     isBalanceLoading?: boolean;

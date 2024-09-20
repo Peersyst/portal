@@ -28,8 +28,14 @@ export interface CoreConfig extends BaseConfig {
         url: string;
         apiUrl: string;
         chainIds: Record<string, boolean>;
+        // Map of chainId to axelar chain object.
         additionalChainData: Record<string, AnyObject>;
+        // Extra axelar chain objects to be added to the chain list.
         extraChains: AnyObject[];
+        // Map of tokenId to axelar interchain token object.
+        additionalTokenData: Record<string, AnyObject>;
+        // Extra axelar interchain token objects to be added to the token list.
+        extraTokens: AnyObject[];
     };
 
     xumm: {

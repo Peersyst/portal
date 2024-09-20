@@ -7,6 +7,7 @@ import {
     AxelarChainObject,
     AxelarChainProviderParamObject,
 } from "../types/axelar-chain.types";
+import { getAxelarResourceUrl } from "../utils/get-axelar-resource-url";
 
 export class AxelarChain {
     chain_id?: number;
@@ -33,24 +34,14 @@ export class AxelarChain {
         this.native_token = axelarChain.native_token;
         this.name = axelarChain.name;
         this.short_name = axelarChain.short_name;
-        this.image = this.getImageUrl(axelarChain.image, axelarUrl);
+        this.image = getAxelarResourceUrl(axelarChain.image, axelarUrl);
         this.color = axelarChain.color;
-        this.explorer = { ...axelarChain.explorer, icon: this.getImageUrl(axelarChain.explorer.icon, axelarUrl) };
+        this.explorer = { ...axelarChain.explorer, icon: getAxelarResourceUrl(axelarChain.explorer.icon, axelarUrl) };
         this.id = axelarChain.id;
         this.chain_type = axelarChain.chain_type;
         this.provider_params = axelarChain.provider_params;
         this.no_inflation = axelarChain.no_inflation;
         this.no_tvl = axelarChain.no_tvl;
-    }
-
-    /**
-     * Get the image URL from the Axelar chain.
-     * @param image The image URL.
-     * @param axelarUrl The Axelar URL.
-     * @returns The image URL.
-     */
-    private getImageUrl(image: string, axelarUrl: string): string {
-        return image.startsWith("/") ? `${axelarUrl}/${image}` : image;
     }
 
     /**

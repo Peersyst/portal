@@ -1,4 +1,4 @@
-import { PersistedBridgeChains } from "../../common/types/bridge-chain.types";
+import { PersistedBridgeChains } from "../../common/types/bridge-chains.types";
 
 export interface IBridgeChainsRepository {
     getBridgeChains(): Promise<PersistedBridgeChains | undefined>;

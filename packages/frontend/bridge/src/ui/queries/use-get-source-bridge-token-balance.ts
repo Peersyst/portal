@@ -2,9 +2,6 @@ import { UseExternalQueryOptions } from "@frontend/query/react";
 import Amount from "@shared/amount";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { BridgeDirection, BridgeSource, XChainBridge } from "xchain-sdk";
-import { useBridgeState } from "../state/use-bridge-state";
-import { getInstance } from "@frontend/core/common/utils/singleton";
-import { BridgeTokenController } from "../../domain/controllers/bridge-token/bridge-token.controller";
 
 /**
  * Returns the query key for the bridge source token balance query.
@@ -37,14 +34,12 @@ export function useGetSourceBridgeTokenBalance<TData = Amount>(
     xChainBridge: XChainBridge | undefined,
     { enabled = true, ...restOptions }: UseExternalQueryOptions<Amount, Error, TData, any[]> = {},
 ): UseQueryResult<TData> {
-    const bridge = useBridgeState();
-
-    const queryKey = getSourceBridgeTokenBalanceQueryKey(address, source, xChainBridge, bridge?.direction);
+    const queryKey = getSourceBridgeTokenBalanceQueryKey(address, source, xChainBridge, undefined);
 
     return useQuery<Amount, Error, TData, any[]>({
         queryKey,
-        queryFn: () => getInstance(BridgeTokenController).getBridgeSourceXChainBridgeTokenBalance(address!, source, xChainBridge!),
-        enabled: !!address && !!bridge && !!xChainBridge && enabled,
+        queryFn: () => new Amount("0", 18, ""),
+        enabled: !!address && !!xChainBridge && enabled,
         ...restOptions,
     });
 }
