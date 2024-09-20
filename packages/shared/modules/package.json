@@ -15,21 +15,9 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        "./chain": {
-            "types": "./dist/chain/index.d.ts",
-            "require": "./dist/chain/index.js",
-            "import": "./dist/chain/index.mjs"
-        },
-        "./health": {
-            "types": "./dist/health/index.d.ts",
-            "require": "./dist/health/index.js",
-            "import": "./dist/health/index.mjs"
-        },
-        "./network": {
-            "types": "./dist/network/index.d.ts",
-            "require": "./dist/network/index.js",
-            "import": "./dist/network/index.mjs"
-        }
+        "./chain": "./src/chain/index.ts",
+        "./health": "./src/health/index.ts",
+        "./network": "./src/network/index.ts"
     },
     "peerDependencies": {},
     "devDependencies": {

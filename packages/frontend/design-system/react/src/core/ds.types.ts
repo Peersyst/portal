@@ -4,7 +4,7 @@ import { ThemeConfig } from "@frontend/design-system-core/themes";
 
 declare module "@peersyst/react-components" {
     export interface ConfigTypes {
-        TranslateFn: TFunction<"translation">;
+        TranslateFn: TFunction<"error">;
     }
 }
 

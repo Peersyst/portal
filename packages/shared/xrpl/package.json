@@ -11,16 +11,8 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/common/index.d.ts",
-            "require": "./dist/common/index.js",
-            "import": "./dist/common/index.mjs"
-        },
-        "./currency-code": {
-            "types": "./dist/currency-code.d.ts",
-            "require": "./dist/currency-code.js",
-            "import": "./dist/currency-code.mjs"
-        }
+        ".": "./src/common/index.ts",
+        "./currency-code": "./src/currency-code.ts"
     },
     "peerDependencies": {
         "xrpl": "3.0.0"
