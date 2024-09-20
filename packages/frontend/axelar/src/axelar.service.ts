@@ -8,6 +8,10 @@ import { IAxelarService } from "./interfaces";
 import { Service } from "@frontend/core/data-access/service";
 import { deepmerge } from "@shared/utils";
 import { AxelarChainObject } from "./types/axelar-chain.types";
+import { BridgeToken } from "@frontend/bridge";
+import { GetITSAssetsResponse } from "./responses/get-it-assets.response";
+import { AxelarInterchainToken } from "./models/axelar-interchain-token";
+import { AxelarInterchainTokenObject } from "./types/axelar-interchain-token.types";
 
 @Service()
 export class AxelarService implements IAxelarService {
@@ -51,7 +55,7 @@ export class AxelarService implements IAxelarService {
                         prev.push(chain);
                     }
                 } catch (_) {
-                    // If the chain can't be parsed, we skip it.
+                    // If the chain can't be parsed, skip it.
                 }
                 return prev;
             }, [] as Chain[]);
@@ -59,6 +63,66 @@ export class AxelarService implements IAxelarService {
             return chains;
         } catch (_) {
             throw new ServiceError(AxelarErrors.GET_CHAINS_PARSE_ERROR);
+        }
+    }
+
+    /**
+     * Checks if the token matches the query.
+     * @param token The token to check.
+     * @param query The query to check against.
+     * @returns True if the token matches the query, false otherwise.
+     */
+    private tokenMatchesQuery(token: AxelarInterchainTokenObject, query?: string): boolean {
+        if (!query) return true;
+        const queryLower = query.toLowerCase();
+        return (
+            token.name.toLowerCase().includes(queryLower) ||
+            token.symbol.toLowerCase().includes(queryLower) ||
+            token.addresses.some((address) => address.toLowerCase() === queryLower)
+        );
+    }
+
+    /**
+     * Get the bridge tokens for a given chain pair.
+     * @param chain The chain to get the bridge tokens for.
+     * @param otherChain The other chain to get the bridge tokens for.
+     * @param query The query to filter the tokens.
+     * @returns The bridge tokens for the given chain pair.
+     */
+    async getBridgeTokens(chain: Chain, otherChain: Chain, query?: string): Promise<BridgeToken[]> {
+        const response = await fetch(`${this.apiUrl}/getITSAssets`, { headers: { "Content-Type": "application/json" } });
+
+        if (!response.ok) {
+            throw new ServiceError(AxelarErrors.GET_BRIDGE_TOKENS_FETCH_ERROR);
+        }
+
+        try {
+            const axelarInterchainTokens = (await response.json()) as GetITSAssetsResponse;
+
+            const extraTokens = this.configManager.get("axelar.extraTokens");
+            axelarInterchainTokens.push(...(extraTokens as AxelarInterchainTokenObject[]));
+
+            const additionalTokenData = this.configManager.get("axelar.additionalTokenData");
+
+            const tokens = axelarInterchainTokens.reduce((prev, axelarInterchainToken) => {
+                try {
+                    let tokenData = axelarInterchainToken;
+                    if (additionalTokenData[axelarInterchainToken.id])
+                        tokenData = deepmerge(axelarInterchainToken, additionalTokenData[axelarInterchainToken.id]);
+
+                    if (tokenData.chains[chain.id] && tokenData.chains[otherChain.id] && this.tokenMatchesQuery(tokenData, query)) {
+                        const token = new AxelarInterchainToken(tokenData, this.url).toBridgeToken(chain);
+                        prev.push(token);
+                    }
+                } catch (_) {
+                    // If the token can't be parsed, skip it.
+                }
+                return prev;
+            }, [] as BridgeToken[]);
+
+            return tokens;
+        } catch (_) {
+            throw new ServiceError(AxelarErrors.GET_BRIDGE_TOKENS_PARSE_ERROR);
         }
     }
 }

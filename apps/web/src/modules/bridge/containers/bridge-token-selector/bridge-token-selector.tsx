@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useEffect } from "react";
 import { BridgeTokenSelectorProps } from "./bridge-token-selector.types";
 import { useControlled, useDebounce } from "@peersyst/react-hooks";
 import { BridgeTokenSelectorList, BridgeTokenSelectorRoot } from "./bridge-token-selector.styles";
@@ -19,28 +18,13 @@ export function BridgeTokenSelector({
     nothingToShow,
     className,
     style,
-    onTokensFiltered,
     renderItem,
 }: BridgeTokenSelectorProps): JSX.Element {
     const { spacing } = useTheme();
     const [query, setQuery] = useControlled(defaultQuery, queryProp, onQueryChangeProp);
-    const {
-        value,
-        handleChange,
-        debouncedValue: debouncedQuery,
-        debouncing: debouncingQuery,
-    } = useDebounce(query, { onChange: setQuery, delay: 500 });
-    // TODO: Implement tokens filtering
-    //const { data: filteredTokens = [], isLoading: isFilterTokensLoading } = useFilterTokens(tokens, debouncedQuery);
+    const { value, handleChange, debouncing: debouncingQuery } = useDebounce(query, { onChange: setQuery, delay: 500 });
 
-    const filteredTokens = tokens;
-    const isFilterTokensLoading = false;
-
-    useEffect(() => {
-        onTokensFiltered?.(filteredTokens, debouncedQuery);
-    }, [filteredTokens]);
-
-    const tokenSelectorLoading = isFilterTokensLoading || isFiltering || debouncingQuery;
+    const tokenSelectorLoading = isLoading || isFiltering || debouncingQuery;
 
     return (
         <BridgeTokenSelectorRoot gap={spacing[8]} className={clsx("BridgeTokenSelector", className)} style={style}>
@@ -48,7 +32,7 @@ export function BridgeTokenSelector({
             <Col flex={1} css={{ overflow: "hidden" }} gap={"1px" /* Avoids the divider of being hidden when scrolling */}>
                 <Divider />
                 <BridgeTokenSelectorList
-                    tokens={filteredTokens}
+                    tokens={tokens}
                     isLoading={isLoading}
                     onSelect={onSelect}
                     renderItem={renderItem}

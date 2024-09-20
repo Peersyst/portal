@@ -1,0 +1,11 @@
+import { mockify } from "@shared/test";
+import { BridgeToken } from "../../../src/common/bridge-token";
+import { ChainMock } from "@frontend/chain/mocks/common";
+
+export const BridgeTokenMock = mockify<BridgeToken>({
+    symbol: "XRP",
+    name: "XRP",
+    id: "xrp",
+    chains: {},
+    chain: new ChainMock(),
+});

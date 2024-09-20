@@ -41,14 +41,20 @@ export const config: CoreConfig = {
         featureRequest: "mailto:info@peersyst.com?subject=[XRPL EVM Feature Request]",
     },
     axelar: {
-        url: "https://devnet-amplifier.axelarscan.io",
-        apiUrl: "https://devnet-amplifier.api.axelarscan.io/api",
+        url: "https://axelarscan.io", //"https://devnet-amplifier.axelarscan.io",
+        apiUrl: "https://api.axelarscan.io/api", //"https://devnet-amplifier.api.axelarscan.io/api",
         chainIds: {
             xrpl: true,
-            "core-ethereum": true,
-            "core-avalanche": true,
-            "core-optimism": true,
-            "xrpl-evm-devnet": true,
+            ethereum: true,
+            binance: true,
+            polygon: true,
+            avalanche: true,
+            optimism: true,
+            fantom: true,
+            // "core-ethereum": true,
+            // "core-avalanche": true,
+            // "core-optimism": true,
+            // "xrpl-evm-devnet": true,
         },
         additionalChainData: {
             xrpl: {
@@ -90,6 +96,8 @@ export const config: CoreConfig = {
                 no_tvl: false,
             },
         ],
+        additionalTokenData: {},
+        extraTokens: [],
     },
 
     xumm: {

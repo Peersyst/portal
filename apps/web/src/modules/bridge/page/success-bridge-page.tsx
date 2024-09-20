@@ -1,4 +1,3 @@
-import { useGetSourceToken } from "@frontend/bridge/ui/queries";
 import { useTheme } from "@frontend/design-system-react/theme";
 import { useTranslate } from "@frontend/locale/react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -20,7 +19,8 @@ const SuccessBridgePage = (): JSX.Element => {
     const navigate = useNavigate();
     const { state: locationState } = useLocation();
     const { spacing } = useTheme();
-    const { data: destinationToken } = useGetSourceToken(BridgeSource.DESTINATION);
+    // TODO: Define
+    const destinationToken = undefined as any;
 
     if (!locationState.result) navigate(BridgeRoutes.BRIDGE, { replace: true });
 

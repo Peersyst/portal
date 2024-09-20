@@ -9,17 +9,17 @@ import { Skeleton } from "../../../feedback/skeleton";
 import { AmountDisplay } from "../../amount-display";
 import { More } from "../../../navigation/more";
 
-export function TokenSelectorListItem({
+export function TokenSelectorListItem<T>({
     item,
     onSelect,
     more,
     balance = new Amount("0", 1, ""),
     isBalanceLoading = false,
-}: TokenSelectorListItemProps): JSX.Element {
+}: TokenSelectorListItemProps<T>): JSX.Element {
     const { spacing } = useTheme();
 
     return (
-        <TokenSelectorListItemRoot onClick={() => onSelect(item)}>
+        <TokenSelectorListItemRoot onClick={() => onSelect(item.value)}>
             <Row alignItems="center" gap={spacing[3]}>
                 <TokenSelectorListItemLogo src={item.icon || token_default_logo} />
                 <Typography variant="body1Regular">{item.label}</Typography>
@@ -42,6 +42,6 @@ export function TokenSelectorListItem({
  * @param index The index of the token selector list item.
  * @returns The token selector list item.
  */
-export const renderTokenSelectorListItem = (props: TokenSelectorListItemProps, index: number) => {
+export function renderTokenSelectorListItem<T>(props: TokenSelectorListItemProps<T>, index: number): JSX.Element {
     return <TokenSelectorListItem key={`token-selector-${index}`} {...props} />;
-};
+}

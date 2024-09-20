@@ -8,7 +8,6 @@ import { ServiceFactory } from "../../data-access/factories/service.factory";
 import { ApiFactory } from "../../data-access/factories/api.factory";
 import {
     IBridgeChainsController,
-    IBridgeController,
     IBridgeManagerController,
     IBridgeProvidersController,
     IBridgeTokenController,
@@ -17,7 +16,6 @@ import {
 } from "@frontend/bridge/ui/interfaces";
 import {
     BridgeChainsController,
-    BridgeController,
     BridgeManagerController,
     BridgeProvidersController,
     BridgeTokenController,
@@ -36,7 +34,6 @@ declare module "@frontend/core/domain/controller/factory" {
         bridgeProvidersController: IBridgeProvidersController;
         bridgeManagerController: IBridgeManagerController;
         bridgeTokenController: IBridgeTokenController;
-        bridgeController: IBridgeController;
         bridgeWalletsController: IBridgeWalletsController;
         bridgeTransferController: IBridgeTransferController;
         healthController: IHealthController;
@@ -53,14 +50,7 @@ ControllerFactory.create({
     bridgeProvidersController: (resolve) => new BridgeProvidersController(resolve.bridgeChainsController),
     bridgeManagerController: () => new BridgeManagerController(),
     bridgeTokenController: (resolve) =>
-        new BridgeTokenController(
-            ApiFactory.tokensApi,
-            resolve.bridgeChainsController,
-            resolve.bridgeManagerController,
-            resolve.bridgeProvidersController,
-        ),
-    bridgeController: (resolve) =>
-        new BridgeController(StateManager.states.bridgeState, resolve.bridgeChainsController, resolve.bridgeTokenController),
+        new BridgeTokenController(ServiceFactory.axelarService, resolve.bridgeChainsController, StateManager.states.bridgeToken),
     bridgeWalletsController: (resolve) =>
         new BridgeWalletsController(
             resolve.bridgeChainsController,
@@ -68,12 +58,7 @@ ControllerFactory.create({
             RepositoryFactory.bridgeWalletsRepository,
         ),
     bridgeTransferController: (resolve) =>
-        new BridgeTransferController(
-            resolve.bridgeChainsController,
-            resolve.bridgeWalletsController,
-            resolve.bridgeManagerController,
-            resolve.bridgeController,
-        ),
+        new BridgeTransferController(resolve.bridgeChainsController, resolve.bridgeWalletsController, resolve.bridgeManagerController),
     healthController: () => new HealthController(ApiFactory.healthApi),
 });
 

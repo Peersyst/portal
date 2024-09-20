@@ -225,6 +225,9 @@ importers:
 
   packages/frontend/axelar:
     devDependencies:
+      '@frontend/bridge':
+        specifier: workspace:*
+        version: link:../bridge
       '@frontend/chain':
         specifier: workspace:*
         version: link:../chain
@@ -234,6 +237,9 @@ importers:
       '@frontend/core':
         specifier: workspace:*
         version: link:../core
+      '@frontend/token':
+        specifier: workspace:*
+        version: link:../token
       '@shared/eslint':
         specifier: workspace:*
         version: link:../../shared/eslint

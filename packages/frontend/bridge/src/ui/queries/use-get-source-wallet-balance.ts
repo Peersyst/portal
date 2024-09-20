@@ -3,7 +3,6 @@ import { UseExternalQueryOptions } from "@frontend/query/react";
 import Amount from "@shared/amount";
 import { UseQueryResult } from "@tanstack/react-query";
 import { BridgeSource } from "xchain-sdk";
-import { useBridgeState } from "../state/use-bridge-state";
 import { useGetBridgeWalletTokenBalance } from "./use-get-bridge-wallet-token-balance";
 
 /**
@@ -19,7 +18,5 @@ export function useGetSourceWalletBalance<TData = Amount>(
     const balanceRefetchInterval = useConfig("balanceRefetchInterval");
     const refetchInterval = refetchIntervalOption ?? balanceRefetchInterval;
 
-    const bridge = useBridgeState();
-
-    return useGetBridgeWalletTokenBalance<TData>(source, bridge?.xChainBridge, { refetchInterval, ...restOptions });
+    return useGetBridgeWalletTokenBalance<TData>(source, undefined, { refetchInterval, ...restOptions });
 }

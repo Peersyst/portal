@@ -24,9 +24,9 @@ export class EthersProvider extends EthersXChainProvider implements IEthersProvi
 
         return {
             symbol,
-            issuer: xChainBridgeChain.issue.issuer,
+            name: xChainBridgeChain.issue.currency,
             decimals,
-        };
+        } as any;
     }
 
     /**
@@ -84,8 +84,9 @@ export class EthersProvider extends EthersXChainProvider implements IEthersProvi
         if (xChainBridgeChain.issue.issuer === constants.AddressZero)
             return Promise.resolve({
                 symbol: xChainBridgeChain.issue.currency,
+                name: xChainBridgeChain.issue.currency,
                 decimals: EVM_NATIVE_DECIMALS,
-            });
+            } as any);
         else return this.getXChainBridgeChainToken(xChainBridgeChain, xChainBridge);
     }
 
