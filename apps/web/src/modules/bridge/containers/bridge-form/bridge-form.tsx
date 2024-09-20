@@ -1,11 +1,9 @@
-import { useAreWalletsConnected, useIsBridgeConfigSet } from "@frontend/bridge/ui/hooks";
-import { useDestinationCanReceive, useTransfer } from "@frontend/bridge/ui/queries";
+import { useAreWalletsConnected } from "@frontend/bridge/ui/hooks";
+import { useTransfer } from "@frontend/bridge/ui/queries";
 import { useTheme } from "@frontend/design-system-react/theme";
 import { useTranslate } from "@frontend/locale/react";
 import { useEffect, useRef, useState } from "react";
 import { BridgeTransferStartData } from "xchain-sdk";
-import { useTransferError } from "./hooks/use-transfer-error";
-import { keepPreviousData } from "@tanstack/react-query";
 import { ControllerFactory } from "../../../../core/domain/factories/controller.factory";
 import { BridgeFormData, BridgeFormFields } from "./bridge-form.types";
 import { BridgeFormRoot } from "./bridge-form.styles";
@@ -19,17 +17,14 @@ import { BridgeTransferDetails } from "../bridge-transfer-details/bridge-transfe
 
 export function BridgeForm(): JSX.Element {
     const translate = useTranslate();
-    const translateError = useTranslate("error");
     const { spacing } = useTheme();
 
     const areWalletsConnected = useAreWalletsConnected();
-    const isBridgeConfigSet = useIsBridgeConfigSet();
-    const { data: destinationCanReceive, isFetching: destinationCanReceiveIsLoading } = useDestinationCanReceive({
-        placeholderData: keepPreviousData,
-    });
+    const isBridgeConfigSet = true;
+    // TODO: Define
+    const transferError = undefined;
 
-    const [transferError, setTransferError] = useTransferError();
-    const { mutate: transfer, isPending: transferring } = useTransfer({ onError: setTransferError });
+    const { mutate: transfer, isPending: transferring } = useTransfer();
 
     const startData = useRef<BridgeTransferStartData | undefined>(undefined);
     const [openBridgeTransferModal, setOpenBridgeTransferModal] = useState(false);
@@ -59,15 +54,10 @@ export function BridgeForm(): JSX.Element {
                             <BridgeSources />
                             {areWalletsConnected && <BridgeTransferInput name={BridgeFormFields.AMOUNT} required />}
                         </Col>
-                        {destinationCanReceive === false && <AlertCallout type="error" content={translateError("accountCannotReceive")} />}
                         {!!transferError && <AlertCallout type="error" content={transferError} />}
                         {areWalletsConnected && isBridgeConfigSet && <BridgeTransferDetails />}
                     </Col>
-                    <Button
-                        type="submit"
-                        disabled={!areWalletsConnected || !isBridgeConfigSet || destinationCanReceiveIsLoading || !destinationCanReceive}
-                        loading={transferring}
-                    >
+                    <Button type="submit" disabled={!areWalletsConnected || !isBridgeConfigSet} loading={transferring}>
                         {translate("transfer")}
                     </Button>
                 </Col>

@@ -1,5 +1,5 @@
 import { IStorage, StorageRepository, Repository } from "@frontend/core/data-access/repository";
-import { PersistedBridgeChains } from "../../common/types/bridge-chain.types";
+import { PersistedBridgeChains } from "../../common/types/bridge-chains.types";
 import { IBridgeChainsRepository } from "../../domain/interfaces/i-bridge-chains.repository";
 
 @Repository()

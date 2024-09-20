@@ -2,7 +2,6 @@ import { UseExternalMutationOptions } from "@frontend/query/react";
 import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-query";
 import { BridgeSource, BridgeTransferResult } from "xchain-sdk";
 import { useConnectedBridgeSourceWalletState } from "../hooks/use-connected-bridge-source-wallet-state";
-import { useBridgeState } from "../state/use-bridge-state";
 import { getInstance } from "@frontend/core/common/utils/singleton";
 import { BridgeTransferController } from "../../domain/controllers/bride-transfer/bridge-transfer.controller";
 import { getSourceBridgeTokenBalanceQueryKey } from "./use-get-source-bridge-token-balance";
@@ -18,7 +17,6 @@ export function useTransfer(
 ): UseMutationResult<BridgeTransferResult, Error, string> {
     const originWallet = useConnectedBridgeSourceWalletState(BridgeSource.ORIGIN);
     const destinationWallet = useConnectedBridgeSourceWalletState(BridgeSource.DESTINATION);
-    const bridge = useBridgeState();
 
     const queryClient = useQueryClient();
 
@@ -26,11 +24,9 @@ export function useTransfer(
         mutationFn: (amount: string) => getInstance(BridgeTransferController).transfer(amount),
         onSuccess: async () => {
             await Promise.all([
+                queryClient.invalidateQueries(getSourceBridgeTokenBalanceQueryKey(originWallet?.address, BridgeSource.ORIGIN, undefined)),
                 queryClient.invalidateQueries(
-                    getSourceBridgeTokenBalanceQueryKey(originWallet?.address, BridgeSource.ORIGIN, bridge?.xChainBridge),
-                ),
-                queryClient.invalidateQueries(
-                    getSourceBridgeTokenBalanceQueryKey(destinationWallet?.address, BridgeSource.ORIGIN, bridge?.xChainBridge),
+                    getSourceBridgeTokenBalanceQueryKey(destinationWallet?.address, BridgeSource.ORIGIN, undefined),
                 ),
                 queryClient.invalidateQueries(getIsDestinationActiveQueryKey(destinationWallet?.address)),
             ]);

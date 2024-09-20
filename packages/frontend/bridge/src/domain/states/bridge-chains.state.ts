@@ -1,5 +1,5 @@
 import { createState } from "@frontend/core/domain/state";
-import { BridgeChainPair } from "../../common/types/bridge-chain.types";
+import { BridgeChainPair } from "../../common/types/bridge-chains.types";
 
 export type IBridgeChainsState = Partial<BridgeChainPair>;
 

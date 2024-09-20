@@ -2,10 +2,10 @@ import { StateManager } from "@frontend/core/domain/state/manager";
 import { ISettingsState, settingsState } from "@frontend/settings/domain/state";
 import {
     bridgeChainsState,
-    bridgeState,
+    bridgeTokenState,
     bridgeWalletsState,
     IBridgeChainsState,
-    IBridgeState,
+    IBridgeTokenState,
     IBridgeWalletsState,
 } from "@frontend/bridge/domain/states";
 
@@ -13,8 +13,8 @@ declare module "@frontend/core/domain/state/manager" {
     export interface IStates {
         settings: ISettingsState;
         bridgeChains: IBridgeChainsState;
-        bridgeState: IBridgeState;
         bridgeWalletsState: IBridgeWalletsState;
+        bridgeToken: IBridgeTokenState;
     }
 }
 
@@ -22,6 +22,6 @@ declare module "@frontend/core/domain/state/manager" {
 StateManager.createStates({
     settings: settingsState,
     bridgeChains: bridgeChainsState,
-    bridgeState: bridgeState,
     bridgeWalletsState: bridgeWalletsState,
+    bridgeToken: bridgeTokenState,
 });

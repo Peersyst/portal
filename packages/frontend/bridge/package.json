@@ -74,7 +74,10 @@
             "types": "./dist/ui/utils/index.d.ts",
             "require": "./dist/ui/utils/index.js",
             "import": "./dist/ui/utils/index.mjs"
-        }
+        },
+        "./mocks/common": "./test/mocks/common",
+        "./mocks/domain/controllers": "./test/mocks/domain/controllers",
+        "./mocks/domain/states": "./test/mocks/domain/states"
     },
     "peerDependencies": {
         "@frontend/blockchain": "workspace:*",

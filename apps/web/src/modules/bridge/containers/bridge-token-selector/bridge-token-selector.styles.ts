@@ -13,4 +13,4 @@ export const BridgeTokenSelectorList = styled(TokenSelectorList)(
         padding: ${theme.spacing[6]} 0;
         overflow: auto;
     `,
-);
+) as typeof TokenSelectorList;

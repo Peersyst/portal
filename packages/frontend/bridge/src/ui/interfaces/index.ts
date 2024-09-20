@@ -4,4 +4,3 @@ export * from "./i-bridge-providers.controller";
 export * from "./i-bridge-token.controller";
 export * from "./i-bridge-transfer.controller";
 export * from "./i-bridge-wallets.controller";
-export * from "./i-bridge.controller";
