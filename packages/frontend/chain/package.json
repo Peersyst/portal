@@ -15,31 +15,11 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        },
-        "./domain/interfaces": {
-            "types": "./dist/domain/interfaces/index.d.ts",
-            "require": "./dist/domain/interfaces/index.js",
-            "import": "./dist/domain/interfaces/index.mjs"
-        },
-        "./domain/controllers": {
-            "types": "./dist/domain/controllers/index.d.ts",
-            "require": "./dist/domain/controllers/index.js",
-            "import": "./dist/domain/controllers/index.mjs"
-        },
-        "./ui/interfaces": {
-            "types": "./dist/ui/interfaces/index.d.ts",
-            "require": "./dist/ui/interfaces/index.js",
-            "import": "./dist/ui/interfaces/index.mjs"
-        },
-        "./ui/queries": {
-            "types": "./dist/ui/queries/index.d.ts",
-            "require": "./dist/ui/queries/index.js",
-            "import": "./dist/ui/queries/index.mjs"
-        },
+        ".": "./src/index.ts",
+        "./domain/interfaces": "./src/domain/interfaces/index.ts",
+        "./domain/controllers": "./src/domain/controllers/index.ts",
+        "./ui/interfaces": "./src/ui/interfaces/index.ts",
+        "./ui/queries": "./src/ui/queries/index.ts",
         "./automock/ui": "./test/automock/ui/index.ts",
         "./mocks/common": "./test/mocks/common/index.ts"
     },

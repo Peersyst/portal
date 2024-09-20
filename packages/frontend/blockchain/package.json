@@ -15,91 +15,24 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        "./providers": {
-            "types": "./dist/providers/index.d.ts",
-            "require": "./dist/providers/index.js",
-            "import": "./dist/providers/index.mjs"
-        },
-        "./providers/error": {
-            "types": "./dist/providers/core/error/index.d.ts",
-            "require": "./dist/providers/core/error/index.js",
-            "import": "./dist/providers/core/error/index.mjs"
-        },
-        "./providers/interfaces": {
-            "types": "./dist/providers/core/interfaces/index.d.ts",
-            "require": "./dist/providers/core/interfaces/index.js",
-            "import": "./dist/providers/core/interfaces/index.mjs"
-        },
-        "./providers/evm/interfaces": {
-            "types": "./dist/providers/evm/interfaces/index.d.ts",
-            "require": "./dist/providers/evm/interfaces/index.js",
-            "import": "./dist/providers/evm/interfaces/index.mjs"
-        },
-        "./providers/evm/ethers": {
-            "types": "./dist/providers/evm/ethers/index.d.ts",
-            "require": "./dist/providers/evm/ethers/index.js",
-            "import": "./dist/providers/evm/ethers/index.mjs"
-        },
-        "./providers/evm/ethers/interfaces": {
-            "types": "./dist/providers/evm/ethers/interfaces/index.d.ts",
-            "require": "./dist/providers/evm/ethers/interfaces/index.js",
-            "import": "./dist/providers/evm/ethers/interfaces/index.mjs"
-        },
-        "./providers/xrp/interfaces": {
-            "types": "./dist/providers/xrp/interfaces/index.d.ts",
-            "require": "./dist/providers/xrp/interfaces/index.js",
-            "import": "./dist/providers/xrp/interfaces/index.mjs"
-        },
-        "./providers/xrp/xrpl": {
-            "types": "./dist/providers/xrp/xrpl/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/index.js",
-            "import": "./dist/providers/xrp/xrpl/index.mjs"
-        },
-        "./providers/xrp/xrpl/interfaces": {
-            "types": "./dist/providers/xrp/xrpl/interfaces/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/interfaces/index.js",
-            "import": "./dist/providers/xrp/xrpl/interfaces/index.mjs"
-        },
-        "./providers/xrp/xrpl/xrpl-faucet": {
-            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/index.js",
-            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/index.mjs"
-        },
-        "./providers/xrp/xrpl/xrpl-faucet/interfaces": {
-            "types": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.d.ts",
-            "require": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.js",
-            "import": "./dist/providers/xrp/xrpl/xrpl-faucet/interfaces/index.mjs"
-        },
-        "./signers/error": {
-            "types": "./dist/signers/core/error/index.d.ts",
-            "require": "./dist/signers/core/error/index.js",
-            "import": "./dist/signers/core/error/index.mjs"
-        },
-        "./signers/interfaces": {
-            "types": "./dist/signers/core/interfaces/index.d.ts",
-            "require": "./dist/signers/core/interfaces/index.js",
-            "import": "./dist/signers/core/interfaces/index.mjs"
-        },
-        "./signers/evm/ethers/web3": {
-            "types": "./dist/signers/evm/ethers/web3/index.d.ts",
-            "require": "./dist/signers/evm/ethers/web3/index.js",
-            "import": "./dist/signers/evm/ethers/web3/index.mjs"
-        },
-        "./signers/evm/ethers/web3/interfaces": {
-            "types": "./dist/signers/evm/ethers/web3/interfaces/index.d.ts",
-            "require": "./dist/signers/evm/ethers/web3/interfaces/index.js",
-            "import": "./dist/signers/evm/ethers/web3/interfaces/index.mjs"
-        },
-        "./signers/xrp/interfaces": {
-            "types": "./dist/signers/xrp/interfaces/index.d.ts",
-            "require": "./dist/signers/xrp/interfaces/index.js",
-            "import": "./dist/signers/xrp/interfaces/index.mjs"
-        },
-        "./signers/xrp/xrpl": {
-            "types": "./dist/signers/xrp/xrpl/index.d.ts",
-            "require": "./dist/signers/xrp/xrpl/index.js",
-            "import": "./dist/signers/xrp/xrpl/index.mjs"
-        }
+        ".": "./src/index.ts",
+        "./providers": "./src/providers/index.ts",
+        "./providers/error": "./src/providers/core/error/index.ts",
+        "./providers/interfaces": "./src/providers/core/interfaces/index.ts",
+        "./providers/evm/interfaces": "./src/providers/evm/interfaces/index.ts",
+        "./providers/evm/ethers": "./src/providers/evm/ethers/index.ts",
+        "./providers/evm/ethers/interfaces": "./src/providers/evm/ethers/interfaces/index.ts",
+        "./providers/xrp/interfaces": "./src/providers/xrp/interfaces/index.ts",
+        "./providers/xrp/xrpl": "./src/providers/xrp/xrpl/index.ts",
+        "./providers/xrp/xrpl/interfaces": "./src/providers/xrp/xrpl/interfaces/index.ts",
+        "./providers/xrp/xrpl/xrpl-faucet": "./src/providers/xrp/xrpl/xrpl-faucet/index.ts",
+        "./providers/xrp/xrpl/xrpl-faucet/interfaces": "./src/providers/xrp/xrpl/xrpl-faucet/interfaces/index.ts",
+        "./signers/error": "./src/signers/core/error/index.ts",
+        "./signers/interfaces": "./src/signers/core/interfaces/index.ts",
+        "./signers/evm/ethers/web3": "./src/signers/evm/ethers/web3/index.ts",
+        "./signers/evm/ethers/web3/interfaces": "./src/signers/evm/ethers/web3/interfaces/index.ts",
+        "./signers/xrp/interfaces": "./src/signers/xrp/interfaces/index.ts",
+        "./signers/xrp/xrpl": "./src/signers/xrp/xrpl/index.ts"
     },
     "peerDependencies": {
         "@frontend/chain": "workspace:*",

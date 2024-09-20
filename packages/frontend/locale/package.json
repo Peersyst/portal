@@ -11,32 +11,20 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        },
-        "./react": {
-            "types": "./dist/react/index.d.ts",
-            "require": "./dist/react/index.js",
-            "import": "./dist/react/index.mjs"
-        },
-        "./resources": {
-            "types": "./dist/resources/index.d.ts",
-            "require": "./dist/resources/index.js",
-            "import": "./dist/resources/index.mjs"
-        }
+        ".": "./src/index.ts",
+        "./react": "./src/react/index.ts",
+        "./resources": "./src/resources/index.ts"
     },
     "peerDependencies": {
         "i18next": "^23.14.0",
-        "react-i18next": "^15.0.1"
+        "react-i18next": "^15.0.2"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "i18next": "^23.14.0",
-        "react-i18next": "^15.0.1",
+        "react-i18next": "^15.0.2",
         "typescript": "latest"
     }
 }

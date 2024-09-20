@@ -11,11 +11,7 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        }
+        ".": "./src/index.ts"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",

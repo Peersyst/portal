@@ -11,41 +11,13 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        "./pagination": {
-            "types": "./dist/common/pagination/index.d.ts",
-            "require": "./dist/common/pagination/index.js",
-            "import": "./dist/common/pagination/index.mjs"
-        },
-        "./ui/amount/react": {
-            "types": "./dist/ui/amount/react/index.d.ts",
-            "require": "./dist/ui/amount/react/index.js",
-            "import": "./dist/ui/amount/react/index.mjs"
-        },
-        "./ui/date": {
-            "types": "./dist/ui/date/index.d.ts",
-            "require": "./dist/ui/date/index.js",
-            "import": "./dist/ui/date/index.mjs"
-        },
-        "./ui/date/constants": {
-            "types": "./dist/ui/date/constants/index.d.ts",
-            "require": "./dist/ui/date/constants/index.js",
-            "import": "./dist/ui/date/constants/index.mjs"
-        },
-        "./ui/date/react": {
-            "types": "./dist/ui/date/react/index.d.ts",
-            "require": "./dist/ui/date/react/index.js",
-            "import": "./dist/ui/date/react/index.mjs"
-        },
-        "./ui/dimensions": {
-            "types": "./dist/ui/dimensions/index.d.ts",
-            "require": "./dist/ui/dimensions/index.js",
-            "import": "./dist/ui/dimensions/index.mjs"
-        },
-        "./ui/number/react": {
-            "types": "./dist/ui/number/react/index.d.ts",
-            "require": "./dist/ui/number/react/index.js",
-            "import": "./dist/ui/number/react/index.mjs"
-        }
+        "./pagination": "./src/common/pagination/index.ts",
+        "./ui/amount/react": "./src/ui/amount/react/index.ts",
+        "./ui/date": "./src/ui/date/index.ts",
+        "./ui/date/constants": "./src/ui/date/constants/index.ts",
+        "./ui/date/react": "./src/ui/date/react/index.ts",
+        "./ui/dimensions": "./src/ui/dimensions/index.ts",
+        "./ui/number/react": "./src/ui/number/react/index.ts"
     },
     "peerDependencies": {
         "@frontend/config": "workspace:*",

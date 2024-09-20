@@ -15,21 +15,9 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        },
-        "./interfaces": {
-            "types": "./dist/interfaces/i-axelar.service.d.ts",
-            "require": "./dist/interfaces/i-axelar.service.js",
-            "import": "./dist/interfaces/i-axelar.service.mjs"
-        },
-        "./errors": {
-            "types": "./dist/errors/axelar.errors.d.ts",
-            "require": "./dist/errors/axelar.errors.js",
-            "import": "./dist/errors/axelar.errors.mjs"
-        }
+        ".": "./src/index.ts",
+        "./interfaces": "./src/interfaces/i-axelar.service.ts",
+        "./errors": "./src/errors/axelar.errors.ts"
     },
     "peerDependencies": {
         "@frontend/bridge": "workspace:*",
