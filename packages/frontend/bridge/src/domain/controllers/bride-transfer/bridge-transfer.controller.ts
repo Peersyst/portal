@@ -1,9 +1,8 @@
-import { Bridge, BridgeTransferResult, BridgeManagerEvents } from "xchain-sdk";
+import { BridgeTransferResult, BridgeManagerEvents } from "xchain-sdk";
 import { IBridgeTransferController } from "../../../ui/interfaces/i-bridge-transfer.controller";
 import { IBridgeChainsController } from "../../../ui/interfaces/i-bridge-chains.controller";
 import { IBridgeWalletsController } from "../../../ui/interfaces/i-bridge-wallets.controller";
 import { IBridgeManagerController } from "../../../ui/interfaces/i-bridge-manager.controller";
-import { IBridgeController } from "../../../ui/interfaces/i-bridge.controller";
 import { IWalletProvider } from "@frontend/wallet/providers/interfaces";
 import { DomainError } from "@frontend/core/domain/error";
 import { BridgeTransferErrors } from "../../errors/bridge-transfer.errors";
@@ -15,7 +14,6 @@ export class BridgeTransferController implements IBridgeTransferController {
         private readonly bridgeChainsController: IBridgeChainsController,
         private readonly bridgeWalletsController: IBridgeWalletsController,
         private readonly bridgeManagerController: IBridgeManagerController,
-        private readonly bridgeController: IBridgeController,
     ) {}
 
     /**
@@ -39,32 +37,11 @@ export class BridgeTransferController implements IBridgeTransferController {
     }
 
     /**
-     * Gets the bridge.
-     * @returns The bridge.
-     */
-    private getBridge(): Bridge {
-        const bridge = this.bridgeController.getBridge();
-        if (!bridge) throw new DomainError(BridgeTransferErrors.BRIDGE_NOT_SET);
-        return bridge;
-    }
-
-    /**
      * Swaps the bridge.
      */
     swap(): void {
         this.bridgeChainsController.swap();
         this.bridgeWalletsController.swap();
-        this.bridgeController.swap();
-    }
-
-    /**
-     * Check if the transfer is a create account.
-     * @returns True if the transfer can create account, false otherwise.
-     */
-    transferCanCreateAccount(): boolean {
-        const bridge = this.getBridge();
-
-        return bridge.isNativeOriginIssue;
     }
 
     /**
@@ -74,8 +51,7 @@ export class BridgeTransferController implements IBridgeTransferController {
     async destinationCanReceive(): Promise<boolean> {
         const destinationWalletProvider = this.getDestinationWalletProvider();
 
-        if (this.transferCanCreateAccount()) return true;
-        else return await destinationWalletProvider.isActive();
+        return await destinationWalletProvider.isActive();
     }
 
     /**
@@ -87,11 +63,10 @@ export class BridgeTransferController implements IBridgeTransferController {
     async transfer(amount: string): Promise<BridgeTransferResult> {
         const bridgeManager = this.bridgeManagerController.getBridgeManager();
 
-        const bridge = this.getBridge();
         const originWalletProvider = this.getOriginWalletProvider();
         const destinationWalletProvider = this.getDestinationWalletProvider();
 
-        const result = await bridgeManager.transfer(bridge, originWalletProvider, destinationWalletProvider, amount);
+        const result = await bridgeManager.transfer({} as any, originWalletProvider, destinationWalletProvider, amount);
         return result;
     }
 

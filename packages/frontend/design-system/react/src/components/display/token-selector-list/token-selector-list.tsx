@@ -5,7 +5,7 @@ import { TokenSelectorListItemData } from "./token-selector-list-item/token-sele
 import { List } from "../list/list";
 import { TokenSelectorListItemSkeleton } from "./token-selector-list-item/token-selector-list-item-skeleton";
 
-export function TokenSelectorList({
+export function TokenSelectorList<T>({
     onSelect,
     tokens,
     isLoading,
@@ -13,9 +13,9 @@ export function TokenSelectorList({
     nothingToShow,
     renderItem: renderItemProp = renderTokenSelectorListItem,
     ...rest
-}: TokenSelectorListProps): JSX.Element {
+}: TokenSelectorListProps<T>): JSX.Element {
     const renderItem = useCallback(
-        (item: TokenSelectorListItemData, index: number) => renderItemProp({ onSelect, item }, index),
+        (item: TokenSelectorListItemData<T>, index: number) => renderItemProp({ onSelect, item }, index),
         [onSelect],
     );
 

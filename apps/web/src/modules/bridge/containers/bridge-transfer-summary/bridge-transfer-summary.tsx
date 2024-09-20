@@ -1,8 +1,6 @@
-import { BridgeSource } from "xchain-sdk";
 import { BridgeTransferSummaryProps } from "./bridge-transfer-summary.types";
 import { useTranslate } from "@frontend/locale/react";
 import { useTheme } from "@frontend/design-system-react/theme";
-import { useGetSourceToken } from "@frontend/bridge/ui/queries";
 import Amount from "@shared/amount";
 import { Col } from "@frontend/design-system-react/col";
 import { Label } from "@frontend/design-system-react/label";
@@ -12,8 +10,9 @@ export function BridgeTransferSummary({ amount }: BridgeTransferSummaryProps): J
     const translate = useTranslate();
     const { spacing } = useTheme();
 
-    const { data: originToken } = useGetSourceToken(BridgeSource.ORIGIN);
-    const { data: destinationToken } = useGetSourceToken(BridgeSource.DESTINATION);
+    // TODO: define
+    const originToken = undefined as any;
+    const destinationToken = undefined as any;
 
     const sendAmount = originToken ? Amount.fromDec(amount, originToken.decimals, originToken.currency) : undefined;
     const receiveAmount = destinationToken ? Amount.fromDec(amount, destinationToken.decimals, destinationToken.currency) : undefined;

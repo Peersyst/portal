@@ -1,5 +1,4 @@
 export * from "./bride-transfer";
-export * from "./bridge";
 export * from "./bridge-chains";
 export * from "./bridge-manager";
 export * from "./bridge-providers";

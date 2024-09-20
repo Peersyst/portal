@@ -154,7 +154,7 @@ export class MetamaskWalletProvider
             let chainNotFound = false;
 
             this.handleError(e, {
-                WEB3_CHAIN_NOT_FOUND: () => {
+                web3ChainNotFound: () => {
                     chainNotFound = true;
                 },
                 default: MetamaskWalletProviderErrors.COULD_NOT_SWITCH_METAMASK_CHAIN,
