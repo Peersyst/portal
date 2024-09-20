@@ -9,4 +9,5 @@ export const SelectItemImage = styled(Image)`
     min-height: ${IMAGE_SIZE};
     max-height: ${IMAGE_SIZE};
     border-radius: 50%;
+    object-fit: contain;
 `;

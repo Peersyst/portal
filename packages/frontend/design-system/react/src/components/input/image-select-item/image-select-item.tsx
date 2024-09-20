@@ -11,7 +11,7 @@ export function ImageSelectItem({ src, alt, label, style, className }: ImageSele
                     {label}
                 </Typography>
             ) : (
-                <Row flex={1} css={{ overflow: "hidden" }}>
+                <Row flex={1} css={{ overflow: "hidden", maxWidth: "80%" }}>
                     {label}
                 </Row>
             )}

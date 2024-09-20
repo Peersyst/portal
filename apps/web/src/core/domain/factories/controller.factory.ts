@@ -9,7 +9,6 @@ import { ApiFactory } from "../../data-access/factories/api.factory";
 import {
     IBridgeChainsController,
     IBridgeController,
-    IBridgeDoorsController,
     IBridgeManagerController,
     IBridgeProvidersController,
     IBridgeTokenController,
@@ -19,7 +18,6 @@ import {
 import {
     BridgeChainsController,
     BridgeController,
-    BridgeDoorsController,
     BridgeManagerController,
     BridgeProvidersController,
     BridgeTokenController,
@@ -28,30 +26,32 @@ import {
 } from "@frontend/bridge/domain/controllers";
 import { IHealthController } from "@frontend/health/ui/interfaces";
 import { HealthController } from "@frontend/health/domain/controllers";
+import { IChainController } from "@frontend/chain/ui/interfaces";
+import { ChainController } from "@frontend/chain/domain/controllers";
 
 declare module "@frontend/core/domain/controller/factory" {
     export interface IControllerFactory {
         settingsController: ISettingsController;
         bridgeChainsController: IBridgeChainsController;
         bridgeProvidersController: IBridgeProvidersController;
-        bridgeDoorsController: IBridgeDoorsController;
         bridgeManagerController: IBridgeManagerController;
         bridgeTokenController: IBridgeTokenController;
         bridgeController: IBridgeController;
         bridgeWalletsController: IBridgeWalletsController;
         bridgeTransferController: IBridgeTransferController;
         healthController: IHealthController;
+        chainController: IChainController;
     }
 }
 
 ControllerFactory.create({
     settingsController: () =>
         new SettingsController(RepositoryFactory.settingsRepository, ServiceFactory.localizationService, StateManager.states.settings),
-    bridgeChainsController: () =>
-        new BridgeChainsController(ApiFactory.bridgeApi, StateManager.states.bridgeChains, RepositoryFactory.bridgeChainsRepository),
+    chainController: () => new ChainController(ServiceFactory.axelarService),
+    bridgeChainsController: (resolve) =>
+        new BridgeChainsController(resolve.chainController, StateManager.states.bridgeChains, RepositoryFactory.bridgeChainsRepository),
     bridgeProvidersController: (resolve) => new BridgeProvidersController(resolve.bridgeChainsController),
-    bridgeDoorsController: (resolve) => new BridgeDoorsController(ApiFactory.bridgeApi, resolve.bridgeChainsController),
-    bridgeManagerController: (resolve) => new BridgeManagerController(resolve.bridgeDoorsController),
+    bridgeManagerController: () => new BridgeManagerController(),
     bridgeTokenController: (resolve) =>
         new BridgeTokenController(
             ApiFactory.tokensApi,

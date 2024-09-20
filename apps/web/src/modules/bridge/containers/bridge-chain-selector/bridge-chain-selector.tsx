@@ -3,10 +3,10 @@ import { BridgeSource } from "xchain-sdk";
 import { BridgeChainSelectorProps } from "./bridge-chain-selector.types";
 import { useTranslate } from "@frontend/locale/react";
 import { useBridgeChainsState } from "@frontend/bridge/ui/state";
-import { ChainDto } from "@shared/api";
-import { useGetChains } from "@frontend/bridge/ui/queries";
+import { useGetChains } from "@frontend/chain/ui/queries";
 import { ControllerFactory } from "@frontend/core/domain/controller/factory";
 import { ChainSelect } from "@frontend/design-system-react/chain-select";
+import { Chain } from "@frontend/chain";
 
 export function BridgeChainSelector({
     disabled = false,
@@ -25,10 +25,10 @@ export function BridgeChainSelector({
     const { data: allChains = [], isLoading } = useGetChains();
     const chains = useMemo(() => {
         if (!otherSideChain) return allChains;
-        else return allChains.filter((chain) => chain.name !== otherSideChain.name);
+        else return allChains.filter((chain) => chain.id !== otherSideChain.id);
     }, [allChains, otherSideChain]);
 
-    const handleChange = (chain: ChainDto) => {
+    const handleChange = (chain: Chain) => {
         if (side === BridgeSource.ORIGIN) ControllerFactory.bridgeChainsController.setOriginChain(chain);
         else ControllerFactory.bridgeChainsController.setDestinationChain(chain);
     };

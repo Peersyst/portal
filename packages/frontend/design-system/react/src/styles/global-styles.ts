@@ -1,6 +1,5 @@
 import { Theme } from "@peersyst/react-components";
 import { createGlobalStyle } from "styled-components";
-import "./fonts.css";
 import { ChipStyles } from "./components/chip.styles";
 import { aStyles } from "./components/a.styles";
 import { AlertStyles } from "./components/alert.styles";

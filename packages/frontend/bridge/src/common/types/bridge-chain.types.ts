@@ -1,8 +1,8 @@
-import { ChainDto } from "@shared/api";
+import { Chain } from "@frontend/chain";
 
 export interface BridgeChainPair {
-    originChain: ChainDto;
-    destinationChain: ChainDto;
+    originChain: Chain;
+    destinationChain: Chain;
 }
 
 export type PersistedBridgeChains = {
