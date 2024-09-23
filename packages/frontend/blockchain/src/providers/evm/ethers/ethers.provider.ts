@@ -1,166 +1,66 @@
-import { constants } from "ethers";
-import { ChainType, EthersXChainProvider, XChainBridgeChainFormat, XChainBridgeFormat } from "xchain-sdk";
 import { IEthersProvider } from "./interfaces/i-ethers.provider";
-import { EVM_NATIVE_DECIMALS } from "@shared/evm";
 import { Token } from "@frontend/token";
+import { ethers } from "ethers";
+import { ERC20 } from "@shared/evm/contracts";
+import BigNumber from "bignumber.js";
 
-export class EthersProvider extends EthersXChainProvider implements IEthersProvider {
+export class EthersProvider implements IEthersProvider {
+    constructor(readonly ethersProvider: ethers.providers.Provider) {}
+
     /**
      * @inheritdoc
      */
-    protected getTokenContract(_tokenAddress: string): any {
-        return {};
+    private getTokenContract(
+        tokenAddress: string,
+        signerOrProvider: ethers.Signer | ethers.providers.Provider = this.ethersProvider,
+    ): ERC20 {
+        return new ERC20(tokenAddress, signerOrProvider);
     }
 
     /**
-     * Gets the token of the specified xChainBridgeChain.
-     * @param xChainBridgeChain The bridge chain.
-     * @param xChainBridge The XChainBridge config.
-     * @returns The token.
+     * @inheritdoc
      */
-    async getXChainBridgeChainToken(xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>, xChainBridge: any): Promise<Token> {
-        const tokenContract = await this.getBridgeTokenContract(xChainBridgeChain.doorAddress, xChainBridge);
-        const [decimals, symbol] = await Promise.all([tokenContract.decimals(), tokenContract.symbol()]);
-
-        return {
-            symbol,
-            name: xChainBridgeChain.issue.currency,
-            decimals,
-        } as any;
+    async getNativeBalance(address: string): Promise<string> {
+        const balance = await this.ethersProvider.getBalance(address);
+        return balance.toString();
     }
 
     /**
-     * Gets the balance of a xChainBridgeChain token.
+     * Gets the nonce.
      * @param address The address of the account.
-     * @param xChainBridgeChain The XChainBridgeChain in EVM format.
-     * @param xChainBridge The XChainBridge in EVM format.
+     * @returns The nonce.
+     */
+    async getNonce(address: string): Promise<number> {
+        return this.ethersProvider.getTransactionCount(address);
+    }
+
+    /**
+     * Checks if an account is active.
+     * @param address The address of the account.
+     * @returns True if the account is active, false otherwise.
+     */
+    async isAccountActive(address: string): Promise<boolean> {
+        const [balance, nonce] = await Promise.all([this.getNativeBalance(address), this.getNonce(address)]);
+        return !(BigNumber(balance).eq(0) && nonce === 0);
+    }
+
+    /**
+     * Gets the ERC20 balance.
+     * @param address The address of the account.
+     * @param tokenAddress The address of the token.
      * @returns The balance.
      */
-    async getXChainBridgeChainTokenBalance(
-        address: string,
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<string> {
-        const tokenContract = await this.getBridgeTokenContract(xChainBridgeChain.doorAddress, xChainBridge);
+    async getERC20Balance(address: string, tokenAddress: string): Promise<string> {
+        const tokenContract = this.getTokenContract(tokenAddress);
         const balance = await tokenContract.balanceOf(address);
         return balance.toString();
     }
 
     /**
-     * Gets the decimals of a xChainBridgeChain token.
-     * @param xChainBridgeChain The XChainBridgeChain in EVM format.
-     * @param xChainBridge The XChainBridge in EVM format.
-     * @returns The decimals.
-     */
-    async getXChainBridgeChainTokenDecimals(
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<number> {
-        const tokenContract = await this.getBridgeTokenContract(xChainBridgeChain.doorAddress, xChainBridge);
-        return await tokenContract.decimals();
-    }
-
-    /**
-     * Gets the name of a xChainBridgeChain token.
-     * @param xChainBridgeChain The XChainBridgeChain in EVM format.
-     * @param xChainBridge The XChainBridge in EVM format.
-     * @returns The name.
-     */
-    async getXChainBridgeChainTokenName(
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<string> {
-        const tokenContract = await this.getBridgeTokenContract(xChainBridgeChain.doorAddress, xChainBridge);
-        return await tokenContract.name();
-    }
-
-    /**
      * @inheritdoc
      */
-    async getXChainBridgeToken(
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<Token> {
-        if (xChainBridgeChain.issue.issuer === constants.AddressZero)
-            return Promise.resolve({
-                symbol: xChainBridgeChain.issue.currency,
-                name: xChainBridgeChain.issue.currency,
-                decimals: EVM_NATIVE_DECIMALS,
-            } as any);
-        else return this.getXChainBridgeChainToken(xChainBridgeChain, xChainBridge);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getXChainBridgeTokenBalance(
-        address: string,
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<string> {
-        if (xChainBridgeChain.issue.issuer === constants.AddressZero) return this.getNativeBalance(address);
-        else return this.getXChainBridgeChainTokenBalance(address, xChainBridgeChain, xChainBridge);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getXChainBridgeTokenDecimals(
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<number> {
-        if (xChainBridgeChain.issue.issuer === constants.AddressZero) return Promise.resolve(EVM_NATIVE_DECIMALS);
-        else return this.getXChainBridgeChainTokenDecimals(xChainBridgeChain, xChainBridge);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getXChainBridgeTokenName(
-        xChainBridgeChain: XChainBridgeChainFormat<ChainType.EVM>,
-        xChainBridge: XChainBridgeFormat<ChainType.EVM>,
-    ): Promise<string> {
-        if (xChainBridgeChain.issue.issuer === constants.AddressZero) return Promise.resolve(xChainBridgeChain.issue.currency);
-        else return this.getXChainBridgeChainTokenName(xChainBridgeChain, xChainBridge);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getTokenDecimals(tokenAddress: string): Promise<number> {
-        const tokenContract = this.getTokenContract(tokenAddress);
-        return await tokenContract.decimals();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getTokenName(tokenAddress: string): Promise<string> {
-        const tokenContract = this.getTokenContract(tokenAddress);
-        return await tokenContract.name();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getTokenCurrency(tokenAddress: string): Promise<string> {
-        const tokenContract = this.getTokenContract(tokenAddress);
-        return tokenContract.symbol();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async getTokenBalance(tokenAddress: string): Promise<string> {
-        const tokenContract = this.getTokenContract(tokenAddress);
-        const balance = await tokenContract.balanceOf(tokenAddress);
-        return balance.toString();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    isTokenAddressValid(address: string): Promise<boolean> {
-        return this.isErc20Address(address);
+    async getTokenBalance(address: string, token: Token): Promise<string> {
+        if (token.isNative()) return this.getNativeBalance(address);
+        else return this.getERC20Balance(address, token.address!);
     }
 }

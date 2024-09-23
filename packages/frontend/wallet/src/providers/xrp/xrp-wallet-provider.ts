@@ -41,10 +41,6 @@ export abstract class XrpWalletProvider<
         if (bridge.isNativeDestinationIssue)
             throw new WalletProviderError(XrpWalletProviderErrors.CANNOT_CHECK_CLAIM_TRUST_WITH_NATIVE_CURRENCY);
 
-        return this.provider.accountHasTrustLine(
-            this.address,
-            bridge.destinationXChainBridgeChain.issue.issuer!,
-            bridge.destinationXChainBridgeChain.issue.currency,
-        );
+        return true;
     }
 }

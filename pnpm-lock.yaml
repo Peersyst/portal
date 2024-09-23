@@ -1120,6 +1120,9 @@ importers:
       '@shared/eslint':
         specifier: workspace:*
         version: link:../eslint
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../test
       '@shared/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -1129,6 +1132,9 @@ importers:
       '@types/node':
         specifier: latest
         version: 22.5.5
+      ethers:
+        specifier: ^5.5.3
+        version: 5.7.2
       typescript:
         specifier: latest
         version: 5.6.2
@@ -1263,12 +1269,18 @@ importers:
       '@shared/eslint':
         specifier: workspace:*
         version: link:../eslint
+      '@shared/test':
+        specifier: workspace:*
+        version: link:../test
       '@shared/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@shared/tsup':
         specifier: workspace:*
         version: link:../tsup
+      '@swisstype/essential':
+        specifier: ^0.1.1
+        version: 0.1.1(typescript@5.6.2)
       '@types/node':
         specifier: latest
         version: 22.5.5

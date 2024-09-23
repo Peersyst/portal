@@ -20,7 +20,7 @@ import { Chain } from "@frontend/chain";
 
 export abstract class WalletProvider<
     Type extends ChainType = ChainType,
-    Provider extends IWalletProviderProvider<Type> = IWalletProviderProvider<Type>,
+    Provider extends IWalletProviderProvider = IWalletProviderProvider,
     Signer extends IWalletProviderSigner<Type> = IWalletProviderSigner<Type>,
     Error extends string = string,
     RequestSignerResult = any,
@@ -378,15 +378,15 @@ export abstract class WalletProvider<
     /**
      * @inheritdoc
      */
-    isClaimAttested(claimId: ClaimId, bridge: FormattedBridge<Type>): Promise<boolean> {
-        return this.provider.isClaimAttested(this.address, claimId, bridge);
+    isClaimAttested(): Promise<boolean> {
+        return Promise.resolve(true);
     }
 
     /**
      * @inheritdoc
      */
     isCreateAccountCommitAttested(): Promise<boolean> {
-        return this.provider.isCreateAccountCommitAttested(this.address);
+        return Promise.resolve(true);
     }
 
     /**
