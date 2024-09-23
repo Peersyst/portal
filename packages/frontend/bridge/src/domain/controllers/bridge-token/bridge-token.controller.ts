@@ -62,7 +62,7 @@ export class BridgeTokenController implements IBridgeTokenController {
      * @param token The bridge token.
      */
     setBridgeToken(token: BridgeToken | undefined): void {
-        this.bridgeTokenState.setState(token);
+        this.bridgeTokenState.setState({ bridgeToken: token });
     }
 
     /**

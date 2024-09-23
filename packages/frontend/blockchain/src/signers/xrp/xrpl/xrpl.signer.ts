@@ -8,16 +8,12 @@ import {
     TrustCommitTransaction,
     Unconfirmed,
     XrplXChainSigner,
-    XrplXChainSignerProvider,
 } from "xchain-sdk";
 import { IXrplSigner } from "../interfaces/i-xrp.signer";
 import { XrplSignerError } from "./xrpl.signer.errors";
 import { SignerError } from "../../core/error";
 
-export class XrplSigner<Provider extends XrplXChainSignerProvider = XrplXChainSignerProvider>
-    extends XrplXChainSigner<Provider>
-    implements IXrplSigner
-{
+export class XrplSigner extends XrplXChainSigner<any> implements IXrplSigner {
     /**
      * Handles service errors.
      * @param e Error.

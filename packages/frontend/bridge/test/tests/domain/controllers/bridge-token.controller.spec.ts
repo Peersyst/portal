@@ -106,7 +106,7 @@ describe("BridgeTokenController", () => {
 
             bridgeTokenController.setBridgeToken(bridgeToken);
 
-            expect(bridgeTokenStateMock.setState).toHaveBeenCalledWith(bridgeToken);
+            expect(bridgeTokenStateMock.setState).toHaveBeenCalledWith({ bridgeToken });
         });
     });
 
