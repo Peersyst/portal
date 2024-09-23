@@ -7,6 +7,8 @@ import { IBridgeTokenState } from "../../states/bridge-token.state";
 import { IBridgeChainsController } from "../../../ui/interfaces/i-bridge-chains.controller";
 import { State } from "@frontend/core/domain/state";
 import { IBridgeChainsState } from "../../states";
+import Amount from "@shared/amount";
+import { ProviderFactory } from "@frontend/blockchain/providers";
 
 @Controller()
 export class BridgeTokenController implements IBridgeTokenController {
@@ -60,6 +62,21 @@ export class BridgeTokenController implements IBridgeTokenController {
      * @param token The bridge token.
      */
     setBridgeToken(token: BridgeToken | undefined): void {
-        this.bridgeTokenState.setState(token);
+        this.bridgeTokenState.setState({ bridgeToken: token });
+    }
+
+    /**
+     * Gets the chain bridge token balance.
+     * @param address The address of the account.
+     * @param chain The chain.
+     * @param token The token.
+     * @returns The balance amount.
+     */
+    async getChainBridgeTokenBalance(address: string, chain: Chain, token: BridgeToken): Promise<Amount> {
+        const provider = ProviderFactory(chain);
+        const chainToken = token.toChainToken(chain.id);
+        const balance = await provider.getTokenBalance(address, chainToken);
+
+        return Amount.fromInt(balance, chainToken.decimals, chainToken.symbol);
     }
 }

@@ -1,13 +1,36 @@
-import { XrplXChainProvider, ChainType, XChainBridgeChainFormat } from "xchain-sdk";
-import { xrpToDrops } from "xrpl";
+import { Client, RippledError, xrpToDrops } from "xrpl";
 import { IXrplProvider } from "./interfaces/i-xrpl.provider";
 import BigNumber from "bignumber.js";
-import { convertCurrencyCode, parseCurrencyCode } from "@shared/xrpl/currency-code";
-import { XRPL_TOKEN_DECIMALS, XRPL_NATIVE_DECIMALS } from "@shared/xrpl";
+import { convertCurrencyCode } from "@shared/xrpl/currency-code";
+import { XRPL_TOKEN_DECIMALS } from "@shared/xrpl";
 import { decimalToInt } from "@shared/number";
 import { Token } from "@frontend/token";
+import { withAutoConnect } from "@shared/xrpl/client";
+import { ProviderError } from "../../core/error";
+import { XrplProviderErrors } from "./xrpl.provider.errors";
 
-export class XrplProvider extends XrplXChainProvider implements IXrplProvider {
+export class XrplProvider implements IXrplProvider {
+    readonly xrplClient: Client;
+
+    constructor(client: Client) {
+        this.xrplClient = withAutoConnect(client);
+    }
+
+    /**
+     * Checks if an account is active.
+     * @param address The address of the account.
+     * @returns True if the account is active, false otherwise.
+     */
+    async isAccountActive(address: string): Promise<boolean> {
+        try {
+            await this.xrplClient.request({ command: "account_info", account: address });
+            return true;
+        } catch (e) {
+            if (e instanceof RippledError && e.message === "Account not found.") return false;
+            else throw e;
+        }
+    }
+
     /**
      * Gets the xrp reserve of an account in drops.
      * @param address The address of the account.
@@ -34,7 +57,7 @@ export class XrplProvider extends XrplXChainProvider implements IXrplProvider {
                     .toString(),
             );
         } else {
-            throw new Error(`Could not get XRP reserve of ${address}`);
+            throw new ProviderError(XrplProviderErrors.COULD_NOT_GET_XRP_RESERVE_OF_ADDRESS, { address });
         }
     }
 
@@ -74,45 +97,8 @@ export class XrplProvider extends XrplXChainProvider implements IXrplProvider {
     /**
      * @inheritdoc
      */
-    getXChainBridgeToken(xChainBridgeChain: XChainBridgeChainFormat<ChainType.XRP>): Promise<Token> {
-        if (xChainBridgeChain.issue.issuer === undefined)
-            return Promise.resolve({ symbol: xChainBridgeChain.issue.currency, decimals: XRPL_NATIVE_DECIMALS, name: "XRP" } as any);
-        else
-            return Promise.resolve({
-                symbol: parseCurrencyCode(xChainBridgeChain.issue.currency),
-                issuer: xChainBridgeChain.issue.issuer,
-                decimals: XRPL_TOKEN_DECIMALS,
-                name: xChainBridgeChain.issue.currency,
-            } as any);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    getXChainBridgeTokenBalance(address: string, xChainBridgeChain: XChainBridgeChainFormat<ChainType.XRP>): Promise<string> {
-        if (xChainBridgeChain.issue.issuer === undefined) return this.getNativeBalance(address);
-        else return this.getIOUBalance(address, xChainBridgeChain.issue.issuer, xChainBridgeChain.issue.currency);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    getXChainBridgeTokenDecimals(xChainBridgeChain: XChainBridgeChainFormat<ChainType.XRP>): Promise<number> {
-        if (xChainBridgeChain.issue.issuer === undefined) return Promise.resolve(XRPL_NATIVE_DECIMALS);
-        else return Promise.resolve(XRPL_TOKEN_DECIMALS);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    getXChainBridgeTokenName(xChainBridgeChain: XChainBridgeChainFormat<ChainType>): Promise<string> {
-        return Promise.resolve(xChainBridgeChain.issue.currency);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    async isTokenAddressValid(_address: string): Promise<boolean> {
-        return Promise.resolve(false);
+    async getTokenBalance(address: string, token: Token): Promise<string> {
+        if (token.isNative()) return this.getNativeBalance(address);
+        else return this.getIOUBalance(address, token.address!, token.symbol);
     }
 }

@@ -7,6 +7,12 @@ import { BridgeChainsControllerMock } from "../../../mocks/domain/controllers/br
 import { BridgeTokenServiceMock } from "../../../mocks/domain/interface/bridge-token.service.mock";
 import { BridgeTokenStateMock } from "../../../mocks/domain/states/bridge-token.state.mock";
 import { TokenMock } from "@frontend/token/mocks/common";
+import { ProviderFactory } from "@frontend/blockchain/providers";
+import { MethodMock, mockedFn } from "@shared/test";
+import { ProviderMock } from "@frontend/blockchain/mocks/providers";
+import Amount from "@shared/amount";
+
+const ProviderFactoryMock = mockedFn(ProviderFactory);
 
 describe("BridgeTokenController", () => {
     let bridgeTokenController: BridgeTokenController;
@@ -100,7 +106,26 @@ describe("BridgeTokenController", () => {
 
             bridgeTokenController.setBridgeToken(bridgeToken);
 
-            expect(bridgeTokenStateMock.setState).toHaveBeenCalledWith(bridgeToken);
+            expect(bridgeTokenStateMock.setState).toHaveBeenCalledWith({ bridgeToken });
+        });
+    });
+
+    describe("getChainBridgeTokenBalance", () => {
+        it("should get chain bridge token balance", async () => {
+            const chainMock = new ChainMock();
+            const tokenMock = new TokenMock();
+            const bridgeTokenMock = new BridgeTokenMock({
+                toChainToken: jest.fn().mockReturnValue(tokenMock),
+            });
+            const tokenBalanceMock = "1000";
+            const balanceMock = Amount.fromInt(tokenBalanceMock, tokenMock.decimals, tokenMock.symbol);
+            const providerMock = new ProviderMock({
+                getTokenBalance: new MethodMock("mockReturnValue", tokenBalanceMock),
+            });
+            ProviderFactoryMock.mockReturnValueOnce(providerMock);
+            const result = await bridgeTokenController.getChainBridgeTokenBalance("0x123", chainMock, bridgeTokenMock);
+
+            expect(result).toEqual(balanceMock);
         });
     });
 });

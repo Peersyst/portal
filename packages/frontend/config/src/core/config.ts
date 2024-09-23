@@ -54,7 +54,7 @@ export const config: CoreConfig = {
             // "core-ethereum": true,
             // "core-avalanche": true,
             // "core-optimism": true,
-            // "xrpl-evm-devnet": true,
+            "xrpl-evm-devnet": true,
         },
         additionalChainData: {
             xrpl: {

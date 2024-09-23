@@ -1,5 +1,4 @@
 export * from "./use-bridge-transfer-fee";
-export * from "./use-get-bridge-wallet-balance";
 export * from "./use-get-bridge-wallet-token-balance";
 export * from "./use-get-source-bridge-token-balance";
 export * from "./use-is-destination-active";
@@ -8,3 +7,5 @@ export * from "./use-switch-to-chain";
 export * from "./use-transfer";
 export * from "./use-get-bridge-tokens";
 export * from "./use-set-bridge-token";
+export * from "./use-get-chain-bridge-token-balance";
+export * from "./use-get-source-wallet-balance";
