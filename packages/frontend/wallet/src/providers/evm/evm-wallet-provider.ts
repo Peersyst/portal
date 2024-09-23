@@ -41,7 +41,7 @@ export abstract class EvmWalletProvider<
     async isCommitTrusted(bridge: FormattedBridge<ChainType.EVM>): Promise<boolean> {
         if (bridge.isNativeOriginIssue) throw new WalletProviderError(EvmWalletProviderErrors.CANNOT_CHECK_COMMIT_TRUST_WITH_NATIVE_TOKEN);
 
-        return this.provider.isBridgeTokenContractApproved(this.address, bridge);
+        return true;
     }
 
     /**
