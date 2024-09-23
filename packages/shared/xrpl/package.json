@@ -12,15 +12,23 @@
     },
     "exports": {
         ".": "./src/common/index.ts",
-        "./currency-code": "./src/currency-code.ts"
+        "./currency-code": "./src/currency-code.ts",
+        "./client": "./src/client.ts",
+        "./transaction": "./src/transaction/index.ts",
+        "./mocks/responses": "./test/mocks/responses/index.ts",
+        "./mocks/balance": "./test/mocks/balance.mock.ts",
+        "./mocks/client": "./test/mocks/client.mock.ts",
+        "./mocks/wallet": "./test/mocks/wallet.mock.ts"
     },
     "peerDependencies": {
         "xrpl": "3.0.0"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",
+        "@shared/test": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
+        "@swisstype/essential": "^0.1.1",
         "@types/node": "latest",
         "typescript": "latest",
         "xrpl": "3.0.0"

@@ -1,6 +1,6 @@
-import { ChainDto } from "@shared/api";
-import { BridgeSource } from "xchain-sdk";
+import { BridgeSource } from "../../common";
 import { useBridgeChainsState } from "../state/use-bridge-chains-state";
+import { Chain } from "@frontend/chain";
 
 /**
  * Gets the chain state for the given bridge source.
@@ -11,12 +11,12 @@ import { useBridgeChainsState } from "../state/use-bridge-chains-state";
 export function useBridgeSourceChainState<A extends boolean = false>(
     source: BridgeSource,
     assert: A = false as A,
-): A extends true ? ChainDto : ChainDto | undefined {
+): A extends true ? Chain : Chain | undefined {
     const { originChain, destinationChain } = useBridgeChainsState();
 
     const chain = source === BridgeSource.ORIGIN ? originChain : destinationChain;
 
     if (assert && !chain) throw new Error(`Chain ${source} is not set`);
 
-    return chain as A extends true ? ChainDto : ChainDto | undefined;
+    return chain as A extends true ? Chain : Chain | undefined;
 }

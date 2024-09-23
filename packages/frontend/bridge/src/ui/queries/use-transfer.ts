@@ -4,8 +4,9 @@ import { BridgeSource, BridgeTransferResult } from "xchain-sdk";
 import { useConnectedBridgeSourceWalletState } from "../hooks/use-connected-bridge-source-wallet-state";
 import { getInstance } from "@frontend/core/common/utils/singleton";
 import { BridgeTransferController } from "../../domain/controllers/bride-transfer/bridge-transfer.controller";
-import { getSourceBridgeTokenBalanceQueryKey } from "./use-get-source-bridge-token-balance";
 import { getIsDestinationActiveQueryKey } from "./use-is-destination-active";
+import { getChainBridgeTokenBalanceQueryKey } from "./use-get-chain-bridge-token-balance";
+import { useBridgeChainsState, useBridgeTokenState } from "../state";
 
 /**
  * Transfer mutation.
@@ -17,6 +18,8 @@ export function useTransfer(
 ): UseMutationResult<BridgeTransferResult, Error, string> {
     const originWallet = useConnectedBridgeSourceWalletState(BridgeSource.ORIGIN);
     const destinationWallet = useConnectedBridgeSourceWalletState(BridgeSource.DESTINATION);
+    const { originChain, destinationChain } = useBridgeChainsState();
+    const bridgeToken = useBridgeTokenState();
 
     const queryClient = useQueryClient();
 
@@ -24,9 +27,9 @@ export function useTransfer(
         mutationFn: (amount: string) => getInstance(BridgeTransferController).transfer(amount),
         onSuccess: async () => {
             await Promise.all([
-                queryClient.invalidateQueries(getSourceBridgeTokenBalanceQueryKey(originWallet?.address, BridgeSource.ORIGIN, undefined)),
+                queryClient.invalidateQueries(getChainBridgeTokenBalanceQueryKey(originWallet?.address, originChain?.id, bridgeToken?.id)),
                 queryClient.invalidateQueries(
-                    getSourceBridgeTokenBalanceQueryKey(destinationWallet?.address, BridgeSource.ORIGIN, undefined),
+                    getChainBridgeTokenBalanceQueryKey(destinationWallet?.address, destinationChain?.id, bridgeToken?.id),
                 ),
                 queryClient.invalidateQueries(getIsDestinationActiveQueryKey(destinationWallet?.address)),
             ]);
