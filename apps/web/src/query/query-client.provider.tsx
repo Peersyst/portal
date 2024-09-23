@@ -8,6 +8,8 @@ import { BrowserErrorEvent } from "@frontend/core/ui/error/browser";
  * @param error The error to handle.
  */
 function handleQueryClientError(error: any): void {
+    // eslint-disable-next-line no-console
+    console.error(error);
     if (isDomainError(error)) BrowserErrorEvent.dispatch(error.message, error.severity, error.data);
     else BrowserErrorEvent.dispatch(error.message);
 }
