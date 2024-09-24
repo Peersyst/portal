@@ -25,6 +25,7 @@ export class AxelarChain {
     provider_params?: Array<AxelarChainProviderParamObject>;
     no_inflation?: boolean;
     no_tvl?: boolean;
+    interchain_token_service_contract: string;
 
     constructor(axelarChain: AxelarChainObject, axelarUrl: string) {
         this.chain_id = axelarChain.chain_id;
@@ -42,6 +43,7 @@ export class AxelarChain {
         this.provider_params = axelarChain.provider_params;
         this.no_inflation = axelarChain.no_inflation;
         this.no_tvl = axelarChain.no_tvl;
+        this.interchain_token_service_contract = axelarChain.interchain_token_service_contract;
     }
 
     /**
@@ -74,6 +76,7 @@ export class AxelarChain {
                 decimals: this.native_token.decimals,
                 name: this.native_token.name,
             },
+            door: this.interchain_token_service_contract,
             urls: {
                 rpc: this.endpoints.rpc?.[0],
                 ws: this.endpoints.ws?.[0],
