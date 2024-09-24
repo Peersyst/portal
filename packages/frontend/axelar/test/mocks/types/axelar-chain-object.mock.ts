@@ -47,4 +47,5 @@ export const AxelarChainObjectMock = mockify<AxelarChainObject>({
     ],
     no_inflation: false,
     no_tvl: false,
+    interchain_token_service_contract: "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C",
 });
