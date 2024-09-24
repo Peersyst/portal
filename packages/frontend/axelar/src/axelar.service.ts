@@ -42,6 +42,7 @@ export class AxelarService implements IAxelarService {
             const extraChains = this.configManager.get("axelar.extraChains");
             axelarChains.push(...(extraChains as AxelarChainObject[]));
 
+            const interchainTokenServiceContract = this.configManager.get("axelar.interchainTokenServiceContract");
             const chainIds = this.configManager.get("axelar.chainIds");
             const additionalChainData = this.configManager.get("axelar.additionalChainData");
 
@@ -49,6 +50,7 @@ export class AxelarService implements IAxelarService {
                 try {
                     if (chainIds[axelarChain.id]) {
                         let chainData = axelarChain;
+                        chainData.interchain_token_service_contract = interchainTokenServiceContract;
                         if (additionalChainData[axelarChain.id]) chainData = deepmerge(axelarChain, additionalChainData[axelarChain.id]);
 
                         const chain = new AxelarChain(chainData, this.url).toChain();
