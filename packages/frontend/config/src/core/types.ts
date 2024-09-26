@@ -38,6 +38,12 @@ export interface CoreConfig extends BaseConfig {
         // Extra axelar interchain token objects to be added to the token list.
         extraTokens: AnyObject[];
     };
+    bridgeExplorer: {
+        name: string;
+        url: string;
+        icon: string;
+        transferPath: string;
+    };
 
     xumm: {
         statusInterval: number;
