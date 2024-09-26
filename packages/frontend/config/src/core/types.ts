@@ -13,6 +13,7 @@ export interface CoreConfig extends BaseConfig {
     maxNumberDecimals: number;
     txValidationPolling: PollingOptions;
     peersystUrl: string;
+    axelarUrl: string;
     walletProviders: Record<WalletProviderId, WalletProviderDef>;
     balanceRefetchInterval: number;
     posthog: {

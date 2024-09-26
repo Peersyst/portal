@@ -24,6 +24,7 @@
         "./styles/global-styles": "./src/styles/global-styles.ts",
         "./amount-field": "./src/components/input/amount-field/index.ts",
         "./amount-display": "./src/components/display/amount-display/index.ts",
+        "./axelar-logo": "./src/components/display/axelar-logo/index.ts",
         "./badge": "./src/components/display/badge/index.ts",
         "./blockchain-address": "./src/components/display/blockchain-address/index.ts",
         "./chain": "./src/components/display/chain/index.ts",

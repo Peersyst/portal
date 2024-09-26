@@ -31,6 +31,7 @@ export const config: CoreConfig = {
         maxIterations: 10,
     },
     peersystUrl: "https://peersyst.com/",
+    axelarUrl: "https://axelar.io/",
     posthog: {
         apiKey: "phc_2qUK15rvNyW5iKbLw2pmJpy6P6O1PvMWWbr39QWGvLK",
         host: "https://eu.posthog.com",
