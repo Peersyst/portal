@@ -17,7 +17,7 @@ export function TransactionStep({ address, chain, transaction, subtitle, ...acti
                 ...subtitle,
                 success: (
                     <Row flex={1} gap={spacing[2]}>
-                        <span css={{ fontWeight: 700 }}>
+                        <span style={{ fontWeight: 700 }}>
                             {translate(transaction ? "signed" : "alreadySigned", { context: "feminine" })}
                         </span>
                         {transaction && (

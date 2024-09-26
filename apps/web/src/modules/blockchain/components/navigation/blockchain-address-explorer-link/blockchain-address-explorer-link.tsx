@@ -10,9 +10,9 @@ const BlockchainAddressExplorerLink = ({ chain, address, type, ...props }: Block
     const { spacing } = useTheme();
 
     return (
-        <Row wrap wrapGap={spacing[2]} alignItems="center" justifyContent="space-between" css={{ width: "100%" }}>
+        <Row wrap wrapGap={spacing[2]} alignItems="center" justifyContent="space-between" style={{ width: "100%" }}>
             <BlockchainAddress length={16} address={address} chain={chain} type={type} {...props} />
-            <ExplorerLink url={explorerUrl} css={{ textAlign: "end" }} />
+            <ExplorerLink url={explorerUrl} style={{ textAlign: "end" }} />
         </Row>
     );
 };
