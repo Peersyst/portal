@@ -16,3 +16,5 @@ RUN pnpm run build:packages
 RUN pnpm run lint:packages
 # Run testing
 RUN pnpm run test:packages
+# Run dist packages
+RUN pnpm run dist
