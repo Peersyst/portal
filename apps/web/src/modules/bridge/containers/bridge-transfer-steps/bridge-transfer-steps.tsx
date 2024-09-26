@@ -1,7 +1,7 @@
 import { BridgeTransferStepsProps } from "./bridge-transfer-steps.types";
 import { useTheme } from "@frontend/design-system-react/theme";
 import { Col } from "@frontend/design-system-react/col";
-import BridgeTransactionStep from "../bridge-transaction-step/bridge-transaction-step";
+import { BridgeTransactionStep } from "../bridge-transaction-step/bridge-transaction-step";
 import { Divider } from "@frontend/design-system-react/divider";
 import { BridgeTransferSummary } from "../bridge-transfer-summary/bridge-transfer-summary";
 import { BridgeTransferDetails } from "../bridge-transfer-details/bridge-transfer-details";

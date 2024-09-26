@@ -9,7 +9,7 @@ import { LocaleErrorResource, LocaleTranslationResource } from "@frontend/locale
 import { TransactionStep } from "@frontend/design-system-react/transaction-step";
 import { upperFirst } from "@shared/string";
 
-function BridgeTransactionStep({ stage, isFirst = false }: BridgeTransactionStepProps): JSX.Element {
+export function BridgeTransactionStep({ stage, isFirst = false }: BridgeTransactionStepProps): JSX.Element {
     const translate = useTranslate();
     const translateError = useTranslate("error");
 
@@ -81,5 +81,3 @@ function BridgeTransactionStep({ stage, isFirst = false }: BridgeTransactionStep
         />
     );
 }
-
-export default BridgeTransactionStep;
