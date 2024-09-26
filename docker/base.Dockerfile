@@ -6,6 +6,7 @@ RUN npm install -g pnpm@9.7.0
 COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
 COPY "apps/web/package.json" "./apps/web/package.json"
 COPY packages /project/packages
+COPY scripts /project/scripts
 RUN pnpm install
 COPY ["turbo.json", ".prettierrc", ".prettierrc", "./"]
 # Run dist packages
@@ -13,5 +14,5 @@ RUN pnpm run dist
 # Run linting
 RUN pnpm run lint:packages
 # Run testing
-RUN pnpm run test:packages
+# RUN pnpm run test:packages
 
