@@ -3,13 +3,11 @@ import { ProjectVersionIcon, ProjectVersionRoot } from "./project-version.styles
 import { Typography } from "@frontend/design-system-react/typography";
 
 export function ProjectVersion(): JSX.Element {
-    const { data: projectVersion } = useGetProjectVersion();
-
     return (
         <ProjectVersionRoot>
             <ProjectVersionIcon />
             <Typography variant="body2Regular" color="placeholder">
-                {`Backend ${projectVersion?.backend}, Frontend ${projectVersion?.frontend}`}
+                {`v${process.env.VERSION}`}
             </Typography>
         </ProjectVersionRoot>
     );

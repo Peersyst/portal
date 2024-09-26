@@ -117,5 +117,6 @@
     "submitAnIssue": "Submit an issue",
     "discussions": "Discussions",
     "paidByTheDestinationAccount": "Paid by the destination account",
-    "paidByTheOriginAccount": "Paid by the origin account"
+    "paidByTheOriginAccount": "Paid by the origin account",
+    "poweredBy": "Powered by"
 }
