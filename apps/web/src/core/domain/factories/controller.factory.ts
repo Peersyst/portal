@@ -8,16 +8,12 @@ import { ServiceFactory } from "../../data-access/factories/service.factory";
 import { ApiFactory } from "../../data-access/factories/api.factory";
 import {
     IBridgeChainsController,
-    IBridgeManagerController,
-    IBridgeProvidersController,
     IBridgeTokenController,
     IBridgeTransferController,
     IBridgeWalletsController,
 } from "@frontend/bridge/ui/interfaces";
 import {
     BridgeChainsController,
-    BridgeManagerController,
-    BridgeProvidersController,
     BridgeTokenController,
     BridgeTransferController,
     BridgeWalletsController,
@@ -31,8 +27,6 @@ declare module "@frontend/core/domain/controller/factory" {
     export interface IControllerFactory {
         settingsController: ISettingsController;
         bridgeChainsController: IBridgeChainsController;
-        bridgeProvidersController: IBridgeProvidersController;
-        bridgeManagerController: IBridgeManagerController;
         bridgeTokenController: IBridgeTokenController;
         bridgeWalletsController: IBridgeWalletsController;
         bridgeTransferController: IBridgeTransferController;
@@ -47,8 +41,6 @@ ControllerFactory.create({
     chainController: () => new ChainController(ServiceFactory.axelarService),
     bridgeChainsController: (resolve) =>
         new BridgeChainsController(resolve.chainController, StateManager.states.bridgeChains, RepositoryFactory.bridgeChainsRepository),
-    bridgeProvidersController: (resolve) => new BridgeProvidersController(resolve.bridgeChainsController),
-    bridgeManagerController: () => new BridgeManagerController(),
     bridgeTokenController: (resolve) =>
         new BridgeTokenController(ServiceFactory.axelarService, resolve.bridgeChainsController, StateManager.states.bridgeToken),
     bridgeWalletsController: (resolve) =>
@@ -58,7 +50,7 @@ ControllerFactory.create({
             RepositoryFactory.bridgeWalletsRepository,
         ),
     bridgeTransferController: (resolve) =>
-        new BridgeTransferController(resolve.bridgeChainsController, resolve.bridgeWalletsController, resolve.bridgeManagerController),
+        new BridgeTransferController(resolve.bridgeTokenController, resolve.bridgeChainsController, resolve.bridgeWalletsController),
     healthController: () => new HealthController(ApiFactory.healthApi),
 });
 
