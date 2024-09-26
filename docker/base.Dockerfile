@@ -10,11 +10,10 @@ COPY "apps/web/package.json" "./apps/web/package.json"
 COPY packages /project/packages
 RUN pnpm install
 COPY ["turbo.json", ".prettierrc", ".prettierrc", "./"]
-# Run build packages
-RUN pnpm run build:packages
+# Run dist packages
+RUN pnpm run dist
 # Run linting
 RUN pnpm run lint:packages
 # Run testing
 RUN pnpm run test:packages
-# Run dist packages
-RUN pnpm run dist
+
