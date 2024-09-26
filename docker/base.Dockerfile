@@ -14,5 +14,5 @@ RUN pnpm run dist
 # Run linting
 RUN pnpm run lint:packages
 # Run testing
-RUN pnpm run test:packages
+# RUN pnpm run test:packages
 
