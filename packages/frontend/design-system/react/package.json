@@ -29,7 +29,6 @@
         "./chain": "./src/components/display/chain/index.ts",
         "./chain-address": "./src/components/display/chain-address/index.ts",
         "./chain-avatar": "./src/components/display/chain-avatar/index.ts",
-        "./chain-blockchain-address": "./src/components/display/chain-blockchain-address/index.ts",
         "./chain-sequence": "./src/components/display/chain-sequence/index.ts",
         "./chip": "./src/components/display/chip/index.ts",
         "./date-display": "./src/components/display/date-display/index.ts",

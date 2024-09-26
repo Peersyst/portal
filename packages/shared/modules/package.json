@@ -15,6 +15,7 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
+        "./blockchain": "./src/blockchain/index.ts",
         "./chain": "./src/chain/index.ts",
         "./health": "./src/health/index.ts",
         "./network": "./src/network/index.ts"
