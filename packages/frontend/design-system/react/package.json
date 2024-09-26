@@ -11,7 +11,8 @@
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
         "generate:icons": "node scripts/icon-generator.js src/assets/icons/ src/components/icons/",
-        "generate:images": "node scripts/images-generator.js src/assets/images/"
+        "generate:images": "node scripts/images-generator.js src/assets/images/",
+        "dist": "node ../../../../scripts/prebuild-exports.cjs"
     },
     "exports": {
         ".": "./src/core/index.ts",
