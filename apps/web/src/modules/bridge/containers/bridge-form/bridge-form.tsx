@@ -4,7 +4,6 @@ import { useTheme } from "@frontend/design-system-react/theme";
 import { useTranslate } from "@frontend/locale/react";
 import { useEffect, useRef, useState } from "react";
 import { BridgeFormData, BridgeFormFields } from "./bridge-form.types";
-import { BridgeFormRoot } from "./bridge-form.styles";
 import { Col } from "@frontend/design-system-react/col";
 import { Button } from "@frontend/design-system-react/button";
 import { AlertCallout } from "@frontend/design-system-react/alert-callout";
@@ -12,6 +11,7 @@ import { BridgeSources } from "../bridge-sources/bridge-sources";
 import { BridgeTransferModal } from "../bridge-transfer-modal/bridge-transfer-modal";
 import BridgeTransferInput from "../bridge-transfer-input/bridge-transfer-input";
 import { BridgeTransferDetails } from "../bridge-transfer-details/bridge-transfer-details";
+import { Form } from "@frontend/design-system-react/form";
 import { BridgeTransferStartData } from "@frontend/bridge";
 import { ControllerFactory } from "../../../../core/domain/factories/controller.factory";
 
@@ -45,7 +45,7 @@ export function BridgeForm(): JSX.Element {
 
     return (
         <>
-            <BridgeFormRoot onSubmit={handleFormSubmit}>
+            <Form onSubmit={handleFormSubmit}>
                 <Col gap={spacing[8]}>
                     <Col gap={spacing[7]}>
                         <Col gap={spacing[5]}>
@@ -59,7 +59,7 @@ export function BridgeForm(): JSX.Element {
                         {translate("transfer")}
                     </Button>
                 </Col>
-            </BridgeFormRoot>
+            </Form>
             {startData.current && (
                 <BridgeTransferModal
                     open={openBridgeTransferModal}
