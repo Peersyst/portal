@@ -42,7 +42,7 @@ export const BridgeTransferModal = createModal<BridgeTransferModalProps>(functio
         <Modal
             title={tabIndex === 0 ? translate("approveTransaction") : undefined}
             closable={isError}
-            css={{ width: "35rem" }}
+            style={{ width: "35rem" }}
             onClose={onClose}
             {...modalProps}
         >

@@ -30,7 +30,7 @@ const SuccessBridgePage = (): JSX.Element => {
     const amount = Amount.fromDec(transferResult.amount, destinationToken.decimals, destinationToken.symbol);
 
     return (
-        <Col gap={spacing[6]} css={{ padding: spacing[8] }}>
+        <Col gap={spacing[6]} style={{ padding: spacing[8] }}>
             <Typography variant="h4Bold" textAlign="center" fontWeight={700}>
                 {translate("yourTransactionHasBeenSent")}
             </Typography>

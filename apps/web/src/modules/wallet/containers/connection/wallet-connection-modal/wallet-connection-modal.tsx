@@ -62,7 +62,7 @@ export const WalletConnectionModal = createModal<WalletConnectionModalProps & Mo
     const subtitle = translationExists(subtitleTranslationKey) ? translate(subtitleTranslationKey as LocaleTranslationResource) : undefined;
 
     return (
-        <Modal css={{ width: "39.5rem" }} title={title} subtitle={subtitle} {...modalProps}>
+        <Modal style={{ width: "39.5rem" }} title={title} subtitle={subtitle} {...modalProps}>
             <WalletConnectionContent>
                 <WalletProviderConnection data={data} isLoading={isLoading} />
             </WalletConnectionContent>
