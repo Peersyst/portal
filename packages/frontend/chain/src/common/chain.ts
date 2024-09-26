@@ -16,6 +16,7 @@ export type ChainObject = {
     image?: string;
     type: ChainType;
     nativeToken: TokenObject;
+    door: string;
     urls: ChainUrlsObject;
     explorer: ExplorerObject;
 };
@@ -28,6 +29,7 @@ export class Chain {
     image?: string;
     type: ChainType;
     nativeToken: Token;
+    door: string;
     urls: ChainUrlsObject;
     explorer: Explorer;
 
@@ -39,6 +41,7 @@ export class Chain {
         this.image = chain.image;
         this.type = chain.type;
         this.nativeToken = new Token(chain.nativeToken);
+        this.door = chain.door;
         this.urls = chain.urls;
         this.explorer = new Explorer(chain.explorer);
     }

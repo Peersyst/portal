@@ -11,13 +11,22 @@
         "check-types": "npx tsc --noEmit"
     },
     "exports": {
-        ".": "./src/common/index.ts"
+        ".": "./src/common/index.ts",
+        "./contracts": "./src/contracts/index.ts",
+        "./automock/contracts": "./test/automock/contracts.automock.ts",
+        "./mocks/contracts": "./test/mocks/contracts/index.ts",
+        "./mocks/ethers": "./test/mocks/ethers/index.ts"
+    },
+    "peerDependencies": {
+        "ethers": "^5.5.3"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",
+        "@shared/test": "workspace:*",
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@types/node": "latest",
+        "ethers": "^5.5.3",
         "typescript": "latest"
     }
 }

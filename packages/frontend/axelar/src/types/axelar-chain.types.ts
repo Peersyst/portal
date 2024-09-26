@@ -44,4 +44,5 @@ export type AxelarChainObject = {
     provider_params?: Array<AxelarChainProviderParamObject>;
     no_inflation?: boolean;
     no_tvl?: boolean;
+    interchain_token_service_contract: string;
 };

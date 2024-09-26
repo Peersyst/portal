@@ -6,7 +6,6 @@ import {
     CreateBridgeRequestTransaction,
     CreateClaimTransaction,
     EthersXChainSigner,
-    EthersXChainSignerProvider,
     FormattedBridge,
     TrustCommitTransaction,
     Unconfirmed,
@@ -18,10 +17,7 @@ import { SubProvider } from "../../../../providers/evm/ethers/ethers.provider.ty
 import { AddWeb3ChainPayload } from "./web3.signer.types";
 import { IWeb3Signer } from "./interfaces/i-web3.signer";
 
-export class Web3Signer<Provider extends EthersXChainSignerProvider = EthersXChainSignerProvider>
-    extends EthersXChainSigner<Provider>
-    implements IWeb3Signer
-{
+export class Web3Signer<Provider> extends EthersXChainSigner<any> implements IWeb3Signer {
     protected get web3Provider(): ethers.providers.Web3Provider {
         return this.signer.provider as ethers.providers.Web3Provider;
     }

@@ -7,7 +7,7 @@ export default function BridgeOriginVerifiedTokenSelectorListItem({
     item,
     onSelect,
 }: BridgeOriginVerifiedTokenSelectorListItemProps): JSX.Element {
-    const { data: tokenBalance, isLoading: isBalanceLoading } = useGetBridgeWalletTokenBalance(BridgeSource.ORIGIN, {} as any);
+    const { data: tokenBalance, isLoading: isBalanceLoading } = useGetBridgeWalletTokenBalance(BridgeSource.ORIGIN, item.value);
 
     return <TokenSelectorListItem item={item} onSelect={onSelect} balance={tokenBalance} isBalanceLoading={isBalanceLoading} />;
 }

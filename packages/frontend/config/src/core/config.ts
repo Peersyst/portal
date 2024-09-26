@@ -43,6 +43,7 @@ export const config: CoreConfig = {
     axelar: {
         url: "https://axelarscan.io", //"https://devnet-amplifier.axelarscan.io",
         apiUrl: "https://api.axelarscan.io/api", //"https://devnet-amplifier.api.axelarscan.io/api",
+        interchainTokenServiceContract: "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C",
         chainIds: {
             xrpl: true,
             ethereum: true,
@@ -54,7 +55,7 @@ export const config: CoreConfig = {
             // "core-ethereum": true,
             // "core-avalanche": true,
             // "core-optimism": true,
-            // "xrpl-evm-devnet": true,
+            "xrpl-evm-devnet": true,
         },
         additionalChainData: {
             xrpl: {
