@@ -9,7 +9,7 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
-        "dist": "node ../../../scripts/prebuild-exports.cjs"
+        "dist": "pnpm run build && node ../../../scripts/prebuild-exports.cjs"
     },
     "exports": {
         "./react": "./src/react/index.ts",
