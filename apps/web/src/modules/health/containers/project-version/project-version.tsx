@@ -1,4 +1,3 @@
-import { useGetProjectVersion } from "@frontend/health/ui/queries";
 import { ProjectVersionIcon, ProjectVersionRoot } from "./project-version.styles";
 import { Typography } from "@frontend/design-system-react/typography";
 

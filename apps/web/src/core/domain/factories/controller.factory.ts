@@ -5,7 +5,6 @@ import { ISettingsController } from "@frontend/settings/ui/interfaces";
 import { StateManager } from "../state/state.manager";
 import { RepositoryFactory } from "../../data-access/factories/repository.factory";
 import { ServiceFactory } from "../../data-access/factories/service.factory";
-import { ApiFactory } from "../../data-access/factories/api.factory";
 import {
     IBridgeChainsController,
     IBridgeManagerController,
@@ -22,8 +21,6 @@ import {
     BridgeTransferController,
     BridgeWalletsController,
 } from "@frontend/bridge/domain/controllers";
-import { IHealthController } from "@frontend/health/ui/interfaces";
-import { HealthController } from "@frontend/health/domain/controllers";
 import { IChainController } from "@frontend/chain/ui/interfaces";
 import { ChainController } from "@frontend/chain/domain/controllers";
 
@@ -36,7 +33,6 @@ declare module "@frontend/core/domain/controller/factory" {
         bridgeTokenController: IBridgeTokenController;
         bridgeWalletsController: IBridgeWalletsController;
         bridgeTransferController: IBridgeTransferController;
-        healthController: IHealthController;
         chainController: IChainController;
     }
 }
@@ -59,7 +55,6 @@ ControllerFactory.create({
         ),
     bridgeTransferController: (resolve) =>
         new BridgeTransferController(resolve.bridgeChainsController, resolve.bridgeWalletsController, resolve.bridgeManagerController),
-    healthController: () => new HealthController(ApiFactory.healthApi),
 });
 
 export { ControllerFactory } from "@frontend/core/domain/controller/factory";
