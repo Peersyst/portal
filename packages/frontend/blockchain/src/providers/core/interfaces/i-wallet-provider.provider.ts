@@ -1,3 +1,12 @@
-import { ChainType, XChainWalletProvider as IXChainWalletProvider } from "xchain-sdk";
+export interface IWalletProviderProvider {
+    /**
+     * Checks if an account is active
+     * @param address The address of the account
+     */
+    isAccountActive(address: string): Promise<boolean>;
 
-export interface IWalletProviderProvider<T extends ChainType> extends IXChainWalletProvider<T> {}
+    /**
+     * Gets the native balance of an address as a string integer.
+     */
+    getNativeBalance(address: string): Promise<string>;
+}
