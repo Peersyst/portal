@@ -53,11 +53,12 @@ export const config: CoreConfig = {
             // avalanche: true,
             // optimism: true,
             // fantom: true,
-            //"core-ethereum": true,
+            "core-ethereum": true,
             //"core-avalanche": true,
             //"core-optimism": true,
             "xrpl-evm-sidechain": true,
             "avalanche-fuji": true,
+            "solana-devnet": true,
         },
         additionalChainData: {
             xrpl: {
