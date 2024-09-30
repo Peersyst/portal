@@ -68,7 +68,7 @@ export const config: CoreConfig = {
                 },
             },
             "xrpl-evm-sidechain": {
-                image: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/c01b678f-4272-41fc-8f39-e50a17421dcf.png",
+                image: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/76dcd079-8a70-41d4-ad72-53098813e2e9.png",
                 chain_id: 1440002,
                 chain_name: "xrpl-evm-devnet",
                 short_name: "XRPL EVM",
