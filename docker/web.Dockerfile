@@ -1,4 +1,4 @@
-FROM node:20.9.0 as base
+FROM node:20.9.0 AS base
 WORKDIR /project
 # Install pnpm
 RUN npm install -g pnpm@9.7.0
@@ -29,7 +29,7 @@ RUN npx turbo run test --filter=web...
 RUN pnpm --filter=web deploy --prod /artifacts
 
 
-FROM nginx:latest as release
+FROM nginx:latest AS release
 COPY --from=integration /artifacts/dist /usr/share/nginx/html/
 COPY <<EOF /etc/nginx/templates/default.conf.template
 server {
