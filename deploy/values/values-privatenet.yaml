@@ -1,12 +1,12 @@
 ingress:
-  name: portal-frontend
+  name: portal-web
   certificate: arn:aws:acm:us-east-1:291847425310:certificate/b183b365-4363-4245-9966-7e990bf7b3d4
 service:
-  name: portal-frontend
+  name: portal-web
   port: 80
   targetPort: 80
 deployment:
-  name: portal-frontend
+  name: portal-web
   replicas: 2
   port: 80
   readinessProbe:
