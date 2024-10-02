@@ -1,6 +1,23 @@
-ARG BASE_IMAGE=latest
-FROM ${BASE_IMAGE} as integration
+FROM node:20.9.0 as base
+WORKDIR /project
+# Install pnpm
+RUN npm install -g pnpm@9.7.0
+# Install package and app dependencies
+COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
+COPY "apps/api/package.json" "./apps/api/package.json"
+COPY "apps/mobile/package.json" "./apps/mobile/package.json"
+COPY "apps/web/package.json" "./apps/web/package.json"
+COPY packages /project/packages
+RUN pnpm install
+COPY ["turbo.json", ".prettierrc", ".prettierrc", "./"]
+# Run build packages
+RUN pnpm run build:packages
+# Run linting
+RUN pnpm run lint:packages
+# Run testing
+RUN pnpm run test:packages
 
+FROM base AS integration
 COPY apps/web /project/apps/web
 # Build api
 RUN npx turbo run build --filter=web...

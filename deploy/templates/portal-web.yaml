@@ -8,27 +8,24 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-name: portal-{{ .Values.deployment.env.environment }}
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-path.portal-frontend: /
+    alb.ingress.kubernetes.io/healthcheck-path.portal-web: /
     alb.ingress.kubernetes.io/actions.portal-frontend: >
-      {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-frontend","servicePort":"http","weight":20}]}}
-    alb.ingress.kubernetes.io/healthcheck-path.portal-api: /api/bridge/chains
-    alb.ingress.kubernetes.io/actions.portal-api: >
-      {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-api","servicePort":"api","weight":20}]}}
-    alb.ingress.kubernetes.io/actions.redirect-to-xrplevm: >
-      {"Type":"redirect","RedirectConfig":{"Host":"bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
+      {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-web","servicePort":"http","weight":20}]}}
+    alb.ingress.kubernetes.io/actions.redirect-to-https: >
+      {"Type":"redirect","RedirectConfig":{"Host":"next.bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
   name: {{ .Values.ingress.name }}-{{ .Values.deployment.env.environment }}
   namespace: portal
 spec:
   ingressClassName: alb
   rules:
-  - host: bridge.devnet.xrpl.org
+  - host: next.bridge.xrplevm.org
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: redirect-to-xrplevm
+            name: redirect-to-https
             port:
               name: use-annotation
   - http:
@@ -38,13 +35,6 @@ spec:
         backend:
           service:
             name: portal-frontend
-            port:
-              name: use-annotation
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: portal-api
             port:
               name: use-annotation
 ---
