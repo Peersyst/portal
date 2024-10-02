@@ -1,0 +1,23 @@
+ingress:
+  name: portal-frontend
+  certificate: arn:aws:acm:us-east-1:291847425310:certificate/b183b365-4363-4245-9966-7e990bf7b3d4
+service:
+  name: portal-frontend
+  port: 80
+  targetPort: 80
+deployment:
+  name: portal-frontend
+  replicas: 2
+  port: 80
+  readinessProbe:
+    path: /status
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 2
+  memoryRequest: 512Mi
+  cpuRequest: 500m
+  memoryLimit: 1024Mi
+  cpuLimit: 1000m
+  env:
+    environment: privatenet
