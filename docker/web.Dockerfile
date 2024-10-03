@@ -4,8 +4,6 @@ WORKDIR /project
 RUN npm install -g pnpm@9.7.0
 # Install package and app dependencies
 COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
-COPY "apps/api/package.json" "./apps/api/package.json"
-COPY "apps/mobile/package.json" "./apps/mobile/package.json"
 COPY "apps/web/package.json" "./apps/web/package.json"
 COPY packages /project/packages
 RUN pnpm install
