@@ -13,6 +13,7 @@ export interface CoreConfig extends BaseConfig {
     maxNumberDecimals: number;
     txValidationPolling: PollingOptions;
     peersystUrl: string;
+    axelarUrl: string;
     walletProviders: Record<WalletProviderId, WalletProviderDef>;
     balanceRefetchInterval: number;
     posthog: {
@@ -24,6 +25,7 @@ export interface CoreConfig extends BaseConfig {
         x: string;
         featureRequest: string;
     };
+    featuredChains: string[];
     axelar: {
         url: string;
         apiUrl: string;
@@ -37,6 +39,12 @@ export interface CoreConfig extends BaseConfig {
         additionalTokenData: Record<string, AnyObject>;
         // Extra axelar interchain token objects to be added to the token list.
         extraTokens: AnyObject[];
+    };
+    bridgeExplorer: {
+        name: string;
+        url: string;
+        icon: string;
+        transferPath: string;
     };
 
     xumm: {
