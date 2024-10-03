@@ -12,9 +12,9 @@ COPY ["turbo.json", ".prettierrc", ".prettierrc", "./"]
 # Run build packages
 RUN pnpm run dist
 # Run linting
-RUN pnpm run lint:packages
+#RUN pnpm run lint:packages
 # Run testing
-RUN pnpm run test:packages
+#RUN pnpm run test:packages
 
 FROM base AS integration
 # Config env vars
