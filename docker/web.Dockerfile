@@ -9,7 +9,7 @@ COPY packages /project/packages
 RUN pnpm install
 COPY ["turbo.json", ".prettierrc", ".prettierrc", "./"]
 # Run build packages
-RUN pnpm run build:packages
+RUN pnpm run dist
 # Run linting
 RUN pnpm run lint:packages
 # Run testing
