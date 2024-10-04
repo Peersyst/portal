@@ -3,6 +3,10 @@ name: deploy
 # Only trigger, when the build workflow succeeded
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 permissions:
   # Needed to configure aws credentials step
@@ -15,14 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 1
     outputs:
+      ENV: ${{ steps.env-vars.outputs.ENV }}
       NOW: ${{ steps.env-vars.outputs.NOW }}
       TAG: ${{ steps.env-vars.outputs.TAG }}
+
     steps:
       # Define global vars that will be used through the pipeline
       - name: Defining global vars
         shell: bash
         id: env-vars
         run: |
+          echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
           echo "NOW=$(TZ=':Europe/Madrid' date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
           echo "TAG=${GITHUB_SHA:0:8}" >> $GITHUB_OUTPUT
 
@@ -34,6 +41,7 @@ jobs:
       - name: 📬 Initial Slack deployment message
         shell: bash
         env:
+          ENV: ${{ steps.env-vars.outputs.ENV }}
           NOW: ${{ steps.env-vars.outputs.NOW }}
           TAG: ${{ steps.env-vars.outputs.TAG }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -44,17 +52,13 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment: ['privatenet']
-      fail-fast: false
     timeout-minutes: 10
     needs: [initial]
     steps:
       # Checkout repository under $GITHUB_WORKSPACE path
       - name: Repository checkout
         uses: actions/checkout@v4
+
       # Assume gitHubdeploymentsRole AWS role
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -63,6 +67,7 @@ jobs:
           role-session-name: deploymentsRole
           role-duration-seconds: 900
           aws-region: us-east-1
+
       # Kubectl and Helm install
       - name: Kubectl and Helm install
         shell: bash
@@ -83,6 +88,7 @@ jobs:
         working-directory: ./deploy
         shell: bash
         env:
+          ENV: ${{ needs.initial.outputs.ENV }}
           NOW: ${{ needs.initial.outputs.NOW }}
           TAG: ${{ needs.initial.outputs.TAG }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -90,7 +96,7 @@ jobs:
         run: |
           envsubst < Chart.yaml > Chart-0.yaml
           mv Chart-0.yaml Chart.yaml
-          kubectl config use-context peersyst-privatenet
+          kubectl config use-context peersyst-dev
           helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${{ matrix.environment }}.yaml --set-string timestamp=${NOW} --set-string tagIndexer=${TAG} --set-string tagApi=${TAG} --set-string tagWeb=${{ matrix.environment }}-${TAG} --debug
 
       # Send Slack message if any previous step has failed in this job
