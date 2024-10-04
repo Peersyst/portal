@@ -1,0 +1,4 @@
+apiVersion: v2
+name: PORTAL-WEB
+description: portal-web
+version: 1.0.0-alpha.1+${TAG}

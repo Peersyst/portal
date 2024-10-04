@@ -11,30 +11,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-base:
-    uses: ./.github/workflows/build-base.yaml
-    secrets: inherit
   build-web:
-    needs: [build-base]
     uses: ./.github/workflows/build-web.yaml
     secrets: inherit
     with:
       push: true
       target: release
-  build-api:
-    needs: [build-base]
-    uses: ./.github/workflows/build-api.yaml
-    secrets: inherit
-    with:
-      push: true
-      target: release
-  build-mobile:
-    needs: [build-base]
-    uses: ./.github/workflows/build-mobile.yaml
-    secrets: inherit
-    with:
-      target: release
   deploy:
-    needs: [build-web, build-api, build-mobile]
+    needs: build-web
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit

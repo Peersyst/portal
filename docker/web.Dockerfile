@@ -1,6 +1,26 @@
-ARG BASE_IMAGE=base
-FROM ${BASE_IMAGE} as integration
+FROM node:20.9.0 AS base
+WORKDIR /project
+# Install pnpm
+RUN npm install -g pnpm@9.7.0
 
+# Copy project files
+COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
+COPY ["turbo.json", ".prettierrc", "./"]
+# Include packages
+COPY packages /project/packages
+# Include scripts to build artifacts
+COPY scripts /project/scripts
+# Install package dependencies
+RUN pnpm install
+
+# Build and dist packages
+RUN pnpm run dist
+# Lint packages
+RUN pnpm run lint:packages
+# Test packages
+RUN pnpm run test:packages
+
+FROM base AS integration
 # Config env vars
 ARG AWS_REGION="eu-west-1"
 ENV AWS_REGION=$AWS_REGION
@@ -15,20 +35,24 @@ ENV APP_CONFIG_PROFILE_IDENTIFIER=$APP_CONFIG_PROFILE_IDENTIFIER
 ARG APP_CONFIG_ENVIRONMENT_IDENTIFIER="v40zhmn"
 ENV APP_CONFIG_ENVIRONMENT_IDENTIFIER=$APP_CONFIG_ENVIRONMENT_IDENTIFIER
 
+# Include web
 COPY apps/web /project/apps/web
-# Build api
+# Install web dependencies
+RUN pnpm install
+
 WORKDIR /project/apps/web
+# Build web
 RUN pnpm build
+# Lint web
+RUN pnpm lint
+# Test web
+RUN pnpm test
+
 WORKDIR /project
-# Lint api
-# RUN npx turbo run lint --filter=web...
-# Test api
-# RUN npx turbo run test --filter=web...
-# Config env vars
+# Isolate web and its dependencies
 RUN pnpm --filter=web deploy --prod /artifacts
 
-
-FROM nginx:latest as release
+FROM nginx:latest AS release
 COPY --from=integration /artifacts/dist /usr/share/nginx/html/
 COPY <<EOF /etc/nginx/templates/default.conf.template
 server {
