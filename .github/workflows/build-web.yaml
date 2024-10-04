@@ -73,17 +73,17 @@ jobs:
       #- name: Delete previous branch cache
       #  env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    IMAGE: ${{ env.DOCKER_IMAGE_NAME }}
+      #    REPO: Peersyst/portal
       #  shell: bash
       #  run: |
       #    echo "Listing cache keys"
-      #    gh cache list --repo ${IMAGE}
+      #    gh cache list --repo ${PORTAL}
       #    echo "Setting branch key"
       #    BRANCH_KEY=${{ github.head_ref || github.ref_name }}-buildx-web
       #    echo "Checking if cache key exist in that branch"
-      #    if [[ $(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}') ]]; then
+      #    if [[ $(gh cache list --repo ${PORTAL} | grep ${BRANCH_KEY} | awk '{print $2}') ]]; then
       #      echo "Saving that cache key"
-      #      GH_KEY=$(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}')
+      #      GH_KEY=$(gh cache list --repo ${PORTAL} | grep ${BRANCH_KEY} | awk '{print $2}')
       #    else
       #      echo "First commit in branch. Not saving cache key"
       #    fi
@@ -94,10 +94,10 @@ jobs:
       #    else
       #      echo "Cache key ${GH_KEY} detected."
       #      echo "Deleting previous key..."
-      #      gh cache delete --repo ${IMAGE} ${GH_KEY}
+      #      gh cache delete --repo ${PORTAL} ${GH_KEY}
       #    fi
       #    echo "Echoing all remaining keys"
-      #    gh cache list --repo ${IMAGE}
+      #    gh cache list --repo ${PORTAL}
 
       #- name: Purge orphan cache
       #  env:
