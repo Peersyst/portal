@@ -80,7 +80,7 @@ jobs:
 
       # Helm deployment
       - name: Helm deployment
-        working-directory: ./infra/chart
+        working-directory: ./deploy
         shell: bash
         env:
           NOW: ${{ needs.initial.outputs.NOW }}
@@ -91,7 +91,7 @@ jobs:
           envsubst < Chart.yaml > Chart-0.yaml
           mv Chart-0.yaml Chart.yaml
           kubectl config use-context peersyst-privatenet
-          helm -n portal upgrade ${{ matrix.environment }} ./ --install --atomic --wait --timeout 301s --values values/${{ matrix.environment }}.yaml --set-string timestamp=${NOW} --set-string tagIndexer=${TAG} --set-string tagApi=${TAG} --set-string tagWeb=${{ matrix.environment }}-${TAG} --debug
+          helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${{ matrix.environment }}.yaml --set-string timestamp=${NOW} --set-string tagIndexer=${TAG} --set-string tagApi=${TAG} --set-string tagWeb=${{ matrix.environment }}-${TAG} --debug
 
       # Send Slack message if any previous step has failed in this job
       - name: 📬 Failure job notification
