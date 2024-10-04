@@ -29,7 +29,7 @@ jobs:
         shell: bash
         id: env-vars
         run: |
-          echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          echo "ENV=${{ inputs.environment }}" >> $GITHUB_OUTPUT
           echo "NOW=$(TZ=':Europe/Madrid' date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
           echo "TAG=${GITHUB_SHA:0:8}" >> $GITHUB_OUTPUT
 
@@ -47,7 +47,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           echo "Send initial Slack message"
-          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🎬 Starting *PORTAL* deployment - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🎬 Starting *PORTAL* deployment in env ${ENV} - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
 
   deploy:
     name: Deploy
