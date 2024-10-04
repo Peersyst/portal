@@ -7,8 +7,6 @@ on:
         type: choice
         description: Package
         options:
-          - api
-          - app
           - web
       commit_branch:
         description: The branch or the commit sha to push tag to
@@ -57,8 +55,8 @@ jobs:
             EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}
             PROFILES=staging
           tags: |
-            peersyst/genesys-${{ github.event.inputs.package }}:${{ github.event.inputs.tag }}
-            ${{ fromJSON(format('["", "peersyst/genesys-{0}:latest"]', github.event.inputs.package))[github.event.inputs.is_latest_release == 'true'] }}
+            peersyst/portal-${{ github.event.inputs.package }}:${{ github.event.inputs.tag }}
+            ${{ fromJSON(format('["", "peersyst/portal-{0}:latest"]', github.event.inputs.package))[github.event.inputs.is_latest_release == 'true'] }}
       # Build and push docker image
       - name: Generate Github release
         uses: softprops/action-gh-release@v1
