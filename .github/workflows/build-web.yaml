@@ -70,39 +70,39 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - name: Delete previous branch cache
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IMAGE: ${{ env.DOCKER_IMAGE_NAME }}
-        shell: bash
-        run: |
-          echo "Listing cache keys"
-          gh cache list --repo ${IMAGE}
-          echo "Setting branch key"
-          BRANCH_KEY=${{ github.head_ref || github.ref_name }}-buildx-web
-          echo "Checking if cache key exist in that branch"
-          if [[ $(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}') ]]; then
-            echo "Saving that cache key"
-            GH_KEY=$(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}')
-          else
-            echo "First commit in branch. Not saving cache key"
-          fi
-          echo "Echoing that cache key"
-          echo ${GH_KEY}
-          if [ -z $GH_KEY ]; then
-            echo "There does not exist first cache. Not removing it."
-          else
-            echo "Cache key ${GH_KEY} detected."
-            echo "Deleting previous key..."
-            gh cache delete --repo ${IMAGE} ${GH_KEY}
-          fi
-          echo "Echoing all remaining keys"
-          gh cache list --repo ${IMAGE}
+      #- name: Delete previous branch cache
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    IMAGE: ${{ env.DOCKER_IMAGE_NAME }}
+      #  shell: bash
+      #  run: |
+      #    echo "Listing cache keys"
+      #    gh cache list --repo ${IMAGE}
+      #    echo "Setting branch key"
+      #    BRANCH_KEY=${{ github.head_ref || github.ref_name }}-buildx-web
+      #    echo "Checking if cache key exist in that branch"
+      #    if [[ $(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}') ]]; then
+      #      echo "Saving that cache key"
+      #      GH_KEY=$(gh cache list --repo ${IMAGE} | grep ${BRANCH_KEY} | awk '{print $2}')
+      #    else
+      #      echo "First commit in branch. Not saving cache key"
+      #    fi
+      #    echo "Echoing that cache key"
+      #    echo ${GH_KEY}
+      #    if [ -z $GH_KEY ]; then
+      #      echo "There does not exist first cache. Not removing it."
+      #    else
+      #      echo "Cache key ${GH_KEY} detected."
+      #      echo "Deleting previous key..."
+      #      gh cache delete --repo ${IMAGE} ${GH_KEY}
+      #    fi
+      #    echo "Echoing all remaining keys"
+      #    gh cache list --repo ${IMAGE}
 
-      - name: Purge orphan cache
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: MyAlbum/purge-cache@v2
-        with:
-          max-age: 2592000 # 30 days since last use
-          #debug: true
+      #- name: Purge orphan cache
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  uses: MyAlbum/purge-cache@v2
+      #  with:
+      #    max-age: 2592000 # 30 days since last use
+      #    #debug: true
