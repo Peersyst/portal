@@ -77,8 +77,6 @@ jobs:
         shell: bash
         run: |
           echo "Listing cache keys"
-          gh cache delete --repo ${REPO} build-Linux-buildx-web
-          gh cache delete --repo ${REPO} build-Linux-buildx-base
           gh cache list --repo ${REPO}
           echo "Setting branch key"
           BRANCH_KEY=${{ github.head_ref || github.ref_name }}-buildx-web
