@@ -5,13 +5,13 @@ on:
     branches:
       - main
 
-  workflow_dispatch:
-    inputs:
-      environment:
-        type: choice
-        description: Environment where to deploy
-        options:
-        - privatenet
+  #workflow_dispatch:
+  #  inputs:
+  #    environment:
+  #      type: choice
+  #      description: Environment where to deploy
+  #      options:
+  #      - privatenet
 
 concurrency:
   # Cancel old runs if there is a new commit in the same branch
@@ -25,10 +25,13 @@ jobs:
     with:
       push: true
       target: release
+      #environment: ${{ github.event.inputs.environment }}
+      environment: privatenet
 
   deploy:
     needs: build-web
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit
     with:
-      environment: ${{ github.event.inputs.environment }}
+      #environment: ${{ github.event.inputs.environment }}
+      environment: privatenet

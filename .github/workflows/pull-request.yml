@@ -16,3 +16,4 @@ jobs:
         with:
             target: integration
             push: false
+            environment: privatenet

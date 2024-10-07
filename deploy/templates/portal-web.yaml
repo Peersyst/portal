@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-path.portal-web: /
-    alb.ingress.kubernetes.io/actions.portal-frontend: >
+    alb.ingress.kubernetes.io/actions.portal-web: >
       {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-web","servicePort":"http","weight":20}]}}
     alb.ingress.kubernetes.io/actions.redirect-to-https: >
       {"Type":"redirect","RedirectConfig":{"Host":"next.bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
@@ -34,7 +34,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: portal-frontend
+            name: portal-web
             port:
               name: use-annotation
 ---
