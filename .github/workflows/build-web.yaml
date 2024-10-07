@@ -9,16 +9,14 @@ on:
       target:
         required: true
         type: string
+      environment:
+        required: true
+        type: string
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    environment: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment: ['privatenet']
-      fail-fast: false
     timeout-minutes: 30
     steps:
       # Checkout repository under $GITHUB_WORKSPACE path
@@ -48,7 +46,7 @@ jobs:
       - name: Sets env vars
         run: |
           echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web" >> $GITHUB_ENV
-          echo "DOCKER_IMAGE_NAME_TAG=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web:${{ matrix.environment }}-${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_NAME_TAG=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web:${{ inputs.environment }}-${GITHUB_SHA:0:8}" >> $GITHUB_ENV
 
       # Build docker image
       - name: Build docker image
