@@ -25,6 +25,7 @@ jobs:
     with:
       push: true
       target: release
+      environment: ${{ github.event.inputs.environment }}
 
   deploy:
     needs: build-web
