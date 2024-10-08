@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.deployment.name }}
-        image: peersyst/portal-web:{{ .Values.tag }}
+        image: peersyst/portal-web:{{ .Values.tagWeb }}
         imagePullPolicy: Always
         args: {{ .Values.deployment.args }}
         resources:

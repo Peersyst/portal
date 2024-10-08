@@ -93,8 +93,7 @@ jobs:
           envsubst < Chart.yaml > Chart-${ENV}.yaml
           mv Chart-${ENV}.yaml Chart.yaml
           kubectl config use-context peersyst-${ENV}
-          cat templates/portal-web.yaml
-          helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${ENV}.yaml --set-string timestamp=${NOW} --set-string tagIndexer=${TAG} --set-string tagApi=${TAG} --set-string tagWeb=${ENV}-${TAG} --debug
+          helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${ENV}.yaml --set-string timestamp=${NOW} --set-string tagWeb=${ENV}-${TAG} --debug
 
       # Send Slack message if any previous step has failed in this job
       - name: 📬 Failure job notification
