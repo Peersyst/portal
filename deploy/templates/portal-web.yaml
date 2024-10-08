@@ -33,6 +33,8 @@ spec:
       labels:
         app: {{ .Values.deployment.name }}-{{ .Values.deployment.env.environment }}
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: {{ .Values.deployment.name }}
         image: peersyst/portal-web:{{ .Values.tagWeb }}
