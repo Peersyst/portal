@@ -1,6 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: {{ .Values.ingress.name }}-{{ .Values.deployment.env.environment }}
+  namespace: portal
   annotations:
     alb.ingress.kubernetes.io/certificate-arn: {{ .Values.ingress.certificate }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
@@ -13,8 +15,6 @@ metadata:
       {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-web","servicePort":"http","weight":20}]}}
     alb.ingress.kubernetes.io/actions.redirect-to-https: >
       {"Type":"redirect","RedirectConfig":{"Host":"next.bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
-  name: {{ .Values.ingress.name }}-{{ .Values.deployment.env.environment }}
-  namespace: portal
 spec:
   ingressClassName: alb
   rules:
