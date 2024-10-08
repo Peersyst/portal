@@ -5,7 +5,7 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: {{ .Values.ingress.certificate }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
-    alb.ingress.kubernetes.io/load-balancer-name: portal-{{ .Values.deployment.env.environment }}
+    alb.ingress.kubernetes.io/load-balancer-name: {{ .Values.ingress.name }}-{{ .Values.deployment.env.environment }}
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-path.portal-web: /
@@ -75,7 +75,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.deployment.name }}
-        image: peersyst/evm-sidechain-bridge-portal-frontend:{{ .Values.tag }}
+        image: peersyst/portal-web:{{ .Values.tag }}
         imagePullPolicy: Always
         args: {{ .Values.deployment.args }}
         resources:
