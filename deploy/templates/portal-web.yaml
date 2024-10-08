@@ -75,7 +75,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.deployment.name }}
-        image: peersyst/evm-sidechain-bridge-portal-frontend:{{ .Values.tag }}
+        image: peersyst/portal-web:{{ .Values.tag }}
         imagePullPolicy: Always
         args: {{ .Values.deployment.args }}
         resources:
