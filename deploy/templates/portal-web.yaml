@@ -14,11 +14,11 @@ metadata:
     alb.ingress.kubernetes.io/actions.portal-web: >
       {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"portal-web","servicePort":"http","weight":20}]}}
     alb.ingress.kubernetes.io/actions.redirect-to-https: >
-      {"Type":"redirect","RedirectConfig":{"Host":"next.bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
+      {"Type":"redirect","RedirectConfig":{"Host":"next-bridge.xrplevm.org","Path":"/#{path}","Port":"443","Protocol":"HTTPS","Query":"#{query}","StatusCode":"HTTP_301"}}
 spec:
   ingressClassName: alb
   rules:
-    - host: next.bridge.xrplevm.org
+    - host: next-bridge.xrplevm.org
       http:
         paths:
           - path: /
