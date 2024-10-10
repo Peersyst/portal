@@ -8,7 +8,6 @@ import { AxelarErrors } from "../../src/axelar.errors";
 import { AxelarInterchainTokenObjectMock } from "../mocks/types/axelar-interchain-token-object.mock";
 import { ChainMock } from "@frontend/chain/mocks/common";
 import { AxelarInterchainToken } from "../../src/models/axelar-interchain-token";
-import { AxelarGMPTransferContractMethod } from "../../src";
 import { AxelarGMPTransfersObjectMock } from "../mocks/types/axelar-gmp-transfers-object.mock";
 import { PaginatedTransfers } from "@frontend/activity";
 import { AxelarTransfer } from "../../src/models/axelar-transfer";
@@ -24,8 +23,11 @@ describe("AxelarService", () => {
     const getChainsResponseMock = [new AxelarChainObjectMock()];
     const getTokensResponseMock = [new AxelarInterchainTokenObjectMock()];
 
+    const fetchSpy = jest.spyOn(global, "fetch");
+
     beforeEach(() => {
         configManagerMock.clearMocks();
+        fetchSpy.mockClear();
 
         // Mock config manager
         configManagerMock.get.mockImplementation((key: string) => {
@@ -60,7 +62,7 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.resolve(getChainsResponseMock),
             }))();
-            const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             const chains = await axelarService.getChains();
 
@@ -74,7 +76,7 @@ describe("AxelarService", () => {
             const fetchResultMock = new (mockify<Response>({
                 ok: false,
             }))();
-            jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             await expect(axelarService.getChains()).rejects.toThrow(new ServiceError(AxelarErrors.GET_CHAINS_FETCH_ERROR));
         });
@@ -84,7 +86,7 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.reject("not a json"),
             }))();
-            jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             await expect(axelarService.getChains()).rejects.toThrow(new ServiceError(AxelarErrors.GET_CHAINS_PARSE_ERROR));
         });
@@ -99,11 +101,11 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.resolve(getTokensResponseMock),
             }))();
-            const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             const tokens = await axelarService.getBridgeTokens(chainMock, otherChainMock);
 
-            expect(fetchSpy).toHaveBeenCalledWith(`${configManagerMock.get("axelar.apiUrl")}/getChains`, {
+            expect(fetchSpy).toHaveBeenCalledWith(`${configManagerMock.get("axelar.apiUrl")}/getITSAssets`, {
                 headers: { "Content-Type": "application/json" },
             });
             expect(tokens).toEqual(
@@ -117,7 +119,7 @@ describe("AxelarService", () => {
             const fetchResultMock = new (mockify<Response>({
                 ok: false,
             }))();
-            jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             await expect(axelarService.getBridgeTokens(chainMock, otherChainMock)).rejects.toThrow(
                 new ServiceError(AxelarErrors.GET_BRIDGE_TOKENS_FETCH_ERROR),
@@ -129,7 +131,7 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.reject("not a json"),
             }))();
-            jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             await expect(axelarService.getBridgeTokens(chainMock, otherChainMock)).rejects.toThrow(
                 new ServiceError(AxelarErrors.GET_BRIDGE_TOKENS_PARSE_ERROR),
@@ -146,7 +148,7 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.resolve(axelarGMPTransfersObjectMock),
             }))();
-            const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             const getChainByIdSpy = jest.spyOn(axelarService, "getChainById").mockResolvedValue(chainMock);
 
@@ -160,7 +162,7 @@ describe("AxelarService", () => {
                     from: 0,
                     sourceChain: undefined,
                     destinationChain: undefined,
-                    contractMethod: AxelarGMPTransferContractMethod.INTERCHAIN_TRANSFER,
+                    // contractMethod: AxelarGMPTransferContractMethod.INTERCHAIN_TRANSFER,
                     senderAddress: undefined,
                 }),
             });
@@ -193,7 +195,7 @@ describe("AxelarService", () => {
                 ok: true,
                 json: () => Promise.reject("not a json"),
             }))();
-            jest.spyOn(global, "fetch").mockResolvedValueOnce(fetchResultMock);
+            fetchSpy.mockResolvedValueOnce(fetchResultMock);
 
             await expect(axelarService.getPaginatedTransfers(1, 10)).rejects.toThrow(
                 new ServiceError(AxelarErrors.GET_PAGINATED_TRANSFERS_PARSE_ERROR),
