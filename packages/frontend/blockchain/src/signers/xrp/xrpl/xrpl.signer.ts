@@ -2,7 +2,7 @@ import { IXrplSigner } from "./interfaces/i-xrpl.signer";
 import { XrplSignerErrors } from "./xrpl.signer.errors";
 import { SignerError } from "../../core/error";
 import { XrplTransactionParser } from "../../../transaction-parsers/xrp/xrpl/xrpl.transaction-parser";
-import { convertStringToHex, Payment, SubmittableTransaction, TrustSet, Wallet } from "xrpl";
+import { convertStringToHex, Payment, SubmittableTransaction, TrustSet, Wallet, xrpToDrops } from "xrpl";
 import { IXrplSignerProvider } from "./interfaces/i-xrpl-signer.provider";
 import { SubmitTransactionResponse } from "@shared/xrpl/transaction";
 import { convertCurrencyCode } from "@shared/xrpl/currency-code";
@@ -53,7 +53,9 @@ export class XrplSigner<Provider extends IXrplSignerProvider = IXrplSignerProvid
      */
     private async signAndSubmitTransaction<T extends SubmittableTransaction>(tx: T): Promise<SubmitTransactionResponse<T>> {
         const completeTx = await this.provider.autofill(tx);
+
         const signedTx = this.wallet.sign(completeTx).tx_blob;
+
         const res = await this.provider.submit(signedTx);
 
         if (res.result.engine_result !== "tesSUCCESS") {
@@ -99,7 +101,7 @@ export class XrplSigner<Provider extends IXrplSignerProvider = IXrplSignerProvid
                 Account: this.wallet.address,
                 // TODO: Handle IOU decimal values
                 Amount: token.isNative()
-                    ? amount
+                    ? xrpToDrops(amount)
                     : {
                           currency: convertCurrencyCode(token.symbol),
                           value: amount,
@@ -109,10 +111,9 @@ export class XrplSigner<Provider extends IXrplSignerProvider = IXrplSignerProvid
                 Memos: [
                     {
                         Memo: {
-                            MemoType: "605459C28E6bE7B31B8b622FD29C82B3059dB1C6", // hex(destination_address)
-                            MemoData: destinationAddress.startsWith("0x")
-                                ? destinationAddress.slice(2)
-                                : convertStringToHex(destinationAddress),
+                            //
+                            MemoType: "64657374696E6174696F6E5F61646472657373", // hex(destination_address)
+                            MemoData: destinationAddress,
                         },
                     },
                     {
