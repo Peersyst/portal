@@ -34,6 +34,9 @@ ARG APP_CONFIG_PROFILE_IDENTIFIER="ub9h0lc"
 ENV APP_CONFIG_PROFILE_IDENTIFIER=$APP_CONFIG_PROFILE_IDENTIFIER
 ARG APP_CONFIG_ENVIRONMENT_IDENTIFIER="v40zhmn"
 ENV APP_CONFIG_ENVIRONMENT_IDENTIFIER=$APP_CONFIG_ENVIRONMENT_IDENTIFIER
+# Use this when we have a versioning system
+# VERSION=$(git describe --abbrev=0 --tags --match=\"web*\" | sed \"s/web@v//\")
+ENV VERSION=2.0.0-alpha.1
 
 # Include web
 COPY apps/web /project/apps/web
