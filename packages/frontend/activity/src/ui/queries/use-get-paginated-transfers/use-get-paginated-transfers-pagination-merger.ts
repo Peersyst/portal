@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { PaginationMerger, PaginationMergerItem } from "../../../../../../shared/utils/src";
+import { PaginationMerger, PaginationMergerItem } from "@shared/utils";
 import { Transfer } from "../../../common";
 import { getInstance } from "@frontend/core/common/utils/singleton";
 import { ActivityController } from "../../../domain/controllers";

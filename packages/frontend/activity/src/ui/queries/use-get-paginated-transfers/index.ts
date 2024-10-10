@@ -2,7 +2,7 @@ import { useBridgeChainsState, useBridgeWalletsState } from "@frontend/bridge/ui
 import { Transfer } from "../../../common";
 import { InfiniteData, UseInfiniteQueryOptions, UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useGetPaginatedTransfersPaginationMerger } from "./use-get-paginated-transfers-pagination-merger";
-import { PaginationMergerGetPageParams, PaginationMergerGetPageResult } from "../../../../../../shared/utils/src";
+import { PaginationMergerGetPageParams, PaginationMergerGetPageResult } from "@shared/utils";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 export type UseGetPaginatedTransfersOptions<T = InfiniteData<PaginationMergerGetPageResult<Transfer>>> = Omit<
