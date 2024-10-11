@@ -16,10 +16,10 @@ const program = new Command();
 program.name("genesys").description("Genesys CLI").version("0.0.0");
 
 program
-    .command("migrate-to-bundle-exports")
-    .description("Migrates packages exports to bundle exports version. (Must be executed from the root of the workspace)")
+    .command("unbundle")
+    .description("Unbundles packages. (Must be executed from the root of the workspace)")
     .action(() => {
-        console.log("🛠️ Migrating to bundle exports");
+        console.log("🔄 Unbundling packages");
 
         // For each package in the workspace that has a `build` script, run the migrate-to-bundle-exports.mjs script
         const pkgs = getPackagesPaths();
@@ -31,18 +31,16 @@ program
             const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 
             if (packageJson.scripts && packageJson.scripts.build) {
-                console.log(`🛠️ Migrating package: ${pkg}`);
-                execSync(`node ${path.join(__dirname, "migrate-to-bundle-exports.mjs")} ${packagePath}`);
-                console.log(`✅ Migrated package: ${pkg}`);
+                execSync(`node ${path.join(__dirname, "unbundle.mjs")} ${packagePath}`);
             }
         }
 
-        console.log("✅ Migration to bundle exports completed");
+        console.log("✅ Unbundling completed");
     });
 
 program
     .command("bundle")
-    .description("Bundles the package for production. (Must be executed fro the root of the package to bundle)")
+    .description("Bundles the package for production. (Must be executed from the root of the package to bundle)")
     .action(() => {
         console.log("📦 Bundling the package");
 

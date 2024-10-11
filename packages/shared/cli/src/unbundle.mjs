@@ -8,6 +8,8 @@ const argPath = process.argv[2] || process.cwd();
 const packageJsonPath = path.join(argPath, "package.json");
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 
+console.log(`🔄 Unbundling package: ${packageJson.name}`);
+
 // Check if exports field exists
 if (packageJson.exports) {
     // Iterate through all export entries
@@ -28,7 +30,7 @@ if (packageJson.exports) {
 
     // Write the updated package.json back to file
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-    console.log("package.json reverted successfully.");
+    console.log(`✅ Unbundled package ${packageJson.name}`);
 } else {
-    console.log("No exports field found in package.json.");
+    console.log(`❌ Could not unbundle ${packageJson.name}. No exports field found in package.json.`);
 }

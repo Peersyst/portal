@@ -14,6 +14,10 @@
     "exports": {
         ".": "./src/index.ts"
     },
+    "peerDependencies": {
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5"
+    },
     "devDependencies": {
         "@shared/eslint": "workspace:*",
         "@shared/tsconfig": "workspace:*",

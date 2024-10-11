@@ -55,7 +55,9 @@
         "@shared/tsup": "workspace:*",
         "@shared/utils": "workspace:*",
         "@swisstype/essential": "^0.1.1",
+        "@types/jest": "^29.5.13",
         "expo-secure-store": "~12.1.1",
+        "jest": "^29.7.0",
         "react-native": "0.73.6",
         "typescript": "latest",
         "zustand": "^5.0.0-rc.0"
