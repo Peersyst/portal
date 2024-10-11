@@ -12,74 +12,23 @@
         "test:debug": "jest --no-cache --runInBand --passWithNoTests",
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
-        "check-types": "npx tsc --noEmit"
+        "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle"
     },
     "exports": {
-        ".": {
-            "types": "./dist/common/index.d.ts",
-            "require": "./dist/common/index.js",
-            "import": "./dist/common/index.mjs"
-        },
-        "./data-access/services/browser": {
-            "types": "./dist/data-access/services/browser/index.d.ts",
-            "require": "./dist/data-access/services/browser/index.js",
-            "import": "./dist/data-access/services/browser/index.mjs"
-        },
-        "./data-access/services/react-native": {
-            "types": "./dist/data-access/services/react-native/index.d.ts",
-            "require": "./dist/data-access/services/react-native/index.js",
-            "import": "./dist/data-access/services/react-native/index.mjs"
-        },
-        "./data-access/repositories": {
-            "types": "./dist/data-access/repositories/index.d.ts",
-            "require": "./dist/data-access/repositories/index.js",
-            "import": "./dist/data-access/repositories/index.mjs"
-        },
-        "./domain/controllers": {
-            "types": "./dist/domain/controllers/index.d.ts",
-            "require": "./dist/domain/controllers/index.js",
-            "import": "./dist/domain/controllers/index.mjs"
-        },
-        "./domain/decorators": {
-            "types": "./dist/domain/decorators/index.d.ts",
-            "require": "./dist/domain/decorators/index.js",
-            "import": "./dist/domain/decorators/index.mjs"
-        },
-        "./domain/errors": {
-            "types": "./dist/domain/settings.errors.d.ts",
-            "require": "./dist/domain/settings.errors.js",
-            "import": "./dist/domain/settings.errors.mjs"
-        },
-        "./domain/events": {
-            "types": "./dist/domain/settings.events.d.ts",
-            "require": "./dist/domain/settings.events.js",
-            "import": "./dist/domain/settings.events.mjs"
-        },
-        "./domain/state": {
-            "types": "./dist/domain/settings.state.d.ts",
-            "require": "./dist/domain/settings.state.js",
-            "import": "./dist/domain/settings.state.mjs"
-        },
-        "./domain/interfaces": {
-            "types": "./dist/domain/interfaces/index.d.ts",
-            "require": "./dist/domain/interfaces/index.js",
-            "import": "./dist/domain/interfaces/index.mjs"
-        },
-        "./ui/state": {
-            "types": "./dist/ui/state/index.d.ts",
-            "require": "./dist/ui/state/index.js",
-            "import": "./dist/ui/state/index.mjs"
-        },
-        "./ui/interfaces": {
-            "types": "./dist/ui/interfaces/index.d.ts",
-            "require": "./dist/ui/interfaces/index.js",
-            "import": "./dist/ui/interfaces/index.mjs"
-        },
-        "./ui/query": {
-            "types": "./dist/ui/query/index.d.ts",
-            "require": "./dist/ui/query/index.js",
-            "import": "./dist/ui/query/index.mjs"
-        },
+        ".": "./src/common/index.ts",
+        "./data-access/services/browser": "./src/data-access/services/browser/index.ts",
+        "./data-access/services/react-native": "./src/data-access/services/react-native/index.ts",
+        "./data-access/repositories": "./src/data-access/repositories/index.ts",
+        "./domain/controllers": "./src/domain/controllers/index.ts",
+        "./domain/decorators": "./src/domain/decorators/index.ts",
+        "./domain/errors": "./src/domain/settings.errors.ts",
+        "./domain/events": "./src/domain/settings.events.ts",
+        "./domain/state": "./src/domain/settings.state.ts",
+        "./domain/interfaces": "./src/domain/interfaces/index.ts",
+        "./ui/state": "./src/ui/state/index.ts",
+        "./ui/interfaces": "./src/ui/interfaces/index.ts",
+        "./ui/query": "./src/ui/query/index.ts",
         "./mocks/common": "./test/mocks/common/index.ts",
         "./mocks/data-access/service": "./test/mocks/data-access/service/index.ts",
         "./mocks/data-access/repositories": "./test/mocks/data-access/repositories/index.ts",

@@ -46,7 +46,7 @@ export function buildConfig<T>(config: ConfigKeys<T>, validators: ConfigValidato
     }, {}) as T;
 
     for (const key in result) {
-        if (validators[key] && !validators[key](result[key]))
+        if (validators[key] && !validators[key]!(result[key]))
             throw new Error(`Error validating config param ${key} with value ${result[key]}`);
     }
 

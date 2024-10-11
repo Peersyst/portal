@@ -19,7 +19,15 @@ export default defineConfig(({ mode }) => {
             }),
             react({
                 babel: {
-                    plugins: ["styled-components"],
+                    plugins: [
+                        [
+                            "@babel/plugin-proposal-decorators",
+                            {
+                                version: "2023-11",
+                            },
+                        ],
+                        "styled-components",
+                    ],
                     babelrc: false,
                     configFile: false,
                 },

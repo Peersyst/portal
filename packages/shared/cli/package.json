@@ -21,6 +21,7 @@
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@types/node": "latest",
+        "commander": "^12.1.0",
         "turbo": "^2.1.0",
         "typescript": "latest"
     }

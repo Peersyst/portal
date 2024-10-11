@@ -8,24 +8,13 @@
         "build": "tsup",
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
-        "check-types": "npx tsc --noEmit"
+        "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle"
     },
     "exports": {
-        "./decorators": {
-            "types": "./dist/decorators/index.d.ts",
-            "require": "./dist/decorators/index.js",
-            "import": "./dist/decorators/index.mjs"
-        },
-        "./exceptions": {
-            "types": "./dist/exceptions/index.d.ts",
-            "require": "./dist/exceptions/index.js",
-            "import": "./dist/exceptions/index.mjs"
-        },
-        "./pagination": {
-            "types": "./dist/pagination/index.d.ts",
-            "require": "./dist/pagination/index.js",
-            "import": "./dist/pagination/index.mjs"
-        }
+        "./decorators": "./src/decorators/index.ts",
+        "./exceptions": "./src/exceptions/index.ts",
+        "./pagination": "./src/pagination/index.ts"
     },
     "peerDependencies": {
         "@nestjs/common": "^10.3.0",

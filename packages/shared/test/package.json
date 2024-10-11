@@ -8,14 +8,11 @@
         "build": "tsup",
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
-        "check-types": "npx tsc --noEmit"
+        "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle"
     },
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        }
+        ".": "./src/index.ts"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",

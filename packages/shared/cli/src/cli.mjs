@@ -1,60 +1,54 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-import { exec } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawnTerminal } from "./terminal.mjs";
+import { Command } from "commander";
+import { execSync } from "node:child_process";
+import fs from "node:fs";
+import { getPackagesPaths } from "./utils/get-packages-paths.mjs";
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 
-const GROUPS = {
-    app: "apps",
-    pkg: "packages",
-    deps: "deps",
-};
+const program = new Command();
 
-const args = process.argv.slice(2);
-const groupArg = args[0];
-const group = GROUPS[groupArg];
+program.name("genesys").description("Genesys CLI").version("0.0.0");
 
-if (group) {
-    const target = args[1];
+program
+    .command("migrate-to-bundle-exports")
+    .description("Migrates packages exports to bundle exports version. (Must be executed from the root of the workspace)")
+    .action(() => {
+        console.log("🛠️ Migrating to bundle exports");
 
-    const depsFlagIndex = args.findIndex((arg) => arg === "--deps");
-    const includeDeps = depsFlagIndex !== -1;
-    if (includeDeps) {
-        args.splice(depsFlagIndex, 1);
+        // For each package in the workspace that has a `build` script, run the migrate-to-bundle-exports.mjs script
+        const pkgs = getPackagesPaths();
 
-        // Runs the deps command in a new terminal
-        exec(`npx nr genesys deps ${target} dev`);
-    }
+        for (const pkg of pkgs) {
+            const packagePath = path.join(process.cwd(), pkg);
+            const packageJsonPath = path.join(packagePath, "package.json");
 
-    // TODO: Support packages
-    if (group === GROUPS.pkg) {
-        console.error("Packages are not yet supported");
-        process.exit(1);
-    }
+            const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 
-    if (group === GROUPS.app || group === GROUPS.pkg) {
-        const targetScript =
-            group === GROUPS.app
-                ? `cd ./${group}/${target} && nr ${args.slice(2).join(" ")}`
-                : `npx turbo ${args.slice(2).join(" ")} --filter=${target}`;
-        // Runs the app/package command in a new terminal, if the deps command is not run build its dependencies first
-        spawnTerminal(`cd ${process.cwd()} ${includeDeps ? "" : `&& npx turbo build --filter=${target}^...`} && ${targetScript}`);
-    } else {
-        const script = args[2];
-        // Runs the dependencies script in a new terminal
-        spawnTerminal(`cd ${process.cwd()} && node ${__dirname}/turbo.mjs ${script} --filter=${target}^... ${args.slice(3).join(" ")}`);
-    }
+            if (packageJson.scripts && packageJson.scripts.build) {
+                console.log(`🛠️ Migrating package: ${pkg}`);
+                execSync(`node ${path.join(__dirname, "migrate-to-bundle-exports.mjs")} ${packagePath}`);
+                console.log(`✅ Migrated package: ${pkg}`);
+            }
+        }
 
-    process.exit(0);
-} else {
-    console.error(`Invalid group: ${groupArg}.
-Available groups: ${Object.keys(GROUPS).join(", ")}
-Usage: genesys [group] [target] [...args]`);
+        console.log("✅ Migration to bundle exports completed");
+    });
 
-    process.exit(1);
-}
+program
+    .command("bundle")
+    .description("Bundles the package for production. (Must be executed fro the root of the package to bundle)")
+    .action(() => {
+        console.log("📦 Bundling the package");
+
+        execSync(`node ${path.join(__dirname, "bundle.mjs")}`);
+
+        console.log("✅ Bundling completed");
+    });
+
+program.parse();

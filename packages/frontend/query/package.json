@@ -8,14 +8,11 @@
         "build": "tsup",
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
-        "check-types": "npx tsc --noEmit"
+        "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle"
     },
     "exports": {
-        "./react": {
-            "types": "./dist/react/index.d.ts",
-            "require": "./dist/react/index.js",
-            "import": "./dist/react/index.mjs"
-        },
+        "./react": "./src/react/index.ts",
         "./mocks": "./test/mocks/index.ts"
     },
     "peerDependencies": {

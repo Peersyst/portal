@@ -10,65 +10,22 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle",
         "generate:icons": "node scripts/icon-generator.js src/assets/icons/ src/components/icons/"
     },
     "exports": {
-        ".": {
-            "types": "./dist/core/index.d.ts",
-            "require": "./dist/core/index.js",
-            "import": "./dist/core/index.mjs"
-        },
-        "./config": {
-            "types": "./dist/config/index.d.ts",
-            "require": "./dist/config/index.js",
-            "import": "./dist/config/index.mjs"
-        },
-        "./themes": {
-            "types": "./dist/themes/index.d.ts",
-            "require": "./dist/themes/index.js",
-            "import": "./dist/themes/index.mjs"
-        },
-        "./theme": {
-            "types": "./dist/themes/common/index.d.ts",
-            "require": "./dist/themes/common/index.js",
-            "import": "./dist/themes/common/index.mjs"
-        },
-        "./theme/types": {
-            "types": "./dist/themes/common/theme.types.d.ts",
-            "require": "./dist/themes/common/theme.types.js",
-            "import": "./dist/themes/common/theme.types.mjs"
-        },
-        "./styles/types": {
-            "types": "./dist/styles/styles.types.d.ts",
-            "require": "./dist/styles/styles.types.js",
-            "import": "./dist/styles/styles.types.mjs"
-        },
-        "./styles/fonts": "./dist/styles/fonts.css",
-        "./styles/global-styles": {
-            "types": "./dist/styles/global-styles.d.ts",
-            "require": "./dist/styles/global-styles.js",
-            "import": "./dist/styles/global-styles.mjs"
-        },
-        "./icons": {
-            "types": "./dist/components/icons/index.d.ts",
-            "require": "./dist/components/icons/index.js",
-            "import": "./dist/components/icons/index.mjs"
-        },
-        "./button": {
-            "types": "./dist/components/button/index.d.ts",
-            "require": "./dist/components/button/index.js",
-            "import": "./dist/components/button/index.mjs"
-        },
-        "./toast": {
-            "types": "./dist/components/toast/index.d.ts",
-            "require": "./dist/components/toast/index.js",
-            "import": "./dist/components/toast/index.mjs"
-        },
-        "./modal": {
-            "types": "./dist/components/modal/index.d.ts",
-            "require": "./dist/components/modal/index.js",
-            "import": "./dist/components/modal/index.mjs"
-        }
+        ".": "./src/core/index.ts",
+        "./config": "./src/config/index.ts",
+        "./themes": "./src/themes/index.ts",
+        "./theme": "./src/themes/common/index.ts",
+        "./theme/types": "./src/themes/common/theme.types.ts",
+        "./styles/types": "./src/styles/styles.types.ts",
+        "./styles/fonts": "./src/styles/fonts.css",
+        "./styles/global-styles": "./src/styles/global-styles.ts",
+        "./icons": "./src/components/icons/index.ts",
+        "./button": "./src/components/button/index.ts",
+        "./toast": "./src/components/toast/index.ts",
+        "./modal": "./src/components/modal/index.ts"
     },
     "dependencies": {
         "@peersyst/react-components": "^3.9.35"

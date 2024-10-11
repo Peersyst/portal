@@ -9,6 +9,7 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle",
         "typeorm": "typeorm-ts-node-commonjs -d ./dist/data-source.js",
         "db:migration:create": "pnpm run typeorm migration:create",
         "db:migration:generate": "pnpm run typeorm migration:generate",
@@ -17,31 +18,11 @@
         "db:schema:drop": "pnpm run typeorm schema:drop"
     },
     "exports": {
-        "./config": {
-            "types": "./dist/config.d.ts",
-            "require": "./dist/config.js",
-            "import": "./dist/config.mjs"
-        },
-        "./data-source": {
-            "types": "./dist/data-source.d.ts",
-            "require": "./dist/data-source.js",
-            "import": "./dist/data-source.mjs"
-        },
-        "./entities": {
-            "types": "./dist/entities/index.d.ts",
-            "require": "./dist/entities/index.js",
-            "import": "./dist/entities/index.mjs"
-        },
-        "./seed/seeder": {
-            "types": "./dist/seed/seeder.d.ts",
-            "require": "./dist/seed/seeder.js",
-            "import": "./dist/seed/seeder.mjs"
-        },
-        "./seed/seeds": {
-            "types": "./dist/seed/seeds/index.d.ts",
-            "require": "./dist/seed/seeds/index.js",
-            "import": "./dist/seed/seeds/index.mjs"
-        }
+        "./config": "./src/config.ts",
+        "./data-source": "./src/data-source.ts",
+        "./entities": "./src/entities/index.ts",
+        "./seed/seeder": "./src/seed/seeder.ts",
+        "./seed/seeds": "./src/seed/seeds/index.ts"
     },
     "peerDependencies": {
         "@backend/config": "workspace:*",

@@ -5,7 +5,7 @@
     "author": "Peersyst",
     "private": true,
     "scripts": {
-        "start": "nest start --watch",
+        "start": "nest start --webpack --watch",
         "build": "nest build",
         "clean": "rimraf .turbo coverage dist node_modules",
         "test": "jest  --maxWorkers=30%",
@@ -74,6 +74,8 @@
         "ts-jest": "29.0.5",
         "ts-loader": "9.4.2",
         "ts-node": "10.9.2",
-        "typescript": "latest"
+        "typescript": "latest",
+        "webpack": "^5.95.0",
+        "webpack-node-externals": "^3.0.0"
     }
 }
