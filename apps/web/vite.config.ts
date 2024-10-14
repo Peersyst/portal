@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
                         [
                             "@babel/plugin-proposal-decorators",
                             {
-                                version: "2023-11",
+                                version: "legacy",
                             },
                         ],
                         "styled-components",

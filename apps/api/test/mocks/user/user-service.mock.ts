@@ -1,4 +1,4 @@
-import { UserType } from "@database/api/entities";
+import { UserType } from "@peersyst/auth-module";
 
 const UserMockEntity = {
     id: 1,

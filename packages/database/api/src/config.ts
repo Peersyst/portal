@@ -1,5 +1,7 @@
 import { DataSourceOptions } from "typeorm";
 import { buildConfig, ConfigValidators, validPort } from "@backend/config";
+import * as entities from "./entities";
+import * as migrations from "./migrations";
 
 export const apiDatabaseConfig: DataSourceOptions = buildConfig<DataSourceOptions>(
     {
@@ -22,8 +24,8 @@ export const apiDatabaseConfig: DataSourceOptions = buildConfig<DataSourceOption
         type: "postgres",
         synchronize: false,
         migrationsRun: true,
-        entities: [`${__dirname}/entities/*{.ts,.js}`],
-        migrations: [`${__dirname}/migrations/*{.ts,.js}`],
+        entities: Object.values(entities),
+        migrations: Object.values(migrations),
     },
     {
         port: validPort,

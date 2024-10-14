@@ -1,5 +1,5 @@
-import { PrivateAuthUserDtoI } from "@peersyst/auth-module";
-import { User, UserType } from "@database/api/entities";
+import { PrivateAuthUserDtoI, UserType } from "@peersyst/auth-module";
+import { User } from "@database/api/entities";
 
 export class UserDto implements PrivateAuthUserDtoI {
     id: number;
