@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Post, Request } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
-import { Authenticated } from "@peersyst/auth-module";
-import { UserType } from "@database/api/entities";
+import { Authenticated, UserType } from "@peersyst/auth-module";
 import { CreateUserRequest } from "./create-user.request";
 import { UserService } from "./user.service";
 import { UserDto } from "./user.dto";

@@ -4,10 +4,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateUserRequest } from "./create-user.request";
 import { UserDto } from "./user.dto";
-import { AuthUserServiceI } from "@peersyst/auth-module";
+import { AuthUserServiceI, UserType } from "@peersyst/auth-module";
 import { BusinessException } from "../common/exception/business.exception";
 import { ErrorCode } from "../common/exception/error-codes";
-import { User, UserType } from "@database/api/entities";
+import { User } from "@database/api/entities";
 
 @Injectable()
 export class UserService implements AuthUserServiceI {

@@ -1,8 +1,6 @@
 import { Entity, Column, Index, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { AuthUserI, UserType, ValidateEmailUserI } from "@peersyst/auth-module";
 
-export { UserType };
-
 @Entity("user")
 export class User implements AuthUserI, ValidateEmailUserI {
     @PrimaryGeneratedColumn()

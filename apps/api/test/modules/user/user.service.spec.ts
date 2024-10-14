@@ -1,9 +1,10 @@
 import { Test } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { User, UserType } from "@database/api/entities";
+import { User } from "@database/api/entities";
 import UserEntityMock from "../../mocks/user/user-entity.mock";
 import { UserService } from "../../../src/modules/user/user.service";
 import { ErrorCode } from "../../../src/modules/common/exception/error-codes";
+import { UserType } from "@peersyst/auth-module";
 
 describe("UserService", () => {
     let userService: UserService;
