@@ -25,9 +25,9 @@
         "check-types": {
             "dependsOn": ["transit"]
         },
-        "dist": {
-            "dependsOn": ["^dist"],
-            "cache": false
+        "bundle": {
+            "dependsOn": ["^bundle"],
+            "outputs": ["dist/**"]
         }
     }
 }

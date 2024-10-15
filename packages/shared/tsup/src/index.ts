@@ -2,7 +2,7 @@
 import { defineConfig as tsupDefineConfig, Options as TsupOptions } from "tsup";
 import { execSync } from "child_process";
 
-export type Options = Omit<TsupOptions, "onSuccess"> & {
+export type Options = Omit<TsupOptions, "onSuccess" | "splitting" | "bundle" | "clean"> & {
     onSuccess?: Exclude<TsupOptions["onSuccess"], string>;
 };
 
@@ -17,6 +17,7 @@ export function defineConfig({ dts = false, onSuccess, ...restOptions }: Options
         dts: false,
         splitting: false,
         bundle: false,
+        clean: true,
         async onSuccess() {
             if (dts) {
                 console.log("\x1b[34m%s\x1b[0m", "TSC", "Building declaration files...");

@@ -8,10 +8,15 @@
         "build": "tsup",
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
-        "check-types": "npx tsc --noEmit"
+        "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle"
     },
     "exports": {
         ".": "./src/index.ts"
+    },
+    "peerDependencies": {
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5"
     },
     "devDependencies": {
         "@shared/eslint": "workspace:*",

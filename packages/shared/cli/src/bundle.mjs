@@ -1,9 +1,15 @@
-const fs = require("fs");
-const path = require("path");
+/* eslint-disable no-console */
+import fs from "node:fs";
+import path from "node:path";
+import { execSync } from "node:child_process";
 
 // Read package.json
 const packageJsonPath = path.join(process.cwd(), "package.json");
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+
+console.log(`📦 Bundling package: ${packageJson.name}`);
+
+execSync("pnpm build", { stdio: "inherit" });
 
 // Check if exports field exists
 if (packageJson.exports) {
@@ -26,7 +32,7 @@ if (packageJson.exports) {
 
     // Write the updated package.json back to file
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-    console.log("package.json updated successfully.");
+    console.log(`✅ Bundled package ${packageJson.name}`);
 } else {
-    console.log("No exports field found in package.json.");
+    console.log(`❌ Could not bundle ${packageJson.name}. No exports field found in package.json.`);
 }

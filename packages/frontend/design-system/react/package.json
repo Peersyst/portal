@@ -10,9 +10,9 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
+        "bundle": "genesys bundle",
         "generate:icons": "node scripts/icon-generator.js src/assets/icons/ src/components/icons/",
-        "generate:images": "node scripts/images-generator.js src/assets/images/",
-        "dist": "pnpm run build && node ../../../../scripts/prebuild-exports.cjs"
+        "generate:images": "node scripts/images-generator.js src/assets/images/"
     },
     "exports": {
         ".": "./src/core/index.ts",

@@ -9,7 +9,7 @@
         "clean": "rimraf .turbo dist node_modules",
         "lint": "eslint .",
         "check-types": "npx tsc --noEmit",
-        "dist": "pnpm run build && node ../../../../scripts/prebuild-exports.cjs"
+        "bundle": "genesys bundle"
     },
     "exports": {
         "./palette": "./src/palette/index.ts",

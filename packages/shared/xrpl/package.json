@@ -30,7 +30,9 @@
         "@shared/tsconfig": "workspace:*",
         "@shared/tsup": "workspace:*",
         "@swisstype/essential": "^0.1.1",
+        "@types/jest": "^29.5.12",
         "@types/node": "latest",
+        "jest": "^29.7.0",
         "typescript": "latest",
         "xrpl": "3.0.0"
     }
