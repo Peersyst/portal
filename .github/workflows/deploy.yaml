@@ -2,11 +2,11 @@ name: deploy
 
 # Only trigger, when the build workflow succeeded
 on:
-    workflow_call:
-        inputs:
-            environment:
-                required: true
-                type: string
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 permissions:
     # Needed to configure aws credentials step
@@ -14,98 +14,98 @@ permissions:
     contents: read
 
 jobs:
-    initial:
-        name: 🎬 Initial
-        runs-on: ubuntu-latest
-        timeout-minutes: 1
-        outputs:
-            ENV: ${{ steps.env-vars.outputs.ENV }}
-            NOW: ${{ steps.env-vars.outputs.NOW }}
-            TAG: ${{ steps.env-vars.outputs.TAG }}
+  initial:
+    name: 🎬 Initial
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      ENV: ${{ steps.env-vars.outputs.ENV }}
+      NOW: ${{ steps.env-vars.outputs.NOW }}
+      TAG: ${{ steps.env-vars.outputs.TAG }}
 
-        steps:
-            # Define global vars that will be used through the pipeline
-            - name: Defining global vars
-              shell: bash
-              id: env-vars
-              run: |
-                  echo "ENV=${{ inputs.environment }}" >> $GITHUB_OUTPUT
-                  echo "NOW=$(TZ=':Europe/Madrid' date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
-                  echo "TAG=${GITHUB_SHA:0:8}" >> $GITHUB_OUTPUT
+    steps:
+      # Define global vars that will be used through the pipeline
+      - name: Defining global vars
+        shell: bash
+        id: env-vars
+        run: |
+          echo "ENV=${{ inputs.environment }}" >> $GITHUB_OUTPUT
+          echo "NOW=$(TZ=':Europe/Madrid' date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
+          echo "TAG=${GITHUB_SHA:0:8}" >> $GITHUB_OUTPUT
 
-            # Send initial Slack deployment message
-            - name: 📬 Initial Slack deployment message
-              shell: bash
-              env:
-                  ENV: ${{ steps.env-vars.outputs.ENV }}
-                  NOW: ${{ steps.env-vars.outputs.NOW }}
-                  TAG: ${{ steps.env-vars.outputs.TAG }}
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-              run: |
-                  echo "Send initial Slack message"
-                  curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🎬 Starting *PORTAL* deployment in env ${ENV} - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+      # Send initial Slack deployment message
+      - name: 📬 Initial Slack deployment message
+        shell: bash
+        env:
+          ENV: ${{ steps.env-vars.outputs.ENV }}
+          NOW: ${{ steps.env-vars.outputs.NOW }}
+          TAG: ${{ steps.env-vars.outputs.TAG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send initial Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🎬 Starting *PORTAL* deployment in env ${ENV} - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
 
-    deploy:
-        name: Deploy
-        runs-on: ubuntu-latest
-        timeout-minutes: 10
-        needs: [initial]
-        steps:
-            # Checkout repository under $GITHUB_WORKSPACE path
-            - name: Repository checkout
-              uses: actions/checkout@v4
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [initial]
+    steps:
+      # Checkout repository under $GITHUB_WORKSPACE path
+      - name: Repository checkout
+        uses: actions/checkout@v4
 
-            # Assume gitHubdeploymentsRole AWS role
-            - name: Configure aws credentials
-              uses: aws-actions/configure-aws-credentials@v4
-              with:
-                  role-to-assume: arn:aws:iam::291847425310:role/gitHubDeploymentsRole
-                  role-session-name: deploymentsRole
-                  role-duration-seconds: 900
-                  aws-region: us-east-1
+      # Assume gitHubdeploymentsRole AWS role
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::291847425310:role/gitHubDeploymentsRole
+          role-session-name: deploymentsRole
+          role-duration-seconds: 900
+          aws-region: us-east-1
 
-            # Kubectl and Helm install
-            - name: Kubectl and Helm install
-              shell: bash
-              env:
-                  KUBECONFIG: ${{ secrets.KUBECONFIG }}
-                  KUBE_VERSION: v1.31.0
-                  HELM_VERSION: v3.12.2
-              run: |
-                  curl -Ls https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
-                  curl -Ls https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz -o helm-linux-amd64.tar.gz && tar -xzf helm-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm
-                  echo ${KUBECONFIG} | base64 --decode > kubeconfig.yaml
-                  chmod 600 kubeconfig.yaml
-                  echo ${GITHUB_WORKSPACE}
-                  echo "KUBECONFIG=${GITHUB_WORKSPACE}/kubeconfig.yaml" >> $GITHUB_ENV
+      # Kubectl and Helm install
+      - name: Kubectl and Helm install
+        shell: bash
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          KUBE_VERSION: v1.31.0
+          HELM_VERSION: v3.12.2
+        run: |
+          curl -Ls https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o kubectl && chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
+          curl -Ls https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz -o helm-linux-amd64.tar.gz && tar -xzf helm-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm
+          echo ${KUBECONFIG} | base64 --decode > kubeconfig.yaml
+          chmod 600 kubeconfig.yaml
+          echo ${GITHUB_WORKSPACE}
+          echo "KUBECONFIG=${GITHUB_WORKSPACE}/kubeconfig.yaml" >> $GITHUB_ENV
 
-            # Helm deployment
-            - name: Helm deployment
-              working-directory: ./deploy
-              shell: bash
-              env:
-                  ENV: ${{ needs.initial.outputs.ENV }}
-                  NOW: ${{ needs.initial.outputs.NOW }}
-                  TAG: ${{ needs.initial.outputs.TAG }}
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-                  KUBECONFIG: ${{ env.KUBECONFIG }}
-              run: |
-                  envsubst < Chart.yaml > Chart-${ENV}.yaml
-                  mv Chart-${ENV}.yaml Chart.yaml
-                  kubectl config use-context peersyst-${ENV}
-                  helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${ENV}.yaml --set-string timestamp=${NOW} --set-string tagWeb=${ENV}-${TAG} --debug
+      # Helm deployment
+      - name: Helm deployment
+        working-directory: ./deploy
+        shell: bash
+        env:
+          ENV: ${{ needs.initial.outputs.ENV }}
+          NOW: ${{ needs.initial.outputs.NOW }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          KUBECONFIG: ${{ env.KUBECONFIG }}
+        run: |
+          envsubst < Chart.yaml > Chart-${ENV}.yaml
+          mv Chart-${ENV}.yaml Chart.yaml
+          kubectl config use-context peersyst-${ENV}
+          helm -n portal upgrade portal-web ./ --install --atomic --wait --timeout 301s --values values/values-${ENV}.yaml --set-string timestamp=${NOW} --set-string tagWeb=${ENV}-${TAG} --debug
 
-            # Send Slack message if any previous step has failed in this job
-            - name: 📬 Failure job notification
-              if: ${{ failure() }}
-              shell: sh
-              env:
-                  NOW: ${{ needs.initial.outputs.NOW }}
-                  TAG: ${{ needs.initial.outputs.TAG }}
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-              run: |
-                  echo "Send error Slack message"
-                  curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"❌ *PORTAL* ${GITHUB_JOB} job *FAILED*. Check pipeline logs <https://github.com/Peersyst/portal/actions/runs/${GITHUB_RUN_ID}|here> - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+      # Send Slack message if any previous step has failed in this job
+      - name: 📬 Failure job notification
+        if: ${{ failure() }}
+        shell: sh
+        env:
+          NOW: ${{ needs.initial.outputs.NOW }}
+          TAG: ${{ needs.initial.outputs.TAG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send error Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"❌ *PORTAL* ${GITHUB_JOB} job *FAILED*. Check pipeline logs <https://github.com/Peersyst/portal/actions/runs/${GITHUB_RUN_ID}|here> - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
 
     final:
         name: 🏁 Final
@@ -116,13 +116,13 @@ jobs:
             always() &&
             !contains(join(needs.*.result, ','), 'failure')
 
-        steps:
-            # Send final Slack deployment message
-            - name: 📬 Final Slack deployment message
-              shell: bash
-              env:
-                  TAG: ${{ needs.initial.outputs.TAG }}
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-              run: |
-                  echo "Send final Slack message"
-                  curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🏁 *PORTAL* deployment *SUCCESSFULLY* - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
+    steps:
+      # Send final Slack deployment message
+      - name: 📬 Final Slack deployment message
+        shell: bash
+        env:
+          TAG: ${{ needs.initial.outputs.TAG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Send final Slack message"
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🏁 *PORTAL* deployment *SUCCESSFULLY* - Commit: <https://github.com/Peersyst/portal/commit/${TAG}|${TAG}> by ${GITHUB_ACTOR}\"}" ${SLACK_WEBHOOK_URL}
