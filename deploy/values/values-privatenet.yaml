@@ -1,0 +1,26 @@
+ingress:
+    name: portal-web
+    namespace: portal
+    certificate: arn:aws:acm:us-east-1:291847425310:certificate/e36b0b42-0d63-43da-aee9-bf58c451be7d
+service:
+    name: portal-web
+    namespace: portal
+    port: 80
+    targetPort: 80
+deployment:
+    name: portal-web
+    namespace: portal
+    replicas: 2
+    port: 80
+    readinessProbe:
+        path: /status
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 2
+    memoryRequest: 512Mi
+    cpuRequest: 500m
+    memoryLimit: 1024Mi
+    cpuLimit: 1000m
+    env:
+        environment: privatenet

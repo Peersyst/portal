@@ -1,70 +1,106 @@
 name: build-web
 
 on:
-  workflow_call:
-    inputs:
-      push:
-        required: true
-        type: boolean
-      target:
-        required: true
-        type: string
+    workflow_call:
+        inputs:
+            push:
+                required: true
+                type: boolean
+            target:
+                required: true
+                type: string
+            environment:
+                required: true
+                type: string
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    environment: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment: ['staging']
-      fail-fast: false
-    timeout-minutes: 30
-    steps:
-      # Checkout repository under $GITHUB_WORKSPACE path
-      - name: Repository checkout
-        uses: actions/checkout@v4
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        steps:
+            # Checkout repository under $GITHUB_WORKSPACE path
+            - name: Repository checkout
+              uses: actions/checkout@v4
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+            - name: Set up QEMU
+              uses: docker/setup-qemu-action@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
 
-      - uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ github.job }}-${{ runner.os }}-buildx-web
-          restore-keys: |
-            ${{ github.job }}-${{ runner.os }}-buildx-web
+            - uses: actions/cache@v4
+              with:
+                  path: /tmp/.buildx-cache
+                  key: ${{ github.head_ref || github.ref_name }}-buildx-web-${{ github.sha }}
+                  restore-keys: |
+                      ${{ github.head_ref || github.ref_name }}-buildx-web-
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PUSH_TOKEN }}
+            - name: Login to DockerHub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PUSH_TOKEN }}
 
-      # Configure tag name
-      - name: Sets env vars
-        run: |
-          echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web:${{ matrix.environment }}-${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+            # Configure tag name
+            - name: Sets env vars
+              run: |
+                  echo "DOCKER_IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web" >> $GITHUB_ENV
+                  echo "DOCKER_IMAGE_NAME_TAG=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-web:${{ inputs.environment }}-${GITHUB_SHA:0:8}" >> $GITHUB_ENV
 
-      # Build docker image
-      - name: Build docker image
-        uses: docker/build-push-action@v4
-        with:
-            file: docker/web.Dockerfile
-            target: ${{ inputs.target }}
-            push: ${{ inputs.push }}
-            tags: ${{ env.DOCKER_IMAGE_NAME }}
-            cache-from: type=local,src=/tmp/.buildx-cache
-            cache-to: type=local,dest=/tmp/.buildx-cache-new
-            build-args: |
-              BASE_IMAGE=${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}-base:${{ github.sha }}
-              APP_CONFIG_PROFILE_IDENTIFIER=${{ vars.WEB_APP_CONFIG_PROFILE_IDENTIFIER }}
-              APP_CONFIG_ENVIRONMENT_IDENTIFIER=${{ vars.WEB_APP_CONFIG_ENVIRONMENT_IDENTIFIER }}
-      - name: Move cache
-        if: always()
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+            # Build docker image
+            - name: Build docker image
+              uses: docker/build-push-action@v5
+              with:
+                  file: docker/web.Dockerfile
+                  target: ${{ inputs.target }}
+                  push: ${{ inputs.push }}
+                  tags: ${{ env.DOCKER_IMAGE_NAME_TAG }}
+                  cache-from: type=local,src=/tmp/.buildx-cache
+                  cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+                  build-args: |
+                      APP_CONFIG_PROFILE_IDENTIFIER=${{ vars.WEB_APP_CONFIG_PROFILE_IDENTIFIER }}
+                      APP_CONFIG_ENVIRONMENT_IDENTIFIER=${{ vars.WEB_APP_CONFIG_ENVIRONMENT_IDENTIFIER }}
+
+            - name: Move cache
+              if: always()
+              run: |
+                  rm -rf /tmp/.buildx-cache
+                  mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+            - name: Delete previous branch cache
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  REPO: Peersyst/portal
+              shell: bash
+              run: |
+                  echo "Listing cache keys"
+                  gh cache list --repo ${REPO}
+                  echo "Setting branch key"
+                  BRANCH_KEY=${{ github.head_ref || github.ref_name }}-buildx-web
+                  echo "Checking if cache key exist in that branch"
+                  if [[ $(gh cache list --repo ${REPO} | grep ${BRANCH_KEY} | awk '{print $2}') ]]; then
+                    echo "Saving that cache key"
+                    GH_KEY=$(gh cache list --repo ${REPO} | grep ${BRANCH_KEY} | awk '{print $2}')
+                  else
+                    echo "First commit in branch. Not saving cache key"
+                  fi
+                  echo "Echoing that cache key"
+                  echo ${GH_KEY}
+                  if [ -z $GH_KEY ]; then
+                    echo "There does not exist first cache. Not removing it."
+                  else
+                    echo "Cache key ${GH_KEY} detected."
+                    echo "Deleting previous key..."
+                    gh cache delete --repo ${REPO} ${GH_KEY}
+                  fi
+                  echo "Echoing all remaining keys"
+                  gh cache list --repo ${REPO}
+
+            - name: Purge orphan cache
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              uses: MyAlbum/purge-cache@v2
+              with:
+                  max-age: 2592000 # 30 days since last use
+                  #debug: true
