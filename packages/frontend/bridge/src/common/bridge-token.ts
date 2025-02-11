@@ -42,6 +42,7 @@ export class BridgeToken extends Token {
             name: chainToken.name,
             image: this.image,
             address: chainToken.address,
+            isNative: this.isNative,
         });
     }
 }

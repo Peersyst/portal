@@ -77,8 +77,11 @@ export class EthersSigner<Provider extends IEthersSignerProvider = IEthersSigner
             destinationChain.id,
             destinationAddress,
             sendingAmount,
-            "0x",
-            ethers.BigNumber.from("0"),
+            "0x00",
+            ethers.utils.parseEther("1"),
+            {
+                value: ethers.utils.parseEther("1"),
+            },
         );
 
         return this.transactionParser.parseTransactionResponse(contractTx);

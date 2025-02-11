@@ -158,7 +158,7 @@ export class XrplProvider implements IXrplProvider {
      * @inheritdoc
      */
     async getTokenBalance(address: string, token: Token): Promise<string> {
-        if (token.isNative()) return this.getNativeBalance(address);
+        if (token.isNative) return this.getNativeBalance(address);
         else return this.getIOUBalance(address, token.address!, token.symbol);
     }
 

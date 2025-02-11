@@ -70,10 +70,11 @@ export function decimalToInt(decimalToConvert: BigNumber.Value, fractionLength: 
         throw new Error(`decimalToInt: failed sanity check - value '${decimal}' has too many decimal points.`);
     }
 
-    const fraction = components[1] || "0";
+    const integer = components[0];
+    let fraction = components[1] || "0";
     if (fraction.length > fractionLength) {
-        throw new Error(`decimalToInt: value '${decimal}' has too many decimal places.`);
+        fraction = fraction.slice(0, fractionLength);
     }
 
-    return new BigNumber(decimal).shiftedBy(fractionLength).toString(BASE_TEN);
+    return new BigNumber(`${integer}.${fraction}`).shiftedBy(fractionLength).toString(BASE_TEN);
 }

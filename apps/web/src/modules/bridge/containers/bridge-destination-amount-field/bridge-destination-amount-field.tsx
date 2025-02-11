@@ -1,10 +1,12 @@
+import { useBridgeChainsState, useBridgeTokenState } from "@frontend/bridge/ui/state";
 import { BridgeDestinationAmountFieldProps } from "./bridge-destination-amount-field.types";
 import { AmountField } from "@frontend/design-system-react/amount-field";
 import { Typography } from "@frontend/design-system-react/typography";
 
 export function BridgeDestinationAmountField({ disabled = false, ...rest }: BridgeDestinationAmountFieldProps): JSX.Element {
-    // TODO: Define
-    const destinationToken = undefined as any;
+    const bridgeToken = useBridgeTokenState();
+    const bridgeChains = useBridgeChainsState();
+    const destinationToken = bridgeChains?.destinationChain ? bridgeToken?.toChainToken(bridgeChains.destinationChain.id) : undefined;
 
     return (
         <AmountField

@@ -2,7 +2,6 @@ import { Outlet, RouteObject } from "react-router-dom";
 import HomePage from "../pages/home-page/home-page";
 import { HomeRoutes } from "./home-router.types";
 import { useBridgeRoutes } from "../../bridge/bridge.router";
-import { useActivityRoutes } from "../../activity/router/activity-router";
 import { lazy } from "react";
 
 const BridgePage = lazy(() => import("../../bridge/page/bridge-page"));
@@ -13,7 +12,8 @@ const BridgePage = lazy(() => import("../../bridge/page/bridge-page"));
  */
 export const useHomeRoutes = (): RouteObject[] => {
     const bridgeRoutes = useBridgeRoutes();
-    const activityRoutes = useActivityRoutes();
+    // TODO: Add activity routes
+    // const activityRoutes = useActivityRoutes();
 
     return [
         {
@@ -29,7 +29,7 @@ export const useHomeRoutes = (): RouteObject[] => {
                     element: <BridgePage />,
                 },
                 ...bridgeRoutes,
-                ...activityRoutes,
+                // ...activityRoutes,
             ],
         },
     ];

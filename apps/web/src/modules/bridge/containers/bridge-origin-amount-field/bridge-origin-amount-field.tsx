@@ -8,7 +8,7 @@ import { Row } from "@frontend/design-system-react/row";
 import { useGetSourceWalletBalance } from "@frontend/bridge/ui/queries";
 import { BridgeOriginTokenSelector } from "../bridge-origin-token-selector/bridge-origin-token-selector";
 import { Loader } from "@frontend/design-system-react/loader";
-import { useBridgeTokenState } from "@frontend/bridge/ui/state";
+import { useBridgeChainsState, useBridgeTokenState } from "@frontend/bridge/ui/state";
 
 export function BridgeOriginAmountField({
     style,
@@ -21,6 +21,8 @@ export function BridgeOriginAmountField({
 }: BridgeOriginAmountFieldProps): JSX.Element {
     const [value, setValue] = useControlled(defaultValue, valueProp, onChangeProp);
     const bridgeToken = useBridgeTokenState();
+    const bridgeChains = useBridgeChainsState();
+    const originToken = bridgeChains?.originChain ? bridgeToken?.toChainToken(bridgeChains.originChain.id) : undefined;
     const { data: originWalletBalance } = useGetSourceWalletBalance(BridgeSource.ORIGIN);
     const loadingOriginWalletBalance = bridgeToken ? originWalletBalance === undefined : false;
 
@@ -35,7 +37,7 @@ export function BridgeOriginAmountField({
                     validators={{ gt: 0 }}
                     error={loadingOriginWalletBalance} // Disables form while loading balance. Error is not shown since it is also being disabled.
                     suffix={loadingOriginWalletBalance ? <Loader /> : <BridgeOriginTokenSelector />}
-                    maxDecimals={originWalletBalance?.decimals}
+                    maxDecimals={originToken?.decimals}
                     {...rest}
                 />
             </Col>

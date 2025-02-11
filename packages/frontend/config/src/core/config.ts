@@ -41,14 +41,14 @@ export const config: CoreConfig = {
         x: "https://twitter.com/Peersyst",
         featureRequest: "mailto:info@peersyst.com?subject=[XRPL EVM Feature Request]",
     },
-    featuredChains: ["xrpl-evm-sidechain"],
+    featuredChains: ["xrpl-evm-devnet"],
     axelar: {
         url: "https://devnet-amplifier.axelarscan.io", //"https://axelarscan.io"
         apiUrl: "https://devnet-amplifier.api.axelarscan.io/api", //"https://api.axelarscan.io/api",
         gmpUrl: "https://devnet-amplifier.api.axelarscan.io/gmp", //"https://api.axelarscan.io/gmp",
-        interchainTokenServiceContract: "0x144c3d7A5f5198EF3B46A8258b35E903cf197A66",
+        interchainTokenServiceContract: "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3",
         chainIds: {
-            xrpl: true,
+            "xrpl-dev": true,
             // ethereum: true,
             // binance: true,
             // polygon: true,
@@ -56,14 +56,14 @@ export const config: CoreConfig = {
             // optimism: true,
             // fantom: true,
             // "core-ethereum": true,
-            "xrpl-evm-sidechain": true,
+            "xrpl-evm-devnet": true,
             // "avalanche-fuji": true,
             // "solana-devnet": true,
             // "starknet-devnet": true,
             // "core-optimism": true,
         },
         additionalChainData: {
-            xrpl: {
+            "xrpl-dev": {
                 image: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/cc4278ab-39f5-4a67-9042-5e6cebdef549.png",
                 endpoints: {
                     ws: ["wss://s.devnet.rippletest.net:51233"],
@@ -72,10 +72,10 @@ export const config: CoreConfig = {
                 chain_name: "xrpl",
                 short_name: "XRPL",
                 name: "XRPL",
-                chain_type: "xrp",
+                chain_type: "xrpl",
                 color: "#111112",
                 native_token: {
-                    name: "XRP",
+                    name: "Ripple",
                     symbol: "XRP",
                     decimals: 6,
                 },
@@ -90,9 +90,9 @@ export const config: CoreConfig = {
                 },
                 no_inflation: false,
                 no_tvl: false,
-                interchain_token_service_gateway: "rP9iHnCmJcVPtzCwYJjU1fryC2pEcVqDHv",
+                interchain_token_service_gateway: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
             },
-            "xrpl-evm-sidechain": {
+            "xrpl-evm-devnet": {
                 image: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/76dcd079-8a70-41d4-ad72-53098813e2e9.png",
                 chain_id: 1440002,
                 chain_name: "xrpl-evm-devnet",
@@ -101,12 +101,12 @@ export const config: CoreConfig = {
                 chain_type: "evm",
                 color: "#111112",
                 native_token: {
-                    name: "XRP",
+                    name: "Ripple",
                     symbol: "XRP",
                     decimals: 18,
                 },
                 endpoints: {
-                    rpc: ["https://rpc-evm-sidechain.xrpl.org"],
+                    rpc: ["https://rpc.devnet.xrplevm.org"],
                 },
                 explorer: {
                     name: "XRPL EVM Explorer",
@@ -119,7 +119,7 @@ export const config: CoreConfig = {
                 },
                 no_inflation: false,
                 no_tvl: false,
-                interchain_token_service_contract: "0x43F2ccD4E27099b5F580895b44eAcC866e5F7Bb1",
+                interchain_token_service_contract: "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3",
             },
         },
         extraChains: [],
@@ -152,59 +152,59 @@ export const config: CoreConfig = {
             // },
             // },
             {
-                id: "0xc2bb311dd03a93be4b74d3b4ab8612241c4dd1fd0232467c54a03b064f8583b6",
+                id: "0xbfb47d376947093b7858c1c59a4154dd291d5b2251cb56a6f7159a070f0bd518",
                 symbol: "XRP",
-                name: "XRP",
+                name: "Ripple",
                 decimals: 6,
                 image: "https://peersyst-public-production.s3.eu-west-1.amazonaws.com/cbee4de2-1152-4555-9eb8-ad4023ac35bc.png",
                 coingecko_id: "",
                 addresses: [],
-                native_chain: "xrpl",
+                native_chain: "xrpl-dev",
                 chains: {
-                    xrpl: {
+                    "xrpl-dev": {
                         tokenAddress: undefined,
                         symbol: "XRP",
-                        name: "XRP",
+                        name: "Ripple",
                         tokenManager: undefined,
                         tokenManagerType: undefined,
                         decimals: 6,
                     },
-                    "xrpl-evm-sidechain": {
+                    "xrpl-evm-devnet": {
                         tokenAddress: "0xD4949664cD82660AaE99bEdc034a0deA8A0bd517",
                         symbol: "XRP",
-                        name: "XRP",
+                        name: "Ripple",
                         tokenManager: undefined,
                         tokenManagerType: undefined,
                         decimals: 18,
                     },
                 },
             },
-            {
-                id: "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23",
-                symbol: "PDK",
-                name: "PIDK",
-                decimals: 6,
-                image: "https://play-lh.googleusercontent.com/u_C8ucNEn2hOewCC1iRFwNVJ_pmLb7yOqlnGFnARFoLugdcY4O85o2SsObZVm-oTTs0R",
-                coingecko_id: "",
-                addresses: [],
-                native_chain: "avalanche-fuji",
-                chains: {
-                    "avalanche-fuji": {
-                        tokenAddress: "0x7906c5cEce267c00c2d33F1c69f86CAB4C9E3061",
-                        symbol: "PDK",
-                        name: "PIDK",
-                        tokenManager: "",
-                        tokenManagerType: "",
-                    },
-                    "xrpl-evm-sidechain": {
-                        tokenAddress: "0x20937978F265DC0C947AA8e136472CFA994FE1eD",
-                        symbol: "PDK",
-                        name: "PIDK",
-                        tokenManager: "",
-                        tokenManagerType: "",
-                    },
-                },
-            },
+            // {
+            //     id: "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23",
+            //     symbol: "PDK",
+            //     name: "PIDK",
+            //     decimals: 6,
+            //     image: "https://play-lh.googleusercontent.com/u_C8ucNEn2hOewCC1iRFwNVJ_pmLb7yOqlnGFnARFoLugdcY4O85o2SsObZVm-oTTs0R",
+            //     coingecko_id: "",
+            //     addresses: [],
+            //     native_chain: "avalanche-fuji",
+            //     chains: {
+            //         "avalanche-fuji": {
+            //             tokenAddress: "0x7906c5cEce267c00c2d33F1c69f86CAB4C9E3061",
+            //             symbol: "PDK",
+            //             name: "PIDK",
+            //             tokenManager: "",
+            //             tokenManagerType: "",
+            //         },
+            //         "xrpl-evm-sidechain": {
+            //             tokenAddress: "0x20937978F265DC0C947AA8e136472CFA994FE1eD",
+            //             symbol: "PDK",
+            //             name: "PIDK",
+            //             tokenManager: "",
+            //             tokenManagerType: "",
+            //         },
+            //     },
+            // },
         ],
     },
     bridgeExplorer: {

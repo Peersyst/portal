@@ -67,7 +67,7 @@ export class EthersProvider implements IEthersProvider {
      * @inheritdoc
      */
     async getTokenBalance(address: string, token: Token): Promise<string> {
-        if (token.isNative()) return this.getNativeBalance(address);
+        if (token.isNative) return this.getNativeBalance(address);
         else return this.getERC20Balance(address, token.address!);
     }
 

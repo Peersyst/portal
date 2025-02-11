@@ -7,7 +7,7 @@ export function AmountDisplay({ amount, hideCurrency = false, className, ...rest
     const formatAmount = useFormatAmount();
     const { spacing } = useTheme();
 
-    const formattedAmount = formatAmount(amount, { toParts: true });
+    const formattedAmount = formatAmount(amount, { toParts: true, maxDecimals: amount.decimals });
 
     return (
         <Row gap={spacing[2]} className={clsx("AmountDisplay", className)} {...rest}>

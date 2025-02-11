@@ -53,7 +53,7 @@ export class AxelarChain {
      * @returns The chain type.
      */
     private getChainType(): ChainType {
-        if (this.id === "xrpl") {
+        if (this.chain_type === "xrpl") {
             return ChainType.XRP;
         } else if (this.chain_type === "evm" || this.chain_type === "vm") {
             return ChainType.EVM;

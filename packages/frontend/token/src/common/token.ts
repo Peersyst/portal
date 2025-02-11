@@ -5,6 +5,7 @@ export type TokenObject = {
     name: string;
     image?: string;
     address?: string;
+    isNative: boolean;
 };
 
 export class Token {
@@ -14,6 +15,7 @@ export class Token {
     name: string;
     image?: string;
     address?: string;
+    isNative: boolean;
 
     constructor(token: TokenObject) {
         this.id = token.id;
@@ -22,13 +24,6 @@ export class Token {
         this.name = token.name;
         this.image = token.image;
         this.address = token.address;
-    }
-
-    /**
-     * Checks if the token is a native token.
-     * @returns True if the token is a native token, false otherwise.
-     */
-    isNative(): boolean {
-        return this.address === undefined;
+        this.isNative = token.isNative;
     }
 }

@@ -100,7 +100,7 @@ export class XrplSigner<Provider extends IXrplSignerProvider = IXrplSignerProvid
                 TransactionType: "Payment",
                 Account: this.wallet.address,
                 // TODO: Handle IOU decimal values
-                Amount: token.isNative()
+                Amount: token.isNative
                     ? xrpToDrops(amount)
                     : {
                           currency: convertCurrencyCode(token.symbol),
@@ -120,12 +120,6 @@ export class XrplSigner<Provider extends IXrplSignerProvider = IXrplSignerProvid
                         Memo: {
                             MemoType: "64657374696E6174696F6E5F636861696E", // hex(destination_chain)
                             MemoData: convertStringToHex(destinationChain.id),
-                        },
-                    },
-                    {
-                        Memo: {
-                            MemoType: "7061796C6F61645F68617368", // hex(payload_hash)
-                            MemoData: "0000000000000000000000000000000000000000000000000000000000000000",
                         },
                     },
                 ],

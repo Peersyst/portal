@@ -208,11 +208,11 @@ export class BridgeTransferController implements IBridgeTransferController {
             this.eventEmitter.emit("awaitReceiptStarted");
             this.eventEmitter.emit("status", BridgeTransferStatus.SENT);
 
-            await new Promise((resolve) => setTimeout(resolve, 50000));
+            await new Promise((resolve) => setTimeout(resolve, 10000));
 
             this.eventEmitter.emit("status", BridgeTransferStatus.CONFIRMED);
 
-            await new Promise((resolve) => setTimeout(resolve, 50000));
+            await new Promise((resolve) => setTimeout(resolve, 10000));
 
             this.eventEmitter.emit("status", BridgeTransferStatus.RECEIVED);
             this.eventEmitter.emit("awaitReceiptCompleted");

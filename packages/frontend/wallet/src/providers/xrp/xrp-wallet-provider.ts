@@ -21,14 +21,14 @@ export abstract class XrpWalletProvider<
      * @inheritdoc
      */
     isTrustReceiptRequired(token: Token): boolean {
-        return !token.isNative();
+        return !token.isNative;
     }
 
     /**
      * @inheritdoc
      */
     trustReceipt(token: Token): Promise<Unconfirmed<Transaction>> {
-        if (token.isNative()) throw new WalletProviderError(XrpWalletProviderErrors.CANNOT_TRUST_RECEIPT_WITH_NATIVE_CURRENCY);
+        if (token.isNative) throw new WalletProviderError(XrpWalletProviderErrors.CANNOT_TRUST_RECEIPT_WITH_NATIVE_CURRENCY);
 
         return this.signer.setTrustLine(token.address!, token.symbol);
     }
@@ -37,7 +37,7 @@ export abstract class XrpWalletProvider<
      * @inheritdoc
      */
     async isReceiptTrusted(token: Token): Promise<boolean> {
-        if (token.isNative()) throw new WalletProviderError(XrpWalletProviderErrors.CANNOT_CHECK_RECEIPT_TRUST_WITH_NATIVE_CURRENCY);
+        if (token.isNative) throw new WalletProviderError(XrpWalletProviderErrors.CANNOT_CHECK_RECEIPT_TRUST_WITH_NATIVE_CURRENCY);
 
         return this.provider.accountHasTrustLine(this.address, token.address!, token.symbol);
     }

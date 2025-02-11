@@ -11,8 +11,9 @@ export interface IInterchainTokenService {
         destinationChain: string,
         destinationAddress: string,
         amount: ethers.BigNumberish,
-        metadata?: string,
-        gasValue?: ethers.BigNumberish,
+        metadata: string,
+        gasValue: ethers.BigNumberish,
+        options?: Record<string, any>,
     ): Promise<ethers.ContractTransaction>;
 }
 

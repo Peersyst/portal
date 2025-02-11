@@ -33,9 +33,10 @@ export class AxelarInterchainToken {
      * @returns The BridgeToken.
      */
     toBridgeToken(chain: Chain): BridgeToken {
+        const address = this.chains[chain.id].tokenAddress;
         return new BridgeToken({
             id: this.id,
-            address: this.chains[chain.id].tokenAddress,
+            address: address,
             symbol: this.symbol,
             name: this.name,
             decimals: this.decimals,
@@ -48,6 +49,7 @@ export class AxelarInterchainToken {
                 {} as Record<string, Pick<TokenObject, "symbol" | "name" | "address" | "decimals">>,
             ),
             nativeChain: chain,
+            isNative: (chain.nativeToken.name === this.name && chain.nativeToken.symbol === this.symbol) || !address,
         });
     }
 }
