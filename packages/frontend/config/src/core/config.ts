@@ -70,8 +70,8 @@ export const config: CoreConfig = {
                     faucet: ["https://faucet.devnet.rippletest.net/accounts"],
                 },
                 chain_name: "xrpl",
-                short_name: "XRPL",
-                name: "XRPL",
+                short_name: "XRPL Devnet",
+                name: "XRPL Devnet",
                 chain_type: "xrpl",
                 color: "#111112",
                 native_token: {
