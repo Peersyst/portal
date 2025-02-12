@@ -211,7 +211,7 @@ export const config: CoreConfig = {
         name: "Axelarscan Devnet Amplifier",
         url: "https://devnet-amplifier.axelarscan.io",
         icon: "https://devnet-amplifier.axelarscan.io/logos/assets/axl.svg",
-        transferPath: "/transfer/{hash}",
+        transferPath: "/gmp/{hash}",
     },
 
     xumm: {
