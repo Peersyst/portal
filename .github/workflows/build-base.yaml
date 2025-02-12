@@ -39,7 +39,8 @@ jobs:
             # Configure tag name
             -   name: Sets env vars
                 run: |
-                    echo "DOCKER_IMAGE_NAME=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}" >> $GITHUB_ENV
+                    DOCKER_IMAGE_NAME_TMP=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}
+                    echo "DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME_TMP,,}" >> $GITHUB_ENV
 
             # Build docker image
             -   name: Build docker image
