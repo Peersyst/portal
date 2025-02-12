@@ -5,33 +5,23 @@ on:
         branches:
             - main
 
-    #workflow_dispatch:
-    #  inputs:
-    #    environment:
-    #      type: choice
-    #      description: Environment where to deploy
-    #      options:
-    #      - privatenet
-
 concurrency:
     # Cancel old runs if there is a new commit in the same branch
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
 
 jobs:
+    build-base:
+        uses: ./.github/workflows/build-base.yaml
+        secrets: inherit
     build-web:
+        needs: [build-base]
         uses: ./.github/workflows/build-web.yaml
         secrets: inherit
         with:
             push: true
             target: release
-            #environment: ${{ github.event.inputs.environment }}
-            environment: privatenet
-
     deploy:
-        needs: build-web
+        needs: [build-web]
         uses: ./.github/workflows/deploy.yaml
         secrets: inherit
-        with:
-            #environment: ${{ github.event.inputs.environment }}
-            environment: privatenet

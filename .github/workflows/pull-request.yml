@@ -10,10 +10,13 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
+    build-base:
+        uses: ./.github/workflows/build-base.yaml
+        secrets: inherit
     build-web:
+        needs: [build-base]
         uses: ./.github/workflows/build-web.yaml
         secrets: inherit
         with:
             target: integration
             push: false
-            environment: privatenet

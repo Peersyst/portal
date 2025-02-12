@@ -1,14 +1,7 @@
-name: build-web
+name: build-base
 
 on:
     workflow_call:
-        inputs:
-            push:
-                required: true
-                type: boolean
-            target:
-                required: true
-                type: string
 
 env:
     REGISTRY: ghcr.io
@@ -17,11 +10,6 @@ jobs:
     build:
         name: Build
         runs-on: ubuntu-latest
-        environment: ${{ matrix.environment }}
-        strategy:
-            matrix:
-                environment: [ 'staging' ]
-            fail-fast: false
         timeout-minutes: 30
         steps:
             # Checkout repository under $GITHUB_WORKSPACE path
@@ -37,9 +25,9 @@ jobs:
             -   uses: actions/cache@v3
                 with:
                     path: /tmp/.buildx-cache
-                    key: ${{ github.job }}-${{ runner.os }}-buildx-web
+                    key: ${{ github.job }}-${{ runner.os }}-buildx-base
                     restore-keys: |
-                        ${{ github.job }}-${{ runner.os }}-buildx-web
+                        ${{ github.job }}-${{ runner.os }}-buildx-base
 
             -   name: Login to DockerHub
                 uses: docker/login-action@v3
@@ -51,22 +39,17 @@ jobs:
             # Configure tag name
             -   name: Sets env vars
                 run: |
-                    echo "DOCKER_IMAGE_NAME=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-web:${{ matrix.environment }}-${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+                    echo "DOCKER_IMAGE_NAME=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}" >> $GITHUB_ENV
 
             # Build docker image
             -   name: Build docker image
                 uses: docker/build-push-action@v4
                 with:
-                    file: docker/web.Dockerfile
-                    target: ${{ inputs.target }}
-                    push: ${{ inputs.push }}
+                    file: docker/base.Dockerfile
+                    push: true
                     tags: ${{ env.DOCKER_IMAGE_NAME }}
                     cache-from: type=local,src=/tmp/.buildx-cache
                     cache-to: type=local,dest=/tmp/.buildx-cache-new
-                    build-args: |
-                        BASE_IMAGE=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}
-                        APP_CONFIG_PROFILE_IDENTIFIER=${{ vars.WEB_APP_CONFIG_PROFILE_IDENTIFIER }}
-                        APP_CONFIG_ENVIRONMENT_IDENTIFIER=${{ vars.WEB_APP_CONFIG_ENVIRONMENT_IDENTIFIER }}
             -   name: Move cache
                 if: always()
                 run: |

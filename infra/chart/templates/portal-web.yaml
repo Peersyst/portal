@@ -77,7 +77,7 @@ spec:
       - name: regcred
       containers:
       - name: {{ .Values.deployment.name }}
-        image: peersyst/portal-web:{{ .Values.tagWeb }}
+        image: ghcr.io/peersyst/portal-web:{{ .Values.tagWeb }}
         imagePullPolicy: Always
         args: {{ .Values.deployment.args }}
         resources:
