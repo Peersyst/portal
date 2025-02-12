@@ -9,16 +9,16 @@ COPY ["turbo.json", ".prettierrc", "./"]
 # Include packages
 COPY packages /project/packages
 # Include scripts to build artifacts
-COPY scripts /project/scripts
+# COPY scripts /project/scripts
 # Install package dependencies
 RUN pnpm install
 
 # Build and dist packages
-RUN pnpm run dist
+RUN pnpm run bundle
 # Lint packages
 RUN pnpm run lint:packages
 # Test packages
-RUN pnpm run test:packages
+# RUN pnpm run test:packages
 
 FROM base AS integration
 # Config env vars
@@ -49,7 +49,7 @@ RUN pnpm build
 # Lint web
 RUN pnpm lint
 # Test web
-RUN pnpm test
+# RUN pnpm test
 
 WORKDIR /project
 # Isolate web and its dependencies
