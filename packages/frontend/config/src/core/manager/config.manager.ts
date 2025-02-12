@@ -3,7 +3,6 @@ import { ConfigManagerEventEmitter } from "./events";
 import { IConfigProvider, IConfigStorage } from "./interfaces";
 import { deepmerge, getAttribute } from "@peersyst/react-utils";
 import { BaseConfig } from "./types";
-import { IS_PROD } from "@shared/env";
 
 export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omit<Config, "version"> = Omit<Config, "version">> {
     private logger = console;
@@ -70,6 +69,7 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
     readonly once: ConfigManagerEventEmitter<Config>["once"] = this.eventEmitter.once.bind(this.eventEmitter);
 
     constructor(
+        // @ts-ignore provider is used but it is commented for now
         private readonly provider: IConfigProvider<ProviderConfig>,
         private readonly storage: IConfigStorage<ProviderConfig>,
         staticConfig: Config,
@@ -95,28 +95,28 @@ export class ConfigManager<Config extends BaseConfig, ProviderConfig extends Omi
      * Loads config from the provider and stores it in the storage.
      */
     private async load(): Promise<void> {
-        if (IS_PROD) {
-            const fetchedConfig = await this.provider.fetchConfig();
+        // if (IS_PROD) {
+        //     const fetchedConfig = await this.provider.fetchConfig();
 
-            // If this.config major version is smaller than fetchedConfig version throw outdated event
-            if (fetchedConfig.minVersion && this.config.version < fetchedConfig.minVersion) {
-                this.isOutdated = true;
-                this.eventEmitter.emit("outdated", this.config, fetchedConfig);
-            } else {
-                this.config = deepmerge(this.config, fetchedConfig);
-                await this.storage.set(fetchedConfig);
+        //     // If this.config major version is smaller than fetchedConfig version throw outdated event
+        //     if (fetchedConfig.minVersion && this.config.version < fetchedConfig.minVersion) {
+        //         this.isOutdated = true;
+        //         this.eventEmitter.emit("outdated", this.config, fetchedConfig);
+        //     } else {
+        //         this.config = deepmerge(this.config, fetchedConfig);
+        //         await this.storage.set(fetchedConfig);
+        //         this.isLoaded = true;
+        //         this.eventEmitter.emit("load", this.config);
+        //     }
+        // } else {
+        await new Promise<void>((resolve) => {
+            setTimeout(() => {
                 this.isLoaded = true;
                 this.eventEmitter.emit("load", this.config);
-            }
-        } else {
-            await new Promise<void>((resolve) => {
-                setTimeout(() => {
-                    this.isLoaded = true;
-                    this.eventEmitter.emit("load", this.config);
-                    resolve();
-                }, 500);
-            });
-        }
+                resolve();
+            }, 500);
+        });
+        // }
     }
 
     /**
