@@ -23,4 +23,4 @@ deployment:
     memoryLimit: 1024Mi
     cpuLimit: 1000m
     env:
-        environment: privatenet
+        environment: staging
