@@ -78,6 +78,7 @@ export class AxelarChain {
                 symbol: this.native_token.symbol,
                 decimals: this.native_token.decimals,
                 name: this.native_token.name,
+                isNative: true,
             },
             door: (this.interchain_token_service_gateway || this.interchain_token_service_contract)!,
             urls: {
