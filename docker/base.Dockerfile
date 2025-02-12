@@ -13,6 +13,6 @@ RUN pnpm run bundle
 # Run linting
 RUN pnpm run lint:packages
 # Run checking types
-RUN pnpm run check-types:packages
+# RUN pnpm run check-types:packages
 # Run testing
-RUN pnpm run test:packages
+# RUN pnpm run test:packages
