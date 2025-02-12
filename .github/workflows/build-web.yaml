@@ -53,6 +53,8 @@ jobs:
                 run: |
                     DOCKER_IMAGE_NAME_TMP=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-web:${{ matrix.environment }}-${GITHUB_SHA:0:8}
                     echo "DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME_TMP,,}" >> $GITHUB_ENV
+                    BASE_IMAGE_NAME_TMP=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}
+                    echo "BASE_IMAGE_NAME=${BASE_IMAGE_NAME_TMP,,}" >> $GITHUB_ENV
 
             # Build docker image
             -   name: Build docker image
@@ -65,7 +67,7 @@ jobs:
                     cache-from: type=local,src=/tmp/.buildx-cache
                     cache-to: type=local,dest=/tmp/.buildx-cache-new
                     build-args: |
-                        BASE_IMAGE=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}-base:${{ github.sha }}
+                        BASE_IMAGE=${{ env.BASE_IMAGE_NAME }}
                         APP_CONFIG_PROFILE_IDENTIFIER=${{ vars.WEB_APP_CONFIG_PROFILE_IDENTIFIER }}
                         APP_CONFIG_ENVIRONMENT_IDENTIFIER=${{ vars.WEB_APP_CONFIG_ENVIRONMENT_IDENTIFIER }}
             -   name: Move cache
